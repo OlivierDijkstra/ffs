@@ -36,6 +36,15 @@ AffsCharacter::AffsCharacter(const FObjectInitializer& ObjectInitializer)
 	//Mesh1P->SetRelativeRotation(FRotator(0.9f, -19.19f, 5.2f));
 	Mesh1P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
 
+	// Create a mesh component that will be used when being viewed from a '3rd person' view (when controlling another pawn)
+	Mesh3P = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("CharacterMesh3P"));
+	Mesh3P->SetOwnerNoSee(true);
+	Mesh3P->SetupAttachment(GetCapsuleComponent());
+	Mesh3P->bCastDynamicShadow = true;
+	Mesh3P->CastShadow = true;
+	//Mesh3P->SetRelativeRotation(FRotator(1.9f, -19.19f, 5.2f));
+	Mesh3P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
+
 }
 
 void AffsCharacter::BeginPlay()
