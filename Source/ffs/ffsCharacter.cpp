@@ -4,6 +4,7 @@
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Animations/GSCNativeAnimInstanceInterface.h"
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -45,4 +46,26 @@ void AffsCharacter::BeginPlay()
 {
 	// Call the base class  
 	Super::BeginPlay();
+
+	// Console log to the screen	
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Hello World!"));
+	}
+
+	// Setup blueprint property mapping for Mesh1P
+	if (Mesh1P)
+	{
+		if (IGSCNativeAnimInstanceInterface* AnimInstanceInterface = Cast<IGSCNativeAnimInstanceInterface>(Mesh1P->GetAnimInstance()))
+		{
+			UE_LOG(LogTemp, Verbose, TEXT("BeginPlay Initialize `%s` AnimInstance with Ability System"), *GetNameSafe(Mesh1P->GetAnimInstance()))
+			// Print the above message to the screen
+			if (GEngine)
+			{
+				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("BeginPlay Initialize Mesh1P AnimInstance with Ability System"));
+			}
+			UAbilitySystemComponent* ASC = reinterpret_cast<UAbilitySystemComponent*>(AbilitySystemComponent);
+			AnimInstanceInterface->InitializeWithAbilitySystem(ASC);
+		}
+	}
 }
