@@ -46,7 +46,7 @@ AffsCharacter::AffsCharacter(const FObjectInitializer& ObjectInitializer)
 	Mesh3P->bCastDynamicShadow = true;
 	Mesh3P->CastShadow = true;
 	//Mesh3P->SetRelativeRotation(FRotator(1.9f, -19.19f, 5.2f));
-	Mesh3P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
+	// Mesh3P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
 
 }
 

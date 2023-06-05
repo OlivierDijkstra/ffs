@@ -19,13 +19,16 @@ UCLASS(config=Game)
 class AffsCharacter : public AGSCModularCharacter
 {
 	GENERATED_BODY()
+	
+public:
+	AffsCharacter(const FObjectInitializer& ObjectInitializer);
 
 	/** Pawn mesh: 1st person view (arms; seen only by self) */
-	UPROPERTY(VisibleDefaultsOnly, Category=Mesh)
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Mesh)
 	USkeletalMeshComponent* Mesh1P;
 
 	/** Pawn mesh 3p: 3rd person view (body; seen only by others) */
-	UPROPERTY(VisibleDefaultsOnly, Category=Mesh)
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Mesh)
 	USkeletalMeshComponent* Mesh3P;
 
 	/** First person camera */
@@ -34,10 +37,6 @@ class AffsCharacter : public AGSCModularCharacter
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	USpringArmComponent* CameraBoom;
-
-	
-public:
-	AffsCharacter(const FObjectInitializer& ObjectInitializer);
 
 protected:
 	virtual void BeginPlay();
