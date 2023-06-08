@@ -2,34 +2,171 @@
 #include "GameFramework/Character.h"
 #include "Components/CapsuleComponent.h"
 
+#pragma region Saved Move
+
+// Clear the saved move state and the sprinting state
+void FSavedMove_Ffs::Clear()
+{
+    Super::Clear();
+    Saved_bWantsToSprint = false;
+    Saved_bWantsToSlide = false;
+}
+
+// Get the parent's compressed flags and add additional flag for sprinting state
+uint8 FSavedMove_Ffs::GetCompressedFlags() const
+{
+    uint8 Result = Super::GetCompressedFlags();
+
+    if (Saved_bWantsToSprint) Result |= FLAG_Sprint;
+    if (Saved_bWantsToSlide) Result |= FLAG_Slide;
+
+    return Result;
+}
+
+// Set the move for the character including the additional sprinting state
+void FSavedMove_Ffs::SetMoveFor(ACharacter *Character, float InDeltaTime, FVector const& NewAccel, FNetworkPredictionData_Client_Character& ClientData)
+{
+    Super::SetMoveFor(Character, InDeltaTime, NewAccel, ClientData);
+
+    if (Character)
+    {
+        if (UffsCharacterMovementComponent* MovementComponent = Cast<UffsCharacterMovementComponent>(Character->GetMovementComponent()))
+        {
+            Saved_bWantsToSprint = MovementComponent->Safe_bWantsToSprint;
+            Saved_bWantsToSlide = MovementComponent->Safe_bWantsToSlide;
+        }
+    }
+}
+
+// Prepare the character's sprinting state for the next move
+void FSavedMove_Ffs::PrepMoveFor(ACharacter *Character)
+{
+    Super::PrepMoveFor(Character);
+
+    if (Character)
+    {
+        if (UffsCharacterMovementComponent* MovementComponent = Cast<UffsCharacterMovementComponent>(Character->GetMovementComponent()))
+        {
+            MovementComponent->Safe_bWantsToSprint = Saved_bWantsToSprint;
+            MovementComponent->Safe_bWantsToSlide = Saved_bWantsToSlide;
+        }
+    }
+}
+
+#pragma endregion
+
+#pragma region Client Network Prediction Data
+
+// Allocate a new saved move of the type that can save additional properties related to sprinting
+FSavedMovePtr FNetworkPredictionData_Client_Ffs::AllocateNewMove()
+{
+    return FSavedMovePtr(new FSavedMove_Ffs());
+}
+
+// Determine if this saved move can be combined with a new one, with an additional check for sprinting state
+bool FSavedMove_Ffs::CanCombineWith(const FSavedMovePtr &NewMove, ACharacter *InCharacter, float MaxDelta) const
+{
+    if (Saved_bWantsToSprint != ((FSavedMove_Ffs*)&NewMove)->Saved_bWantsToSprint)
+    {
+        return false;
+    }
+
+    // TODO: Could be useful
+    // if (Saved_bWantsToSlide != ((FSavedMove_Ffs*)&NewMove)->Saved_bWantsToSlide)
+    // {
+    //     return false;
+    // }
+
+    return Super::CanCombineWith(NewMove, InCharacter, MaxDelta);
+}
+
+#pragma endregion
+
 UffsCharacterMovementComponent::UffsCharacterMovementComponent()
 {
 }
 
-bool UffsCharacterMovementComponent::IsCustomMovementMode(ECustomMovementMode InCustomMovementMode) const
-{
-    return MovementMode == MOVE_Custom && CustomMovementMode == InCustomMovementMode;
-}
-
-bool UffsCharacterMovementComponent::GetSlideSurface(FHitResult& OutHit) const
-{
-    FVector Start = UpdatedComponent->GetComponentLocation();
-    FVector End = Start + CharacterOwner->GetCapsuleComponent()->GetScaledCapsuleHalfHeight() * 2.f * FVector::DownVector;
-    FName ProfileName = FName(TEXT("BlockAll"));
-    return GetWorld()->LineTraceSingleByProfile(OutHit, Start, End, ProfileName, ffsCharacterOwner->GetIgnoreCharacterParams());
-}
-
-// Overwrite the default IsMovingOnGround to also account for the sliding movement mode
-bool UffsCharacterMovementComponent::IsMovingOnGround() const
-{
-    return Super::IsMovingOnGround() || IsCustomMovementMode(CMOVE_Sliding);
-}
+#pragma region CMC
 
 void UffsCharacterMovementComponent::InitializeComponent()
 {
     Super::InitializeComponent();
 
     ffsCharacterOwner = Cast<AffsCharacter>(GetOwner());
+}
+
+void UffsCharacterMovementComponent::UpdateFromCompressedFlags(uint8 Flags)
+{
+    Super::UpdateFromCompressedFlags(Flags);
+
+    Safe_bWantsToSprint = (Flags & FSavedMove_Ffs::FLAG_Sprint) != 0;
+    Safe_bWantsToSlide = (Flags & FSavedMove_Ffs::FLAG_Slide) != 0;
+}
+
+void UffsCharacterMovementComponent::OnClientCorrectionReceived(FNetworkPredictionData_Client_Character& ClientData,
+	float TimeStamp, FVector NewLocation, FVector NewVelocity, UPrimitiveComponent* NewBase, FName NewBaseBoneName,
+	bool bHasBase, bool bBaseRelativePosition, uint8 ServerMovementMode)
+{
+	Super::OnClientCorrectionReceived(ClientData, TimeStamp, NewLocation, NewVelocity, NewBase, NewBaseBoneName,
+	                                  bHasBase, bBaseRelativePosition,
+	                                  ServerMovementMode);
+
+	CorrectionCount++;
+}
+
+FNetworkPredictionData_Client *UffsCharacterMovementComponent::GetPredictionData_Client() const
+{
+    check(PawnOwner != nullptr);
+
+    // This checks if prediction data exists. If it doesn't, it creates a new one
+    if (ClientPredictionData ==  nullptr)
+    {
+        if (UffsCharacterMovementComponent* MutableThis = const_cast<UffsCharacterMovementComponent *>(this))
+        {
+            MutableThis->ClientPredictionData = new FNetworkPredictionData_Client_Ffs(*this);
+            // TODO: Look into this
+            MutableThis->ClientPredictionData->MaxSmoothNetUpdateDist = 92.f;
+		    MutableThis->ClientPredictionData->NoSmoothNetUpdateDist = 140.f; 
+        }
+    }
+
+    return ClientPredictionData;
+}
+
+float UffsCharacterMovementComponent::GetMaxSpeed() const
+{
+    if (IsMovementMode(MOVE_Walking) && Safe_bWantsToSprint && !IsCrouching()) return MaxSprintSpeed;
+
+    if (MovementMode != MOVE_Custom) return Super::GetMaxSpeed();
+
+    switch (CustomMovementMode)
+	{
+	case CMOVE_Sliding:
+		return MaxSlideSpeed;
+	default:
+		UE_LOG(LogTemp, Fatal, TEXT("Invalid Movement Mode"))
+		return -1.f;
+	}
+}
+
+float UffsCharacterMovementComponent::GetMaxBrakingDeceleration() const
+{
+	if (MovementMode != MOVE_Custom) return Super::GetMaxBrakingDeceleration();
+
+	switch (CustomMovementMode)
+	{
+	case CMOVE_Sliding:
+		return BrakingDecelerationSliding;
+	default:
+		UE_LOG(LogTemp, Fatal, TEXT("Invalid Movement Mode"))
+		return -1.f;
+	}
+}
+
+// Overwrite the default IsMovingOnGround to also account for the sliding movement mode
+bool UffsCharacterMovementComponent::IsMovingOnGround() const
+{
+    return Super::IsMovingOnGround() || IsCustomMovementMode(CMOVE_Sliding);
 }
 
 void UffsCharacterMovementComponent::PhysCustom(float deltaTime, int32 Iterations)
@@ -45,6 +182,18 @@ void UffsCharacterMovementComponent::PhysCustom(float deltaTime, int32 Iteration
         UE_LOG(LogTemp, Fatal, TEXT("UffsCharacterMovementComponent::PhysCustom: Unknown CustomMovementMode"));
         break;
     }
+}
+
+#pragma endregion
+
+#pragma region Sliding
+
+bool UffsCharacterMovementComponent::GetSlideSurface(FHitResult& OutHit) const
+{
+    FVector Start = UpdatedComponent->GetComponentLocation();
+    FVector End = Start + CharacterOwner->GetCapsuleComponent()->GetScaledCapsuleHalfHeight() * 2.f * FVector::DownVector;
+    FName ProfileName = FName(TEXT("BlockAll"));
+    return GetWorld()->LineTraceSingleByProfile(OutHit, Start, End, ProfileName, ffsCharacterOwner->GetIgnoreCharacterParams());
 }
 
 void UffsCharacterMovementComponent::EnterSlide()
@@ -144,9 +293,13 @@ void UffsCharacterMovementComponent::PhysSliding(float deltaTime, int32 Iteratio
     }
 }
 
+#pragma endregion
+
+#pragma region Sprinting
+
 void UffsCharacterMovementComponent::SetSprinting(bool Sprint)
 {
-    Safe_bWantstoSprint = Sprint;  // Setter for sprinting state
+    Safe_bWantsToSprint = Sprint;  // Setter for sprinting state
 }
 
 void UffsCharacterMovementComponent::SetSliding(bool Slide)
@@ -164,116 +317,17 @@ void UffsCharacterMovementComponent::SetSliding(bool Slide)
     }
 }
 
-void UffsCharacterMovementComponent::UpdateFromCompressedFlags(uint8 Flags)
+#pragma endregion
+
+#pragma region Interface
+
+bool UffsCharacterMovementComponent::IsCustomMovementMode(ECustomMovementMode InCustomMovementMode) const
 {
-    Super::UpdateFromCompressedFlags(Flags);
-    // Unpack sprinting state from compressed flags
-    Safe_bWantstoSprint = (Flags & FSavedMove_Character::FLAG_Custom_0) != 0;
-    Safe_bWantsToSlide = (Flags & FSavedMove_Character::FLAG_Custom_1) != 0;
+    return MovementMode == MOVE_Custom && CustomMovementMode == InCustomMovementMode;
+}
+bool UffsCharacterMovementComponent::IsMovementMode(EMovementMode InMovementMode) const
+{
+	return InMovementMode == MovementMode;
 }
 
-FNetworkPredictionData_Client *UffsCharacterMovementComponent::GetPredictionData_Client() const
-{
-    // This checks if prediction data exists. If it doesn't, it creates a new one
-    if (!ClientPredictionData)
-    {
-        if (UffsCharacterMovementComponent* TempComponent = const_cast<UffsCharacterMovementComponent *>(this))
-        {
-            TempComponent->ClientPredictionData = new FNetworkPredictionData_Client_Ffs(*this);
-        }
-    }
-
-    return ClientPredictionData;
-}
-
-float UffsCharacterMovementComponent::GetMaxSpeed() const
-{
-    // If sprinting, return sprinting speed. Else, call parent's GetMaxSpeed() function
-    float Speed = Super::GetMaxSpeed();
-
-    if (Safe_bWantstoSprint)
-    {
-        Speed = MaxSprintSpeed;
-    }
-
-    return Speed;
-}
-
-// Clear the saved move state and the sprinting state
-void FSavedMove_Ffs::Clear()
-{
-    Super::Clear();
-    Saved_bWantsToSprint = false;
-    Saved_bWantsToSlide = false;
-}
-
-// Get the parent's compressed flags and add additional flag for sprinting state
-uint8 FSavedMove_Ffs::GetCompressedFlags() const
-{
-    uint8 Result = Super::GetCompressedFlags();
-
-    if (Saved_bWantsToSprint)
-    {
-        Result |= FLAG_Custom_0;
-    }
-
-    if (Saved_bWantsToSlide)
-    {
-        Result |= FLAG_Custom_1;
-    }
-
-    return Result;
-}
-
-// Set the move for the character including the additional sprinting state
-void FSavedMove_Ffs::SetMoveFor(ACharacter *Character, float InDeltaTime, FVector const& NewAccel, FNetworkPredictionData_Client_Character& ClientData)
-{
-    Super::SetMoveFor(Character, InDeltaTime, NewAccel, ClientData);
-
-    if (Character)
-    {
-        if (UffsCharacterMovementComponent* MovementComponent = Cast<UffsCharacterMovementComponent>(Character->GetMovementComponent()))
-        {
-            Saved_bWantsToSprint = MovementComponent->Safe_bWantstoSprint;
-            Saved_bWantsToSlide = MovementComponent->Safe_bWantsToSlide;
-        }
-    }
-}
-
-// Prepare the character's sprinting state for the next move
-void FSavedMove_Ffs::PrepMoveFor(ACharacter *Character)
-{
-    Super::PrepMoveFor(Character);
-
-    if (Character)
-    {
-        if (UffsCharacterMovementComponent* MovementComponent = Cast<UffsCharacterMovementComponent>(Character->GetMovementComponent()))
-        {
-            MovementComponent->Safe_bWantstoSprint = Saved_bWantsToSprint;
-            MovementComponent->Safe_bWantsToSlide = Saved_bWantsToSlide;
-        }
-    }
-}
-
-// Determine if this saved move can be combined with a new one, with an additional check for sprinting state
-bool FSavedMove_Ffs::CanCombineWith(const FSavedMovePtr &NewMove, ACharacter *InCharacter, float MaxDelta) const
-{
-    if (Saved_bWantsToSprint != ((FSavedMove_Ffs*)&NewMove)->Saved_bWantsToSprint)
-    {
-        return false;
-    }
-
-    // TODO: Could be useful
-    // if (Saved_bWantsToSlide != ((FSavedMove_Ffs*)&NewMove)->Saved_bWantsToSlide)
-    // {
-    //     return false;
-    // }
-
-    return Super::CanCombineWith(NewMove, InCharacter, MaxDelta);
-}
-
-// Allocate a new saved move of the type that can save additional properties related to sprinting
-FSavedMovePtr FNetworkPredictionData_Client_Ffs::AllocateNewMove()
-{
-    return FSavedMovePtr(new FSavedMove_Ffs());
-}
+#pragma endregion

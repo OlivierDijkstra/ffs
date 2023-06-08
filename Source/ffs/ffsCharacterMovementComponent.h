@@ -26,16 +26,20 @@ public:
 
 		// Sliding
 		UPROPERTY(EditDefaultsOnly, Category = "Sliding") float MinSlideSpeed=400.f;
+		UPROPERTY(EditDefaultsOnly, Category = "Sliding") float MaxSlideSpeed=800.f;
 		UPROPERTY(EditDefaultsOnly, Category = "Sliding") float SlideEnterImpulse=500.f;
 		UPROPERTY(EditDefaultsOnly, Category = "Sliding") float SlideGravityForce=4000.f;
 		UPROPERTY(EditDefaultsOnly, Category = "Sliding") float SlideFrictionFactor=.06f;
+		UPROPERTY(EditDefaultsOnly, Category = "Sliding") float BrakingDecelerationSliding=1000.f;
 
 	// Transient
 		UPROPERTY(Transient) AffsCharacter* ffsCharacterOwner;
 
 		// Flags
-		uint8 Safe_bWantstoSprint : 1;
+		uint8 Safe_bWantsToSprint : 1;
 		uint8 Safe_bWantsToSlide : 1;
+
+	int CorrectionCount=0;
 
 public:
 	UffsCharacterMovementComponent();
@@ -43,11 +47,17 @@ public:
 // Character movement component overrides
 public:
 	virtual void UpdateFromCompressedFlags(uint8 Flags) override;
+	virtual void OnClientCorrectionReceived(FNetworkPredictionData_Client_Character& ClientData, float TimeStamp, FVector NewLocation, FVector NewVelocity, UPrimitiveComponent* NewBase, FName NewBaseBoneName, bool bHasBase, bool bBaseRelativePosition, uint8 ServerMovementMode) override;
 	virtual FNetworkPredictionData_Client* GetPredictionData_Client() const override;
 	virtual bool IsMovingOnGround() const override;
 	virtual float GetMaxSpeed() const override;
-	// Function to check if the character is in a specific custom movement mode
+	virtual float GetMaxBrakingDeceleration() const override;
+
+// Interface
+public:
 	UFUNCTION(BlueprintPure) bool IsCustomMovementMode(ECustomMovementMode InCustomMovementMode) const;
+	UFUNCTION(BlueprintPure) bool IsMovementMode(EMovementMode InMovementMode) const;
+
 
 // Actor Component
 protected:
@@ -77,6 +87,14 @@ private:
 class FSavedMove_Ffs : public FSavedMove_Character
 {
 public:
+	enum CompressedFlags
+	{
+		FLAG_Sprint			= 0x10,
+		FLAG_Slide			= 0x20,
+		FLAG_Custom_2		= 0x40,
+		FLAG_Custom_3		= 0x80,
+	};
+
 	// Necessary to get access to parent class's methods
 	typedef FSavedMove_Character Super;
 
