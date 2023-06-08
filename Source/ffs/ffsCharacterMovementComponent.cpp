@@ -103,17 +103,6 @@ void UffsCharacterMovementComponent::UpdateFromCompressedFlags(uint8 Flags)
     Safe_bWantsToSlide = (Flags & FSavedMove_Ffs::FLAG_Slide) != 0;
 }
 
-void UffsCharacterMovementComponent::OnClientCorrectionReceived(FNetworkPredictionData_Client_Character& ClientData,
-	float TimeStamp, FVector NewLocation, FVector NewVelocity, UPrimitiveComponent* NewBase, FName NewBaseBoneName,
-	bool bHasBase, bool bBaseRelativePosition, uint8 ServerMovementMode)
-{
-	Super::OnClientCorrectionReceived(ClientData, TimeStamp, NewLocation, NewVelocity, NewBase, NewBaseBoneName,
-	                                  bHasBase, bBaseRelativePosition,
-	                                  ServerMovementMode);
-
-	CorrectionCount++;
-}
-
 FNetworkPredictionData_Client *UffsCharacterMovementComponent::GetPredictionData_Client() const
 {
     check(PawnOwner != nullptr);

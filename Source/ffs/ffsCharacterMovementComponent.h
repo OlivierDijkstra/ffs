@@ -37,9 +37,7 @@ public:
 
 		// Flags
 		uint8 Safe_bWantsToSprint : 1;
-		uint8 Safe_bWantsToSlide : 1;
-
-	int CorrectionCount=0;
+		uint8 Safe_bWantsToSlide : 1; 
 
 public:
 	UffsCharacterMovementComponent();
@@ -47,7 +45,6 @@ public:
 // Character movement component overrides
 public:
 	virtual void UpdateFromCompressedFlags(uint8 Flags) override;
-	virtual void OnClientCorrectionReceived(FNetworkPredictionData_Client_Character& ClientData, float TimeStamp, FVector NewLocation, FVector NewVelocity, UPrimitiveComponent* NewBase, FName NewBaseBoneName, bool bHasBase, bool bBaseRelativePosition, uint8 ServerMovementMode) override;
 	virtual FNetworkPredictionData_Client* GetPredictionData_Client() const override;
 	virtual bool IsMovingOnGround() const override;
 	virtual float GetMaxSpeed() const override;
