@@ -1,6 +1,3 @@
-// Fill out your copyright notice in the Description page of Project Settings.
-
-
 #include "ffsCharacterMovementComponent.h"
 #include "GameFramework/Character.h"
 #include "Components/CapsuleComponent.h"
@@ -54,7 +51,7 @@ void UffsCharacterMovementComponent::EnterSlide()
 {
     // Piggy back of the crouching mechanics to handle the capsule size
     bWantsToCrouch = true;
-    Velocity += Velocity.GetSafeNormal2D() * Slide_EnterImpulse;
+    Velocity += Velocity.GetSafeNormal2D() * SlideEnterImpulse;
     SetMovementMode(MOVE_Custom, CMOVE_Sliding);
 }
 
@@ -82,7 +79,7 @@ void UffsCharacterMovementComponent::PhysSliding(float deltaTime, int32 Iteratio
 
     FHitResult SurfaceHit;
     // If we can't get a slide surface or the velocity is too low, exit the sliding movement mode
-    if (!GetSlideSurface(SurfaceHit) || Velocity.SizeSquared() < pow(Slide_MinSpeed, 2.f))
+    if (!GetSlideSurface(SurfaceHit) || Velocity.SizeSquared() < pow(MinSlideSpeed, 2.f))
     {
         ExitSlide();
         // Start new physics as we are no longer sliding.
@@ -91,7 +88,7 @@ void UffsCharacterMovementComponent::PhysSliding(float deltaTime, int32 Iteratio
     }
 
     // Surface Gravity
-    Velocity += Slide_GravityForce * FVector::DownVector * deltaTime;
+    Velocity += SlideGravityForce * FVector::DownVector * deltaTime;
 
     // Strafe
     // Only allow acceleration to be left or right.
@@ -108,7 +105,7 @@ void UffsCharacterMovementComponent::PhysSliding(float deltaTime, int32 Iteratio
     // More boilerplate for root motion handling but could be useful later
     if (!HasAnimRootMotion() && !CurrentRootMotion.HasOverrideVelocity())
     {
-        CalcVelocity(deltaTime, Slide_Friction, true, GetMaxBrakingDeceleration());
+        CalcVelocity(deltaTime, SlideFrictionFactor, true, GetMaxBrakingDeceleration());
     }
     ApplyRootMotionToVelocity(deltaTime);
 
@@ -135,7 +132,7 @@ void UffsCharacterMovementComponent::PhysSliding(float deltaTime, int32 Iteratio
 
     // Recheck if we still have enough speed to slide after the impact, if not, exit the slide movement mode
     FHitResult NewSurfaceHit;
-    if (!GetSlideSurface(NewSurfaceHit) || Velocity.SizeSquared() < pow(Slide_MinSpeed, 2.f))
+    if (!GetSlideSurface(NewSurfaceHit) || Velocity.SizeSquared() < pow(MinSlideSpeed, 2.f))
     {
         ExitSlide();
     }
@@ -157,7 +154,7 @@ void UffsCharacterMovementComponent::SetSliding(bool Slide)
     Safe_bWantsToSlide = Slide; // Setter for sliding state
 
     FHitResult PotentialSlideSurface;
-    if (Slide && Velocity.SizeSquared() > pow(Slide_MinSpeed, 2.f) && GetSlideSurface(PotentialSlideSurface))
+    if (Slide && Velocity.SizeSquared() > pow(MinSlideSpeed, 2.f) && GetSlideSurface(PotentialSlideSurface))
     {
         EnterSlide();
     }
@@ -182,7 +179,7 @@ FNetworkPredictionData_Client *UffsCharacterMovementComponent::GetPredictionData
     {
         if (UffsCharacterMovementComponent* TempComponent = const_cast<UffsCharacterMovementComponent *>(this))
         {
-            TempComponent->ClientPredictionData = new FSprintNetworkPredictionData_Client_Character(*this);
+            TempComponent->ClientPredictionData = new FNetworkPredictionData_Client_Ffs(*this);
         }
     }
 
@@ -203,7 +200,7 @@ float UffsCharacterMovementComponent::GetMaxSpeed() const
 }
 
 // Clear the saved move state and the sprinting state
-void FSprintSavedMove_Character::Clear()
+void FSavedMove_Ffs::Clear()
 {
     Super::Clear();
     Saved_bWantsToSprint = false;
@@ -211,7 +208,7 @@ void FSprintSavedMove_Character::Clear()
 }
 
 // Get the parent's compressed flags and add additional flag for sprinting state
-uint8 FSprintSavedMove_Character::GetCompressedFlags() const
+uint8 FSavedMove_Ffs::GetCompressedFlags() const
 {
     uint8 Result = Super::GetCompressedFlags();
 
@@ -229,7 +226,7 @@ uint8 FSprintSavedMove_Character::GetCompressedFlags() const
 }
 
 // Set the move for the character including the additional sprinting state
-void FSprintSavedMove_Character::SetMoveFor(ACharacter *Character, float InDeltaTime, FVector const& NewAccel, FNetworkPredictionData_Client_Character& ClientData)
+void FSavedMove_Ffs::SetMoveFor(ACharacter *Character, float InDeltaTime, FVector const& NewAccel, FNetworkPredictionData_Client_Character& ClientData)
 {
     Super::SetMoveFor(Character, InDeltaTime, NewAccel, ClientData);
 
@@ -244,7 +241,7 @@ void FSprintSavedMove_Character::SetMoveFor(ACharacter *Character, float InDelta
 }
 
 // Prepare the character's sprinting state for the next move
-void FSprintSavedMove_Character::PrepMoveFor(ACharacter *Character)
+void FSavedMove_Ffs::PrepMoveFor(ACharacter *Character)
 {
     Super::PrepMoveFor(Character);
 
@@ -259,15 +256,15 @@ void FSprintSavedMove_Character::PrepMoveFor(ACharacter *Character)
 }
 
 // Determine if this saved move can be combined with a new one, with an additional check for sprinting state
-bool FSprintSavedMove_Character::CanCombineWith(const FSavedMovePtr &NewMove, ACharacter *InCharacter, float MaxDelta) const
+bool FSavedMove_Ffs::CanCombineWith(const FSavedMovePtr &NewMove, ACharacter *InCharacter, float MaxDelta) const
 {
-    if (Saved_bWantsToSprint != ((FSprintSavedMove_Character*)&NewMove)->Saved_bWantsToSprint)
+    if (Saved_bWantsToSprint != ((FSavedMove_Ffs*)&NewMove)->Saved_bWantsToSprint)
     {
         return false;
     }
 
     // TODO: Could be useful
-    // if (Saved_bWantsToSlide != ((FSprintSavedMove_Character*)&NewMove)->Saved_bWantsToSlide)
+    // if (Saved_bWantsToSlide != ((FSavedMove_Ffs*)&NewMove)->Saved_bWantsToSlide)
     // {
     //     return false;
     // }
@@ -276,7 +273,7 @@ bool FSprintSavedMove_Character::CanCombineWith(const FSavedMovePtr &NewMove, AC
 }
 
 // Allocate a new saved move of the type that can save additional properties related to sprinting
-FSavedMovePtr FSprintNetworkPredictionData_Client_Character::AllocateNewMove()
+FSavedMovePtr FNetworkPredictionData_Client_Ffs::AllocateNewMove()
 {
-    return FSavedMovePtr(new FSprintSavedMove_Character());
+    return FSavedMovePtr(new FSavedMove_Ffs());
 }
