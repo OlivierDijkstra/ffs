@@ -48,7 +48,8 @@ public:
 	USkeletalMeshComponent* GetMesh3P() const { return Mesh3P; }
 	/** Returns FirstPersonCameraComponent subobject **/
 	UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
-
-
+	
+	/** Helper to create a collision query params object that ignores the character and all its children **/
+	FCollisionQueryParams GetIgnoreCharacterParams() const;
 };
 

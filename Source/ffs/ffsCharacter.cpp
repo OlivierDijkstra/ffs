@@ -75,3 +75,16 @@ void AffsCharacter::BeginPlay()
 		}
 	}
 }
+
+// Helper to create a collision query params object that ignores the character and all its children
+FCollisionQueryParams AffsCharacter::GetIgnoreCharacterParams() const
+{
+	FCollisionQueryParams Params;
+
+	TArray<AActor*> CharacterChildren;
+	GetAllChildActors(CharacterChildren);
+	Params.AddIgnoredActors(CharacterChildren);
+	Params.AddIgnoredActor(this);
+
+	return Params;
+}

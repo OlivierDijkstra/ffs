@@ -3,14 +3,26 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "ffsCharacter.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "ffsCharacterMovementComponent.generated.h"
+
+UENUM(BlueprintType)
+enum ECustomMovementMode
+{
+	CMOVE_None UMETA(Hidden),
+	CMOVE_Sprinting UMETA(DisplayName = "Sprinting"),
+	CMOVE_Sliding UMETA(DisplayName = "Sliding"),
+	CMOVE_MAX UMETA(Hidden),
+};
 
 // The main character movement component that extends from UCharacterMovementComponent
 UCLASS()
 class FFS_API UffsCharacterMovementComponent : public UCharacterMovementComponent
 {
 	GENERATED_BODY()
+
+	UPROPERTY(Transient) AffsCharacter* ffsCharacterOwner;
 
 public:
 	// Default constructor with preset maximum sprint speed
@@ -26,7 +38,8 @@ public:
 	virtual float GetMaxSpeed() const override;
 
 	// Bitfield to track if the character wants to sprint
-	uint8 bWantstoSprint : 1;
+	uint8 Safe_bWantstoSprint : 1;
+	uint8 Safe_bWantsToSlide : 1;
 
 	// Property defining the maximum sprinting speed
 	UPROPERTY(EditDefaultsOnly, Category = "Sprinting")
@@ -35,6 +48,42 @@ public:
 	// BlueprintCallable function allowing to change the sprinting state
 	UFUNCTION(BlueprintCallable, Category = "Sprinting")
 	void SetSprinting(bool Sprint);	
+	// BlueprintPure function allowing to check the Sliding state
+	UFUNCTION(BlueprintCallable, Category = "Sliding")
+	void SetSliding(bool Slide);
+
+	// Function to check if the character is in a specific custom movement mode
+	UFUNCTION(BlueprintPure) bool IsCustomMovementMode(ECustomMovementMode InCustomMovementMode) const;
+
+	// Minimum speed required to enter the sliding movement mode, will exit the sliding mode if the speed drops below this value
+	// TODO: Update to crouch speed
+	UPROPERTY(EditDefaultsOnly, Category = "Sliding")
+	float Slide_MinSpeed=350.f;
+	// Boost velocity when entering the sliding movement mode
+	UPROPERTY(EditDefaultsOnly, Category = "Sliding")
+	float Slide_EnterImpulse=500.f;
+	// Amount of force applied to keep the character on the ground while sliding
+	// Also affects how the slope affects the character's speed
+	UPROPERTY(EditDefaultsOnly, Category = "Sliding")
+	float Slide_GravityForce=5000.f;
+	// How fast you lose velocity while sliding
+	UPROPERTY(EditDefaultsOnly, Category = "Sliding")
+	float Slide_Friction=1.3f;
+
+public:
+	virtual bool IsMovingOnGround() const override;
+
+protected:
+	virtual void InitializeComponent() override;
+	virtual void PhysCustom(float deltaTime, int32 Iterations) override;
+
+private:
+	void EnterSlide();
+	void ExitSlide();
+	// Physics function for the slide movement mode. Every custom movement mode has its own physics function
+	// to define how the character moves in that mode. Usually Phys<ModeName>.
+	void PhysSliding(float deltaTime, int32 Iterations);
+	bool GetSlideSurface(FHitResult& OutHit) const;
 };
 
 // Class that extends FSavedMove_Character to save additional properties related to sprinting
@@ -60,7 +109,8 @@ public:
 	virtual bool CanCombineWith(const FSavedMovePtr& NewMove, ACharacter* InCharacter, float MaxDelta) const override;
 
 	// A bitfield to store the sprinting state
-	uint8 bSavedWantsToSprint : 1;
+	uint8 Saved_bWantsToSprint : 1;
+	uint8 Saved_bWantsToSlide : 1;
 };
 
 // Class that extends FNetworkPredictionData_Client_Character to allocate new moves that save additional properties related to sprinting
