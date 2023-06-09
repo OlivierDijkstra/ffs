@@ -217,15 +217,15 @@ void UffsCharacterMovementComponent::PhysSliding(float deltaTime, int32 Iteratio
 
     FHitResult SurfaceHit;
     // If we can't get a slide surface or the velocity is too low, exit the sliding movement mode
-    if (!GetSlideSurface(SurfaceHit) || Velocity.SizeSquared() < pow(MinSlideSpeed, 2.f))
-    {
-        ExitSlide();
-        // Start new physics as we are no longer sliding.
-        StartNewPhysics(deltaTime, Iterations);
-        // Print out to screen that we exited the slide
-        // GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("C++ Exited Slide"));
-        return;
-    }
+    // if (!GetSlideSurface(SurfaceHit) || Velocity.SizeSquared() < pow(MinSlideSpeed, 2.f))
+    // {
+    //     ExitSlide();
+    //     // Start new physics as we are no longer sliding.
+    //     StartNewPhysics(deltaTime, Iterations);
+    //     // Print out to screen that we exited the slide
+    //     // GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("C++ Exited Slide"));
+    //     return;
+    // }
 
     // Surface Gravity
     Velocity += SlideGravityForce * FVector::DownVector * deltaTime;
@@ -280,12 +280,12 @@ void UffsCharacterMovementComponent::PhysSliding(float deltaTime, int32 Iteratio
     }
 
     // Recheck if we still have enough speed to slide after the impact, if not, exit the slide movement mode
-    FHitResult NewSurfaceHit;
-    if (!GetSlideSurface(NewSurfaceHit) || Velocity.SizeSquared() < pow(MinSlideSpeed, 2.f))
-    {
-        // GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("C++ Slide Exit Slide After Impact"));
-        ExitSlide();
-    }
+    // FHitResult NewSurfaceHit;
+    // if (!GetSlideSurface(NewSurfaceHit) || Velocity.SizeSquared() < pow(MinSlideSpeed, 2.f))
+    // {
+    //     // GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("C++ Slide Exit Slide After Impact"));
+    //     ExitSlide();
+    // }
 
     // Update Outgoing Velocity & Acceleration
     if (!bJustTeleported && !HasAnimRootMotion() && !CurrentRootMotion.HasOverrideVelocity())
