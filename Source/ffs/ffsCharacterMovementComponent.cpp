@@ -233,16 +233,16 @@ void UffsCharacterMovementComponent::PhysSliding(float deltaTime, int32 Iteratio
 
     // Strafe
     // Only allow acceleration to be left or right.
-    if (FMath::Abs(FVector::DotProduct(Acceleration.GetSafeNormal(), UpdatedComponent->GetRightVector())) > .5f)
-    {
-        Acceleration = Acceleration.ProjectOnTo(UpdatedComponent->GetRightVector());
-    }
-    else
-    {
-        Acceleration = FVector::ZeroVector;
-    }
+    // if (FMath::Abs(FVector::DotProduct(Acceleration.GetSafeNormal(), UpdatedComponent->GetRightVector())) > .5)
+    // {
+    //     Acceleration = Acceleration.ProjectOnTo(UpdatedComponent->GetRightVector());
+    // }
+    // else
+    // {
+    //     Acceleration = FVector::ZeroVector;
+    // }
 
-    // GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("C++ Slide Acceleration: %f"), Acceleration.Size()));
+    Acceleration = FVector::ZeroVector;
 
     // Calculate Velocity
     // More boilerplate for root motion handling but could be useful later
@@ -263,10 +263,6 @@ void UffsCharacterMovementComponent::PhysSliding(float deltaTime, int32 Iteratio
     FVector VelocityPlaneDirection = FVector::VectorPlaneProject(Velocity, SurfaceHit.Normal).GetSafeNormal();
     FQuat NewRotation = FRotationMatrix::MakeFromZX(VelocityPlaneDirection, SurfaceHit.Normal).ToQuat();
 
-    // GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("C++ Slide Adjusted: %f"), Adjusted.Size()));
-    // GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("C++ Slide NewRotation: %f"), NewRotation.Rotator().Yaw));
-    // GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("C++ Slide SurfaceHit.Normal: %f"), SurfaceHit.Normal.Rotation().Yaw));
-
     // This actually moves the character
     SafeMoveUpdatedComponent(Adjusted, NewRotation, true, Hit);
 
@@ -276,14 +272,12 @@ void UffsCharacterMovementComponent::PhysSliding(float deltaTime, int32 Iteratio
         HandleImpact(Hit, deltaTime, Adjusted);
         // Helps with sliding along a surface instead of just stopping
         SlideAlongSurface(Adjusted, (1.f - Hit.Time), Hit.Normal, Hit, true);
-        // GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("C++ Slide Handle Impact"));
     }
 
     // Recheck if we still have enough speed to slide after the impact, if not, exit the slide movement mode
     // FHitResult NewSurfaceHit;
     // if (!GetSlideSurface(NewSurfaceHit) || Velocity.SizeSquared() < pow(MinSlideSpeed, 2.f))
     // {
-    //     // GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("C++ Slide Exit Slide After Impact"));
     //     ExitSlide();
     // }
 
@@ -291,7 +285,6 @@ void UffsCharacterMovementComponent::PhysSliding(float deltaTime, int32 Iteratio
     if (!bJustTeleported && !HasAnimRootMotion() && !CurrentRootMotion.HasOverrideVelocity())
     {
         Velocity = (UpdatedComponent->GetComponentLocation() - OldLocation) / deltaTime; // v = dx / dt
-        // GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("C++ Slide Velocity: %f"), Velocity.Size()));
     }
 }
 
