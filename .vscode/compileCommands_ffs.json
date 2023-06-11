@@ -1040,7 +1040,7 @@
 		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\TP_PickUpComponent.cpp",
+		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\InteractableComponent.cpp",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
 			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
@@ -1048,7 +1048,7 @@
 		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\TP_PickUpComponent.h",
+		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\InteractableComponent.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
 			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
@@ -1056,7 +1056,7 @@
 		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\TP_WeaponComponent.cpp",
+		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\SmoothSync.cpp",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
 			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
@@ -1064,7 +1064,23 @@
 		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\TP_WeaponComponent.h",
+		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\SmoothSync.h",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
+			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
+		],
+		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\State.cpp",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
+			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
+		],
+		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\State.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
 			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
@@ -1112,6 +1128,22 @@
 		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
 	},
 	{
+		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\ffsCharacterMovementComponent.cpp",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
+			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
+		],
+		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\ffsCharacterMovementComponent.h",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
+			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
+		],
+		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+	},
+	{
 		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\ffsGameMode.cpp",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
@@ -1121,22 +1153,6 @@
 	},
 	{
 		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\ffsGameMode.h",
-		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
-		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\ffsProjectile.cpp",
-		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
-		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
-	},
-	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\ffsProjectile.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
 			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
