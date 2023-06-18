@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "Animation/AGRCoreAnimInstance.h"
 #include "Animations/GSCNativeAnimInstanceInterface.h"
-// #include "RecoilAnimationComponent.h"
+#include "RecoilAnimationComponent.h"
 #include "FfsAnimInstance.generated.h"
 
 class UAbilitySystemComponent;
@@ -29,6 +29,6 @@ protected:
 	}
 	
 public:
-	// UPROPERTY(BlueprintReadOnly, Category = "AGR|Components")
-	// URecoilAnimationComponent* RecoilAnimation;
+	UPROPERTY(BlueprintReadOnly, Category = "AGR|Components")
+	URecoilAnimationComponent* RecoilAnimation;
 };

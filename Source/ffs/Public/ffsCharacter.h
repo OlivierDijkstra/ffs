@@ -9,14 +9,13 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "ModularGameplayActors/GSCModularCharacter.h"
 #include "Components/AGRAnimMasterComponent.h"
+#include "RecoilAnimationComponent.h"
 
 #include "ffsCharacter.generated.h"
 
 class USkeletalMeshComponent;
 class USceneComponent;
 class UCameraComponent;
-class UAnimMontage;
-class USoundBase;
 class UffsAnimInstance;
 
 UCLASS(config = Game)
@@ -48,6 +47,10 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	USpringArmComponent *CameraBoom;
 
+	// Procudueral Recoil Animation
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Recoil Animation", meta = (AllowPrivateAccess="true"))
+	URecoilAnimationComponent* RecoilAnimation;
+
 	// AGRPRO
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Animation", meta = (AllowPrivateAccess = "true"))
 	UAGRAnimMasterComponent *AnimMasterComponent;
@@ -56,13 +59,11 @@ protected:
 	UffsAnimInstance *AnimInstance;
 
 public:
-	// Returns Mesh1P subobject
 	USkeletalMeshComponent *GetMesh1P() const { return Mesh1P; }
-	// Returns Mesh3P subobject
 	USkeletalMeshComponent *GetMesh3P() const { return Mesh3P; }
-	// Returns FirstPersonCameraComponent subobject
 	UCameraComponent *GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
-	// Helper to create a collision query params object that ignores the character and all its children
+	URecoilAnimationComponent* GetRecoilAnimation() const { return RecoilAnimation; }
+
 	FCollisionQueryParams GetIgnoreCharacterParams() const;
 };

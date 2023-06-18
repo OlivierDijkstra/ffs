@@ -21,7 +21,7 @@ public class ffs : ModuleRules
 			"GameplayAbilities",
 			"GameFeatures",
 			"AGRPRO",
-			// "RecoilAnimations",
+			"RecoilAnimation",
         });
 
         PrivateDependencyModuleNames.AddRange(

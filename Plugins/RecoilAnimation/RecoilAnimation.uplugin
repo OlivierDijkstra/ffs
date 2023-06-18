@@ -1,0 +1,36 @@
+{
+	"FileVersion": 3,
+	"Version": 10,
+	"VersionName": "2022.1.4",
+	"FriendlyName": "Procedural Recoil Animation System",
+	"Description": "Enhanced solution for weapon's visual recoil",
+	"Category": "Animation",
+	"CreatedBy": "guip97",
+	"CreatedByURL": "https://github.com/guip97",
+	"DocsURL": "https://github.com/guip97/ProceduralRecoilAnimationSystem/wiki",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/76194998d28247018bee7be203f6c948",
+	"SupportURL": "https://github.com/guip97/ProceduralRecoilAnimationSystem",
+	"EngineVersion": "5.1.0",
+	"CanContainContent": true,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "RecoilAnimation",
+			"Type": "Runtime",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64",
+				"Android"
+			]
+		},
+		{
+			"Name": "ProceduralConverter",
+			"Type": "Editor",
+			"LoadingPhase": "Default",
+			"PlatformAllowList": [
+				"Win64",
+				"Android"
+			]
+		}
+	]
+}

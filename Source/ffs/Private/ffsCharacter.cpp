@@ -49,6 +49,7 @@ AffsCharacter::AffsCharacter(const FObjectInitializer &ObjectInitializer)
 	// Mesh3P->SetRelativeRotation(FRotator(1.9f, -19.19f, 5.2f));
 	//  Mesh3P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
 
+	RecoilAnimation = CreateDefaultSubobject<URecoilAnimationComponent>(TEXT("RecoilAnimComp"));
 	AnimMasterComponent = CreateDefaultSubobject<UAGRAnimMasterComponent>(TEXT("AGRAnimMaster"));
 }
 
