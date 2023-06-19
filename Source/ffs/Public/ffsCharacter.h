@@ -72,12 +72,6 @@ protected:
 	UAGRAnimMasterComponent *AnimMasterComponent;
 
 	// Weapons
-	UFUNCTION(BlueprintImplementableEvent, Category = "Weapons")
-	void OnWeaponEquipped(const FRecoilAnimData Data, const float Rate = 0.0f, const int Bursts = 0);
-
-	UFUNCTION(BlueprintImplementableEvent, Category = "Weapons")
-	void OnFireModeChanged(EFireMode_PRAS NewMode);
-
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapons", meta = (AllowPrivateAccess = "true"))
 	TArray<TSubclassOf<AWeapon>> WeaponInventory;
 
@@ -95,6 +89,20 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	AWeapon* GetWeapon() { return CurrentWeapon; };
+
+	// Probably not needed, revist later
+	// UFUNCTION(BlueprintImplementableEvent, Category = "Weapons")
+	// void OnWeaponEquipped(const FRecoilAnimData Data, const float Rate = 0.0f, const int Bursts = 0);
+
+	// UFUNCTION(BlueprintImplementableEvent, Category = "Weapons")
+	// void OnFireModeChanged(EFireMode_PRAS NewMode);
+
+	// UFUNCTION(BlueprintImplementableEvent, Category = "Input")
+	// void OnFirePressed();
+
+	// UFUNCTION(BlueprintImplementableEvent, Category = "Input")
+	// void OnFireReleased();
+
 	
 public:
 	USkeletalMeshComponent *GetMesh1P() const { return Mesh1P; }
