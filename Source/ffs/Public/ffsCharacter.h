@@ -5,11 +5,17 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 
+// Engine
 #include "InputActionValue.h"
 #include "GameFramework/SpringArmComponent.h"
+
+// Third Party
 #include "ModularGameplayActors/GSCModularCharacter.h"
 #include "Components/AGRAnimMasterComponent.h"
 #include "RecoilAnimationComponent.h"
+
+// First Party
+#include "Weapon.h"
 
 #include "ffsCharacter.generated.h"
 
@@ -30,6 +36,7 @@ protected:
 	// APawn interface
 	virtual void BeginPlay();
 	virtual void PostInitializeComponents() override;
+	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
 	// End of APawn interface
 
 	// Pawn mesh: 1st person view (arms; seen only by self)
@@ -54,6 +61,31 @@ protected:
 	// AGRPRO
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Animation", meta = (AllowPrivateAccess = "true"))
 	UAGRAnimMasterComponent *AnimMasterComponent;
+
+	// Weapons
+	UFUNCTION(BlueprintImplementableEvent, Category = "Weapons")
+	void OnWeaponEquipped(const FRecoilAnimData Data, const float Rate = 0.0f, const int Bursts = 0);
+
+	UFUNCTION(BlueprintImplementableEvent, Category = "Weapons")
+	void OnFireModeChanged(EFireMode_PRAS NewMode);
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapons", meta = (AllowPrivateAccess = "true"))
+	TArray<TSubclassOf<AWeapon>> WeaponInventory;
+
+	UPROPERTY()
+	TArray<AWeapon*> InitWeapons;
+
+	UPROPERTY(Replicated, BlueprintReadWrite, Category = "Weapons")
+	int CurrentGunIndex = 0;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Weapons")
+	TEnumAsByte<EFireMode_PRAS> FireMode;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Weapons")
+	AWeapon* CurrentWeapon = nullptr;
+
+	UFUNCTION(BlueprintCallable)
+	AWeapon* GetWeapon() { return CurrentWeapon; };
 
 	UPROPERTY()
 	UffsAnimInstance *AnimInstance;

@@ -53,11 +53,22 @@ AffsCharacter::AffsCharacter(const FObjectInitializer &ObjectInitializer)
 	AnimMasterComponent = CreateDefaultSubobject<UAGRAnimMasterComponent>(TEXT("AGRAnimMaster"));
 }
 
+#pragma region Initialization
+
 void AffsCharacter::PostInitializeComponents()
 {
 	Super::PostInitializeComponents();
 	AnimInstance = Cast<UffsAnimInstance>(GetMesh()->GetAnimInstance());
 }
+
+void AffsCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME_CONDITION(AffsCharacter, CurrentGunIndex, COND_SkipOwner);
+}
+
+#pragma endregion Initialization
 
 void AffsCharacter::BeginPlay()
 {
