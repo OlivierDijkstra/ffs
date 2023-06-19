@@ -16,6 +16,7 @@
 
 // First Party
 #include "Weapon.h"
+#include "ffsAnimInstance.h"
 
 #include "ffsCharacter.generated.h"
 
@@ -35,7 +36,6 @@ public:
 protected:
 	// APawn interface
 	virtual void BeginPlay();
-	virtual void PostInitializeComponents() override;
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
 	// End of APawn interface
 
@@ -43,9 +43,18 @@ protected:
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Mesh)
 	USkeletalMeshComponent *Mesh1P;
 
+	UFUNCTION(BlueprintCallable)
+	UffsAnimInstance *GetAnimInstance1P() const { return Cast<UffsAnimInstance>(Mesh1P->GetAnimInstance()); }
+
 	// Pawn mesh 3p: 3rd person view (body; seen only by others)
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Mesh)
 	USkeletalMeshComponent *Mesh3P;
+
+	UFUNCTION(BlueprintCallable)
+	UffsAnimInstance *GetAnimInstance3P() const { return Cast<UffsAnimInstance>(Mesh3P->GetAnimInstance()); }
+
+	UFUNCTION(BlueprintCallable)
+	void UpdateAnimInstancePose(UffsAnimInstance *MeshAnimInstance, UAnimSequence *CharacterPose1P, UAnimSequence *CharacterPose3P, FVector WeaponOffset, FTransform PointAim, FVector PlayerPivotOffset, FVector GunPivotOffset, FTransform EditingOffset);
 
 	// First person camera
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
@@ -86,13 +95,11 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
 	AWeapon* GetWeapon() { return CurrentWeapon; };
-
-	UPROPERTY()
-	UffsAnimInstance *AnimInstance;
-
+	
 public:
 	USkeletalMeshComponent *GetMesh1P() const { return Mesh1P; }
 	USkeletalMeshComponent *GetMesh3P() const { return Mesh3P; }
+
 	UCameraComponent *GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
 	URecoilAnimationComponent* GetRecoilAnimation() const { return RecoilAnimation; }

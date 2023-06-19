@@ -31,4 +31,25 @@ protected:
 public:
 	UPROPERTY(BlueprintReadOnly, Category = "AGR|Components")
 	URecoilAnimationComponent* RecoilAnimation;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Pose")
+	UAnimSequence* CharacterPose1P;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Pose")
+	UAnimSequence* CharacterPose3P;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Pose")
+	FVector WeaponOffset;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Pose")
+	FTransform PointAim;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Pose")
+	FVector PlayerPivotOffset;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Pose")
+	FVector GunPivotOffset;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Pose")
+	FTransform EditingOffset;
 };

@@ -1,5 +1,3 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
-
 #include "ffsCharacter.h"
 #include "ffsAnimInstance.h"
 #include "Animation/AnimInstance.h"
@@ -7,9 +5,6 @@
 #include "Components/CapsuleComponent.h"
 #include "ffsCharacterMovementComponent.h"
 #include "Animations/GSCNativeAnimInstanceInterface.h"
-
-//////////////////////////////////////////////////////////////////////////
-// AffsCharacter
 
 AffsCharacter::AffsCharacter(const FObjectInitializer &ObjectInitializer)
 	: Super(ObjectInitializer.SetDefaultSubobjectClass<UffsCharacterMovementComponent>(ACharacter::CharacterMovementComponentName))
@@ -55,20 +50,12 @@ AffsCharacter::AffsCharacter(const FObjectInitializer &ObjectInitializer)
 
 #pragma region Initialization
 
-void AffsCharacter::PostInitializeComponents()
-{
-	Super::PostInitializeComponents();
-	AnimInstance = Cast<UffsAnimInstance>(GetMesh()->GetAnimInstance());
-}
-
 void AffsCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
 	DOREPLIFETIME_CONDITION(AffsCharacter, CurrentGunIndex, COND_SkipOwner);
 }
-
-#pragma endregion Initialization
 
 void AffsCharacter::BeginPlay()
 {
@@ -95,6 +82,23 @@ void AffsCharacter::BeginPlay()
 	}
 }
 
+#pragma endregion Initialization
+
+void AffsCharacter::UpdateAnimInstancePose(UffsAnimInstance *MeshAnimInstance, UAnimSequence *CharacterPose1P, UAnimSequence *CharacterPose3P, FVector WeaponOffset, FTransform PointAim, FVector PlayerPivotOffset, FVector GunPivotOffset, FTransform EditingOffset)
+{
+	if (MeshAnimInstance)
+	{
+		MeshAnimInstance->CharacterPose1P = CharacterPose1P;
+		MeshAnimInstance->CharacterPose3P = CharacterPose3P;
+		MeshAnimInstance->WeaponOffset = WeaponOffset;
+		MeshAnimInstance->PointAim = PointAim;
+		MeshAnimInstance->PlayerPivotOffset = PlayerPivotOffset;
+		MeshAnimInstance->GunPivotOffset = GunPivotOffset;
+		MeshAnimInstance->EditingOffset = EditingOffset;
+	}
+}
+
+#pragma region Helper Functions
 // Helper to create a collision query params object that ignores the character and all its children
 FCollisionQueryParams AffsCharacter::GetIgnoreCharacterParams() const
 {
@@ -107,3 +111,5 @@ FCollisionQueryParams AffsCharacter::GetIgnoreCharacterParams() const
 
 	return Params;
 }
+
+#pragma endregion Helper Functions
