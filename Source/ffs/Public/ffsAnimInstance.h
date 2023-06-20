@@ -5,9 +5,9 @@
 #include "CoreMinimal.h"
 #include "Animation/AGRCoreAnimInstance.h"
 #include "Animations/GSCNativeAnimInstanceInterface.h"
-#include "RecoilAnimationComponent.h"
 #include "FfsAnimInstance.generated.h"
 
+class URecoilAnimationComponent;
 class UAbilitySystemComponent;
 
 UCLASS(Blueprintable)

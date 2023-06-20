@@ -5,6 +5,7 @@
 #include "Components/CapsuleComponent.h"
 #include "ffsCharacterMovementComponent.h"
 #include "Animations/GSCNativeAnimInstanceInterface.h"
+#include "Weapon.h"
 
 AffsCharacter::AffsCharacter(const FObjectInitializer &ObjectInitializer)
 	: Super(ObjectInitializer.SetDefaultSubobjectClass<UffsCharacterMovementComponent>(ACharacter::CharacterMovementComponentName))
@@ -96,6 +97,55 @@ void AffsCharacter::UpdateAnimInstancePose(UffsAnimInstance *MeshAnimInstance, U
 		MeshAnimInstance->GunPivotOffset = GunPivotOffset;
 		MeshAnimInstance->EditingOffset = EditingOffset;
 	}
+}
+
+void AffsCharacter::EquipWeapon(int32 WeaponIndex)
+{
+	// If the weapon index is out of range, return
+	if (WeaponIndex < 0 || WeaponIndex >= WeaponInventory.Num())
+	{
+		return;
+	}
+
+	if (CurrentWeapon)
+	{
+		UnequipWeapon();
+	}
+
+	CurrentGunIndex = WeaponIndex;
+
+	FActorSpawnParameters SpawnParams;
+	SpawnParams.Owner = this;
+	SpawnParams.Instigator = this;
+	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+
+	AWeapon* Weapon = GetWorld()->SpawnActor<AWeapon>(WeaponInventory[WeaponIndex], SpawnParams);
+
+	Weapon->GunMesh->AttachToComponent(Mesh1P, FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("GripPoint"));
+	Weapon->GunMesh->SetOnlyOwnerSee(true);
+
+	Weapon->GunMesh3P->AttachToComponent(Mesh3P, FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("GripPoint"));
+	Weapon->GunMesh3P->SetOwnerNoSee(true);
+
+	CurrentWeapon = Weapon;
+
+	FVector PlayerPivotOffset = Weapon->GunMesh->GetSocketTransform(TEXT("WeaponPivot"), RTS_Component).GetLocation();
+
+	// This might not be needed
+	CurrentWeapon->SetActorRelativeLocation(-PlayerPivotOffset - CurrentWeapon->GunPivotOffset);
+	// EO This might not be needed
+
+	UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh1P->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->BasePose3P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, CurrentWeapon->GunPivotOffset, CurrentWeapon->EditingOffset);
+	
+	OnWeaponEquipped(Weapon->RecoilAnimData, Weapon->FireRate, Weapon->Burst);
+}
+
+void AffsCharacter::UnequipWeapon()
+{
+	// Get the current weapon using GetWeapon
+	AWeapon *Weapon = GetWeapon();
+	// Destroy the actor
+	Weapon->Destroy();
 }
 
 #pragma region Helper Functions

@@ -4,18 +4,13 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-
-// Engine
 #include "InputActionValue.h"
 #include "GameFramework/SpringArmComponent.h"
 
-// Third Party
 #include "ModularGameplayActors/GSCModularCharacter.h"
 #include "Components/AGRAnimMasterComponent.h"
 #include "RecoilAnimationComponent.h"
 
-// First Party
-#include "Weapon.h"
 #include "ffsAnimInstance.h"
 
 #include "ffsCharacter.generated.h"
@@ -23,7 +18,7 @@
 class USkeletalMeshComponent;
 class USceneComponent;
 class UCameraComponent;
-class UffsAnimInstance;
+class AWeapon;
 
 UCLASS(config = Game)
 class AffsCharacter : public AGSCModularCharacter
@@ -87,23 +82,18 @@ protected:
 	UPROPERTY(BlueprintReadWrite, Category = "Weapons")
 	AWeapon* CurrentWeapon = nullptr;
 
-	UFUNCTION(BlueprintCallable)
-	AWeapon* GetWeapon() { return CurrentWeapon; };
+	UFUNCTION(BlueprintCallable, Category = "Weapons")
+	AWeapon* GetWeapon() const { return CurrentWeapon; }
 
-	// Probably not needed, revist later
-	// UFUNCTION(BlueprintImplementableEvent, Category = "Weapons")
-	// void OnWeaponEquipped(const FRecoilAnimData Data, const float Rate = 0.0f, const int Bursts = 0);
+	UFUNCTION(BlueprintCallable, Category = "Weapons")
+	void EquipWeapon(int Index);
 
-	// UFUNCTION(BlueprintImplementableEvent, Category = "Weapons")
-	// void OnFireModeChanged(EFireMode_PRAS NewMode);
+	UFUNCTION(BlueprintCallable, Category = "Weapons")
+	void UnequipWeapon();
 
-	// UFUNCTION(BlueprintImplementableEvent, Category = "Input")
-	// void OnFirePressed();
+	UFUNCTION(BlueprintImplementableEvent, Category = "Weapons")
+	void OnWeaponEquipped(const FRecoilAnimData Data, const float Rate = 0.0f, const int Bursts = 0);
 
-	// UFUNCTION(BlueprintImplementableEvent, Category = "Input")
-	// void OnFireReleased();
-
-	
 public:
 	USkeletalMeshComponent *GetMesh1P() const { return Mesh1P; }
 	USkeletalMeshComponent *GetMesh3P() const { return Mesh3P; }
