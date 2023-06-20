@@ -140,12 +140,44 @@ void AffsCharacter::EquipWeapon(int32 WeaponIndex)
 	OnWeaponEquipped(Weapon->RecoilAnimData, Weapon->FireRate, Weapon->Burst);
 }
 
+void AffsCharacter::ChangeWeapon()
+{
+	if (CurrentWeapon)
+	{
+		UnequipWeapon();
+	}
+
+	CurrentGunIndex = (CurrentGunIndex + 1) % WeaponInventory.Num();
+
+	EquipWeapon(CurrentGunIndex);
+}
+
 void AffsCharacter::UnequipWeapon()
 {
-	// Get the current weapon using GetWeapon
 	AWeapon *Weapon = GetWeapon();
-	// Destroy the actor
-	Weapon->Destroy();
+
+	if(IsLocallyControlled() && !HasAuthority())
+	{
+		Server_Unequip(Weapon);
+	} else if(HasAuthority()) {
+		Multicast_Unequip(Weapon);
+	}
+}
+
+void AffsCharacter::Server_Unequip_Implementation(AWeapon *Weapon)
+{
+	if(HasAuthority())
+	{
+		Multicast_Unequip(Weapon);
+	}
+}
+
+void AffsCharacter::Multicast_Unequip_Implementation(AWeapon *Weapon)
+{
+	if(!IsLocallyControlled() && IsValid(Weapon))
+	{
+		Weapon->Destroy();
+	}
 }
 
 #pragma region Helper Functions

@@ -89,7 +89,13 @@ protected:
 	void EquipWeapon(int Index);
 
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
+	void ChangeWeapon();
+
 	void UnequipWeapon();
+	UFUNCTION(Server, Reliable, Category = "Net")
+	void Server_Unequip(AWeapon* Weapon);
+	UFUNCTION(NetMulticast, Reliable, Category = "Net")
+	void Multicast_Unequip(AWeapon* Weapon);
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Weapons")
 	void OnWeaponEquipped(const FRecoilAnimData Data, const float Rate = 0.0f, const int Bursts = 0);
