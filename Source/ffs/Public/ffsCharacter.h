@@ -70,8 +70,8 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapons", meta = (AllowPrivateAccess = "true"))
 	TArray<TSubclassOf<AWeapon>> WeaponInventory;
 
-	UPROPERTY()
-	TArray<AWeapon*> InitWeapons;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapons")
+	TArray<AWeapon*> InitializedWeapons;
 
 	UPROPERTY(Replicated, BlueprintReadWrite, Category = "Weapons")
 	int CurrentGunIndex = 0;
@@ -86,16 +86,23 @@ protected:
 	AWeapon* GetWeapon() const { return CurrentWeapon; }
 
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
+	void InitWeapon(int Index);
+
+	UFUNCTION(BlueprintCallable, Category = "Weapons")
 	void EquipWeapon(int Index);
+	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation, Category = "Net")
+	void Server_EquipWeapon(int Index);
+	UFUNCTION(BlueprintCallable, NetMulticast, Reliable, Category = "Net")
+	void Multicast_EquipWeapon(int Index);
 
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
 	void ChangeWeapon();
 
 	void UnequipWeapon();
 	UFUNCTION(Server, Reliable, Category = "Net")
-	void Server_Unequip(AWeapon* Weapon);
+	void Server_UnequipWeapon(int Index);
 	UFUNCTION(NetMulticast, Reliable, Category = "Net")
-	void Multicast_Unequip(AWeapon* Weapon);
+	void Multicast_UnequipWeapon();
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Weapons")
 	void OnWeaponEquipped(const FRecoilAnimData Data, const float Rate = 0.0f, const int Bursts = 0);

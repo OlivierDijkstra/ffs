@@ -99,21 +99,8 @@ void AffsCharacter::UpdateAnimInstancePose(UffsAnimInstance *MeshAnimInstance, U
 	}
 }
 
-void AffsCharacter::EquipWeapon(int32 WeaponIndex)
+void AffsCharacter::InitWeapon(int WeaponIndex)
 {
-	// If the weapon index is out of range, return
-	if (WeaponIndex < 0 || WeaponIndex >= WeaponInventory.Num())
-	{
-		return;
-	}
-
-	if (CurrentWeapon)
-	{
-		UnequipWeapon();
-	}
-
-	CurrentGunIndex = WeaponIndex;
-
 	FActorSpawnParameters SpawnParams;
 	SpawnParams.Owner = this;
 	SpawnParams.Instigator = this;
@@ -127,58 +114,104 @@ void AffsCharacter::EquipWeapon(int32 WeaponIndex)
 	Weapon->GunMesh3P->AttachToComponent(Mesh3P, FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("GripPoint"));
 	Weapon->GunMesh3P->SetOwnerNoSee(true);
 
-	CurrentWeapon = Weapon;
+	Weapon->GunMesh->SetVisibility(false, true);
+	Weapon->GunMesh3P->SetVisibility(false, true);
 
-	FVector PlayerPivotOffset = Weapon->GunMesh->GetSocketTransform(TEXT("WeaponPivot"), RTS_Component).GetLocation();
-
-	// This might not be needed
-	CurrentWeapon->SetActorRelativeLocation(-PlayerPivotOffset - CurrentWeapon->GunPivotOffset);
-	// EO This might not be needed
-
-	UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh1P->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->BasePose3P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, CurrentWeapon->GunPivotOffset, CurrentWeapon->EditingOffset);
-	
-	OnWeaponEquipped(Weapon->RecoilAnimData, Weapon->FireRate, Weapon->Burst);
+	InitializedWeapons.Add(Weapon);
 }
+
+#pragma region Equipping
+
+void AffsCharacter::EquipWeapon(int WeaponIndex)
+{
+    if (IsLocallyControlled())
+    {
+        Server_EquipWeapon(WeaponIndex);
+    }
+}
+
+void AffsCharacter::Server_EquipWeapon_Implementation(int WeaponIndex)
+{
+    if (WeaponIndex >= 0 && WeaponIndex < InitializedWeapons.Num())
+    {
+        Multicast_EquipWeapon(WeaponIndex);
+    }
+}
+
+bool AffsCharacter::Server_EquipWeapon_Validate(int WeaponIndex)
+{
+    return WeaponIndex >= 0 && WeaponIndex < InitializedWeapons.Num();
+}
+
+void AffsCharacter::Multicast_EquipWeapon_Implementation(int WeaponIndex)
+{
+    if (CurrentWeapon != nullptr)
+    {
+        CurrentWeapon->GunMesh->SetVisibility(false, false);
+        CurrentWeapon->GunMesh3P->SetVisibility(false, false);
+    }
+
+    CurrentWeapon = InitializedWeapons[WeaponIndex];
+    CurrentWeapon->GunMesh->SetVisibility(true, false);
+    CurrentWeapon->GunMesh3P->SetVisibility(true, false);
+
+    FVector PlayerPivotOffset = CurrentWeapon->GunMesh->GetSocketTransform(TEXT("WeaponPivot"), RTS_Component).GetLocation();
+
+    CurrentWeapon->SetActorRelativeLocation(-PlayerPivotOffset - CurrentWeapon->GunPivotOffset);
+    
+    UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh1P->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->BasePose3P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, CurrentWeapon->GunPivotOffset, CurrentWeapon->EditingOffset);
+    
+    if(IsLocallyControlled() || HasAuthority())
+    {
+        OnWeaponEquipped(CurrentWeapon->RecoilAnimData, CurrentWeapon->FireRate, CurrentWeapon->Burst);
+        // TODO: Set burst and firemode
+    }
+}
+
+#pragma endregion Equipping
 
 void AffsCharacter::ChangeWeapon()
 {
-	if (CurrentWeapon)
-	{
-		UnequipWeapon();
-	}
-
 	CurrentGunIndex = (CurrentGunIndex + 1) % WeaponInventory.Num();
 
-	EquipWeapon(CurrentGunIndex);
+	UnequipWeapon();
 }
+
+#pragma region UnEquipping
 
 void AffsCharacter::UnequipWeapon()
 {
-	AWeapon *Weapon = GetWeapon();
+	// TODO: Unequip montage
 
 	if(IsLocallyControlled() && !HasAuthority())
 	{
-		Server_Unequip(Weapon);
+		Server_UnequipWeapon(CurrentGunIndex);
 	} else if(HasAuthority()) {
-		Multicast_Unequip(Weapon);
+		Multicast_UnequipWeapon();
 	}
 }
 
-void AffsCharacter::Server_Unequip_Implementation(AWeapon *Weapon)
+void AffsCharacter::Server_UnequipWeapon_Implementation(int WeaponIndex)
 {
 	if(HasAuthority())
 	{
-		Multicast_Unequip(Weapon);
+		CurrentGunIndex = WeaponIndex;
+		const auto Gun = InitializedWeapons[WeaponIndex];
+		OnWeaponEquipped(Gun->RecoilAnimData, Gun->FireRate, Gun->Burst);
+
+		Multicast_UnequipWeapon();
 	}
 }
 
-void AffsCharacter::Multicast_Unequip_Implementation(AWeapon *Weapon)
+void AffsCharacter::Multicast_UnequipWeapon_Implementation()
 {
-	if(!IsLocallyControlled() && IsValid(Weapon))
+	if(!IsLocallyControlled())
 	{
-		Weapon->Destroy();
+		// TODO: Unequip animation
 	}
 }
+
+#pragma endregion UnEquipping
 
 #pragma region Helper Functions
 // Helper to create a collision query params object that ignores the character and all its children
