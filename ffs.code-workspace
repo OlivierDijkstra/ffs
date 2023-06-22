@@ -15,7 +15,8 @@
 			"*.rh": "cpp",
 			"chrono": "cpp",
 			"variant": "cpp",
-			"fft": "cpp"
+			"fft": "cpp",
+			"*.ipp": "cpp"
 		}
 	},
 	"extensions": {

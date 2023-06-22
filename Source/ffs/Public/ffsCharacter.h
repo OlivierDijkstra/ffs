@@ -89,12 +89,8 @@ protected:
 	void InitWeapon(int Index);
 
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
-	void EquipWeapon(int Index);
-	UFUNCTION(BlueprintCallable, Server, Reliable, WithValidation, Category = "Net")
-	void Server_EquipWeapon(int Index);
-	UFUNCTION(BlueprintCallable, NetMulticast, Reliable, Category = "Net")
-	void Multicast_EquipWeapon(int Index);
-
+	void EquipWeapon();
+	
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
 	void ChangeWeapon();
 
@@ -106,6 +102,12 @@ protected:
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "Weapons")
 	void OnWeaponEquipped(const FRecoilAnimData Data, const float Rate = 0.0f, const int Bursts = 0);
+
+	UPROPERTY(EditDefaultsOnly, Category = "Animation")
+	UAnimMontage* EquipMontage;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Animation")
+	UAnimMontage* UnequipMontage;
 
 public:
 	USkeletalMeshComponent *GetMesh1P() const { return Mesh1P; }
