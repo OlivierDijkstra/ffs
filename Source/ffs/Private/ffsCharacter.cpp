@@ -138,8 +138,6 @@ void AffsCharacter::EquipWeapon()
 	}
 }
 
-#pragma endregion Equipping
-
 void AffsCharacter::ChangeWeapon()
 {
 	if (!CurrentWeapon)
@@ -163,8 +161,6 @@ void AffsCharacter::ChangeWeapon()
 
 	UnequipWeapon();
 }
-
-#pragma region UnEquipping
 
 void AffsCharacter::UnequipWeapon()
 {
@@ -208,7 +204,7 @@ void AffsCharacter::Multicast_UnequipWeapon_Implementation()
 	}
 }
 
-#pragma endregion UnEquipping
+#pragma endregion Equipping
 
 #pragma region Helper Functions
 // Helper to create a collision query params object that ignores the character and all its children
