@@ -103,6 +103,9 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Weapons")
 	void OnWeaponEquipped(const FRecoilAnimData Data, const float Rate = 0.0f, const int Bursts = 0);
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "Weapons")
+	void OnWeaponUnequipped();
+
 	UPROPERTY(EditDefaultsOnly, Category = "Animation")
 	UAnimMontage* EquipMontage;
 

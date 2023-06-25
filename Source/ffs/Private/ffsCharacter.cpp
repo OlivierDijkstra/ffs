@@ -170,6 +170,8 @@ void AffsCharacter::UnequipWeapon()
 		AnimInstance1P->Montage_Play(UnequipMontage, 0.8f);
 	}
 
+	OnWeaponUnequipped();
+
 	if (IsLocallyControlled() && !HasAuthority())
 	{
 		Server_UnequipWeapon(CurrentGunIndex);
