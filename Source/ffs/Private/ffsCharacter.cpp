@@ -124,6 +124,7 @@ void AffsCharacter::EquipWeapon()
 	CurrentWeapon->SetActorRelativeLocation(-PlayerPivotOffset - GunPivotOffset);
 
 	UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh1P->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->BasePose3P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, CurrentWeapon->EditingOffset);
+	UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh3P->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->BasePose3P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, CurrentWeapon->EditingOffset);
 
 	if (EquipMontage)
 	{
