@@ -130,6 +130,9 @@ void AffsCharacter::EquipWeapon()
 	{
 		UAnimInstance *AnimInstance1P = Mesh1P->GetAnimInstance();
 		AnimInstance1P->Montage_Play(EquipMontage, 0.8f);
+
+		UAnimInstance *AnimInstance3P = Mesh3P->GetAnimInstance();
+		AnimInstance3P->Montage_Play(EquipMontage, 0.8f);
 	}
 
 	if (IsLocallyControlled() || HasAuthority())
