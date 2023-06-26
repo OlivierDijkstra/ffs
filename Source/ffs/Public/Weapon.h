@@ -1,11 +1,22 @@
-﻿// Designed by Hitman's Store 2022
-
-#pragma once
+﻿#pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "RecoilAnimationComponent.h"
 #include "Weapon.generated.h"
+
+USTRUCT(BlueprintType)
+struct FFireLineTraceResult
+{
+    GENERATED_BODY()
+
+    UPROPERTY(BlueprintReadOnly)
+    ACharacter* HitCharacter;
+
+    UPROPERTY(BlueprintReadOnly)
+    AActor* HitActor;
+};
+
 
 UCLASS(BlueprintType)
 class FFS_API AWeapon : public AActor
@@ -21,8 +32,9 @@ class FFS_API AWeapon : public AActor
 	UAnimMontage* FireMontage;
 
 public:
+	UFUNCTION(BlueprintCallable, Category = "Animation")
 	void PlayFireAnim() const;
-	
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Mesh")
 	USkeletalMeshComponent* GunMesh;
 
@@ -66,4 +78,13 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Camera Animation")
 	TSubclassOf<UCameraShakeBase> CameraRecoilShake;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Firing")
+	float WeaponRange = 1000.f; // Default 1000 units range
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Firing")
+	float WeaponSpread = 0.1f; // Default 10% spread
+
+	UFUNCTION(BlueprintCallable, Category = "Animation")
+	FFireLineTraceResult FireLineTrace(bool Initial, bool Debug);
 };
