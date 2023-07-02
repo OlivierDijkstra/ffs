@@ -62,7 +62,7 @@ void AffsCharacter::BeginPlay()
 			AnimInstanceInterface->InitializeWithAbilitySystem(ASC);
 		}
 	}
-	
+
 	if (Mesh3P)
 	{
 		if (IGSCNativeAnimInstanceInterface *AnimInstanceInterface = Cast<IGSCNativeAnimInstanceInterface>(Mesh3P->GetAnimInstance()))
@@ -72,11 +72,11 @@ void AffsCharacter::BeginPlay()
 		}
 	}
 
-	if(IsLocallyControlled())
+	if (IsLocallyControlled())
 	{
 		FOnTimelineEvent Event;
-    	Event.BindDynamic(this, &AffsCharacter::PlayCameraShake);
-    	RecoilAnimation->AddEvent(0.02f, Event);
+		Event.BindDynamic(this, &AffsCharacter::PlayCameraShake);
+		RecoilAnimation->AddEvent(0.02f, Event);
 
 		// TODO: User configurable FOV
 		UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0)->SetFOV(90.f);
@@ -129,6 +129,50 @@ void AffsCharacter::PlayCameraShake()
 	{
 		UGameplayStatics::GetPlayerCameraManager(this, 0)
 			->StartCameraShake(CurrentWeapon->CameraRecoilShake);
+	}
+}
+
+FFireLineTraceResult AffsCharacter::FireWeapon(bool InitialShot, bool Debug)
+{
+	FFireLineTraceResult FireLineTraceResult;
+
+	if (CurrentWeapon)
+	{
+		if (IsLocallyControlled() && !HasAuthority())
+		{
+			FireLineTraceResult = CurrentWeapon->FireLineTrace(InitialShot, Debug);
+		}
+
+		PlayFireAnimation();
+	}
+
+	return FireLineTraceResult;
+}
+
+void AffsCharacter::PlayFireAnimation()
+{
+	RecoilAnimation->Play();
+
+	CurrentWeapon->GunMesh->PlayAnimation(CurrentWeapon->FireMontage, false);
+
+	if (HasAuthority())
+	{
+		Server_PlayFireAnimation();
+	}
+}
+
+void AffsCharacter::Server_PlayFireAnimation_Implementation()
+{
+	Multicast_PlayFireAnimation();
+}
+
+void AffsCharacter::Multicast_PlayFireAnimation_Implementation()
+{
+	UAnimMontage *FireAnimation = CurrentWeapon->FireMontage;
+
+	if (FireAnimation)
+	{
+		CurrentWeapon->GunMesh3P->PlayAnimation(FireAnimation, false);
 	}
 }
 

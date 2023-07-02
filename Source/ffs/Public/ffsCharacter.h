@@ -94,6 +94,16 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
 	void ChangeWeapon();
 
+	UFUNCTION(BlueprintCallable, Category = "Weapons")
+	virtual FFireLineTraceResult FireWeapon(bool InitialShot, bool Debug);
+
+	UFUNCTION(BlueprintCallable, Category = "Weapons")
+	void PlayFireAnimation();
+	UFUNCTION(Server, Reliable, Category = "Net")
+	void Server_PlayFireAnimation();
+	UFUNCTION(NetMulticast, Reliable, Category = "Net")
+	void Multicast_PlayFireAnimation();
+
 	void UnequipWeapon();
 	UFUNCTION(Server, Reliable, Category = "Net")
 	void Server_UnequipWeapon(int Index);

@@ -1,36 +1,27 @@
 ﻿#include "GameFramework/Character.h"
+#include "ffsCharacter.h"
 #include "Weapon.h"
 
 AWeapon::AWeapon()
 {
-	Pivot = CreateDefaultSubobject<USceneComponent>(TEXT("Pivot"));
+    Pivot = CreateDefaultSubobject<USceneComponent>(TEXT("Pivot"));
 
-	GunMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("GunMesh"));
-	GunMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	GunMesh->bEditableWhenInherited = true;
+    GunMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("GunMesh"));
+    GunMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+    GunMesh->bEditableWhenInherited = true;
 
-	GunMesh3P = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("GunMesh3P"));
-	GunMesh3P->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+    GunMesh3P = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("GunMesh3P"));
+    GunMesh3P->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
 void AWeapon::PostInitializeComponents()
 {
-	Super::PostInitializeComponents();
+    Super::PostInitializeComponents();
 
-	if (GunMesh->GetSkinnedAsset() != nullptr && GunMesh3P->GetSkinnedAsset() == nullptr)
-	{
-		GunMesh3P->SetSkinnedAsset(GunMesh->GetSkinnedAsset());
-	}
-}
-
-void AWeapon::PlayFireAnim() const
-{
-	if (FireMontage)
-	{
-		GunMesh->PlayAnimation(FireMontage, false);
-        // TODO: Fix this not working, look into a Multicast approach
-        GunMesh3P->PlayAnimation(FireMontage, false);
-	}
+    if (GunMesh->GetSkinnedAsset() != nullptr && GunMesh3P->GetSkinnedAsset() == nullptr)
+    {
+        GunMesh3P->SetSkinnedAsset(GunMesh->GetSkinnedAsset());
+    }
 }
 
 void AWeapon::UpdateFirstPersonGunMeshFOV(float FOV)
@@ -39,18 +30,19 @@ void AWeapon::UpdateFirstPersonGunMeshFOV(float FOV)
     TArray<FName> MaterialSlotNames = GunMesh->GetMaterialSlotNames();
 
     // Loop through all the material slots on the gunmesh, determine which one is the FOV material
-   	for (int i = 0; i < MaterialSlotNames.Num(); i++)
-	{
-		if (MaterialSlotNames[i] == "FOV")
-		{
+    for (int i = 0; i < MaterialSlotNames.Num(); i++)
+    {
+        if (MaterialSlotNames[i] == "FOV")
+        {
             FOVMaterialIndex = i;
             break;
-		}
-	}
+        }
+    }
 
-    if (FOVMaterialIndex == -1) return;
+    if (FOVMaterialIndex == -1)
+        return;
 
-    UMaterialInterface* Material = GunMesh->GetMaterial(FOVMaterialIndex);
+    UMaterialInterface *Material = GunMesh->GetMaterial(FOVMaterialIndex);
     GunMesh->SetMaterial(0, Material);
 }
 
@@ -60,12 +52,14 @@ FFireLineTraceResult AWeapon::FireLineTrace(bool Initial, bool Debug)
     Result.HitActor = nullptr;
     Result.HitCharacter = nullptr;
 
-    if (!GunMesh) return Result;
+    if (!GunMesh)
+        return Result;
 
-    ACharacter* GunOwner = Cast<ACharacter>(GetOwner());
-    APlayerController* PC = GunOwner ? Cast<APlayerController>(GunOwner->GetController()) : nullptr;
+    ACharacter *GunOwner = Cast<ACharacter>(GetOwner());
+    APlayerController *PC = GunOwner ? Cast<APlayerController>(GunOwner->GetController()) : nullptr;
 
-    if (!PC) return Result;
+    if (!PC)
+        return Result;
 
     FVector PlayerViewpointLocation;
     FRotator PlayerViewpointRotation;

@@ -28,20 +28,26 @@ class FFS_API AWeapon : public AActor
 	UPROPERTY()
 	USceneComponent* Pivot;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Animation")
-	UAnimMontage* FireMontage;
-
 protected:
 	virtual void PostInitializeComponents() override;
 
 public:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Animation")
+	UAnimMontage* FireMontage;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Firing")
+	float WeaponRange = 3000.f; // Default 1000 units range
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Firing")
+	float WeaponSpread = 0.1f; // Default 10% spread
+
 	UFUNCTION(BlueprintCallable, Category = "Animation")
-	void PlayFireAnim() const;
+	FFireLineTraceResult FireLineTrace(bool Initial, bool Debug);
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Mesh")
 	USkeletalMeshComponent* GunMesh;
 
-	UPROPERTY(VisibleDefaultsOnly, Category = "Mesh")
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Mesh")
 	USkeletalMeshComponent* GunMesh3P;
 
 	UFUNCTION(BlueprintCallable, Category = "Mesh")
@@ -81,13 +87,4 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Camera Animation")
 	TSubclassOf<UCameraShakeBase> CameraRecoilShake;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Firing")
-	float WeaponRange = 1000.f; // Default 1000 units range
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Firing")
-	float WeaponSpread = 0.1f; // Default 10% spread
-
-	UFUNCTION(BlueprintCallable, Category = "Animation")
-	FFireLineTraceResult FireLineTrace(bool Initial, bool Debug);
 };
