@@ -85,12 +85,11 @@ void AffsCharacter::BeginPlay()
 
 #pragma endregion Initialization
 
-void AffsCharacter::UpdateAnimInstancePose(UffsAnimInstance *MeshAnimInstance, UAnimSequence *CharacterPose1P, UAnimSequence *CharacterPose3P, FVector WeaponOffset, FTransform PointAim, FVector PlayerPivotOffset, FVector GunPivotOffset, FTransform EditingOffset)
+void AffsCharacter::UpdateAnimInstancePose(UffsAnimInstance *MeshAnimInstance, UAnimSequence *CharacterPose1P, FVector WeaponOffset, FTransform PointAim, FVector PlayerPivotOffset, FVector GunPivotOffset, FTransform EditingOffset)
 {
 	if (MeshAnimInstance)
 	{
 		MeshAnimInstance->CharacterPose1P = CharacterPose1P;
-		MeshAnimInstance->CharacterPose3P = CharacterPose3P;
 		MeshAnimInstance->WeaponOffset = WeaponOffset;
 		MeshAnimInstance->PointAim = PointAim;
 		MeshAnimInstance->PlayerPivotOffset = PlayerPivotOffset;
@@ -110,6 +109,8 @@ void AffsCharacter::InitWeapon(int WeaponIndex)
 
 	Weapon->GunMesh->AttachToComponent(Mesh1P, FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("GripPoint"));
 	Weapon->GunMesh->SetOnlyOwnerSee(true);
+	Weapon->GunMesh->bCastDynamicShadow = false;
+	Weapon->GunMesh->CastShadow = false;
 
 	Weapon->GunMesh3P->AttachToComponent(Mesh3P, FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("GripPoint"));
 	Weapon->GunMesh3P->SetOwnerNoSee(true);
@@ -118,6 +119,8 @@ void AffsCharacter::InitWeapon(int WeaponIndex)
 	Weapon->GunMesh3P->SetVisibility(false, true);
 
 	InitializedWeapons.Add(Weapon);
+
+	Weapon->UpdateFirstPersonGunMeshFOV(90.f);
 }
 
 void AffsCharacter::PlayCameraShake()
@@ -143,8 +146,8 @@ void AffsCharacter::EquipWeapon()
 	FVector GunPivotOffset = CurrentWeapon->GunPivotOffset;
 	CurrentWeapon->SetActorRelativeLocation(-PlayerPivotOffset - GunPivotOffset);
 
-	UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh1P->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->BasePose3P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, CurrentWeapon->EditingOffset);
-	UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh3P->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->BasePose3P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, CurrentWeapon->EditingOffset);
+	UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh1P->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, CurrentWeapon->EditingOffset);
+	UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh3P->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, CurrentWeapon->EditingOffset);
 
 	if (EquipMontage)
 	{

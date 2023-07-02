@@ -43,12 +43,12 @@ public:
 
 	UPROPERTY(VisibleDefaultsOnly, Category = "Mesh")
 	USkeletalMeshComponent* GunMesh3P;
+
+	UFUNCTION(BlueprintCallable, Category = "Mesh")
+	void UpdateFirstPersonGunMeshFOV(float FOV);
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Animation")
 	UAnimSequence* BasePose1P;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Animation")
-	UAnimSequence* BasePose3P;
 
 	// Gun offset in mesh space
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Animation")
