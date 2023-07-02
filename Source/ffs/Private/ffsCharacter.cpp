@@ -191,7 +191,7 @@ void AffsCharacter::UnequipWeapon()
 	if (UnequipMontage)
 	{
 		UAnimInstance *AnimInstance1P = Mesh1P->GetAnimInstance();
-		AnimInstance1P->Montage_Play(UnequipMontage, 0.8f);
+		AnimInstance1P->Montage_Play(UnequipMontage, 1.0f);
 	}
 
 	OnWeaponUnequipped();
@@ -225,7 +225,7 @@ void AffsCharacter::Multicast_UnequipWeapon_Implementation()
 		if (UnequipMontage)
 		{
 			UAnimInstance *AnimInstance1P = Mesh1P->GetAnimInstance();
-			AnimInstance1P->Montage_Play(UnequipMontage, 0.8f);
+			AnimInstance1P->Montage_Play(UnequipMontage, 1.0f);
 		}
 	}
 }
