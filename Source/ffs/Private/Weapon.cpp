@@ -11,7 +11,16 @@ AWeapon::AWeapon()
 
 	GunMesh3P = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("GunMesh3P"));
 	GunMesh3P->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-	GunMesh3P->bEditableWhenInherited = true;
+}
+
+void AWeapon::PostInitializeComponents()
+{
+	Super::PostInitializeComponents();
+
+	if (GunMesh->SkeletalMesh != nullptr && GunMesh3P->SkeletalMesh == nullptr)
+	{
+		GunMesh3P->SetSkinnedAsset(GunMesh->SkeletalMesh);
+	}
 }
 
 void AWeapon::PlayFireAnim() const
@@ -19,6 +28,8 @@ void AWeapon::PlayFireAnim() const
 	if (FireMontage)
 	{
 		GunMesh->PlayAnimation(FireMontage, false);
+        // TODO: Fix this not working, look into a Multicast approach
+        GunMesh3P->PlayAnimation(FireMontage, false);
 	}
 }
 

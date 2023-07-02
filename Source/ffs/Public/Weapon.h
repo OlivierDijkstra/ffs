@@ -31,6 +31,9 @@ class FFS_API AWeapon : public AActor
 	UPROPERTY(EditDefaultsOnly, Category = "Animation")
 	UAnimMontage* FireMontage;
 
+protected:
+	virtual void PostInitializeComponents() override;
+
 public:
 	UFUNCTION(BlueprintCallable, Category = "Animation")
 	void PlayFireAnim() const;
@@ -38,7 +41,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Mesh")
 	USkeletalMeshComponent* GunMesh;
 
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Mesh")
+	UPROPERTY(VisibleDefaultsOnly, Category = "Mesh")
 	USkeletalMeshComponent* GunMesh3P;
 	
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Animation")
