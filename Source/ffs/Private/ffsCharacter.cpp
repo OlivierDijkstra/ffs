@@ -29,7 +29,6 @@ AffsCharacter::AffsCharacter(const FObjectInitializer &ObjectInitializer)
 	Mesh1P->SetupAttachment(FirstPersonCameraComponent);
 	Mesh1P->bCastDynamicShadow = false;
 	Mesh1P->CastShadow = false;
-	Mesh1P->SetRelativeLocation(FVector(-30.f, 0.f, -150.f));
 
 	Mesh3P = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("CharacterMesh3P"));
 	Mesh3P->SetOwnerNoSee(true);
