@@ -5,6 +5,7 @@
 #include "Components/CapsuleComponent.h"
 #include "ffsCharacterMovementComponent.h"
 #include "Animations/GSCNativeAnimInstanceInterface.h"
+#include "Kismet/GameplayStatics.h"
 #include "Weapon.h"
 
 AffsCharacter::AffsCharacter(const FObjectInitializer &ObjectInitializer)
@@ -70,6 +71,16 @@ void AffsCharacter::BeginPlay()
 			AnimInstanceInterface->InitializeWithAbilitySystem(ASC);
 		}
 	}
+
+	if(IsLocallyControlled())
+	{
+		FOnTimelineEvent Event;
+    	Event.BindDynamic(this, &AffsCharacter::PlayCameraShake);
+    	RecoilAnimation->AddEvent(0.02f, Event);
+
+		// TODO: User configurable FOV
+		UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0)->SetFOV(90.f);
+	}
 }
 
 #pragma endregion Initialization
@@ -107,6 +118,15 @@ void AffsCharacter::InitWeapon(int WeaponIndex)
 	Weapon->GunMesh3P->SetVisibility(false, true);
 
 	InitializedWeapons.Add(Weapon);
+}
+
+void AffsCharacter::PlayCameraShake()
+{
+	if (IsLocallyControlled() && CurrentWeapon && CurrentWeapon->CameraRecoilShake)
+	{
+		UGameplayStatics::GetPlayerCameraManager(this, 0)
+			->StartCameraShake(CurrentWeapon->CameraRecoilShake);
+	}
 }
 
 #pragma region Equipping
