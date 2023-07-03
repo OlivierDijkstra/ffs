@@ -17,6 +17,7 @@ public class ffs : ModuleRules
 			"UMG",
 			"HeadMountedDisplay",
 			"EnhancedInput",
+            "Niagara",
 			"GASCompanion",
 			"GameplayAbilities",
 			"GameFeatures",

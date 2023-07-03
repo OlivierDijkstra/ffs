@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "RecoilAnimationComponent.h"
+#include "NiagaraSystem.h"
 #include "Weapon.generated.h"
 
 USTRUCT(BlueprintType)
@@ -32,6 +33,12 @@ protected:
 	virtual void PostInitializeComponents() override;
 
 public:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Effects")
+	UNiagaraSystem* CaseEjectFX;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Effects")
+	UNiagaraSystem* MuzzleFlashFX;
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Animation")
 	UAnimMontage* FireMontage;
 
