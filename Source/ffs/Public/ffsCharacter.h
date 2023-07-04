@@ -110,9 +110,7 @@ protected:
 	void Server_PlayCaseEjectFX();
 	UFUNCTION(NetMulticast, Reliable, Category = "Net")
 	void Multicast_PlayCaseEjectFX();
-	UFUNCTION()
-	void CaseEjectFX();
-
+	
 	void UnequipWeapon();
 	UFUNCTION(Server, Reliable, Category = "Net")
 	void Server_UnequipWeapon(int Index);
