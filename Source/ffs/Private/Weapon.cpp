@@ -1,6 +1,6 @@
-﻿#include "GameFramework/Character.h"
+﻿#include "Weapon.h"
+#include "GameFramework/Character.h"
 #include "ffsCharacter.h"
-#include "Weapon.h"
 
 AWeapon::AWeapon()
 {

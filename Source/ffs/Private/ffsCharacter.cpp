@@ -144,6 +144,8 @@ FFireLineTraceResult AffsCharacter::FireWeapon(bool InitialShot, bool Debug)
 		}
 
 		PlayFireAnimation();
+		PlayWeaponFireFX(CurrentWeapon->MuzzleFlashFX, FName("Muzzle"), true);
+		PlayWeaponFireFX(CurrentWeapon->CaseEjectFX, FName("ShellEject"), true);
 	}
 
 	return FireLineTraceResult;
@@ -176,73 +178,105 @@ void AffsCharacter::Multicast_PlayFireAnimation_Implementation()
 	}
 }
 
-void AffsCharacter::PlayCaseEjectFX()
+void AffsCharacter::PlayWeaponFireFX(UNiagaraSystem* FX, FName SocketName, bool bMulticast)
 {
-	if (CurrentWeapon)
-	{
-		FVector SocketLocation = CurrentWeapon->GunMesh->GetSocketLocation(TEXT("ShellEject"));
-		FRotator SocketRotation = CurrentWeapon->GunMesh->GetSocketRotation(TEXT("ShellEject"));
+    if (CurrentWeapon)
+    {
+        FVector SocketLocation = CurrentWeapon->GunMesh->GetSocketLocation(SocketName);
+        FRotator SocketRotation = CurrentWeapon->GunMesh->GetSocketRotation(SocketName);
+        UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FX, SocketLocation, SocketRotation);
 
-		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), CurrentWeapon->CaseEjectFX, SocketLocation, SocketRotation);
-
-		if (HasAuthority())
-		{
-			Server_PlayCaseEjectFX();
-		}	
-	}
+        if (HasAuthority() && bMulticast)
+        {
+            Server_PlayWeaponFireFX(FX, SocketName);
+        }
+    }
 }
 
-void AffsCharacter::Server_PlayCaseEjectFX_Implementation()
+void AffsCharacter::Server_PlayWeaponFireFX_Implementation(UNiagaraSystem* FX, FName SocketName)
 {
-	Multicast_PlayCaseEjectFX();
+    Multicast_PlayWeaponFireFX(FX, SocketName);
 }
 
-void AffsCharacter::Multicast_PlayCaseEjectFX_Implementation()
+void AffsCharacter::Multicast_PlayWeaponFireFX_Implementation(UNiagaraSystem* FX, FName SocketName)
 {
-	if (IsLocallyControlled())
-	{
-		return;
-	}
+    if (IsLocallyControlled())
+    {
+        return;
+    }
 
-	FVector SocketLocation = CurrentWeapon->GunMesh3P->GetSocketLocation(TEXT("ShellEject"));
-	FRotator SocketRotation = CurrentWeapon->GunMesh3P->GetSocketRotation(TEXT("ShellEject"));
-
-	UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), CurrentWeapon->CaseEjectFX, SocketLocation, SocketRotation);
+    FVector SocketLocation = CurrentWeapon->GunMesh3P->GetSocketLocation(SocketName);
+    FRotator SocketRotation = CurrentWeapon->GunMesh3P->GetSocketRotation(SocketName);
+    UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FX, SocketLocation, SocketRotation);
 }
 
-void AffsCharacter::PlayMuzzleFlashFX()
-{
-	if (CurrentWeapon)
-	{
-		FVector SocketLocation = CurrentWeapon->GunMesh->GetSocketLocation(TEXT("Muzzle"));
-		FRotator SocketRotation = CurrentWeapon->GunMesh->GetSocketRotation(TEXT("Muzzle"));
+// void AffsCharacter::PlayCaseEjectFX()
+// {
+// 	if (CurrentWeapon)
+// 	{
+// 		FVector SocketLocation = CurrentWeapon->GunMesh->GetSocketLocation(TEXT("ShellEject"));
+// 		FRotator SocketRotation = CurrentWeapon->GunMesh->GetSocketRotation(TEXT("ShellEject"));
 
-		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), CurrentWeapon->MuzzleFlashFX, SocketLocation, SocketRotation);
+// 		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), CurrentWeapon->CaseEjectFX, SocketLocation, SocketRotation);
 
-		if (HasAuthority())
-		{
-			Server_PlayMuzzleFlashFX();
-		}
-	}
-}
+// 		if (HasAuthority())
+// 		{
+// 			Server_PlayCaseEjectFX();
+// 		}	
+// 	}
+// }
 
-void AffsCharacter::Server_PlayMuzzleFlashFX_Implementation()
-{
-	Multicast_PlayMuzzleFlashFX();
-}
+// void AffsCharacter::Server_PlayCaseEjectFX_Implementation()
+// {
+// 	Multicast_PlayCaseEjectFX();
+// }
 
-void AffsCharacter::Multicast_PlayMuzzleFlashFX_Implementation()
-{
-	if (IsLocallyControlled())
-	{
-		return;
-	}
+// void AffsCharacter::Multicast_PlayCaseEjectFX_Implementation()
+// {
+// 	if (IsLocallyControlled())
+// 	{
+// 		return;
+// 	}
 
-	FVector SocketLocation = CurrentWeapon->GunMesh3P->GetSocketLocation(TEXT("Muzzle"));
-	FRotator SocketRotation = CurrentWeapon->GunMesh3P->GetSocketRotation(TEXT("Muzzle"));
+// 	FVector SocketLocation = CurrentWeapon->GunMesh3P->GetSocketLocation(TEXT("ShellEject"));
+// 	FRotator SocketRotation = CurrentWeapon->GunMesh3P->GetSocketRotation(TEXT("ShellEject"));
 
-	UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), CurrentWeapon->MuzzleFlashFX, SocketLocation, SocketRotation);
-}
+// 	UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), CurrentWeapon->CaseEjectFX, SocketLocation, SocketRotation);
+// }
+
+// void AffsCharacter::PlayMuzzleFlashFX()
+// {
+// 	if (CurrentWeapon)
+// 	{
+// 		FVector SocketLocation = CurrentWeapon->GunMesh->GetSocketLocation(TEXT("Muzzle"));
+// 		FRotator SocketRotation = CurrentWeapon->GunMesh->GetSocketRotation(TEXT("Muzzle"));
+
+// 		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), CurrentWeapon->MuzzleFlashFX, SocketLocation, SocketRotation);
+
+// 		if (HasAuthority())
+// 		{
+// 			Server_PlayMuzzleFlashFX();
+// 		}
+// 	}
+// }
+
+// void AffsCharacter::Server_PlayMuzzleFlashFX_Implementation()
+// {
+// 	Multicast_PlayMuzzleFlashFX();
+// }
+
+// void AffsCharacter::Multicast_PlayMuzzleFlashFX_Implementation()
+// {
+// 	if (IsLocallyControlled())
+// 	{
+// 		return;
+// 	}
+
+// 	FVector SocketLocation = CurrentWeapon->GunMesh3P->GetSocketLocation(TEXT("Muzzle"));
+// 	FRotator SocketRotation = CurrentWeapon->GunMesh3P->GetSocketRotation(TEXT("Muzzle"));
+
+// 	UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), CurrentWeapon->MuzzleFlashFX, SocketLocation, SocketRotation);
+// }
 
 #pragma region Equipping
 

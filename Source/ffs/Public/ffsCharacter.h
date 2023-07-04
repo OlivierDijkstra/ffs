@@ -59,8 +59,8 @@ protected:
 	USpringArmComponent *CameraBoom;
 
 	// Procudueral Recoil Animation
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Recoil Animation", meta = (AllowPrivateAccess="true"))
-	URecoilAnimationComponent* RecoilAnimation;
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Recoil Animation", meta = (AllowPrivateAccess = "true"))
+	URecoilAnimationComponent *RecoilAnimation;
 
 	// AGRPRO
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Animation", meta = (AllowPrivateAccess = "true"))
@@ -71,7 +71,7 @@ protected:
 	TArray<TSubclassOf<AWeapon>> WeaponInventory;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapons")
-	TArray<AWeapon*> InitializedWeapons;
+	TArray<AWeapon *> InitializedWeapons;
 
 	UPROPERTY(Replicated, BlueprintReadWrite, Category = "Weapons")
 	int CurrentGunIndex = 0;
@@ -80,17 +80,17 @@ protected:
 	TEnumAsByte<EFireMode_PRAS> FireMode;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Weapons")
-	AWeapon* CurrentWeapon = nullptr;
+	AWeapon *CurrentWeapon = nullptr;
 
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
-	AWeapon* GetWeapon() const { return CurrentWeapon; }
+	AWeapon *GetWeapon() const { return CurrentWeapon; }
 
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
 	void InitWeapon(int Index);
 
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
 	void EquipWeapon();
-	
+
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
 	void ChangeWeapon();
 
@@ -105,18 +105,11 @@ protected:
 	void Multicast_PlayFireAnimation();
 
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
-	void PlayCaseEjectFX();
+	void PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName, bool bMulticast);
 	UFUNCTION(Server, Reliable, Category = "Net")
-	void Server_PlayCaseEjectFX();
+	void Server_PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName);
 	UFUNCTION(NetMulticast, Reliable, Category = "Net")
-	void Multicast_PlayCaseEjectFX();
-
-	UFUNCTION(BlueprintCallable, Category = "Weapons")
-	void PlayMuzzleFlashFX();
-	UFUNCTION(Server, Reliable, Category = "Net")
-	void Server_PlayMuzzleFlashFX();
-	UFUNCTION(NetMulticast, Reliable, Category = "Net")
-	void Multicast_PlayMuzzleFlashFX();
+	void Multicast_PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName);
 
 	void UnequipWeapon();
 	UFUNCTION(Server, Reliable, Category = "Net")
@@ -131,10 +124,10 @@ protected:
 	void OnWeaponUnequipped();
 
 	UPROPERTY(EditDefaultsOnly, Category = "Animation")
-	UAnimMontage* EquipMontage;
+	UAnimMontage *EquipMontage;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Animation")
-	UAnimMontage* UnequipMontage;
+	UAnimMontage *UnequipMontage;
 
 	UFUNCTION()
 	void PlayCameraShake();
@@ -145,7 +138,7 @@ public:
 
 	UCameraComponent *GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
-	URecoilAnimationComponent* GetRecoilAnimation() const { return RecoilAnimation; }
+	URecoilAnimationComponent *GetRecoilAnimation() const { return RecoilAnimation; }
 
 	FCollisionQueryParams GetIgnoreCharacterParams() const;
 };
