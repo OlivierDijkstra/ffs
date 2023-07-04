@@ -178,36 +178,36 @@ void AffsCharacter::Multicast_PlayFireAnimation_Implementation()
 	}
 }
 
-void AffsCharacter::PlayWeaponFireFX(UNiagaraSystem* FX, FName SocketName, bool bMulticast)
+void AffsCharacter::PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName, bool bMulticast)
 {
-    if (CurrentWeapon)
-    {
-        FVector SocketLocation = CurrentWeapon->GunMesh->GetSocketLocation(SocketName);
-        FRotator SocketRotation = CurrentWeapon->GunMesh->GetSocketRotation(SocketName);
-        UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FX, SocketLocation, SocketRotation);
+	if (CurrentWeapon)
+	{
+		FVector SocketLocation = CurrentWeapon->GunMesh->GetSocketLocation(SocketName);
+		FRotator SocketRotation = CurrentWeapon->GunMesh->GetSocketRotation(SocketName);
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FX, SocketLocation, SocketRotation);
 
-        if (HasAuthority() && bMulticast)
-        {
-            Server_PlayWeaponFireFX(FX, SocketName);
-        }
-    }
+		if (HasAuthority() && bMulticast)
+		{
+			Server_PlayWeaponFireFX(FX, SocketName);
+		}
+	}
 }
 
-void AffsCharacter::Server_PlayWeaponFireFX_Implementation(UNiagaraSystem* FX, FName SocketName)
+void AffsCharacter::Server_PlayWeaponFireFX_Implementation(UNiagaraSystem *FX, FName SocketName)
 {
-    Multicast_PlayWeaponFireFX(FX, SocketName);
+	Multicast_PlayWeaponFireFX(FX, SocketName);
 }
 
-void AffsCharacter::Multicast_PlayWeaponFireFX_Implementation(UNiagaraSystem* FX, FName SocketName)
+void AffsCharacter::Multicast_PlayWeaponFireFX_Implementation(UNiagaraSystem *FX, FName SocketName)
 {
-    if (IsLocallyControlled())
-    {
-        return;
-    }
+	if (IsLocallyControlled())
+	{
+		return;
+	}
 
-    FVector SocketLocation = CurrentWeapon->GunMesh3P->GetSocketLocation(SocketName);
-    FRotator SocketRotation = CurrentWeapon->GunMesh3P->GetSocketRotation(SocketName);
-    UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FX, SocketLocation, SocketRotation);
+	FVector SocketLocation = CurrentWeapon->GunMesh3P->GetSocketLocation(SocketName);
+	FRotator SocketRotation = CurrentWeapon->GunMesh3P->GetSocketRotation(SocketName);
+	UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FX, SocketLocation, SocketRotation);
 }
 
 #pragma region Equipping
@@ -229,11 +229,12 @@ void AffsCharacter::EquipWeapon()
 
 	if (EquipMontage)
 	{
-		UAnimInstance *AnimInstance1P = Mesh1P->GetAnimInstance();
-		AnimInstance1P->Montage_Play(EquipMontage, 0.8f);
-
 		UAnimInstance *AnimInstance3P = Mesh3P->GetAnimInstance();
-		AnimInstance3P->Montage_Play(EquipMontage, 0.8f);
+		AnimInstance3P->Montage_Play(EquipMontage, 1.0f);
+		// GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("EquipMontage"));
+		UAnimInstance *AnimInstance1P = Mesh1P->GetAnimInstance();
+		AnimInstance1P->Montage_Play(EquipMontage, 1.0f);
+		// GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("EquipMontage"));
 	}
 
 	if (IsLocallyControlled() || HasAuthority())
@@ -301,13 +302,15 @@ void AffsCharacter::Server_UnequipWeapon_Implementation(int WeaponIndex)
 
 void AffsCharacter::Multicast_UnequipWeapon_Implementation()
 {
-	if (!IsLocallyControlled())
+	if (UnequipMontage && !IsLocallyControlled())
 	{
-		if (UnequipMontage)
-		{
-			UAnimInstance *AnimInstance1P = Mesh1P->GetAnimInstance();
-			AnimInstance1P->Montage_Play(UnequipMontage, 1.0f);
-		}
+		// This is causing me to have to add another event in my third person anim blueprint to replicate the 
+		// unequip animation. The reason for this is because the unequip animation montage fires a notify
+		// to call the equip weapon function. If I set this to the first person mesh it works fine but I think
+		// because I am calling another montage before this its causing issues. If we call it on the third person
+		// mesh it works fine but we have to add another event in the anim blueprint to replicate the unequip animation.
+		UAnimInstance *AnimInstance3P = Mesh3P->GetAnimInstance();
+		AnimInstance3P->Montage_Play(UnequipMontage, 1.0f);
 	}
 }
 
