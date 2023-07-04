@@ -6,6 +6,7 @@
 #include "ffsCharacterMovementComponent.h"
 #include "Animations/GSCNativeAnimInstanceInterface.h"
 #include "Kismet/GameplayStatics.h"
+#include "NiagaraFunctionLibrary.h"
 #include "Weapon.h"
 
 AffsCharacter::AffsCharacter(const FObjectInitializer &ObjectInitializer)
@@ -173,6 +174,41 @@ void AffsCharacter::Multicast_PlayFireAnimation_Implementation()
 	{
 		CurrentWeapon->GunMesh3P->PlayAnimation(FireAnimation, false);
 	}
+}
+
+void AffsCharacter::PlayCaseEjectFX()
+{
+	if (CurrentWeapon)
+	{
+		FVector SocketLocation = CurrentWeapon->GunMesh->GetSocketLocation(TEXT("ShellEject"));
+		FRotator SocketRotation = CurrentWeapon->GunMesh->GetSocketRotation(TEXT("ShellEject"));
+
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), CurrentWeapon->CaseEjectFX, SocketLocation, SocketRotation);
+
+		if (HasAuthority())
+		{
+			Server_PlayCaseEjectFX();
+		}	
+	}
+}
+
+void AffsCharacter::Server_PlayCaseEjectFX_Implementation()
+{
+	Multicast_PlayCaseEjectFX();
+}
+
+void AffsCharacter::Multicast_PlayCaseEjectFX_Implementation()
+{
+	// If its the player, skip
+	if (IsLocallyControlled())
+	{
+		return;
+	}
+
+	FVector SocketLocation = CurrentWeapon->GunMesh3P->GetSocketLocation(TEXT("ShellEject"));
+	FRotator SocketRotation = CurrentWeapon->GunMesh3P->GetSocketRotation(TEXT("ShellEject"));
+
+	UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), CurrentWeapon->CaseEjectFX, SocketLocation, SocketRotation);
 }
 
 #pragma region Equipping

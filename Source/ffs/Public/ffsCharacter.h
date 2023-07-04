@@ -104,6 +104,15 @@ protected:
 	UFUNCTION(NetMulticast, Reliable, Category = "Net")
 	void Multicast_PlayFireAnimation();
 
+	UFUNCTION(BlueprintCallable, Category = "Weapons")
+	void PlayCaseEjectFX();
+	UFUNCTION(Server, Reliable, Category = "Net")
+	void Server_PlayCaseEjectFX();
+	UFUNCTION(NetMulticast, Reliable, Category = "Net")
+	void Multicast_PlayCaseEjectFX();
+	UFUNCTION()
+	void CaseEjectFX();
+
 	void UnequipWeapon();
 	UFUNCTION(Server, Reliable, Category = "Net")
 	void Server_UnequipWeapon(int Index);

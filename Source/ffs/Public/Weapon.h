@@ -59,7 +59,7 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Mesh")
 	void UpdateFirstPersonGunMeshFOV(float FOV);
-	
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Animation")
 	UAnimSequence* BasePose1P;
 
