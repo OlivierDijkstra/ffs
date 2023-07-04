@@ -199,7 +199,6 @@ void AffsCharacter::Server_PlayCaseEjectFX_Implementation()
 
 void AffsCharacter::Multicast_PlayCaseEjectFX_Implementation()
 {
-	// If its the player, skip
 	if (IsLocallyControlled())
 	{
 		return;
@@ -209,6 +208,40 @@ void AffsCharacter::Multicast_PlayCaseEjectFX_Implementation()
 	FRotator SocketRotation = CurrentWeapon->GunMesh3P->GetSocketRotation(TEXT("ShellEject"));
 
 	UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), CurrentWeapon->CaseEjectFX, SocketLocation, SocketRotation);
+}
+
+void AffsCharacter::PlayMuzzleFlashFX()
+{
+	if (CurrentWeapon)
+	{
+		FVector SocketLocation = CurrentWeapon->GunMesh->GetSocketLocation(TEXT("Muzzle"));
+		FRotator SocketRotation = CurrentWeapon->GunMesh->GetSocketRotation(TEXT("Muzzle"));
+
+		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), CurrentWeapon->MuzzleFlashFX, SocketLocation, SocketRotation);
+
+		if (HasAuthority())
+		{
+			Server_PlayMuzzleFlashFX();
+		}
+	}
+}
+
+void AffsCharacter::Server_PlayMuzzleFlashFX_Implementation()
+{
+	Multicast_PlayMuzzleFlashFX();
+}
+
+void AffsCharacter::Multicast_PlayMuzzleFlashFX_Implementation()
+{
+	if (IsLocallyControlled())
+	{
+		return;
+	}
+
+	FVector SocketLocation = CurrentWeapon->GunMesh3P->GetSocketLocation(TEXT("Muzzle"));
+	FRotator SocketRotation = CurrentWeapon->GunMesh3P->GetSocketRotation(TEXT("Muzzle"));
+
+	UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), CurrentWeapon->MuzzleFlashFX, SocketLocation, SocketRotation);
 }
 
 #pragma region Equipping

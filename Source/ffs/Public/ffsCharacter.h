@@ -110,7 +110,14 @@ protected:
 	void Server_PlayCaseEjectFX();
 	UFUNCTION(NetMulticast, Reliable, Category = "Net")
 	void Multicast_PlayCaseEjectFX();
-	
+
+	UFUNCTION(BlueprintCallable, Category = "Weapons")
+	void PlayMuzzleFlashFX();
+	UFUNCTION(Server, Reliable, Category = "Net")
+	void Server_PlayMuzzleFlashFX();
+	UFUNCTION(NetMulticast, Reliable, Category = "Net")
+	void Multicast_PlayMuzzleFlashFX();
+
 	void UnequipWeapon();
 	UFUNCTION(Server, Reliable, Category = "Net")
 	void Server_UnequipWeapon(int Index);

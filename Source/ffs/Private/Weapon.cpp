@@ -85,7 +85,10 @@ FFireLineTraceResult AWeapon::FireLineTrace(bool Initial, bool Debug)
         Result.HitActor = HitResult.GetActor();
         if (IsValid(Result.HitActor))
         {
-            GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Hit Actor: %s"), *Result.HitActor->GetName()));
+            if (Debug)
+            {
+                GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Hit Actor: %s"), *Result.HitActor->GetName()));
+            }
 
             // Cast the actor to ACharacter to check if it's a character
             Result.HitCharacter = Cast<ACharacter>(Result.HitActor);
