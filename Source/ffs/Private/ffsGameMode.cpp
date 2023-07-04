@@ -1,5 +1,3 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
-
 #include "ffsGameMode.h"
 #include "ffsCharacter.h"
 #include "UObject/ConstructorHelpers.h"
