@@ -231,10 +231,8 @@ void AffsCharacter::EquipWeapon()
 	{
 		UAnimInstance *AnimInstance3P = Mesh3P->GetAnimInstance();
 		AnimInstance3P->Montage_Play(EquipMontage, 1.0f);
-		// GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("EquipMontage"));
 		UAnimInstance *AnimInstance1P = Mesh1P->GetAnimInstance();
 		AnimInstance1P->Montage_Play(EquipMontage, 1.0f);
-		// GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("EquipMontage"));
 	}
 
 	if (IsLocallyControlled() || HasAuthority())
