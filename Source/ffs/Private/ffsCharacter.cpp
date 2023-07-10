@@ -144,7 +144,7 @@ FFireLineTraceResult AffsCharacter::FireWeapon(bool InitialShot, bool Debug)
 
 	if (CurrentWeapon)
 	{
-		if (IsLocallyControlled() && !HasAuthority())
+		if (!IsLocallyControlled() && HasAuthority())
 		{
 			FireLineTraceResult = CurrentWeapon->FireLineTrace(InitialShot, Debug);
 		}

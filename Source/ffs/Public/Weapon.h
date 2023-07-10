@@ -47,8 +47,7 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Firing")
 	float WeaponSpread = 0.1f; // Default 10% spread
-
-	UFUNCTION(BlueprintCallable, Category = "Animation")
+	
 	FFireLineTraceResult FireLineTrace(bool Initial, bool Debug);
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Mesh")
