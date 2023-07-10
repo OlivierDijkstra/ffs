@@ -9,7 +9,7 @@
 #include "GSCK2Node_SwitchGameplayAttribute.generated.h"
 
 /**
- * Swicth on Gameplay Attribute node
+ * Switch on Gameplay Attribute node
  */
 UCLASS(MinimalAPI)
 class UGSCK2Node_SwitchGameplayAttribute : public UK2Node_Switch

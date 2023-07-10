@@ -1,21 +1,36 @@
 // Copyright 2021 Mickael Daniel. All Rights Reserved.
 
-
 #include "Abilities/GSCBlueprintFunctionLibrary.h"
 
 #include "AbilitySystemBlueprintLibrary.h"
-#include "AbilitySystemComponent.h"
 #include "AbilitySystemGlobals.h"
+#include "GSCLog.h"
+#include "Abilities/GSCAbilitySystemComponent.h"
 #include "Components/GSCAbilityInputBindingComponent.h"
 #include "Components/GSCAbilityQueueComponent.h"
 #include "Components/GSCComboManagerComponent.h"
 #include "Components/GSCCoreComponent.h"
-#include "GameFramework/Character.h"
-#include "Kismet/KismetSystemLibrary.h"
+
+UGSCAbilitySystemComponent* UGSCBlueprintFunctionLibrary::GetCompanionAbilitySystemComponent(const AActor* Actor)
+{
+	UAbilitySystemComponent* ASC = UAbilitySystemGlobals::GetAbilitySystemComponentFromActor(Actor);
+	if (!ASC)
+	{
+		return nullptr;
+	}
+
+	if (UGSCAbilitySystemComponent* CompanionASC = Cast<UGSCAbilitySystemComponent>(ASC))
+	{
+		return CompanionASC;
+	}
+
+	GSC_PLOG(Warning, TEXT("ASC `%s` from `%s` Owner is not of UGSCAbilitySystemComponent type."), *GetNameSafe(ASC), *GetNameSafe(Actor));
+	return nullptr;
+}
 
 UGSCComboManagerComponent* UGSCBlueprintFunctionLibrary::GetComboManagerComponent(const AActor* Actor)
 {
-	if (!Actor)
+	if (!IsValid(Actor))
 	{
 		return nullptr;
 	}
@@ -37,7 +52,7 @@ UGSCCoreComponent* UGSCBlueprintFunctionLibrary::GetCompanionCoreComponent(const
 
 UGSCAbilityQueueComponent* UGSCBlueprintFunctionLibrary::GetAbilityQueueComponent(const AActor* Actor)
 {
-	if (!Actor)
+	if (!IsValid(Actor))
 	{
 		return nullptr;
 	}
@@ -182,4 +197,9 @@ void UGSCBlueprintFunctionLibrary::RemoveAllGameplayCues(AActor* Actor)
 	{
 		AbilitySystemComponent->RemoveAllGameplayCues();
 	}
+}
+
+FString UGSCBlueprintFunctionLibrary::DebugAbilitySetHandle(const FGSCAbilitySetHandle& InAbilitySetHandle, const bool bVerbose)
+{
+	return InAbilitySetHandle.ToString(bVerbose);
 }

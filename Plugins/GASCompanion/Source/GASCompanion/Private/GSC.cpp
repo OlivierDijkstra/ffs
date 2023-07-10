@@ -27,12 +27,12 @@ void FGSCModule::StartupModule()
 	// Register custom project settings
 	if (ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings"))
 	{
-		const FText SettingsDescription = LOCTEXT("SettingsDescription", "General Settings for GAS Companion Plugin.");
+		const FText SettingsDescription = LOCTEXT("SettingsDescription", "General Settings for GAS Companion Plugin and Ability System Globals configuration.");
 		const TSharedPtr<ISettingsSection> SettingsSection = SettingsModule->RegisterSettings(
 			"Project",
-			"Game",
 			"GAS Companion",
-			LOCTEXT("DeveloperSettingsName", "GAS Companion"),
+			"GASCompanion_AbilitySystemGlobals",
+			LOCTEXT("DeveloperSettingsName", "Ability System Globals"),
 			SettingsDescription,
 			GetMutableDefault<UGSCDeveloperSettings>()
 		);
@@ -45,10 +45,6 @@ void FGSCModule::StartupModule()
 		}
 	}
 #endif
-
-	UGSCDeveloperSettings* Settings = GetMutableDefault<UGSCDeveloperSettings>();
-	// TODO: Load Config even needed anymore ?
-	Settings->LoadConfig();
 }
 
 void FGSCModule::ShutdownModule()
@@ -66,7 +62,7 @@ void FGSCModule::ShutdownModule()
 	ISettingsModule* SettingsModule = FModuleManager::GetModulePtr<ISettingsModule>("Settings");
 	if (SettingsModule)
 	{
-		SettingsModule->UnregisterSettings("Project", "Game", "GAS Companion");
+		SettingsModule->UnregisterSettings("Project", "GAS Companion", "GASCompanion_AbilitySystemGlobals");
 	}
 #endif
 }

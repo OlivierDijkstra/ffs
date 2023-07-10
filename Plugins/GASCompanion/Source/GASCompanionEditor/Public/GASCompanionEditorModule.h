@@ -5,12 +5,10 @@
 #include "CoreMinimal.h"
 #include "AssetTypeCategories.h"
 #include "AddToProjectConfig.h"
-#include "Core/Logging/GASCompanionEditorLog.h"
+#include "PropertyEditorModule.h"
+#include "Modules/ModuleInterface.h"
+#include "Modules/ModuleManager.h"
 
-class FToolBarBuilder;
-class FMenuBuilder;
-class SLevelEditor;
-class IAssetTools;
 class IAssetTypeActions;
 
 class FGASCompanionEditorModule : public IModuleInterface
@@ -51,10 +49,10 @@ public:
 private:
 
 	FName SettingsContainerName = FName(TEXT("Project"));
-	FName SettingsCategoryName = FName(TEXT("Game"));
-	FName SettingsGameplayEffectsSectionName = FName(TEXT("GSC - Gameplay Effect Definitions"));
-	FName SettingsGameplayAbilitiesSectionName = FName(TEXT("GSC - Gameplay Abilities Definitions"));
-	FName SettingsAttributeSetSectionName = FName(TEXT("GAS Companion"));
+	FName SettingsCategoryName = FName(TEXT("GAS Companion"));
+	FName SettingsGameplayEffectsSectionName = FName(TEXT("Gameplay Effect Definitions"));
+	FName SettingsGameplayAbilitiesSectionName = FName(TEXT("Gameplay Abilities Definitions"));
+	FName SettingsAttributeSetSectionName = FName(TEXT("GASCompanion_AbilitySystemGlobals"));
 
 	TSharedPtr<class FUICommandList> PluginCommands;
 	EAssetTypeCategories::Type AssetTypeCategory = EAssetTypeCategories::None;

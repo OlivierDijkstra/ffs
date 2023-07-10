@@ -5,15 +5,15 @@
 #include "CoreMinimal.h"
 #include "AbilitySystemComponent.h"
 #include "AbilitySystemInterface.h"
+#include "GameplayTagAssetInterface.h"
 #include "GameFramework/Actor.h"
 #include "GSCModularActor.generated.h"
 
 class UGSCAbilitySystemComponent;
 /** Minimal class that supports extension by game feature plugins, direct child of AActor */
 UCLASS()
-class GASCOMPANION_API AGSCModularActor : public AActor, public IAbilitySystemInterface
+class GASCOMPANION_API AGSCModularActor : public AActor, public IAbilitySystemInterface, public IGameplayTagAssetInterface
 {
-private:
 	GENERATED_BODY()
 
 public:
@@ -37,7 +37,7 @@ public:
 	EGameplayEffectReplicationMode ReplicationMode = EGameplayEffectReplicationMode::Mixed;
 
 	UPROPERTY(Category=Pawn, VisibleAnywhere, BlueprintReadOnly, meta=(AllowPrivateAccess = "true"))
-	UGSCAbilitySystemComponent* AbilitySystemComponent;
+	TObjectPtr<UGSCAbilitySystemComponent> AbilitySystemComponent;
 
 	//~ Begin IAbilitySystemInterface
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
@@ -50,4 +50,10 @@ public:
 	virtual void PostInitProperties() override;
 	//~ End AActor interface
 
+	//~ Begin IGameplayTagAssetInterface
+	virtual void GetOwnedGameplayTags(FGameplayTagContainer& OutTagContainer) const override;
+	virtual bool HasMatchingGameplayTag(FGameplayTag InTagToCheck) const override;
+	virtual bool HasAllMatchingGameplayTags(const FGameplayTagContainer& InTagContainer) const override;
+	virtual bool HasAnyMatchingGameplayTags(const FGameplayTagContainer& InTagContainer) const override;
+	//~ End IGameplayTagAssetInterface
 };

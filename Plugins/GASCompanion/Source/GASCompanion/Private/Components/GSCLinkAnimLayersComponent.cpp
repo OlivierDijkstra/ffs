@@ -1,10 +1,11 @@
 // Copyright 2021 Mickael Daniel. All Rights Reserved.
 
-
 #include "Components/GSCLinkAnimLayersComponent.h"
 
-#include "GameFramework/Character.h"
 #include "GSCLog.h"
+#include "Animation/AnimInstance.h"
+#include "Components/SkeletalMeshComponent.h"
+#include "GameFramework/Character.h"
 
 void UGSCLinkAnimLayersComponent::BeginPlay()
 {

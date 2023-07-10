@@ -1,11 +1,12 @@
 // Copyright 2021 Mickael Daniel. All Rights Reserved.
 
-
 #include "Abilities/Attributes/GSCAttributeSetBase.h"
+
+#include "GSCLog.h"
 #include "GameplayEffectExtension.h"
 #include "Abilities/GSCBlueprintFunctionLibrary.h"
 #include "Components/GSCCoreComponent.h"
-#include "GSCLog.h"
+#include "GameFramework/Pawn.h"
 
 // Sets default values
 UGSCAttributeSetBase::UGSCAttributeSetBase()

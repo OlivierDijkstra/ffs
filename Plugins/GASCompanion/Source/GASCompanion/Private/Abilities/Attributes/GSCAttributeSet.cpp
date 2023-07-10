@@ -36,6 +36,8 @@ void UGSCAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallbac
 {
     Super::PostGameplayEffectExecute(Data);
 
+	GSC_WLOG(VeryVerbose, TEXT("PostGameplayEffectExecute called for %s.%s"), *GetName(), *Data.EvaluatedData.Attribute.AttributeName)
+
 	FGSCAttributeSetExecutionData ExecutionData;
 	GetExecutionDataFromMod(Data, ExecutionData);
 

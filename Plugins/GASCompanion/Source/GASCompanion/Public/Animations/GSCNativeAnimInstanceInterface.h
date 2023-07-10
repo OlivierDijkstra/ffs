@@ -3,9 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameplayEffectTypes.h"
 #include "UObject/Interface.h"
 #include "GSCNativeAnimInstanceInterface.generated.h"
+
+class UAbilitySystemComponent;
 
 UINTERFACE(MinimalAPI, meta = (CannotImplementInterfaceInBlueprint))
 class UGSCNativeAnimInstanceInterface : public UInterface

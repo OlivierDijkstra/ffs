@@ -34,7 +34,7 @@ class GASCOMPANION_API UGSCAbilityInputBindingComponent : public UGSCPlayerContr
 public:
 	/** Input action to handle Target Confirm for ASC */
 	UPROPERTY(EditDefaultsOnly, Category = "Player Controls", meta=(DisplayAfter="InputPriority"))
-	UInputAction* TargetInputConfirm = nullptr;
+	TObjectPtr<UInputAction> TargetInputConfirm;
 
 	/**
 	 * The EnhancedInput Trigger Event type to use for the target confirm input.
@@ -52,7 +52,7 @@ public:
 
 	/** Input action to handle Target Cancel for ASC */
 	UPROPERTY(EditDefaultsOnly, Category = "Player Controls", meta=(DisplayAfter="InputPriority"))
-	UInputAction* TargetInputCancel = nullptr;
+	TObjectPtr<UInputAction> TargetInputCancel;
 
 	/**
 	 * The EnhancedInput Trigger Event type to use for the target cancel input.
@@ -72,6 +72,39 @@ public:
 	virtual void SetupPlayerControls_Implementation(UEnhancedInputComponent* PlayerInputComponent) override;
 	virtual void ReleaseInputComponent(AController* OldController) override;
 	//~ End UPlayerControlsComponent interface
+
+	/**
+	 * Grants a given Gameplay Ability to the Owner ASC, with an optional Input Action / Trigger Event to setup the ability binding.
+	 *
+	 * Simply calls ASC->GiveAbility() (on Server) and binds the input on client.
+	 *
+	 * This method is meant to run on Authority (must be called from server).
+	 *
+	 * During Pawn initialization, if you'd like to grant a list of abilities manually with this method, the typical place to do so is:
+	 *
+	 * - For non Player State pawns: On Pawn OnPossessed event
+	 * - For Player State pawns: OnInitAbilityActorInfo on Authority
+	 * 
+	 * Doing so, you ensure both ASC and InputComponent are available to both grant the ability, and setup the ability input binding.
+	 *
+	 * @param Ability The Gameplay Ability class to grant
+	 * @param Level Level to grant the ability at
+	 * @param InputAction An optional Input Action to bind the ability to (optional: can be null)
+	 * @param TriggerEvent When an Input Action is defined, which determine the Input Action event to use to try activation (default should be On Started)
+	 * 
+	 * @return The Gameplay Ability Spec handle that can be used to remove the Ability later on, and / or clear input binding.
+	 */
+	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "GAS Companion|Abilities")
+	FGameplayAbilitySpecHandle GiveAbilityWithInput(
+		const TSubclassOf<UGameplayAbility> Ability,
+		const int32 Level = 1,
+		UInputAction* InputAction = nullptr,
+		const EGSCAbilityTriggerEvent TriggerEvent = EGSCAbilityTriggerEvent::Started
+	);
+	
+	/** Client RPC helper to associate an Input Action to an Ability Handle previously granted via ASC->GiveAbility() on Server, and setup the binding on client */
+	UFUNCTION(Client, Reliable)
+	void ClientBindInput(UInputAction* InInputAction, const EGSCAbilityTriggerEvent InTriggerEvent, const FGameplayAbilitySpecHandle& InAbilityHandle);
 
 	/**
 	 * Updates the Ability Input Binding Component registered bindings or create a new one for the passed in Ability Handle.
@@ -104,10 +137,10 @@ public:
 
 private:
 	UPROPERTY(transient)
-	UAbilitySystemComponent* AbilityComponent;
+	TObjectPtr<UAbilitySystemComponent> AbilityComponent;
 
 	UPROPERTY(transient)
-	TMap<UInputAction*, FGSCAbilityInputBinding> MappedAbilities;
+	TMap<TObjectPtr<UInputAction>, FGSCAbilityInputBinding> MappedAbilities;
 
 	uint32 OnConfirmHandle = 0;
 	uint32 OnCancelHandle = 0;

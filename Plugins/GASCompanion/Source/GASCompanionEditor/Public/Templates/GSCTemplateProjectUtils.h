@@ -5,8 +5,6 @@
 #include "CoreMinimal.h"
 #include "GameProjectUtils.h"
 
-
-
 class GASCOMPANIONEDITOR_API FGSCTemplateProjectUtils
 {
 

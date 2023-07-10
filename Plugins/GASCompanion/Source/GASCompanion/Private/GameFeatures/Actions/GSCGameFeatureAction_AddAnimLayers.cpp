@@ -3,11 +3,13 @@
 
 #include "GameFeatures/Actions/GSCGameFeatureAction_AddAnimLayers.h"
 
-#include "GameFeaturesSubsystemSettings.h"
 #include "GSCLog.h"
+#include "GameFeaturesSubsystemSettings.h"
 #include "Components/GSCLinkAnimLayersComponent.h"
 #include "Components/GameFrameworkComponentManager.h"
 #include "Engine/AssetManager.h"
+#include "Engine/GameInstance.h"
+#include "Runtime/Launch/Resources/Version.h"
 
 #define LOCTEXT_NAMESPACE "GASCompanion"
 

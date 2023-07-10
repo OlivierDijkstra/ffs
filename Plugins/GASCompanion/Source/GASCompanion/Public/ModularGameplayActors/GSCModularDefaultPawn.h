@@ -4,6 +4,7 @@
 
 #include "AbilitySystemComponent.h"
 #include "AbilitySystemInterface.h"
+#include "GameplayTagAssetInterface.h"
 #include "GameFramework/DefaultPawn.h"
 #include "GSCModularDefaultPawn.generated.h"
 
@@ -12,7 +13,7 @@ class UAbilitySystemComponent;
 
 /** Minimal class that supports extension by game feature plugins, direct child of ADefaultPawn */
 UCLASS(Blueprintable)
-class GASCOMPANION_API AGSCModularDefaultPawn : public ADefaultPawn, public IAbilitySystemInterface
+class GASCOMPANION_API AGSCModularDefaultPawn : public ADefaultPawn, public IAbilitySystemInterface, public IGameplayTagAssetInterface
 {
 	GENERATED_BODY()
 
@@ -37,7 +38,7 @@ public:
 	EGameplayEffectReplicationMode ReplicationMode = EGameplayEffectReplicationMode::Mixed;
 
 	UPROPERTY(Category=Pawn, VisibleAnywhere, BlueprintReadOnly, meta=(AllowPrivateAccess = "true"))
-	UGSCAbilitySystemComponent* AbilitySystemComponent;
+	TObjectPtr<UGSCAbilitySystemComponent> AbilitySystemComponent;
 
 	//~ Begin IAbilitySystemInterface
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
@@ -49,4 +50,11 @@ public:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	virtual void PostInitProperties() override;
 	//~ End AActor interface
+
+	//~ Begin IGameplayTagAssetInterface
+	virtual void GetOwnedGameplayTags(FGameplayTagContainer& OutTagContainer) const override;
+	virtual bool HasMatchingGameplayTag(FGameplayTag InTagToCheck) const override;
+	virtual bool HasAllMatchingGameplayTags(const FGameplayTagContainer& InTagContainer) const override;
+	virtual bool HasAnyMatchingGameplayTags(const FGameplayTagContainer& InTagContainer) const override;
+	//~ End IGameplayTagAssetInterface
 };

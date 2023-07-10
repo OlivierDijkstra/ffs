@@ -5,6 +5,7 @@
 #include "AssetRegistry/AssetRegistryModule.h"
 #include "CreationMenu/GSCCreationMenu.h"
 #include "CreationMenu/GSCGameplayEffectCreationMenu.h"
+#include "HAL/FileManager.h"
 #include "Misc/AutomationTest.h"
 
 BEGIN_DEFINE_SPEC(FGSCCreationMenuSpec, "GASCompanion.Editor.GSCCreationMenu", EAutomationTestFlags::ProductFilter | EAutomationTestFlags::ApplicationContextMask)

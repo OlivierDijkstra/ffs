@@ -22,43 +22,43 @@ struct FGSCAttributeSetExecutionData
 
 	/** The physical representation of the Source ASC (The ability system component of the instigator that started the whole chain) */
 	UPROPERTY()
-	AActor* SourceActor = nullptr;
+	TObjectPtr<AActor> SourceActor = nullptr;
 
 	/** The physical representation of the owner (Avatar) for the target we intend to apply to  */
 	UPROPERTY()
-	AActor* TargetActor = nullptr;
+	TObjectPtr<AActor> TargetActor = nullptr;
 
 	/** The ability system component of the instigator that started the whole chain */
 	UPROPERTY()
-	UAbilitySystemComponent* SourceASC = nullptr;
+	TObjectPtr<UAbilitySystemComponent> SourceASC = nullptr;
 
 	/** GAS Companion Core actor component attached to Source Actor (if any) */
 	UPROPERTY()
-	UGSCCoreComponent* SourceCoreComponent = nullptr;
+	TObjectPtr<UGSCCoreComponent> SourceCoreComponent = nullptr;
 
 	/** GAS Companion Core actor component attached to Target Actor (if any) */
 	UPROPERTY()
-	UGSCCoreComponent* TargetCoreComponent = nullptr;
+	TObjectPtr<UGSCCoreComponent> TargetCoreComponent = nullptr;
 
 	/** PlayerController associated with the owning actor for the Source ASC (The ability system component of the instigator that started the whole chain) */
 	UPROPERTY()
-	APlayerController* SourceController = nullptr;
+	TObjectPtr<APlayerController> SourceController = nullptr;
 
 	/** PlayerController associated with the owning actor for the target we intend to apply to */
 	UPROPERTY()
-	APlayerController* TargetController = nullptr;
+	TObjectPtr<APlayerController> TargetController = nullptr;
 
 	/** The physical representation of the Source ASC (The ability system component of the instigator that started the whole chain), as a APawn */
 	UPROPERTY()
-	APawn* SourcePawn = nullptr;
+	TObjectPtr<APawn> SourcePawn = nullptr;
 
 	/** The physical representation of the owner (Avatar) for the target we intend to apply to, as a APawn */
 	UPROPERTY()
-	APawn* TargetPawn = nullptr;
+	TObjectPtr<APawn> TargetPawn = nullptr;
 
 	/** The object this effect was created from. */
 	UPROPERTY()
-	UObject* SourceObject = nullptr;
+	TObjectPtr<UObject> SourceObject = nullptr;
 
 	/** This tells us how we got here (who / what applied us) */
 	FGameplayEffectContextHandle Context;

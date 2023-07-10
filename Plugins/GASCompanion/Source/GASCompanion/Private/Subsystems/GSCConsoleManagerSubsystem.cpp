@@ -2,12 +2,12 @@
 
 #include "Subsystems/GSCConsoleManagerSubsystem.h"
 
-#include "AbilitySystemComponent.h"
+#include "GSCLog.h"
 #include "Components/GSCAbilityQueueComponent.h"
 #include "Components/GSCComboManagerComponent.h"
+#include "GameFramework/Pawn.h"
 #include "UI/GSCUWDebugAbilityQueue.h"
 #include "UI/GSCUWDebugComboWidget.h"
-#include "GSCLog.h"
 
 void UGSCConsoleManagerSubsystem::Initialize(FSubsystemCollectionBase& Collection)
 {

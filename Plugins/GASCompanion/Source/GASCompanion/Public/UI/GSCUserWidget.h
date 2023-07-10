@@ -64,10 +64,10 @@ class GASCOMPANION_API UGSCUserWidget : public UUserWidget
 
 public:
 	UPROPERTY(BlueprintReadOnly, Category="GAS Companion|UI", meta=(DeprecatedFunction, DeprecationMessage="Use GetOwningActor() instead."))
-	AActor* OwnerActor;
+	TObjectPtr<AActor> OwnerActor;
 
 	UPROPERTY(BlueprintReadOnly, Category="GAS Companion|UI", meta=(DeprecatedFunction, DeprecationMessage="Use GetOwningCoreComponent() instead."))
-	UGSCCoreComponent* OwnerCoreComponent;
+	TObjectPtr<UGSCCoreComponent> OwnerCoreComponent;
 	
 	/** Initialize or update references to owner actor and additional actor components (such as AbilitySystemComponent) and cache them for this instance of user widget. */
 	UFUNCTION(BlueprintCallable, Category="GAS Companion|UI")
@@ -205,7 +205,7 @@ public:
 protected:
 	
 	UPROPERTY()
-	UAbilitySystemComponent* AbilitySystemComponent;
+	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
 	
 private:
 	

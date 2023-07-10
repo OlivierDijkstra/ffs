@@ -1,14 +1,17 @@
 // Copyright 2021 Mickael Daniel. All Rights Reserved.
 
-
 #include "GameFeatures/Actions/GSCGameFeatureAction_AddInputMappingContext.h"
 
 #include "EnhancedInputSubsystems.h"
+#include "GSCLog.h"
 #include "GameFeaturesSubsystemSettings.h"
+#include "InputMappingContext.h"
 #include "Components/GameFrameworkComponentManager.h"
 #include "Engine/AssetManager.h"
-#include "InputMappingContext.h"
-#include "GSCLog.h"
+#include "Engine/GameInstance.h"
+#include "Engine/LocalPlayer.h"
+#include "GameFramework/PlayerController.h"
+#include "Runtime/Launch/Resources/Version.h"
 
 #define LOCTEXT_NAMESPACE "GASCompanion"
 
@@ -128,7 +131,7 @@ void UGSCGameFeatureAction_AddInputMappingContext::HandleControllerExtension(AAc
 
 void UGSCGameFeatureAction_AddInputMappingContext::AddInputMappingForPlayer(UPlayer* Player)
 {
-	if (ULocalPlayer* LocalPlayer = Cast<ULocalPlayer>(Player))
+	if (const ULocalPlayer* LocalPlayer = Cast<ULocalPlayer>(Player))
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* InputSystem = LocalPlayer->GetSubsystem<UEnhancedInputLocalPlayerSubsystem>())
 		{
@@ -146,7 +149,7 @@ void UGSCGameFeatureAction_AddInputMappingContext::AddInputMappingForPlayer(UPla
 
 void UGSCGameFeatureAction_AddInputMappingContext::RemoveInputMapping(APlayerController* PlayerController)
 {
-	if (ULocalPlayer* LocalPlayer = PlayerController->GetLocalPlayer())
+	if (const ULocalPlayer* LocalPlayer = PlayerController->GetLocalPlayer())
 	{
 		if (UEnhancedInputLocalPlayerSubsystem* InputSystem = LocalPlayer->GetSubsystem<UEnhancedInputLocalPlayerSubsystem>())
 		{
@@ -159,7 +162,7 @@ void UGSCGameFeatureAction_AddInputMappingContext::RemoveInputMapping(APlayerCon
 
 void UGSCGameFeatureAction_AddInputMappingContext::HandleGameInstanceStart(UGameInstance* GameInstance)
 {
-	if (FWorldContext* WorldContext = GameInstance->GetWorldContext())
+	if (const FWorldContext* WorldContext = GameInstance->GetWorldContext())
 	{
 		AddToWorld(*WorldContext);
 	}

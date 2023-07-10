@@ -4,10 +4,9 @@
 
 #include "CoreMinimal.h"
 
+#include "Abilities/GameplayAbility.h"
 #include "Animation/AnimNotifies/AnimNotifyState.h"
 #include "GSCAbilityQueueNotifyState.generated.h"
-
-class UGameplayAbility;
 
 /**
  * Use this notify state to open and close the ability queue window for your montage.

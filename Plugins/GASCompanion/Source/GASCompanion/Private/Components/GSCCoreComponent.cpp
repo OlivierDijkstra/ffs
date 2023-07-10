@@ -58,7 +58,7 @@ void UGSCCoreComponent::SetupOwner()
 
 void UGSCCoreComponent::RegisterAbilitySystemDelegates(UAbilitySystemComponent* ASC)
 {
-	GSC_LOG(Log, TEXT("UGSCCoreComponent::RegisterAbilitySystemDelegates for ASC: %s"), ASC ? *ASC->GetName() : TEXT("NONE"))
+	GSC_WLOG(Verbose, TEXT("Registering delegates for ASC: %s"), *GetNameSafe(ASC))
 
 	if (!ASC)
 	{

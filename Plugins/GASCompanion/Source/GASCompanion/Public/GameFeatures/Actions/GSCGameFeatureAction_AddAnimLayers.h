@@ -4,8 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "GameFeatureAction.h"
+#include "Animation/AnimInstance.h"
 #include "GSCGameFeatureAction_AddAnimLayers.generated.h"
 
+class UActorComponent;
+class UGameInstance;
 struct FComponentRequestHandle;
 
 USTRUCT()

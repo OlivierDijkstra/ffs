@@ -78,19 +78,15 @@ UAbilitySystemComponent* AGSCModularPlayerState::GetAbilitySystemComponent() con
 
 void AGSCModularPlayerState::CopyProperties(APlayerState* PlayerState)
 {
-	Super::Reset();
+	Super::CopyProperties(PlayerState);
 
-	TArray<UPlayerStateComponent*> ModularComponents;
-	GetComponents(ModularComponents);
-
-	TArray<UPlayerStateComponent*> OtherModularComponents;
-	PlayerState->GetComponents(OtherModularComponents);
-
-	for (UPlayerStateComponent* Component : ModularComponents)
+	TInlineComponentArray<UPlayerStateComponent*> PlayerStateComponents;
+	GetComponents(PlayerStateComponents);
+	for (UPlayerStateComponent* SourceComponent : PlayerStateComponents)
 	{
-		for (UPlayerStateComponent* OtherComponent : OtherModularComponents)
+		if (UPlayerStateComponent* TargetComp = Cast<UPlayerStateComponent>(static_cast<UObject*>(FindObjectWithOuter(PlayerState, SourceComponent->GetClass(), SourceComponent->GetFName()))))
 		{
-			Component->CopyProperties(OtherComponent);
+			SourceComponent->CopyProperties(TargetComp);
 		}
 	}
 }

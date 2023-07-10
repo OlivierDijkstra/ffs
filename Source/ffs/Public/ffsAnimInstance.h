@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Animation/AGRCoreAnimInstance.h"
 #include "Animations/GSCNativeAnimInstanceInterface.h"
+#include "GameplayEffectTypes.h"
 #include "FfsAnimInstance.generated.h"
 
 class URecoilAnimationComponent;
@@ -15,10 +16,11 @@ class FFS_API UffsAnimInstance : public UAGRCoreAnimInstance, public IGSCNativeA
 {
 	GENERATED_BODY()
 
-protected:
-    virtual void NativeInitializeAnimation() override;
+private:
+	virtual void NativeInitializeAnimation() override;
     virtual void NativeUpdateAnimation(float DeltaSeconds) override;
 
+protected:
 	// GASCompanion required code to get GameplayTags from AbilitySystemComponent
 	UPROPERTY(EditDefaultsOnly, Category = "GameplayTags")
 	FGameplayTagBlueprintPropertyMap GameplayTagPropertyMap;

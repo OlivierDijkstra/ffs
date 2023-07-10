@@ -1,5 +1,10 @@
 // Copyright Adam Grodzki All Rights Reserved.
 
+// =============================================================================
+// These includes are needed to prevent plugin build failures.
+#include "Slate/Public/Framework/Commands/InputChord.h"
+// =============================================================================
+
 #include "UI/AGRDebuggerSettings.h"
 
 FText FAGRDebuggerSettingsKey::GetInputText() const

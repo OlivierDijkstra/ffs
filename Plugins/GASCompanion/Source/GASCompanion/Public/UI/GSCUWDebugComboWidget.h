@@ -19,19 +19,19 @@ public:
 	TWeakObjectPtr<UGSCComboManagerComponent> OwnerComboManagerComponent;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), Category = "GAS Companion|UI")
-	UTextBlock* ComboWindowOpenedText = nullptr;
+	TObjectPtr<UTextBlock> ComboWindowOpenedText;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), Category = "GAS Companion|UI")
-	UTextBlock* ShouldTriggerComboText = nullptr;
+	TObjectPtr<UTextBlock> ShouldTriggerComboText;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), Category = "GAS Companion|UI")
-	UTextBlock* RequestTriggerComboText = nullptr;
+	TObjectPtr<UTextBlock> RequestTriggerComboText;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), Category = "GAS Companion|UI")
-	UTextBlock* NextComboAbilityActivatedText = nullptr;
+	TObjectPtr<UTextBlock> NextComboAbilityActivatedText;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), Category = "GAS Companion|UI")
-	UTextBlock* ComboIndexText = nullptr;
+	TObjectPtr<UTextBlock> ComboIndexText;
 
 	FLinearColor WhiteColor = FLinearColor(1.f, 1.f, 1.f, 1.f);
 	FLinearColor GreenColor = FLinearColor(0.729412f, 0.854902f, 0.333333f, 1.f);

@@ -1,11 +1,12 @@
 // Copyright 2021 Mickael Daniel. All Rights Reserved.
 
-
 #include "BlueprintGraph/GSCK2Node_SwitchGameplayAttribute.h"
 
 #include "BlueprintActionDatabaseRegistrar.h"
 #include "BlueprintNodeSpawner.h"
+#include "EdGraphSchema_K2.h"
 #include "Abilities/GSCBlueprintFunctionLibrary.h"
+#include "Engine/Blueprint.h"
 
 UGSCK2Node_SwitchGameplayAttribute::UGSCK2Node_SwitchGameplayAttribute(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer)

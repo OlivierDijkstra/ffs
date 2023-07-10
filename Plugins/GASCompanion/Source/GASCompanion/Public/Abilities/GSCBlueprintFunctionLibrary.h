@@ -4,13 +4,15 @@
 
 #include "CoreMinimal.h"
 #include "GameplayEffectTypes.h"
+#include "Abilities/GSCAbilitySet.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
 #include "GSCBlueprintFunctionLibrary.generated.h"
 
 class UGSCAbilityInputBindingComponent;
 class UGSCAbilityQueueComponent;
-class UGSCCoreComponent;
+class UGSCAbilitySystemComponent;
 class UGSCComboManagerComponent;
+class UGSCCoreComponent;
 
 /**
 * Ability specific blueprint library
@@ -22,6 +24,10 @@ class GASCOMPANION_API UGSCBlueprintFunctionLibrary : public UBlueprintFunctionL
 {
 	GENERATED_BODY()
 public:
+	
+	/** Tries to find an ability system component on the actor and cast to UGSCAbilitySystemComponent, will use AbilitySystemInterface or fall back to a component search */
+	UFUNCTION(BlueprintPure, Category = "GAS Companion|Components")
+	static UGSCAbilitySystemComponent* GetCompanionAbilitySystemComponent(const AActor* Actor);
 
 	/**
 	* Tries to find a combo manager component on the actor
@@ -125,4 +131,12 @@ public:
 	/** Removes any GameplayCue added on its own, i.e. not as part of a GameplayEffect. */
 	UFUNCTION(BlueprintCallable, Category = "GAS Companion|Abilities|GameplayCue", meta=(GameplayTagFilter="GameplayCue"))
 	static void RemoveAllGameplayCues(AActor* Actor);
+
+	// -------------------------------------
+	//	Ability Sets
+	// -------------------------------------
+
+	/** Returns a String representation of the Ability Set handle */
+	UFUNCTION(BlueprintCallable, Category = "GAS Companion|Ability Sets")
+	static FString DebugAbilitySetHandle(const FGSCAbilitySetHandle& InAbilitySetHandle, const bool bVerbose = false);
 };

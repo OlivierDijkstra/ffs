@@ -23,10 +23,10 @@ public:
 	UGSCComboManagerComponent();
 
 	UPROPERTY()
-	ACharacter* OwningCharacter;
+	TObjectPtr<ACharacter> OwningCharacter;
 
 	UPROPERTY()
-	UGSCCoreComponent* OwnerCoreComponent;
+	TObjectPtr<UGSCCoreComponent> OwnerCoreComponent;
 
 	/** Reference to GA_GSC_Melee_Base */
 	TSubclassOf<UGSCGameplayAbility> MeleeBaseAbility;

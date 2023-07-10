@@ -84,22 +84,22 @@ protected:
 	bool bLazyAbilitySystemInitialization = false;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidgetOptional), Category = "GAS Companion|UI")
-	UTextBlock* HealthText = nullptr;
+	TObjectPtr<UTextBlock> HealthText;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidgetOptional), Category = "GAS Companion|UI")
-	UProgressBar* HealthProgressBar = nullptr;
+	TObjectPtr<UProgressBar> HealthProgressBar;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidgetOptional), Category = "GAS Companion|UI")
-	UTextBlock* StaminaText = nullptr;
+	TObjectPtr<UTextBlock> StaminaText;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidgetOptional), Category = "GAS Companion|UI")
-	UProgressBar* StaminaProgressBar = nullptr;
+	TObjectPtr<UProgressBar> StaminaProgressBar;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidgetOptional), Category = "GAS Companion|UI")
-	UTextBlock* ManaText = nullptr;
+	TObjectPtr<UTextBlock> ManaText;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidgetOptional), Category = "GAS Companion|UI")
-	UProgressBar* ManaProgressBar = nullptr;
+	TObjectPtr<UProgressBar> ManaProgressBar;
 
 	/** Updates bound widget whenever one of the attribute we care about is changed */
 	virtual void HandleAttributeChange(FGameplayAttribute Attribute, float NewValue, float OldValue) override;

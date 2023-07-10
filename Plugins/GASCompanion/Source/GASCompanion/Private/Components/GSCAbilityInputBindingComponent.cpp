@@ -1,6 +1,5 @@
 // Copyright 2021 Mickael Daniel. All Rights Reserved.
 
-
 #include "Components/GSCAbilityInputBindingComponent.h"
 
 #include "AbilitySystemComponent.h"
@@ -21,6 +20,8 @@ namespace GSCAbilityInputBindingComponent_Impl
 void UGSCAbilityInputBindingComponent::SetupPlayerControls_Implementation(UEnhancedInputComponent* PlayerInputComponent)
 {
 	ResetBindings();
+	
+	GSC_WLOG(Verbose, TEXT("Setup player controls (MappedAbilities: %d)"), MappedAbilities.Num())
 
 	for (const auto& Ability : MappedAbilities)
 	{
@@ -30,7 +31,7 @@ void UGSCAbilityInputBindingComponent::SetupPlayerControls_Implementation(UEnhan
 		// Convert out internal enum to the real Input Trigger Event for Enhanced Input
 		const ETriggerEvent TriggerEvent = GetInputActionTriggerEvent(AbilityInputBinding.TriggerEvent);
 
-		GSC_LOG(Log, TEXT("UGSCAbilityInputBindingComponent::SetupPlayerControls ... setup pressed handle for %s with %s"), *GetNameSafe(InputAction), *UEnum::GetValueAsName(TriggerEvent).ToString())
+		GSC_PLOG(Log, TEXT("setup pressed handle for %s with %s"), *GetNameSafe(InputAction), *UEnum::GetValueAsName(TriggerEvent).ToString())
 
 		// Pressed event
 		InputComponent->BindAction(InputAction, TriggerEvent, this, &UGSCAbilityInputBindingComponent::OnAbilityInputPressed, InputAction);
@@ -63,6 +64,58 @@ void UGSCAbilityInputBindingComponent::ReleaseInputComponent(AController* OldCon
 	Super::ReleaseInputComponent();
 }
 
+FGameplayAbilitySpecHandle UGSCAbilityInputBindingComponent::GiveAbilityWithInput(const TSubclassOf<UGameplayAbility> Ability, const int32 Level, UInputAction* InputAction, const EGSCAbilityTriggerEvent TriggerEvent)
+{
+	GSC_WLOG(
+		Verbose,
+		TEXT("Granting Ability \"%s\" (Level: %d) with Input: %s (TriggerEvent): %s"),
+		*GetNameSafe(Ability),
+		Level,
+		*GetNameSafe(InputAction),
+		*UEnum::GetValueAsString(TriggerEvent)
+	);
+
+	UAbilitySystemComponent* ASC = UAbilitySystemGlobals::GetAbilitySystemComponentFromActor(GetOwner());
+	if (!ASC)
+	{
+		GSC_PLOG(Error, TEXT("Unable to retrieve Ability System Component from Actor `%s`"), *GetNameSafe(GetOwner()));
+		return FGameplayAbilitySpecHandle();
+	}
+
+	// Build and validate the ability spec
+	const FGameplayAbilitySpec AbilitySpec = ASC->BuildAbilitySpecFromClass(Ability, Level);
+
+	// Validate the class
+	if (!IsValid(AbilitySpec.Ability))
+	{
+		GSC_PLOG(Error, TEXT("Called with an invalid Ability Class."));
+		return FGameplayAbilitySpecHandle();
+	}
+
+	// Must be called from Authority
+	if (!ASC->IsOwnerActorAuthoritative())
+	{
+		GSC_PLOG(Error, TEXT("Called on ability %s on the client, must be run from authority."), *AbilitySpec.Ability->GetName());
+		return FGameplayAbilitySpecHandle();
+	}
+	
+	// Grant the ability. This will run validation and authority checks
+	const FGameplayAbilitySpecHandle AbilityHandle = ASC->GiveAbility(AbilitySpec);
+
+	// Try setup the ability input binding on client if InputAction is passed in
+	if (AbilityHandle.IsValid() && InputAction)
+	{
+		ClientBindInput(InputAction, TriggerEvent, AbilityHandle);
+	}
+	
+	return AbilityHandle;
+}
+
+void UGSCAbilityInputBindingComponent::ClientBindInput_Implementation(UInputAction* InInputAction, const EGSCAbilityTriggerEvent InTriggerEvent, const FGameplayAbilitySpecHandle& InAbilityHandle)
+{
+	SetInputBinding(InInputAction, InTriggerEvent, InAbilityHandle);
+}
+
 void UGSCAbilityInputBindingComponent::SetInputBinding(UInputAction* InputAction, const EGSCAbilityTriggerEvent TriggerEvent, const FGameplayAbilitySpecHandle AbilityHandle)
 {
 	using namespace GSCAbilityInputBindingComponent_Impl;
@@ -80,7 +133,7 @@ void UGSCAbilityInputBindingComponent::SetInputBinding(UInputAction* InputAction
 	}
 	else
 	{
-		AbilityInputBinding = &MappedAbilities.Add(InputAction);
+		AbilityInputBinding = &MappedAbilities.Add(TObjectPtr<UInputAction>(InputAction));
 		AbilityInputBinding->InputID = GetNextInputID();
 		AbilityInputBinding->TriggerEvent = TriggerEvent;
 	}
@@ -182,7 +235,7 @@ UInputAction* UGSCAbilityInputBindingComponent::GetBoundInputActionForAbilitySpe
 	check(AbilitySpec);
 
 	UInputAction* FoundInputAction = nullptr;
-	for (const TTuple<UInputAction*, FGSCAbilityInputBinding>& MappedAbility : MappedAbilities)
+	for (const TPair<TObjectPtr<UInputAction>, FGSCAbilityInputBinding>& MappedAbility : MappedAbilities)
 	{
 		const FGSCAbilityInputBinding AbilityInputBinding = MappedAbility.Value;
 		if (AbilityInputBinding.InputID == AbilitySpec->InputID)
@@ -382,6 +435,8 @@ FGameplayAbilitySpec* UGSCAbilityInputBindingComponent::FindAbilitySpec(const FG
 
 void UGSCAbilityInputBindingComponent::TryBindAbilityInput(UInputAction* InputAction, FGSCAbilityInputBinding& AbilityInputBinding)
 {
+	GSC_WLOG(Verbose, TEXT("Setup player controls for %s (InputID: %d)"), *GetNameSafe(InputAction), AbilityInputBinding.InputID)
+	
 	if (InputComponent)
 	{
 		// Pressed event
@@ -390,7 +445,7 @@ void UGSCAbilityInputBindingComponent::TryBindAbilityInput(UInputAction* InputAc
 			// Convert out internal enum to the real Input Trigger Event for Enhanced Input
 			const ETriggerEvent TriggerEvent = GetInputActionTriggerEvent(AbilityInputBinding.TriggerEvent);
 
-			GSC_LOG(Log, TEXT("TryBindAbilityInput ... setup pressed handle for %s with %s"), *GetNameSafe(InputAction), *UEnum::GetValueAsName(TriggerEvent).ToString())
+			GSC_PLOG(Log, TEXT("Setup player controls pressed handle for %s with %s"), *GetNameSafe(InputAction), *UEnum::GetValueAsName(TriggerEvent).ToString())
 			AbilityInputBinding.OnPressedHandle = InputComponent->BindAction(InputAction, TriggerEvent, this, &UGSCAbilityInputBindingComponent::OnAbilityInputPressed, InputAction).GetHandle();
 		}
 

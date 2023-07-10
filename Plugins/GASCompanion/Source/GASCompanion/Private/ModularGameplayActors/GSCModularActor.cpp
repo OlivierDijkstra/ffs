@@ -1,6 +1,5 @@
 // Copyright 2020 Mickael Daniel. All Rights Reserved.
 
-
 #include "ModularGameplayActors/GSCModularActor.h"
 
 #include "GSCLog.h"
@@ -54,3 +53,42 @@ void AGSCModularActor::PostInitProperties()
 	}
 }
 
+void AGSCModularActor::GetOwnedGameplayTags(FGameplayTagContainer& OutTagContainer) const
+{
+	if (AbilitySystemComponent)
+	{
+		FGameplayTagContainer OwnedTags;
+		AbilitySystemComponent->GetOwnedGameplayTags(OwnedTags);
+		OutTagContainer = MoveTemp(OwnedTags);
+	}
+}
+
+bool AGSCModularActor::HasMatchingGameplayTag(const FGameplayTag InTagToCheck) const
+{
+	if (AbilitySystemComponent)
+	{
+		return AbilitySystemComponent->HasMatchingGameplayTag(InTagToCheck);
+	}
+
+	return false;
+}
+
+bool AGSCModularActor::HasAllMatchingGameplayTags(const FGameplayTagContainer& InTagContainer) const
+{
+	if (AbilitySystemComponent)
+	{
+		return AbilitySystemComponent->HasAllMatchingGameplayTags(InTagContainer);
+	}
+
+	return false;
+}
+
+bool AGSCModularActor::HasAnyMatchingGameplayTags(const FGameplayTagContainer& InTagContainer) const
+{
+	if (AbilitySystemComponent)
+	{
+		return AbilitySystemComponent->HasAnyMatchingGameplayTags(InTagContainer);
+	}
+
+	return false;
+}

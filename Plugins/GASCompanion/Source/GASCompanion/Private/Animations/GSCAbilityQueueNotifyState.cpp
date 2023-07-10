@@ -4,15 +4,15 @@
 #include "Animations/GSCAbilityQueueNotifyState.h"
 
 #include "GSCDelegates.h"
+#include "GSCLog.h"
 #include "Abilities/GSCBlueprintFunctionLibrary.h"
 #include "Components/GSCAbilityQueueComponent.h"
-#include "UI/GSCUWDebugAbilityQueue.h"
-#include "GSCLog.h"
+#include "Components/SkeletalMeshComponent.h"
 
 void UGSCAbilityQueueNotifyState::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float TotalDuration)
 {
 	GSC_LOG(Log, TEXT("UGSCAbilityQueueNotifyState:NotifyBegin()"))
-	AActor* Owner = MeshComp->GetOwner();
+	const AActor* Owner = MeshComp->GetOwner();
 	if (!Owner)
 	{
 		return;
@@ -43,7 +43,7 @@ void UGSCAbilityQueueNotifyState::NotifyEnd(USkeletalMeshComponent* MeshComp, UA
 {
 	GSC_LOG(Log, TEXT("UGSCAbilityQueueNotifyState:NotifyEnd()"))
 
-	AActor* Owner = MeshComp->GetOwner();
+	const AActor* Owner = MeshComp->GetOwner();
 	if (!Owner)
 	{
 		return;

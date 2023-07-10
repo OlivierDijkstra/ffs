@@ -3,18 +3,19 @@
 #include "GASCompanionEditorModule.h"
 
 #include "AssetToolsModule.h"
+#include "GSC.h"
 #include "ISettingsModule.h"
 #include "LevelEditor.h"
 #include "SourceCodeNavigation.h"
 #include "ToolMenus.h"
-#include "UI/Widgets/SGSCNewAttributeSetClassDialog.h"
 #include "Core/Common/GSCAttributesWizardCommands.h"
-#include "Interfaces/IMainFrameModule.h"
-#include "CreationMenu/GSCGameplayEffectCreationMenu.h"
+#include "Core/Logging/GASCompanionEditorLog.h"
 #include "CreationMenu/GSCGameplayAbilityCreationMenu.h"
-#include "EngineUtils.h"
-#include "GSC.h"
+#include "CreationMenu/GSCGameplayEffectCreationMenu.h"
 #include "CreationMenu/GSCGameplayEffectTemplateDetails.h"
+#include "Interfaces/IMainFrameModule.h"
+#include "Runtime/Launch/Resources/Version.h"
+#include "UI/Widgets/SGSCNewAttributeSetClassDialog.h"
 
 #define LOCTEXT_NAMESPACE "GASCompanionEditor"
 
@@ -43,7 +44,7 @@ void FGASCompanionEditorModule::StartupModule()
 			SettingsContainerName,
 			SettingsCategoryName,
 			SettingsGameplayEffectsSectionName,
-			NSLOCTEXT("GASCompanionEditor", "GameplayEffectParentName", "GAS Companion - Gameplay Effects"),
+			NSLOCTEXT("GASCompanionEditor", "GameplayEffectParentName", "Gameplay Effect Definitions"),
 			NSLOCTEXT("GASCompanionEditor", "GameplayEffectParentNameDesc", "Data Driven way of specifying common parent Gameplay Effect classes that are accessible through File menu"),
 			GetMutableDefault<UGSCGameplayEffectCreationMenu>()
 		);
@@ -54,7 +55,7 @@ void FGASCompanionEditorModule::StartupModule()
 			SettingsContainerName,
 			SettingsCategoryName,
 			SettingsGameplayAbilitiesSectionName,
-			NSLOCTEXT("GASCompanionEditor", "GameplayAbilityParentName", "GAS Companion - Gameplay Abilities"),
+			NSLOCTEXT("GASCompanionEditor", "GameplayAbilityParentName", "Gameplay Abilities Definitions"),
 			NSLOCTEXT("GASCompanionEditor", "GameplayAbilityParentNameDesc", "Data Driven way of specifying common parent Gameplay Ability classes that are accessible through File menu"),
 			GetMutableDefault<UGSCGameplayAbilityCreationMenu>()
 		);
@@ -219,7 +220,6 @@ void FGASCompanionEditorModule::RegisterMenus()
 		));
 		Entry.SetCommandList(PluginCommands);
 #else
-		// UToolMenu* ToolbarMenu = UToolMenus::Get()->ExtendMenu("LevelEditor.LevelEditorToolBar.SettingsToolBar");
 		UToolMenu* SettingsToolbar = UToolMenus::Get()->RegisterMenu("LevelEditor.LevelEditorToolBar.SettingsToolbar", NAME_None, EMultiBoxType::SlimHorizontalToolBar);
 		SettingsToolbar->StyleName = "AssetEditorToolbar";
 		{

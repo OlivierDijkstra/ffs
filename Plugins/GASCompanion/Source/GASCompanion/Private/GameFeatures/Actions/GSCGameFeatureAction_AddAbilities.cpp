@@ -1,19 +1,22 @@
 // Copyright 2021 Mickael Daniel. All Rights Reserved.
 
-
 #include "GameFeatures/Actions/GSCGameFeatureAction_AddAbilities.h"
+
 #include "AbilitySystemComponent.h"
 #include "AbilitySystemGlobals.h"
-#include "EngineUtils.h"
-#include "GameFeaturesSubsystemSettings.h"
-#include "Components/GSCAbilityInputBindingComponent.h"
-#include "Abilities/GSCAbilitySystemComponent.h"
-#include "Components/GameFrameworkComponentManager.h"
-#include "Components/GSCCoreComponent.h"
-#include "Engine/AssetManager.h"
-#include "Engine/World.h" // for FWorldDelegates::OnStartGameInstance
-#include "Engine/Engine.h" // for FWorldContext
 #include "GSCLog.h"
+#include "GameFeaturesSubsystemSettings.h"
+#include "Abilities/GSCAbilitySystemComponent.h"
+#include "Abilities/GSCAbilitySystemUtils.h"
+#include "Components/GSCAbilityInputBindingComponent.h"
+#include "Components/GSCCoreComponent.h"
+#include "Components/GameFrameworkComponentManager.h"
+#include "Engine/AssetManager.h"
+#include "GameFeatures/GSCGameFeatureTypes.h"
+#include "Engine/Engine.h" // for FWorldContext
+#include "Engine/GameInstance.h"
+#include "Engine/World.h" // for FWorldDelegates::OnStartGameInstance
+#include "Runtime/Launch/Resources/Version.h"
 
 #define LOCTEXT_NAMESPACE "GASCompanion"
 
@@ -196,7 +199,10 @@ void UGSCGameFeatureAction_AddAbilities::AddActorAbilities(AActor* Actor, const 
 
 	// Go through IAbilitySystemInterface::GetAbilitySystemComponent() to handle target pawn using ASC on Player State
 	UGSCAbilitySystemComponent* ExistingASC = Cast<UGSCAbilitySystemComponent>(UAbilitySystemGlobals::GetAbilitySystemComponentFromActor(Actor));
-	UGSCAbilitySystemComponent* AbilitySystemComponent = ExistingASC ? ExistingASC : FindOrAddComponentForActor<UGSCAbilitySystemComponent>(Actor, AbilitiesEntry);
+	// Not using the template version of FindOrAddComponentForActor() due a "use of function template name with no prior declaration in function call with explicit template arguments is a C++20 extension" only on linux 5.0 with strict includes,
+	// ending up in this very long line
+	UGSCAbilitySystemComponent* AbilitySystemComponent = ExistingASC ? ExistingASC : Cast<UGSCAbilitySystemComponent>(FGSCAbilitySystemUtils::FindOrAddComponentForActor(UGSCAbilitySystemComponent::StaticClass(), Actor, ComponentRequests));
+	
 	if (!AbilitySystemComponent)
 	{
 		GSC_LOG(Error, TEXT("Failed to find/add an ability component to '%s'. Abilities will not be granted."), *Actor->GetPathName());
@@ -228,7 +234,6 @@ void UGSCGameFeatureAction_AddAbilities::AddActorAbilities(AActor* Actor, const 
 		if (AbilitySystemComponent->bResetAbilitiesOnSpawn)
 		{
 			// ASC wants reset, remove abilities
-			// TODO: Quid Actor if ActorClass in GameFeature DataAsset is PlayerState ?
 			UGSCAbilityInputBindingComponent* InputComponent = AvatarActor ? AvatarActor->FindComponentByClass<UGSCAbilityInputBindingComponent>() : nullptr;
 			for (const FGameplayAbilitySpecHandle& AbilityHandle : ActorExtensions->Abilities)
 			{
@@ -266,20 +271,23 @@ void UGSCGameFeatureAction_AddAbilities::AddActorAbilities(AActor* Actor, const 
 	AddedExtensions.Abilities.Reserve(AbilitiesEntry.GrantedAbilities.Num());
 	AddedExtensions.Attributes.Reserve(AbilitiesEntry.GrantedAttributes.Num());
 	AddedExtensions.EffectHandles.Reserve(AbilitiesEntry.GrantedEffects.Num());
+	AddedExtensions.AbilitySetHandles.Reserve(AbilitiesEntry.GrantedAbilitySets.Num());
 
-	for (const FGSCGameFeatureAbilityMapping& Ability : AbilitiesEntry.GrantedAbilities)
+	for (const FGSCGameFeatureAbilityMapping& AbilityMapping : AbilitiesEntry.GrantedAbilities)
 	{
-		if (!Ability.AbilityType.IsNull())
+		if (!AbilityMapping.AbilityType.IsNull())
 		{
 			// Try to grant the ability first
 			FGameplayAbilitySpec AbilitySpec;
 			FGameplayAbilitySpecHandle AbilityHandle;
-			TryGrantAbility(AbilitySystemComponent, Ability.AbilityType.LoadSynchronous(), AbilityHandle, AbilitySpec);
+			FGSCAbilitySystemUtils::TryGrantAbility(AbilitySystemComponent, AbilityMapping, AbilityHandle, AbilitySpec);
 
 			// Handle Input Mapping now
-			if (!Ability.InputAction.IsNull())
+			if (!AbilityMapping.InputAction.IsNull())
 			{
-				TryBindAbilityInput(AbilitySystemComponent, Ability, AbilitiesEntry, AbilityHandle, AbilitySpec, AddedExtensions);
+				FDelegateHandle DelegateHandle;
+				FGSCAbilitySystemUtils::TryBindAbilityInput(AbilitySystemComponent, AbilityMapping, AbilityHandle, AbilitySpec, DelegateHandle, &ComponentRequests);
+				AddedExtensions.InputBindingDelegateHandles.Add(MoveTemp(DelegateHandle));
 			}
 
 			AddedExtensions.Abilities.Add(AbilityHandle);
@@ -290,7 +298,13 @@ void UGSCGameFeatureAction_AddAbilities::AddActorAbilities(AActor* Actor, const 
 	{
 		if (!Attributes.AttributeSet.IsNull() && AbilitySystemComponent->IsOwnerActorAuthoritative())
 		{
-			TryGrantAttributes(AbilitySystemComponent, Attributes, AddedExtensions);
+			UAttributeSet* AddedAttributeSet = nullptr;
+			FGSCAbilitySystemUtils::TryGrantAttributes(AbilitySystemComponent, Attributes, AddedAttributeSet);
+
+			if (AddedAttributeSet)
+			{
+				AddedExtensions.Attributes.Add(AddedAttributeSet);
+			}
 		}
 	}
 
@@ -298,12 +312,30 @@ void UGSCGameFeatureAction_AddAbilities::AddActorAbilities(AActor* Actor, const 
 	{
 		if (!Effect.EffectType.IsNull())
 		{
-			TryGrantGameplayEffect(AbilitySystemComponent, Effect.EffectType.LoadSynchronous(), Effect.Level, AddedExtensions);
+			FGSCAbilitySystemUtils::TryGrantGameplayEffect(AbilitySystemComponent, Effect.EffectType.LoadSynchronous(), Effect.Level, AddedExtensions.EffectHandles);
 		}
 	}
 
+	for (const TSoftObjectPtr<UGSCAbilitySet>& AbilitySetEntry : AbilitiesEntry.GrantedAbilitySets)
+	{
+		const UGSCAbilitySet* AbilitySet = AbilitySetEntry.LoadSynchronous();
+		if (!AbilitySet)
+		{
+			continue;
+		}
+
+		FGSCAbilitySetHandle Handle;
+		if (!FGSCAbilitySystemUtils::TryGrantAbilitySet(AbilitySystemComponent, AbilitySet, Handle, &ComponentRequests))
+		{
+			continue;
+		}
+
+		AddedExtensions.AbilitySetHandles.Add(Handle);
+	}
+
 	// GSCCore component could be added to avatars
-	if (UGSCCoreComponent* CoreComponent = AvatarActor->FindComponentByClass<UGSCCoreComponent>())
+	UGSCCoreComponent* CoreComponent = AvatarActor ? AvatarActor->FindComponentByClass<UGSCCoreComponent>() : nullptr;
+	if (CoreComponent)
 	{
 		// Make sure to notify we may have added attributes
 		CoreComponent->RegisterAbilitySystemDelegates(AbilitySystemComponent);
@@ -355,10 +387,20 @@ void UGSCGameFeatureAction_AddAbilities::RemoveActorAbilities(const AActor* Acto
 					AbilitySystemComponent->SetRemoveAbilityOnEnd(AbilityHandle);
 				}
 			}
+
+			// Remove sets
+			for (FGSCAbilitySetHandle& Handle : ActorExtensions->AbilitySetHandles)
+			{
+				FText ErrorText;
+				if (!UGSCAbilitySet::RemoveFromAbilitySystem(AbilitySystemComponent, Handle, &ErrorText, false))
+				{
+					GSC_PLOG(Error, TEXT("Error trying to remove ability set %s - %s"), *Handle.AbilitySetPathName, *ErrorText.ToString());
+				}
+			}
 		}
 		else
 		{
-			GSC_LOG(Warning, TEXT("UGSCGameFeatureAction_AddAbilities::RemoveActorAbilities: Not able to find AbilitySystemComponent for %s.\n\n- This may happen for Player State ASC when game is shut downed."), *GetNameSafe(Actor))
+			GSC_PLOG(Warning, TEXT("Not able to find AbilitySystemComponent for %s. This may happen for Player State ASC when game is shut downed."), *GetNameSafe(Actor))
 		}
 
 		// We need to clean up give ability delegates
@@ -374,46 +416,6 @@ void UGSCGameFeatureAction_AddAbilities::RemoveActorAbilities(const AActor* Acto
 
 		ActiveExtensions.Remove(Actor);
 	}
-}
-
-UActorComponent* UGSCGameFeatureAction_AddAbilities::FindOrAddComponentForActor(UClass* ComponentType, const AActor* Actor, const FGSCGameFeatureAbilitiesEntry& AbilitiesEntry)
-{
-	UActorComponent* Component = Actor->FindComponentByClass(ComponentType);
-
-	bool bMakeComponentRequest = (Component == nullptr);
-	if (Component)
-	{
-		// Check to see if this component was created from a different `UGameFrameworkComponentManager` request.
-		// `Native` is what `CreationMethod` defaults to for dynamically added components.
-		if (Component->CreationMethod == EComponentCreationMethod::Native)
-		{
-			// Attempt to tell the difference between a true native component and one created by the GameFrameworkComponent system.
-			// If it is from the UGameFrameworkComponentManager, then we need to make another request (requests are ref counted).
-			const UObject* ComponentArchetype = Component->GetArchetype();
-			bMakeComponentRequest = ComponentArchetype->HasAnyFlags(RF_ClassDefaultObject);
-		}
-	}
-
-	if (bMakeComponentRequest)
-	{
-		const UWorld* World = Actor->GetWorld();
-		const UGameInstance* GameInstance = World->GetGameInstance();
-
-		if (UGameFrameworkComponentManager* ComponentMan = UGameInstance::GetSubsystem<UGameFrameworkComponentManager>(GameInstance))
-		{
-			const TSoftClassPtr<AActor> ActorClass = Actor->GetClass();
-			const TSharedPtr<FComponentRequestHandle> RequestHandle = ComponentMan->AddComponentRequest(ActorClass, ComponentType);
-			ComponentRequests.Add(RequestHandle);
-		}
-
-		if (!Component)
-		{
-			Component = Actor->FindComponentByClass(ComponentType);
-			ensureAlways(Component);
-		}
-	}
-
-	return Component;
 }
 
 void UGSCGameFeatureAction_AddAbilities::AddToWorld(const FWorldContext& WorldContext)
@@ -457,216 +459,6 @@ void UGSCGameFeatureAction_AddAbilities::HandleGameInstanceStart(UGameInstance* 
 	{
 		AddToWorld(*WorldContext);
 	}
-}
-
-void UGSCGameFeatureAction_AddAbilities::TryGrantAbility(UGSCAbilitySystemComponent* AbilitySystemComponent, const TSubclassOf<UGameplayAbility> AbilityType, FGameplayAbilitySpecHandle& AbilityHandle, FGameplayAbilitySpec& AbilitySpec)
-{
-	check(AbilityType);
-	check(AbilitySystemComponent);
-
-	AbilitySpec = FGameplayAbilitySpec(AbilityType);
-	
-	// Try to grant the ability first
-	if (AbilitySystemComponent->IsOwnerActorAuthoritative())
-	{
-		// Only Grant abilities on authority, and only if we should (ability not granted yet or wants reset on spawn)
-		if (AbilitySystemComponent->ShouldGrantAbility(AbilityType))
-		{
-			GSC_LOG(Verbose, TEXT("AddActorAbilities: Authority, Grant Ability (%s) with input ID: %d"), *AbilityType->GetName())
-			AbilityHandle = AbilitySystemComponent->GiveAbility(AbilitySpec);
-		}
-		else
-		{
-			// In case granting is prevented because of ability already existing, return the existing handle
-			const FGameplayAbilitySpec* ExistingAbilitySpec = AbilitySystemComponent->FindAbilitySpecFromClass(AbilityType);
-			if (ExistingAbilitySpec)
-			{
-				AbilityHandle = ExistingAbilitySpec->Handle;
-			}
-		}
-	}
-	else
-	{
-		// For clients, try to get ability spec and update handle used later on for input binding
-		const FGameplayAbilitySpec* ExistingAbilitySpec = AbilitySystemComponent->FindAbilitySpecFromClass(AbilityType);
-		if (ExistingAbilitySpec)
-		{
-			AbilityHandle = ExistingAbilitySpec->Handle;
-		}
-		
-		GSC_LOG(Verbose, TEXT("AddActorAbilities: Not Authority, try to find ability handle from spec: %s"), *AbilityHandle.ToString())
-	}
-}
-
-void UGSCGameFeatureAction_AddAbilities::TryBindAbilityInput(UGSCAbilitySystemComponent* AbilitySystemComponent, const FGSCGameFeatureAbilityMapping& AbilityMapping, const FGSCGameFeatureAbilitiesEntry& AbilitiesEntry, FGameplayAbilitySpecHandle AbilityHandle, FGameplayAbilitySpec AbilitySpec, FActorExtensions& AddedExtensions)
-{
-	check(AbilitySystemComponent);
-
-	AActor* OwnerActor = AbilitySystemComponent->GetOwnerActor();
-	AActor* AvatarActor = AbilitySystemComponent->GetAvatarActor();
-
-	// UGSCAbilityInputBindingComponent is a PawnComponent, ensure owner of it is actually a pawn
-	APawn* TargetPawn = Cast<APawn>(OwnerActor);
-	if (!TargetPawn)
-	{
-		if (APawn* AvatarPawn = Cast<APawn>(AvatarActor))
-		{
-			TargetPawn = AvatarPawn;
-		}
-	}
-
-	if (TargetPawn)
-	{
-		UGSCAbilityInputBindingComponent* InputComponent = FindOrAddComponentForActor<UGSCAbilityInputBindingComponent>(TargetPawn, AbilitiesEntry);
-		if (InputComponent)
-		{
-			GSC_LOG(Verbose, TEXT("AddActorAbilities: TryBindAbilityInput - Try to setup input binding for '%s': '%s' (%s)"), *AbilityMapping.InputAction.ToString(), *AbilityHandle.ToString(), *AbilitySpec.Handle.ToString())
-			if (AbilityHandle.IsValid())
-			{
-				// Setup input binding if AbilityHandle is valid and already granted (on authority, or when Game Features is active by default)
-				InputComponent->SetInputBinding(AbilityMapping.InputAction.LoadSynchronous(), AbilityMapping.TriggerEvent, AbilityHandle);
-			}
-			else
-			{
-				// Register a delegate triggered when ability is granted and available on clients (needed when Game Features are made active during play)
-				UInputAction* InputAction = AbilityMapping.InputAction.LoadSynchronous();
-				const FDelegateHandle DelegateHandle = AbilitySystemComponent->OnGiveAbilityDelegate.AddUObject(this, &UGSCGameFeatureAction_AddAbilities::HandleOnGiveAbility, InputComponent, InputAction, AbilityMapping.TriggerEvent, AbilitySpec);
-				AddedExtensions.InputBindingDelegateHandles.Add(DelegateHandle);
-			}
-		}
-		else
-		{
-			GSC_LOG(Error, TEXT("Failed to find/add an ability input binding component to '%s' -- FindOrAddComponentForActor failed."), *TargetPawn->GetPathName());
-		}
-	}
-	else
-	{
-		GSC_LOG(Error, TEXT("Failed to find/add an ability input binding component to '%s' -- are you sure it's a pawn class ?"), *GetNameSafe(OwnerActor));
-	}
-}
-
-void UGSCGameFeatureAction_AddAbilities::TryGrantAttributes(UAbilitySystemComponent* AbilitySystemComponent, const FGSCGameFeatureAttributeSetMapping& AttributeSetMapping, FActorExtensions& AddedExtensions)
-{
-	check(AbilitySystemComponent);
-
-	AActor* OwnerActor = AbilitySystemComponent->GetOwnerActor();
-	if (!IsValid(OwnerActor))
-	{
-		GSC_LOG(Error, TEXT("AddActorAbilities: TryGrantAttributes - Ability System Component owner actor is not valid"))
-		return;
-	}
-
-	const TSubclassOf<UAttributeSet> AttributeSetType = AttributeSetMapping.AttributeSet.LoadSynchronous();
-	if (!AttributeSetType)
-	{
-		GSC_LOG(Error, TEXT("AddActorAbilities: TryGrantAttributes - AttributeSet class is invalid"))
-		return;
-	}
-
-	// Prevent adding the same attribute set multiple times (if already registered by another GF or on Actor ASC directly)
-	if (HasAttributeSet(AbilitySystemComponent, AttributeSetType))
-	{
-		GSC_LOG(Warning, TEXT("AddActorAbilities: TryGrantAttributes - %s AttributeSet is already added to %s"), *AttributeSetType->GetName(), *OwnerActor->GetName())
-		return;
-	}
-
-	UAttributeSet* AttributeSet = NewObject<UAttributeSet>(OwnerActor, AttributeSetType);
-	if (!AttributeSetMapping.InitializationData.IsNull())
-	{
-		const UDataTable* InitData = AttributeSetMapping.InitializationData.LoadSynchronous();
-		if (InitData)
-		{
-			AttributeSet->InitFromMetaDataTable(InitData);
-		}
-	}
-
-	AddedExtensions.Attributes.Add(AttributeSet);
-	AbilitySystemComponent->AddAttributeSetSubobject(AttributeSet);
-	AbilitySystemComponent->bIsNetDirty = true;
-}
-
-void UGSCGameFeatureAction_AddAbilities::TryGrantGameplayEffect(UAbilitySystemComponent* AbilitySystemComponent, TSubclassOf<UGameplayEffect> EffectType, float Level, FActorExtensions& AddedExtensions)
-{
-	check(AbilitySystemComponent);
-
-	if (!AbilitySystemComponent->IsOwnerActorAuthoritative())
-	{
-		return;
-	}
-
-	if (!EffectType)
-	{
-		GSC_LOG(Warning, TEXT("UGSCGameFeatureAction_AddAbilities::TryGrantGameplayEffect Trying to apply an effect from an invalid class"))
-		return;
-	}
-
-	const FGameplayEffectContextHandle EffectContext = AbilitySystemComponent->MakeEffectContext();
-	const FGameplayEffectSpecHandle NewHandle = AbilitySystemComponent->MakeOutgoingSpec(EffectType, Level, EffectContext);
-	if (NewHandle.IsValid())
-	{
-		const FActiveGameplayEffectHandle EffectHandle = AbilitySystemComponent->ApplyGameplayEffectSpecToSelf(*NewHandle.Data.Get());
-		if (EffectHandle.IsValid())
-		{
-			AddedExtensions.EffectHandles.Add(EffectHandle);
-		}
-	}
-}
-
-// ReSharper disable once CppMemberFunctionMayBeConst
-// ReSharper disable once CppParameterMayBeConstPtrOrRef
-void UGSCGameFeatureAction_AddAbilities::HandleOnGiveAbility(FGameplayAbilitySpec& AbilitySpec, UGSCAbilityInputBindingComponent* InputComponent, UInputAction* InputAction, const EGSCAbilityTriggerEvent TriggerEvent, const FGameplayAbilitySpec NewAbilitySpec)
-{
-	GSC_LOG(
-		Verbose,
-		TEXT("UGSCGameFeatureAction_AddAbilities::HandleOnGiveAbility: %s, Ability: %s, Input: %s (TriggerEvent: %s) - (InputComponent: %s)"),
-		*AbilitySpec.Handle.ToString(),
-		*GetNameSafe(AbilitySpec.Ability),
-		*GetNameSafe(InputAction),
-		*UEnum::GetValueAsName(TriggerEvent).ToString(),
-		*GetNameSafe(InputComponent)
-	);
-
-	if (InputComponent && InputAction && AbilitySpec.Ability == NewAbilitySpec.Ability)
-	{
-		InputComponent->SetInputBinding(InputAction, TriggerEvent, AbilitySpec.Handle);
-	}
-}
-
-bool UGSCGameFeatureAction_AddAbilities::HasAttributeSet(UAbilitySystemComponent* AbilitySystemComponent, const TSubclassOf<UAttributeSet> Set)
-{
-	check(AbilitySystemComponent != nullptr);
-
-	for (const UAttributeSet* SpawnedAttribute : AbilitySystemComponent->GetSpawnedAttributes())
-	{
-		if (SpawnedAttribute && SpawnedAttribute->IsA(Set))
-		{
-			return true;
-		}
-	}
-
-	return false;
-}
-
-bool UGSCGameFeatureAction_AddAbilities::HasAbility(UAbilitySystemComponent* AbilitySystemComponent, const TSubclassOf<UGameplayAbility> Ability)
-{
-	check(AbilitySystemComponent != nullptr);
-	
-	// Check for activatable abilities, if one is matching the given Ability type, prevent re adding again
-	TArray<FGameplayAbilitySpec> AbilitySpecs = AbilitySystemComponent->GetActivatableAbilities();
-	for (const FGameplayAbilitySpec& ActivatableAbility : AbilitySpecs)
-	{
-		if (!ActivatableAbility.Ability)
-		{
-			continue;
-		}
-
-		if (ActivatableAbility.Ability->GetClass() == Ability)
-		{
-			return true;
-		}
-	}
-
-	return false;
 }
 
 #undef LOCTEXT_NAMESPACE

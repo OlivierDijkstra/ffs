@@ -1,10 +1,11 @@
 // Copyright 2021 Mickael Daniel. All Rights Reserved.
 
-
 #include "Components/GSCPlayerControlsComponent.h"
 
 #include "EnhancedInputSubsystems.h"
 #include "GSCLog.h"
+#include "Engine/LocalPlayer.h"
+#include "GameFramework/PlayerController.h"
 
 void UGSCPlayerControlsComponent::OnRegister()
 {

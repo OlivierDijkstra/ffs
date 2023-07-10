@@ -6,7 +6,9 @@
 #include "GameFeatureAction.h"
 #include "GSCGameFeatureAction_AddInputMappingContext.generated.h"
 
+class UGameInstance;
 class UInputMappingContext;
+class UPlayer;
 struct FComponentRequestHandle;
 
 /**

@@ -3,27 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Abilities/Attributes/GSCAttributeSetBase.h"
-#include "UI/GSCUWHud.h"
 
 #include "GSCDeveloperSettings.generated.h"
-
-/**
- * Attribute Set Settings
- */
-USTRUCT(BlueprintType)
-struct GASCOMPANION_API FGSCAttributeSetMinimumValues
-{
-	GENERATED_BODY()
-
-	/** The Attribute we want to configure clamp values for. */
-	UPROPERTY(EditDefaultsOnly, Category=GameplayModifier, meta=(FilterMetaTag="HideFromModifiers"))
-	FGameplayAttribute Attribute;
-
-	/** Minimum value for this attribute when a Clamp is done in PostGameplayEffectExecute of Attribute Sets */
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Attribute Set")
-	float MinimumValue = 0.f;
-};
 
 /**
  * General Settings for GAS Companion Plugin.

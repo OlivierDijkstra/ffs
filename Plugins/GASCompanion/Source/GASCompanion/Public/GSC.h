@@ -5,6 +5,8 @@
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
 
+class SNotificationItem;
+
 class FGSCModule : public IModuleInterface
 {
 public:

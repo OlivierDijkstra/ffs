@@ -67,3 +67,43 @@ void AGSCModularPlayerStateCharacter::OnRep_PlayerState()
 		}
 	}
 }
+
+void AGSCModularPlayerStateCharacter::GetOwnedGameplayTags(FGameplayTagContainer& OutTagContainer) const
+{
+	if (AbilitySystemComponent.IsValid())
+	{
+		FGameplayTagContainer OwnedTags;
+		AbilitySystemComponent->GetOwnedGameplayTags(OwnedTags);
+		OutTagContainer = MoveTemp(OwnedTags);
+	}
+}
+
+bool AGSCModularPlayerStateCharacter::HasMatchingGameplayTag(const FGameplayTag InTagToCheck) const
+{
+	if (AbilitySystemComponent.IsValid())
+	{
+		return AbilitySystemComponent->HasMatchingGameplayTag(InTagToCheck);
+	}
+
+	return false;
+}
+
+bool AGSCModularPlayerStateCharacter::HasAllMatchingGameplayTags(const FGameplayTagContainer& InTagContainer) const
+{
+	if (AbilitySystemComponent.IsValid())
+	{
+		return AbilitySystemComponent->HasAllMatchingGameplayTags(InTagContainer);
+	}
+
+	return false;
+}
+
+bool AGSCModularPlayerStateCharacter::HasAnyMatchingGameplayTags(const FGameplayTagContainer& InTagContainer) const
+{
+	if (AbilitySystemComponent.IsValid())
+	{
+		return AbilitySystemComponent->HasAnyMatchingGameplayTags(InTagContainer);
+	}
+
+	return false;
+}

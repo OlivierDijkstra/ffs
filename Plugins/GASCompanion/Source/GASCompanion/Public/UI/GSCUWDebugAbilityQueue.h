@@ -81,37 +81,37 @@ protected:
 	float ClearFromMontageDelay = 8.f;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), Category = "GAS Companion|UI")
-	UTextBlock* AbilityQueueEnabledText = nullptr;
+	TObjectPtr<UTextBlock> AbilityQueueEnabledText;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), Category = "GAS Companion|UI")
-	UTextBlock* AbilityQueueOpenedText = nullptr;
+	TObjectPtr<UTextBlock> AbilityQueueOpenedText;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), Category = "GAS Companion|UI")
-	UTextBlock* CurrentQueuedAbilityText = nullptr;
+	TObjectPtr<UTextBlock> CurrentQueuedAbilityText;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), Category = "GAS Companion|UI")
-	UTextBlock* AllowAllAbilitiesText = nullptr;
+	TObjectPtr<UTextBlock> AllowAllAbilitiesText;
 
 	/**
 	 * Convenience TextBlock that serves as a "template" for allowed abilities row,
 	 * so that we can customize its styling in Blueprints (font size, color, etc.)
 	 */
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), Category = "GAS Companion|UI")
-	UTextBlock* AllowedAbilityTemplateText = nullptr;
+	TObjectPtr<UTextBlock> AllowedAbilityTemplateText;
 
 	/**
 	 * Convenience TextBlock that serves as a "template" for ability queue from montages row,
 	 * so that we can customize its styling in Blueprints (font size, color, etc.)
 	 */
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), Category = "GAS Companion|UI")
-	UTextBlock* AbilityQueueFromMontageTemplateText = nullptr;
+	TObjectPtr<UTextBlock> AbilityQueueFromMontageTemplateText;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), Category = "GAS Companion|UI")
-	UVerticalBox* AllowedAbilitiesBox = nullptr;
+	TObjectPtr<UVerticalBox> AllowedAbilitiesBox;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), Category = "GAS Companion|UI")
-	UVerticalBox* AbilityQueueFromMontagesBox = nullptr;
+	TObjectPtr<UVerticalBox> AbilityQueueFromMontagesBox;
 
 	UPROPERTY(BlueprintReadOnly, meta = (BindWidget), Category = "GAS Companion|UI")
-	UCanvasPanel* AbilityQueueFromMontagesPanel = nullptr;
+	TObjectPtr<UCanvasPanel> AbilityQueueFromMontagesPanel;
 };

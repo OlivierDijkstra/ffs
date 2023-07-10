@@ -142,6 +142,7 @@ private:
 public:
     UAGRCoreAnimInstance(const FObjectInitializer& ObjectInitializer);
 
+protected:
     virtual void NativeInitializeAnimation() override;
     virtual void NativeUpdateAnimation(float DeltaSeconds) override;
 

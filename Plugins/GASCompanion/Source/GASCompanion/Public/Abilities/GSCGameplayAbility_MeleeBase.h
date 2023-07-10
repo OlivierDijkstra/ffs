@@ -21,11 +21,11 @@ public:
 
 protected:
 	UPROPERTY()
-	UGSCComboManagerComponent* ComboManagerComponent;
+	TObjectPtr<UGSCComboManagerComponent> ComboManagerComponent;
 
 	/** List of animation montages you want to cycle through when activating this ability */
 	UPROPERTY(EditDefaultsOnly, Category="Montages")
-	TArray<UAnimMontage*> Montages;
+	TArray<TObjectPtr<UAnimMontage>> Montages;
 
 	/** Change to play the montage faster or slower */
 	UPROPERTY(EditDefaultsOnly, Category="Montages")

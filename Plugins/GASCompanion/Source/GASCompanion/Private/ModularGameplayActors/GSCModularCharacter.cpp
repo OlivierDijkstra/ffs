@@ -46,3 +46,43 @@ void AGSCModularCharacter::PostInitProperties()
 		AbilitySystemComponent->SetReplicationMode(ReplicationMode);
 	}
 }
+
+void AGSCModularCharacter::GetOwnedGameplayTags(FGameplayTagContainer& OutTagContainer) const
+{
+	if (AbilitySystemComponent)
+	{
+		FGameplayTagContainer OwnedTags;
+		AbilitySystemComponent->GetOwnedGameplayTags(OwnedTags);
+		OutTagContainer = MoveTemp(OwnedTags);
+	}
+}
+
+bool AGSCModularCharacter::HasMatchingGameplayTag(const FGameplayTag InTagToCheck) const
+{
+	if (AbilitySystemComponent)
+	{
+		return AbilitySystemComponent->HasMatchingGameplayTag(InTagToCheck);
+	}
+
+	return false;
+}
+
+bool AGSCModularCharacter::HasAllMatchingGameplayTags(const FGameplayTagContainer& InTagContainer) const
+{
+	if (AbilitySystemComponent)
+	{
+		return AbilitySystemComponent->HasAllMatchingGameplayTags(InTagContainer);
+	}
+
+	return false;
+}
+
+bool AGSCModularCharacter::HasAnyMatchingGameplayTags(const FGameplayTagContainer& InTagContainer) const
+{
+	if (AbilitySystemComponent)
+	{
+		return AbilitySystemComponent->HasAnyMatchingGameplayTags(InTagContainer);
+	}
+
+	return false;
+}

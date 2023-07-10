@@ -1,7 +1,9 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "Abilities/Tasks/GSCAbilityTask_NetworkSyncPoint.h"
+
 #include "AbilitySystemComponent.h"
+#include "Runtime/Launch/Resources/Version.h"
 
 UGSCAbilityTask_NetworkSyncPoint::UGSCAbilityTask_NetworkSyncPoint(const FObjectInitializer& ObjectInitializer)
 	: Super(ObjectInitializer), SyncType()

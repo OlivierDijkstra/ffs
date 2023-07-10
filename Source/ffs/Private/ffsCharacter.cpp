@@ -1,5 +1,7 @@
 #include "ffsCharacter.h"
 #include "ffsAnimInstance.h"
+#include "AbilitySystemComponent.h"
+#include "Abilities/GSCAbilitySystemComponent.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -58,8 +60,10 @@ void AffsCharacter::BeginPlay()
 	{
 		if (IGSCNativeAnimInstanceInterface *AnimInstanceInterface = Cast<IGSCNativeAnimInstanceInterface>(Mesh1P->GetAnimInstance()))
 		{
-			UAbilitySystemComponent *ASC = reinterpret_cast<UAbilitySystemComponent *>(AbilitySystemComponent);
-			AnimInstanceInterface->InitializeWithAbilitySystem(ASC);
+			if (UAbilitySystemComponent *ASC = Cast<UAbilitySystemComponent>(AbilitySystemComponent))
+			{
+				AnimInstanceInterface->InitializeWithAbilitySystem(ASC);
+			}
 		}
 	}
 
@@ -67,8 +71,10 @@ void AffsCharacter::BeginPlay()
 	{
 		if (IGSCNativeAnimInstanceInterface *AnimInstanceInterface = Cast<IGSCNativeAnimInstanceInterface>(Mesh3P->GetAnimInstance()))
 		{
-			UAbilitySystemComponent *ASC = reinterpret_cast<UAbilitySystemComponent *>(AbilitySystemComponent);
-			AnimInstanceInterface->InitializeWithAbilitySystem(ASC);
+			if (UAbilitySystemComponent *ASC = Cast<UAbilitySystemComponent>(AbilitySystemComponent))
+			{
+				AnimInstanceInterface->InitializeWithAbilitySystem(ASC);
+			}
 		}
 	}
 
@@ -302,7 +308,7 @@ void AffsCharacter::Multicast_UnequipWeapon_Implementation()
 {
 	if (UnequipMontage && !IsLocallyControlled())
 	{
-		// This is causing me to have to add another event in my third person anim blueprint to replicate the 
+		// This is causing me to have to add another event in my third person anim blueprint to replicate the
 		// unequip animation. The reason for this is because the unequip animation montage fires a notify
 		// to call the equip weapon function. If I set this to the first person mesh it works fine but I think
 		// because I am calling another montage before this its causing issues. If we call it on the third person

@@ -1,15 +1,10 @@
 ﻿// Copyright 2021 Mickael Daniel. All Rights Reserved.
 
-
 #include "CreationMenu/GSCGameplayEffectCreationMenu.h"
 
-#include "AssetToolsModule.h"
 #include "ContentBrowserModule.h"
-#include "GameplayEffect.h"
-#include "IContentBrowserSingleton.h"
-#include "Core/Logging/GASCompanionEditorLog.h"
 #include "CreationMenu/GSCCreationMenu.h"
-
+#include "Framework/Commands/UICommandList.h"
 
 FString FGSCGameplayEffectCreationData::ToString() const
 {

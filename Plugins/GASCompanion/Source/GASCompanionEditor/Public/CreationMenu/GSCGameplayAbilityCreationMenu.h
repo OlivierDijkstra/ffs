@@ -3,9 +3,10 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/Object.h"
+#include "Templates/SubclassOf.h"
 #include "GSCGameplayAbilityCreationMenu.generated.h"
 
+class FMenuBuilder;
 class UGameplayAbility;
 
 USTRUCT()

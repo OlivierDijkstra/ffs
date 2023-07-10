@@ -28,10 +28,10 @@ public:
 protected:
 	
 	UPROPERTY(Transient)
-	UUserWidget* AbilityQueueDebugWidget;
+	TObjectPtr<UUserWidget> AbilityQueueDebugWidget;
 
 	UPROPERTY(Transient)
-	UUserWidget* ComboDebugWidget;
+	TObjectPtr<UUserWidget> ComboDebugWidget;
 
 	UPROPERTY(Transient)
 	TSubclassOf<UUserWidget> AbilityQueueWidgetClass;

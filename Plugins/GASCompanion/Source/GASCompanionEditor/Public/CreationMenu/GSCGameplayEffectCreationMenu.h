@@ -3,11 +3,11 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UObject/Object.h"
+#include "Templates/SubclassOf.h"
 #include "GSCGameplayEffectCreationMenu.generated.h"
 
+class FMenuBuilder;
 class UGSCTemplate_GameplayEffectDefinition;
-class UGameplayEffect;
 
 USTRUCT()
 struct FGSCGameplayEffectCreationData

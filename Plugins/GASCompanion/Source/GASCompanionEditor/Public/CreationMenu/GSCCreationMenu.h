@@ -2,15 +2,12 @@
 
 #pragma once
 
-#include "CoreMinimal.h"
-#include "UObject/Object.h"
 #include "AssetToolsModule.h"
-#include "ContentBrowserModule.h"
-#include "GameplayEffect.h"
-#include "Templates/GSCTemplate_GameplayEffectDefinition.h"
-#include "IContentBrowserSingleton.h"
 #include "Core/Logging/GASCompanionEditorLog.h"
+#include "Engine/Blueprint.h"
 #include "Factories/BlueprintFactory.h"
+#include "Framework/MultiBox/MultiBoxBuilder.h"
+#include "Templates/GSCTemplate_GameplayEffectDefinition.h"
 #include "GSCCreationMenu.generated.h"
 
 struct FGSCMenuItem : TSharedFromThis<FGSCMenuItem>

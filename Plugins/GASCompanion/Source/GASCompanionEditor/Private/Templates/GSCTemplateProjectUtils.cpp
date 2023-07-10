@@ -4,11 +4,11 @@
 
 #include "ClassTemplateEditorSubsystem.h"
 #include "DesktopPlatformModule.h"
+#include "Editor.h"
 #include "GeneralProjectSettings.h"
 #include "ISourceControlModule.h"
 #include "ISourceControlProvider.h"
 #include "ProjectDescriptor.h"
-#include "Misc/ScopedSlowTask.h"
 #include "SourceCodeNavigation.h"
 #include "SourceControlOperations.h"
 #include "Async/ParallelFor.h"
@@ -16,10 +16,13 @@
 #include "Core/Logging/GASCompanionEditorLog.h"
 #include "Editor/EditorPerProjectUserSettings.h"
 #include "GameFramework/Character.h"
+#include "HAL/PlatformFileManager.h"
 #include "Interfaces/IProjectManager.h"
+#include "Misc/FeedbackContext.h"
 #include "Misc/FileHelper.h"
 #include "Misc/HotReloadInterface.h"
-#include "Misc/FeedbackContext.h"
+#include "Misc/MessageDialog.h"
+#include "Misc/ScopedSlowTask.h"
 #include "Templates/GSCAttributeSetClassTemplate.h"
 #include "Widgets/Notifications/SNotificationList.h"
 
@@ -897,7 +900,7 @@ void FGSCTemplateProjectUtils::TryMakeProjectFileWriteable(const FString& Projec
 	// Check if it's writable
 	if (FPlatformFileManager::Get().GetPlatformFile().IsReadOnly(*ProjectFile))
 	{
-		FText ShouldMakeProjectWriteable = LOCTEXT("ShouldMakeProjectWriteable_Message", "'{ProjectFilename}' is read-only and cannot be updated. Would you like to make it writeable?");
+		const FText ShouldMakeProjectWriteable = LOCTEXT("ShouldMakeProjectWriteable_Message", "'{ProjectFilename}' is read-only and cannot be updated. Would you like to make it writeable?");
 
 		FFormatNamedArguments Arguments;
 		Arguments.Add(TEXT("ProjectFilename"), FText::FromString(ProjectFile));

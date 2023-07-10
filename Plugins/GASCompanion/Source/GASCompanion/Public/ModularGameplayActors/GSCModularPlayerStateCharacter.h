@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "AbilitySystemInterface.h"
+#include "GameplayTagAssetInterface.h"
 #include "GameFramework/Character.h"
 #include "GSCModularPlayerStateCharacter.generated.h"
 
@@ -15,7 +16,7 @@ class UGSCAbilitySystemComponent;
  * Intended to be used for ACharacters using AbilitySystemComponent living on PlayerState.
  */
 UCLASS(Blueprintable)
-class GASCOMPANION_API AGSCModularPlayerStateCharacter : public ACharacter, public IAbilitySystemInterface
+class GASCOMPANION_API AGSCModularPlayerStateCharacter : public ACharacter, public IAbilitySystemInterface, public IGameplayTagAssetInterface
 {
 	GENERATED_BODY()
 
@@ -38,4 +39,11 @@ public:
 	virtual void PossessedBy(AController* NewController) override;
 	virtual void OnRep_PlayerState() override;
 	//~ End APawn Interface
+
+	//~ Begin IGameplayTagAssetInterface
+	virtual void GetOwnedGameplayTags(FGameplayTagContainer& OutTagContainer) const override;
+	virtual bool HasMatchingGameplayTag(FGameplayTag InTagToCheck) const override;
+	virtual bool HasAllMatchingGameplayTags(const FGameplayTagContainer& InTagContainer) const override;
+	virtual bool HasAnyMatchingGameplayTags(const FGameplayTagContainer& InTagContainer) const override;
+	//~ End IGameplayTagAssetInterface
 };

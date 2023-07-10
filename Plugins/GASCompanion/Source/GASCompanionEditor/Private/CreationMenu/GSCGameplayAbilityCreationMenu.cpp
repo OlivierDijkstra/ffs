@@ -1,13 +1,11 @@
 ﻿// Copyright 2021 Mickael Daniel. All Rights Reserved.
 
-
 #include "CreationMenu/GSCGameplayAbilityCreationMenu.h"
 
-#include "ContentBrowserDelegates.h"
 #include "ContentBrowserModule.h"
-#include "Abilities/GSCGameplayAbility.h"
 #include "Abilities/GSCGameplayAbility_MeleeBase.h"
 #include "CreationMenu/GSCCreationMenu.h"
+#include "Framework/Commands/UICommandList.h"
 
 UGSCGameplayAbilityCreationMenu::UGSCGameplayAbilityCreationMenu()
 {

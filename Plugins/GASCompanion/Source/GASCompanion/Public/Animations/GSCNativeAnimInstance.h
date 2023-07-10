@@ -1,9 +1,10 @@
-// Copyright 2020 Mickael Daniel. All Rights Reserved.
+// Copyright 2022 Mickael Daniel. All Rights Reserved.
 
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GSCNativeAnimInstanceInterface.h"
+#include "GameplayEffectTypes.h"
 #include "Animation/AnimInstance.h"
 #include "GSCNativeAnimInstance.generated.h"
 
@@ -34,4 +35,14 @@ public:
 	{
 		GameplayTagPropertyMap.Initialize(this, ASC);
 	}
+
+	//~ Begin UObject interface
+#if WITH_EDITOR
+	virtual EDataValidationResult IsDataValid(TArray<FText>& ValidationErrors) override;
+#endif
+	//~ End UObject interface
+
+	//~ Begin UAnimInstance interface
+	virtual void NativeInitializeAnimation() override;
+	//~ End UAnimInstance interface
 };

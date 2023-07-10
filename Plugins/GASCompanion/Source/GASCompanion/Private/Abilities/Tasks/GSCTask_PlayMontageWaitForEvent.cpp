@@ -6,10 +6,11 @@
 
 #include "AbilitySystemComponent.h"
 #include "AbilitySystemGlobals.h"
+#include "GSCLog.h"
 #include "Abilities/Tasks/GSCAbilityTask_NetworkSyncPoint.h"
 #include "Animation/AnimInstance.h"
 #include "GameFramework/Character.h"
-#include "GSCLog.h"
+#include "Runtime/Launch/Resources/Version.h"
 
 UGSCTask_PlayMontageWaitForEvent::UGSCTask_PlayMontageWaitForEvent(const FObjectInitializer& ObjectInitializer)
 {
@@ -108,7 +109,7 @@ FString UGSCTask_PlayMontageWaitForEvent::GetDebugString() const
 
         if (AnimInstance != nullptr)
         {
-            PlayingMontage = AnimInstance->Montage_IsActive(MontageToPlay) ? MontageToPlay : AnimInstance->GetCurrentActiveMontage();
+            PlayingMontage = AnimInstance->Montage_IsActive(MontageToPlay) ? MontageToPlay.Get() : AnimInstance->GetCurrentActiveMontage();
         }
     }
 

@@ -1,8 +1,10 @@
 // Copyright 2021 Mickael Daniel. All Rights Reserved.
 
 #include "Animations/GSCTriggerComboNotify.h"
+
 #include "Abilities/GSCBlueprintFunctionLibrary.h"
 #include "Components/GSCComboManagerComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 
 void UGSCTriggerComboNotify::Notify(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation)
 {

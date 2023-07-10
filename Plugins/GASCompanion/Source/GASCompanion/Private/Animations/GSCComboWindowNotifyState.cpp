@@ -1,12 +1,13 @@
 // Copyright 2021 Mickael Daniel. All Rights Reserved.
 
-
 #include "Animations/GSCComboWindowNotifyState.h"
+
+#include "GSCLog.h"
 #include "Abilities/GSCBlueprintFunctionLibrary.h"
 #include "Abilities/GSCGameplayAbility.h"
 #include "Components/GSCComboManagerComponent.h"
 #include "Components/GSCCoreComponent.h"
-#include "GSCLog.h"
+#include "Components/SkeletalMeshComponent.h"
 
 void UGSCComboWindowNotifyState::NotifyBegin(USkeletalMeshComponent* MeshComp, UAnimSequenceBase* Animation, float TotalDuration)
 {

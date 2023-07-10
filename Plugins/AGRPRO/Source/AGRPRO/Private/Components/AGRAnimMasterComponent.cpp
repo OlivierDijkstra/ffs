@@ -2,6 +2,11 @@
 
 #include "Components/AGRAnimMasterComponent.h"
 
+// =============================================================================
+// These includes are needed to prevent plugin build failures.
+#include "Engine/Classes/Engine/World.h"
+// =============================================================================
+
 #include "DrawDebugHelpers.h"
 #include "GameFramework/Character.h"
 #include "Kismet/GameplayStatics.h"

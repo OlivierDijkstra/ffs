@@ -1,24 +1,29 @@
 // Copyright 2021 Mickael Daniel. All Rights Reserved.
 
 #include "UI/Widgets/SGSCNewAttributeSetClassDialog.h"
-#include "UI/Styling/GSCEditorStyle.h"
-#include "Core/Common/GSCAttributesGenSettings.h"
-#include "ClassTemplateEditorSubsystem.h"
-#include "IContentBrowserSingleton.h"
+
 #include "ContentBrowserModule.h"
+#include "IContentBrowserSingleton.h"
+#include "PropertyEditorModule.h"
 #include "SlateOptMacros.h"
 #include "SourceCodeNavigation.h"
+#include "Core/Common/GSCAttributesGenSettings.h"
 #include "Core/Logging/GASCompanionEditorLog.h"
 #include "Editor/EditorPerProjectUserSettings.h"
+#include "Framework/Docking/TabManager.h"
+#include "Framework/Notifications/NotificationManager.h"
+#include "HAL/FileManager.h"
 #include "Interfaces/IProjectManager.h"
-#include "Widgets/Workflow/SWizard.h"
+#include "Misc/App.h"
+#include "Misc/MessageDialog.h"
+#include "Runtime/Launch/Resources/Version.h"
+#include "Templates/GSCTemplateProjectUtils.h"
+#include "UI/Styling/GSCEditorStyle.h"
+#include "Widgets/Input/SEditableTextBox.h"
 #include "Widgets/Layout/SGridPanel.h"
 #include "Widgets/Layout/SSeparator.h"
 #include "Widgets/Notifications/SNotificationList.h"
-#include "Framework/Notifications/NotificationManager.h"
-#include "Misc/MessageDialog.h"
-#include "Templates/GSCTemplateProjectUtils.h"
-#include "Widgets/Input/SEditableTextBox.h"
+#include "Widgets/Workflow/SWizard.h"
 
 #define LOCTEXT_NAMESPACE "GASCompanionEditor"
 
@@ -1023,7 +1028,7 @@ GameProjectUtils::EAddCodeToProjectResult SGSCNewAttributeSetClassDialog::AddCla
 			{
 				TArray<UObject*> SyncAssets;
 				SyncAssets.Add(NewClass);
-				FContentBrowserModule& ContentBrowserModule = FModuleManager::LoadModuleChecked<FContentBrowserModule>("ContentBrowser");
+				const FContentBrowserModule& ContentBrowserModule = FModuleManager::LoadModuleChecked<FContentBrowserModule>("ContentBrowser");
 				ContentBrowserModule.Get().SyncBrowserToAssets(SyncAssets);
 			}
 		}

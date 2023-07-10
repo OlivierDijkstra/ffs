@@ -36,7 +36,7 @@ public:
 	EGameplayEffectReplicationMode ReplicationMode = EGameplayEffectReplicationMode::Mixed;
 
 	UPROPERTY(Category=PlayerState, VisibleAnywhere, BlueprintReadOnly, meta=(AllowPrivateAccess = "true"))
-	UGSCAbilitySystemComponent* AbilitySystemComponent;
+	TObjectPtr<UGSCAbilitySystemComponent> AbilitySystemComponent;
 
 	//~ Begin AActor interface
 	virtual void PreInitializeComponents() override;

@@ -6,6 +6,7 @@
 #include "GameProjectUtils.h"
 #include "Abilities/Attributes/GSCAttributeSetBase.h"
 #include "Widgets/SCompoundWidget.h"
+#include "Widgets/Input/SComboBox.h"
 
 class SWizard;
 class SEditableTextBox;
@@ -189,7 +190,7 @@ private:
 	 */
 	GameProjectUtils::EAddCodeToProjectResult AddClassToProject(FText& OutFailReason);
 
-	/** Event called when code is succesfully added to the project */
+	/** Event called when code is successfully added to the project */
 	FOnAddedToProject OnAddedToProject;
 
 	EActiveTimerReturnType SetKeyboardFocus(double InCurrentTime, float InDeltaTime);

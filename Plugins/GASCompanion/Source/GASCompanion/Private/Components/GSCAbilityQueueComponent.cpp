@@ -1,14 +1,13 @@
 // Copyright 2021 Mickael Daniel. All Rights Reserved.
 
-
 #include "Components/GSCAbilityQueueComponent.h"
 
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemComponent.h"
 #include "GSCDelegates.h"
-#include "Abilities/GSCGameplayAbility.h"
-#include "UI/GSCUWDebugAbilityQueue.h"
 #include "GSCLog.h"
+#include "Abilities/GSCGameplayAbility.h"
+#include "GameFramework/Pawn.h"
 
 // Sets default values for this component's properties
 UGSCAbilityQueueComponent::UGSCAbilityQueueComponent()
@@ -188,7 +187,7 @@ void UGSCAbilityQueueComponent::OnAbilityFailed(const UGameplayAbility* Ability,
 		// Only queue the ability if it's allowed (or AllowAllAbilities is turned on)
 		if (bAllowAllAbilitiesForAbilityQueue || QueuedAllowedAbilities.Contains(Ability->GetClass()))
 		{
-			QueuedAbility = Ability;
+			QueuedAbility = TObjectPtr<UGameplayAbility>(const_cast<UGameplayAbility*>(Ability));
 		}
 	}
 }

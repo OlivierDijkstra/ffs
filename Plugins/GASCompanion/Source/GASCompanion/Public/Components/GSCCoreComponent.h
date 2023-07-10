@@ -25,11 +25,11 @@ struct FGSCGameplayEffectExecuteData
 
 	/** The owner AttributeSet from which the event was invoked */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AttributeSetPayload)
-	UAttributeSet* AttributeSet = nullptr;
+	TObjectPtr<UAttributeSet> AttributeSet = nullptr;
 
 	/** The owner AbilitySystemComponent for this AttributeSet */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AttributeSetPayload)
-	UAbilitySystemComponent* AbilitySystemComponent = nullptr;
+	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent = nullptr;
 
 	/** Calculated DeltaValue from OldValue to NewValue */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AttributeSetPayload)
@@ -77,16 +77,16 @@ public:
 	UGSCCoreComponent();
 
 	UPROPERTY()
-	AActor* OwnerActor;
+	TObjectPtr<AActor> OwnerActor;
 
 	UPROPERTY()
-	APawn* OwnerPawn;
+	TObjectPtr<APawn> OwnerPawn;
 
 	UPROPERTY()
-	ACharacter* OwnerCharacter;
+	TObjectPtr<ACharacter> OwnerCharacter;
 
 	UPROPERTY()
-	UAbilitySystemComponent* OwnerAbilitySystemComponent;
+	TObjectPtr<UAbilitySystemComponent> OwnerAbilitySystemComponent;
 
 	/** Setup GetOwner to character and sets references for ability system component and the owner itself. */
 	void SetupOwner();

@@ -1,14 +1,14 @@
 // Copyright 2021 Mickael Daniel. All Rights Reserved.
 
-
 #include "UI/GSCUWHud.h"
 
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystemGlobals.h"
-#include "Abilities/Attributes/GSCAttributeSet.h"
-#include "Components/TextBlock.h"
-#include "Components/ProgressBar.h"
 #include "GSCLog.h"
+#include "Abilities/Attributes/GSCAttributeSet.h"
+#include "Components/ProgressBar.h"
+#include "Components/TextBlock.h"
+#include "GameFramework/Pawn.h"
 
 void UGSCUWHud::NativeConstruct()
 {

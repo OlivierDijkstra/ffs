@@ -2,6 +2,11 @@
 
 #include "Components/AGR_InventoryManager.h"
 
+// =============================================================================
+// These includes are needed to prevent plugin build failures.
+#include "Engine/Engine.h"
+// =============================================================================
+
 #include "Components/AGR_ItemComponent.h"
 #include "Data/AGRLibrary.h"
 #include "GameFramework/PlayerState.h"

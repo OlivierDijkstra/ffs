@@ -32,7 +32,7 @@ public:
 
 	/** Input mapping to add to the input system */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Controls")
-	UInputMappingContext* InputMappingContext = nullptr;
+	TObjectPtr<UInputMappingContext> InputMappingContext;
 
 	/** Priority to bind mapping context with */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Player Controls")
@@ -75,5 +75,5 @@ protected:
 
 	/** The bound input component. */
 	UPROPERTY(transient)
-	UEnhancedInputComponent* InputComponent;
+	TObjectPtr<UEnhancedInputComponent> InputComponent;
 };

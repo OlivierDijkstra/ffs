@@ -5,11 +5,12 @@
 #include "CoreMinimal.h"
 #include "AbilitySystemComponent.h"
 #include "GSCTypes.h"
+#include "Abilities/GSCAbilitySet.h"
 #include "GSCAbilitySystemComponent.generated.h"
 
 class UGSCAbilityInputBindingComponent;
-class UInputAction;
 class UGSCComboManagerComponent;
+class UInputAction;
 
 USTRUCT(BlueprintType)
 struct FGSCAbilityInputMapping
@@ -19,10 +20,14 @@ struct FGSCAbilityInputMapping
 	/** Type of ability to grant */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Ability)
 	TSubclassOf<UGameplayAbility> Ability;
+	
+	/** Level to grant the ability at */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Ability)
+	int32 Level = 1;
 
 	/** Input action to bind the ability to, if any (can be left unset) */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Ability)
-	UInputAction* InputAction = nullptr;
+	TObjectPtr<UInputAction> InputAction = nullptr;
 
 	/**
 	 * The EnhancedInput Trigger Event type to use for the ability activation on pressed handle.
@@ -51,7 +56,7 @@ struct FGSCAttributeSetDefinition
 
 	/** Data table reference to initialize the attributes with, if any (can be left unset) */
 	UPROPERTY(EditAnywhere, Category=Attributes, meta = (RequiredAssetDataTags = "RowStructure=/Script/GameplayAbilities.AttributeMetaData"))
-	UDataTable* InitializationData = nullptr;
+	TObjectPtr<UDataTable> InitializationData = nullptr;
 };
 
 USTRUCT()
@@ -63,7 +68,7 @@ struct FGSCMappedAbility
 	FGameplayAbilitySpec Spec;
 
 	UPROPERTY(Transient)
-	UInputAction* InputAction;
+	TObjectPtr<UInputAction> InputAction;
 
 	FGSCMappedAbility(): InputAction(nullptr)
 	{
@@ -102,6 +107,25 @@ public:
 	/** List of GameplayEffects to apply when the Ability System Component is initialized (typically on begin play) */
 	UPROPERTY(EditDefaultsOnly, Category = "GAS Companion|Abilities")
 	TArray<TSubclassOf<UGameplayEffect>> GrantedEffects;
+
+	/** List of Gameplay Ability Sets to grant when the Ability System Component is initialized */
+	UPROPERTY(EditDefaultsOnly, Category = "GAS Companion|Abilities")
+	TArray<TSoftObjectPtr<UGSCAbilitySet>> GrantedAbilitySets;
+
+	/**
+	 * Event called just after InitAbilityActorInfo, once abilities and attributes have been granted.
+	 *
+	 * This will happen multiple times for both client / server:
+	 *
+	 * - Once for Server after component initialization
+	 * - Once for Server after replication of owning actor (Possessed by for Player State)
+	 * - Once for Client after component initialization
+	 * - Once for Client after replication of owning actor (Once more for Player State OnRep_PlayerState)
+	 *
+	 * Also depends on whether ASC lives on Pawns or Player States.
+	 */
+	UPROPERTY(BlueprintAssignable, Category="GAS Companion|Abilities")
+	FGSCOnInitAbilityActorInfo OnInitAbilityActorInfo;
 
 	/**
 	 * Specifically set abilities to persist across deaths / respawns or possessions (Default is true)
@@ -146,8 +170,49 @@ public:
 	virtual void AbilityLocalInputPressed(int32 InputID) override;
 	//~ End UAbilitySystemComponent interface
 
-	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "GAS Companion|Abilities")
+	/**
+	 * DEPRECATED: Please use regular ASC->GiveAbility() method instead.
+	 *
+	 * Helper to grant an Ability to the ASC. Since 5.0 introduced a BlueprintCallable for this, you should use ASC->GiveAbility() instead.
+	 */
+	UE_DEPRECATED(5.2, "Please use regular ASC->GiveAbility() method instead.")
+	UFUNCTION(BlueprintCallable, BlueprintAuthorityOnly, Category = "GAS Companion|Abilities", meta=(DeprecatedFunction, DeprecationMessage="Please use GiveAbility() method of engine's UAbilitySystemComponent instead. Or the newly added GiveAbilityWithInput method of UGSCAbilityInputBindingComponent."))
 	FGameplayAbilitySpecHandle GrantAbility(TSubclassOf<UGameplayAbility> Ability, bool bRemoveAfterActivation);
+	
+	/**
+	 * Grants a given Ability Set to the ASC, adding defined Abilities, Attributes, Effects and Owned Tags.
+	 *
+	 * This method is meant to run on both Authority (must be called from server), and on Client if you'd like to setup binding as well (Important to call on client too for Owned Tags)
+	 *
+	 * During Pawn initialization, if you'd like to grant a list of Ability Sets manually with this method, the typical place to do so is:
+	 *
+	 * - OnInitAbilityActorInfo (event exposed by both UGSCAbilitySystemComponent and UGSCCoreComponent)
+	 * - OnBeginPlay but only if ASC is on the Pawn (not using GSCModularPlayerState to hold the ASC)
+	 * 
+	 * Both Player State pawns and non Player State pawns can use OnInitAbilityActorInfo, while only non Player State pawns can use OnBeginPlay to grant the ability.
+	 * 
+	 * Also, for input binding to work and register properly, the avatar actor for this ASC must have UGSCAbilityInputBindingComponent actor component.
+	 * 
+	 * @param InAbilitySet The Ability Set to grant to the ASC
+	 * @param OutHandle Handle that can be used to remove the set later on
+	 * 
+	 * @return True if the ability set was granted successfully, false otherwise
+	 */
+	UFUNCTION(BlueprintCallable, Category = "GAS Companion|Ability Sets")
+	bool GiveAbilitySet(const UGSCAbilitySet* InAbilitySet, FGSCAbilitySetHandle& OutHandle);
+	
+	/**
+	 * Removes the AbilitySet represented by InAbilitySetHandle from the passed in ASC. Clears out any previously granted Abilities,
+	 * Attributes, Effects and Owned Tags from the set.
+	 *
+	 * Like granting, it is advised to call this method on both Server and Client for multiplayer games.
+	 * 
+	 * @param InAbilitySetHandle Handle of the Ability Set to remove
+	 * 
+	 * @return True if the ability set was removed successfully, false otherwise
+	 */
+	UFUNCTION(BlueprintCallable, Category = "GAS Companion|Ability Sets")
+	bool ClearAbilitySet(UPARAM(ref) FGSCAbilitySetHandle& InAbilitySetHandle);
 
 	//~ Those are Delegate Callbacks register with this ASC to trigger corresponding events on the Owning Character (mainly for ability queuing)
 	virtual void OnAbilityActivatedCallback(UGameplayAbility* Ability);
@@ -156,43 +221,39 @@ public:
 
 	/** Called when Ability System Component is initialized from InitAbilityActorInfo */
 	virtual void GrantDefaultAbilitiesAndAttributes(AActor* InOwnerActor, AActor* InAvatarActor);
+	
+	/** Called when Ability System Component is initialized from InitAbilityActorInfo */
+	virtual void GrantDefaultAbilitySets(AActor* InOwnerActor, AActor* InAvatarActor);
 
 	/** Called from GrantDefaultAbilitiesAndAttributes. Determine if ability should be granted, prevents re-adding an ability previously granted in case bResetAbilitiesOnSpawn is set to false */
-	virtual bool ShouldGrantAbility(TSubclassOf<UGameplayAbility> Ability);
-
-	/**
-	 * Event called just after InitAbilityActorInfo, once abilities and attributes have been granted.
-	 *
-	 * This will happen multiple times for both client / server:
-	 *
-	 * - Once for Server after component initialization
-	 * - Once for Server after replication of owning actor (Possessed by for Player State)
-	 * - Once for Client after component initialization
-	 * - Once for Client after replication of owning actor (Once more for Player State OnRep_PlayerState)
-	 *
-	 * Also depends on whether ASC lives on Pawns or Player States.
-	 */
-	UPROPERTY(BlueprintAssignable, Category="GAS Companion|Abilities")
-	FGSCOnInitAbilityActorInfo OnInitAbilityActorInfo;
+	virtual bool ShouldGrantAbility(TSubclassOf<UGameplayAbility> InAbility, const int32 InLevel = 1);
+	
+	/** Called from GrantDefaultAbilitySets. Determine if ability set should be granted, prevents re-granting a set previously added */
+	virtual bool ShouldGrantAbilitySet(const UGSCAbilitySet* InAbilitySet) const;
 
 protected:
+	// Cached granted Ability Handles
 	UPROPERTY(transient)
-	TArray<FGSCMappedAbility> DefaultAbilityHandles;
+	TArray<FGSCMappedAbility> AddedAbilityHandles;
 
 	// Cached granted AttributeSets
 	UPROPERTY(transient)
-	TArray<UAttributeSet*> AddedAttributes;
+	TArray<TObjectPtr<UAttributeSet>> AddedAttributes;
 
 	// Cached applied Startup Effects
 	UPROPERTY(transient)
 	TArray<FActiveGameplayEffectHandle> AddedEffects;
+	
+	// Cached granted Ability Sets
+	UPROPERTY(transient)
+	TArray<FGSCAbilitySetHandle> AddedAbilitySets;
 
 	// Keep track of OnGiveAbility handles bound to handle input binding on clients
 	TArray<FDelegateHandle> InputBindingDelegateHandles;
 
 	// Cached ComboComponent on Character (if it has any)
 	UPROPERTY()
-	UGSCComboManagerComponent* ComboComponent;
+	TObjectPtr<UGSCComboManagerComponent> ComboComponent;
 
 	//~ Begin UAbilitySystemComponent interface
 	virtual void OnGiveAbility(FGameplayAbilitySpec& AbilitySpec) override;

@@ -27,10 +27,10 @@ public:
 	UGSCAbilityQueueComponent();
 
 	UPROPERTY(BlueprintReadOnly, Category = "GAS Companion|Components")
-	APawn* OwnerPawn;
+	TObjectPtr<APawn> OwnerPawn;
 
 	UPROPERTY(BlueprintReadOnly, Category = "GAS Companion|Components")
-	UAbilitySystemComponent* OwnerAbilitySystemComponent;
+	TObjectPtr<UAbilitySystemComponent> OwnerAbilitySystemComponent;
 
 	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "GAS Companion|Ability Queue System")
 	bool bAbilityQueueEnabled = true;
@@ -91,7 +91,8 @@ protected:
 	bool bAllowAllAbilitiesForAbilityQueue = false;
 
 	UPROPERTY()
-	const UGameplayAbility* QueuedAbility = nullptr;
+	TObjectPtr<UGameplayAbility> QueuedAbility;
+	
 	TArray<TSubclassOf<UGameplayAbility>> QueuedAllowedAbilities;
 
 	/**
