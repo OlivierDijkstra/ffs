@@ -1,1162 +1,1594 @@
 [
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionDeveloper\\GASCompanionDeveloper.Build.cs",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/AGRPRO.Build.cs",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionDeveloper.22.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionDeveloper\\Private\\BlueprintGraph\\GSCK2Node_SwitchGameplayAttribute.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Private/AGRLog.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionDeveloper.22.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionDeveloper\\Private\\GASCompanionDeveloper.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Private/AGRPRO.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionDeveloper.22.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionDeveloper\\Public\\BlueprintGraph\\GSCK2Node_SwitchGameplayAttribute.h",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Private/Animation/AGRCoreAnimInstance.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionDeveloper.22.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionDeveloper\\Public\\GASCompanionDeveloper.h",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Private/Characters/AGRCharacter.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionDeveloper.22.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\GASCompanionEditor.Build.cs",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Private/Components/AGRAnimMasterComponent.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Private\\Core\\Common\\GSCAttributesGenSettings.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Private/Components/AGR_CombatManager.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Private\\Core\\Common\\GSCAttributesWizardCommands.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Private/Components/AGR_EquipmentManager.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Private\\Core\\Logging\\GASCcompanionEditorLog.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Private/Components/AGR_InventoryManager.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Private\\CreationMenu\\GSCCreationMenu.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Private/Components/AGR_ItemComponent.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Private\\CreationMenu\\GSCGameplayAbilityCreationMenu.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Private/Components/AGR_SoundMaster.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Private\\CreationMenu\\GSCGameplayEffectCreationMenu.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Private/Data/AGRLibrary.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Private\\CreationMenu\\GSCGameplayEffectTemplateDetails.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Private/Data/AGR_Attack_NotifyState.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Private\\GASCompanionEditorModule.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Private/Data/AGR_Footstep_Notify.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Private\\Templates\\GSCAttributeSetClassTemplate.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Private/Data/DA_AGR_FootstepConfig.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Private\\Templates\\GSCTemplateProjectUtils.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Private/UI/AGRDebuggerController.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Private\\Tests\\GSCCreationMenu.spec.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Private/UI/AGRDebuggerSettings.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Private\\UI\\Styling\\GSCEditorStyle.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Private/UI/AGRUWDebugWidget.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Private\\UI\\Widgets\\SGSCNewAttributeSetClassDialog.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Public/AGRLog.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Public\\Core\\Common\\GSCAttributesGenSettings.h",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Public/AGRPRO.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Public\\Core\\Common\\GSCAttributesWizardCommands.h",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Public/Animation/AGRCoreAnimInstance.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Public\\Core\\Logging\\GASCompanionEditorLog.h",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Public/Characters/AGRCharacter.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Public\\CreationMenu\\GSCCreationMenu.h",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Public/Components/AGRAnimMasterComponent.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Public\\CreationMenu\\GSCGameplayAbilityCreationMenu.h",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Public/Components/AGR_CombatManager.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Public\\CreationMenu\\GSCGameplayEffectCreationMenu.h",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Public/Components/AGR_EquipmentManager.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Public\\CreationMenu\\GSCGameplayEffectTemplateDetails.h",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Public/Components/AGR_InventoryManager.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Public\\GASCompanionEditorModule.h",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Public/Components/AGR_ItemComponent.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Public\\Templates\\GSCAttributeSetClassTemplate.h",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Public/Components/AGR_SoundMaster.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Public\\Templates\\GSCTemplateProjectUtils.h",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Public/Data/AGRLibrary.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Public\\UI\\Styling\\GSCEditorStyle.h",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Public/Data/AGRTypes.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanionEditor\\Public\\UI\\Widgets\\SGSCNewAttributeSetClassDialog.h",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Public/Data/AGR_Attack_NotifyState.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanionEditor.23.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\GASCompanion.Build.cs",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Public/Data/AGR_Footstep_Notify.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\AI\\GSCBTTask_BlueprintBase.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Public/Data/DA_AGR_FootstepConfig.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Abilities\\Attributes\\GSCAttributeSet.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Public/UI/AGRDebuggerController.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Abilities\\Attributes\\GSCAttributeSetBase.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Public/UI/AGRDebuggerSettings.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Abilities\\GSCAbilitySystemComponent.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/AGRPRO/Source/AGRPRO/Public/UI/AGRUWDebugWidget.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/AGRPRO.57.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Abilities\\GSCBlueprintFunctionLibrary.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/GASCompanion.Build.cs",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Abilities\\GSCGameplayAbility.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/AI/GSCBTTask_BlueprintBase.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Abilities\\GSCGameplayAbility_MeleeBase.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Abilities/Attributes/GSCAttributeSet.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Abilities\\GSCTargetType.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Abilities/Attributes/GSCAttributeSetBase.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Abilities\\GSCTypes.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Abilities/GSCAbilitySet.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Abilities\\TargetTypes\\GSCTargetTypeUseEventData.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Abilities/GSCAbilitySystemComponent.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Abilities\\TargetTypes\\GSCTargetTypeUseOwner.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Abilities/GSCAbilitySystemUtils.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Abilities\\Tasks\\GSCAbilityTask_NetworkSyncPoint.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Abilities/GSCBlueprintFunctionLibrary.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Abilities\\Tasks\\GSCTask_PlayMontageWaitForEvent.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Abilities/GSCGameplayAbility.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Animations\\GSCAbilityQueueNotifyState.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Abilities/GSCGameplayAbility_MeleeBase.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Animations\\GSCComboWindowNotifyState.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Abilities/GSCTargetType.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Animations\\GSCNativeAnimInstance.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Abilities/GSCTypes.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Animations\\GSCNativeAnimInstanceInterface.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Abilities/TargetTypes/GSCTargetTypeUseEventData.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Animations\\GSCTriggerComboNotify.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Abilities/TargetTypes/GSCTargetTypeUseOwner.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Components\\GSCAbilityInputBindingComponent.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Abilities/Tasks/GSCAbilityTask_NetworkSyncPoint.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Components\\GSCAbilityQueueComponent.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Abilities/Tasks/GSCTask_PlayMontageWaitForEvent.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Components\\GSCComboManagerComponent.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Animations/GSCAbilityQueueNotifyState.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Components\\GSCCoreComponent.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Animations/GSCComboWindowNotifyState.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Components\\GSCLinkAnimLayersComponent.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Animations/GSCNativeAnimInstance.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Components\\GSCPlayerControlsComponent.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Animations/GSCNativeAnimInstanceInterface.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Core\\Settings\\GSCDeveloperSettings.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Animations/GSCTriggerComboNotify.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\GSC.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Components/GSCAbilityInputBindingComponent.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\GSCAssetManager.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Components/GSCAbilityQueueComponent.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\GSCDelegates.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Components/GSCComboManagerComponent.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\GSCLog.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Components/GSCCoreComponent.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\GameFeatures\\Actions\\GSCGameFeatureAction_AddAbilities.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Components/GSCLinkAnimLayersComponent.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\GameFeatures\\Actions\\GSCGameFeatureAction_AddAnimLayers.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Components/GSCPlayerControlsComponent.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\GameFeatures\\Actions\\GSCGameFeatureAction_AddInputMappingContext.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Core/Settings/GSCDeveloperSettings.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\ModularGameplayActors\\GSCModularAIController.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/GSC.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\ModularGameplayActors\\GSCModularActor.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/GSCAssetManager.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\ModularGameplayActors\\GSCModularCharacter.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/GSCDelegates.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\ModularGameplayActors\\GSCModularDefaultPawn.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/GSCLog.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\ModularGameplayActors\\GSCModularGameMode.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/GameFeatures/Actions/GSCGameFeatureAction_AddAbilities.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\ModularGameplayActors\\GSCModularGameState.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/GameFeatures/Actions/GSCGameFeatureAction_AddAnimLayers.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\ModularGameplayActors\\GSCModularPawn.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/GameFeatures/Actions/GSCGameFeatureAction_AddInputMappingContext.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\ModularGameplayActors\\GSCModularPlayerController.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/GameFeatures/GSCGameFeatureTypes.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\ModularGameplayActors\\GSCModularPlayerState.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/ModularGameplayActors/GSCModularAIController.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\ModularGameplayActors\\GSCModularPlayerStateCharacter.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/ModularGameplayActors/GSCModularActor.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Subsystems\\GSCConsoleManagerSubsystem.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/ModularGameplayActors/GSCModularCharacter.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Templates\\GSCDeprecatedGameplayEffectTemplate.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/ModularGameplayActors/GSCModularDefaultPawn.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\Templates\\GSCTemplate_GameplayEffectDefinition.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/ModularGameplayActors/GSCModularGameMode.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\UI\\GSCUWDebugAbilityQueue.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/ModularGameplayActors/GSCModularGameState.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\UI\\GSCUWDebugComboWidget.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/ModularGameplayActors/GSCModularPawn.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\UI\\GSCUWHud.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/ModularGameplayActors/GSCModularPlayerController.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Private\\UI\\GSCUserWidget.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/ModularGameplayActors/GSCModularPlayerState.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\AI\\GSCBTTask_BlueprintBase.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/ModularGameplayActors/GSCModularPlayerStateCharacter.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Abilities\\Attributes\\GSCAttributeSet.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Subsystems/GSCConsoleManagerSubsystem.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Abilities\\Attributes\\GSCAttributeSetBase.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/Templates/GSCTemplate_GameplayEffectDefinition.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Abilities\\GSCAbilitySystemComponent.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/UI/GSCUWDebugAbilityQueue.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Abilities\\GSCBlueprintFunctionLibrary.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/UI/GSCUWDebugComboWidget.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Abilities\\GSCGameplayAbility.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/UI/GSCUWHud.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Abilities\\GSCGameplayAbility_MeleeBase.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Private/UI/GSCUserWidget.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Abilities\\GSCTargetType.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/AI/GSCBTTask_BlueprintBase.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Abilities\\GSCTypes.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Abilities/Attributes/GSCAttributeSet.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Abilities\\TargetTypes\\GSCTargetTypeUseEventData.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Abilities/Attributes/GSCAttributeSetBase.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Abilities\\TargetTypes\\GSCTargetTypeUseOwner.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Abilities/GSCAbilitySet.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Abilities\\Tasks\\GSCAbilityTask_NetworkSyncPoint.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Abilities/GSCAbilitySystemComponent.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Abilities\\Tasks\\GSCTask_PlayMontageWaitForEvent.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Abilities/GSCAbilitySystemUtils.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Animations\\GSCAbilityQueueNotifyState.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Abilities/GSCBlueprintFunctionLibrary.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Animations\\GSCComboWindowNotifyState.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Abilities/GSCGameplayAbility.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Animations\\GSCNativeAnimInstance.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Abilities/GSCGameplayAbility_MeleeBase.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Animations\\GSCNativeAnimInstanceInterface.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Abilities/GSCTargetType.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Animations\\GSCTriggerComboNotify.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Abilities/GSCTypes.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Components\\GSCAbilityInputBindingComponent.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Abilities/TargetTypes/GSCTargetTypeUseEventData.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Components\\GSCAbilityQueueComponent.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Abilities/TargetTypes/GSCTargetTypeUseOwner.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Components\\GSCComboManagerComponent.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Abilities/Tasks/GSCAbilityTask_NetworkSyncPoint.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Components\\GSCCoreComponent.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Abilities/Tasks/GSCTask_PlayMontageWaitForEvent.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Components\\GSCLinkAnimLayersComponent.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Animations/GSCAbilityQueueNotifyState.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Components\\GSCPlayerControlsComponent.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Animations/GSCComboWindowNotifyState.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Core\\Settings\\GSCDeveloperSettings.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Animations/GSCNativeAnimInstance.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\GSC.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Animations/GSCNativeAnimInstanceInterface.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\GSCAssetManager.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Animations/GSCTriggerComboNotify.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\GSCDelegates.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Components/GSCAbilityInputBindingComponent.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\GSCLog.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Components/GSCAbilityQueueComponent.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\GameFeatures\\Actions\\GSCGameFeatureAction_AddAbilities.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Components/GSCComboManagerComponent.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\GameFeatures\\Actions\\GSCGameFeatureAction_AddAnimLayers.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Components/GSCCoreComponent.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\GameFeatures\\Actions\\GSCGameFeatureAction_AddInputMappingContext.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Components/GSCLinkAnimLayersComponent.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\ModularGameplayActors\\GSCModularAIController.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Components/GSCPlayerControlsComponent.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\ModularGameplayActors\\GSCModularActor.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Core/Settings/GSCDeveloperSettings.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\ModularGameplayActors\\GSCModularCharacter.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/GSC.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\ModularGameplayActors\\GSCModularDefaultPawn.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/GSCAssetManager.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\ModularGameplayActors\\GSCModularGameMode.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/GSCDelegates.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\ModularGameplayActors\\GSCModularGameState.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/GSCLog.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\ModularGameplayActors\\GSCModularPawn.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/GameFeatures/Actions/GSCGameFeatureAction_AddAbilities.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\ModularGameplayActors\\GSCModularPlayerController.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/GameFeatures/Actions/GSCGameFeatureAction_AddAnimLayers.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\ModularGameplayActors\\GSCModularPlayerState.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/GameFeatures/Actions/GSCGameFeatureAction_AddInputMappingContext.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\ModularGameplayActors\\GSCModularPlayerStateCharacter.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/GameFeatures/GSCGameFeatureTypes.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Subsystems\\GSCConsoleManagerSubsystem.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/ModularGameplayActors/GSCModularAIController.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Templates\\GSCDeprecatedGameplayEffectTemplate.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/ModularGameplayActors/GSCModularActor.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\Templates\\GSCTemplate_GameplayEffectDefinition.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/ModularGameplayActors/GSCModularCharacter.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\UI\\GSCUWDebugAbilityQueue.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/ModularGameplayActors/GSCModularDefaultPawn.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\UI\\GSCUWDebugComboWidget.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/ModularGameplayActors/GSCModularGameMode.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\UI\\GSCUWHud.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/ModularGameplayActors/GSCModularGameState.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\GASCompanion\\Source\\GASCompanion\\Public\\UI\\GSCUserWidget.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/ModularGameplayActors/GSCModularPawn.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\GASCompanion.21.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\InteractableComponent.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/ModularGameplayActors/GSCModularPlayerController.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\InteractableComponent.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/ModularGameplayActors/GSCModularPlayerState.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\SmoothSync.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/ModularGameplayActors/GSCModularPlayerStateCharacter.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\SmoothSync.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Subsystems/GSCConsoleManagerSubsystem.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\State.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/Templates/GSCTemplate_GameplayEffectDefinition.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\State.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/UI/GSCUWDebugAbilityQueue.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\ffs.Build.cs",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/UI/GSCUWDebugComboWidget.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\ffs.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/UI/GSCUWHud.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\ffs.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanion/Public/UI/GSCUserWidget.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanion.20.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\ffsCharacter.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionDeveloper/GASCompanionDeveloper.Build.cs",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionDeveloper.21.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\ffsCharacter.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionDeveloper/Private/BlueprintGraph/GSCK2Node_SwitchGameplayAttribute.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionDeveloper.21.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\ffsCharacterMovementComponent.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionDeveloper/Private/GASCompanionDeveloper.cpp",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionDeveloper.21.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\ffsCharacterMovementComponent.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionDeveloper/Public/BlueprintGraph/GSCK2Node_SwitchGameplayAttribute.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionDeveloper.21.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\ffsGameMode.cpp",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionDeveloper/Public/GASCompanionDeveloper.h",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionDeveloper.21.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	},
 	{
-		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Source\\ffs\\ffsGameMode.h",
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/GASCompanionEditor.Build.cs",
 		"arguments": [
-			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\HostX64\\x64\\cl.exe",
-			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ffs.266.rsp"
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
 		],
-		"directory": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Source"
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Private/Core/Common/GSCAttributesGenSettings.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Private/Core/Common/GSCAttributesWizardCommands.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Private/Core/Logging/GASCcompanionEditorLog.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Private/CreationMenu/GSCCreationMenu.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Private/CreationMenu/GSCGameplayAbilityCreationMenu.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Private/CreationMenu/GSCGameplayEffectCreationMenu.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Private/CreationMenu/GSCGameplayEffectTemplateDetails.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Private/GASCompanionEditorModule.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Private/Templates/GSCAttributeSetClassTemplate.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Private/Templates/GSCTemplateProjectUtils.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Private/Tests/GSCCreationMenu.spec.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Private/UI/Styling/GSCEditorStyle.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Private/UI/Widgets/SGSCNewAttributeSetClassDialog.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Public/Core/Common/GSCAttributesGenSettings.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Public/Core/Common/GSCAttributesWizardCommands.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Public/Core/Logging/GASCompanionEditorLog.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Public/CreationMenu/GSCCreationMenu.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Public/CreationMenu/GSCGameplayAbilityCreationMenu.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Public/CreationMenu/GSCGameplayEffectCreationMenu.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Public/CreationMenu/GSCGameplayEffectTemplateDetails.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Public/GASCompanionEditorModule.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Public/Templates/GSCAttributeSetClassTemplate.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Public/Templates/GSCTemplateProjectUtils.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Public/UI/Styling/GSCEditorStyle.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/GASCompanion/Source/GASCompanionEditor/Public/UI/Widgets/SGSCNewAttributeSetClassDialog.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/GASCompanionEditor.22.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/RecoilAnimation/Source/ProceduralConverter/Private/CurveExtractor.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/ProceduralConverter.59.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/RecoilAnimation/Source/ProceduralConverter/Private/ProceduralConverter.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/ProceduralConverter.59.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/RecoilAnimation/Source/ProceduralConverter/ProceduralConverter.Build.cs",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/ProceduralConverter.59.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/RecoilAnimation/Source/ProceduralConverter/Public/CurveExtractor.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/ProceduralConverter.59.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/RecoilAnimation/Source/ProceduralConverter/Public/ProceduralConverter.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/ProceduralConverter.59.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/RecoilAnimation/Source/RecoilAnimation/Private/HelperWidget.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/RecoilAnimation.58.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/RecoilAnimation/Source/RecoilAnimation/Private/PluginSettings.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/RecoilAnimation.58.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/RecoilAnimation/Source/RecoilAnimation/Private/RecoilAnimation.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/RecoilAnimation.58.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/RecoilAnimation/Source/RecoilAnimation/Private/RecoilAnimationComponent.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/RecoilAnimation.58.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/RecoilAnimation/Source/RecoilAnimation/Private/StoredData.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/RecoilAnimation.58.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/RecoilAnimation/Source/RecoilAnimation/Public/HelperWidget.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/RecoilAnimation.58.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/RecoilAnimation/Source/RecoilAnimation/Public/PluginSettings.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/RecoilAnimation.58.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/RecoilAnimation/Source/RecoilAnimation/Public/RecoilAnimation.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/RecoilAnimation.58.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/RecoilAnimation/Source/RecoilAnimation/Public/RecoilAnimationComponent.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/RecoilAnimation.58.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/RecoilAnimation/Source/RecoilAnimation/Public/StoredData.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/RecoilAnimation.58.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Plugins/RecoilAnimation/Source/RecoilAnimation/RecoilAnimation.Build.cs",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/RecoilAnimation.58.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Source/ffs/Private/Weapon.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/ffs.268.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Source/ffs/Private/ffs.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/ffs.268.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Source/ffs/Private/ffsAnimInstance.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/ffs.268.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Source/ffs/Private/ffsCharacter.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/ffs.268.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Source/ffs/Private/ffsCharacterMovementComponent.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/ffs.268.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Source/ffs/Private/ffsGameMode.cpp",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/ffs.268.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Source/ffs/Public/Weapon.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/ffs.268.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Source/ffs/Public/ffs.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/ffs.268.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Source/ffs/Public/ffsAnimInstance.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/ffs.268.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Source/ffs/Public/ffsCharacter.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/ffs.268.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Source/ffs/Public/ffsCharacterMovementComponent.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/ffs.268.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Source/ffs/Public/ffsGameMode.h",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/ffs.268.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
+	},
+	{
+		"file": "/Users/oli/Code/ffs/Source/ffs/ffs.Build.cs",
+		"arguments": [
+			"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+			"@/Users/oli/Code/ffs/.vscode/compileCommands_ffs/ffs.268.rsp"
+		],
+		"directory": "/Users/Shared/Epic Games/UE_5.2/Engine/Source"
 	}
 ]

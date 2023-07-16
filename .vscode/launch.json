@@ -4,149 +4,102 @@
 		{
 			"name": "Launch ffs (Debug)",
 			"request": "launch",
-			"program": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Binaries\\Win64\\UnrealGame-Win64-Debug.exe",
-			"preLaunchTask": "ffs Win64 Debug Build",
+			"program": "/Users/oli/Code/ffs/Binaries/Mac/UnrealGame-Mac-Debug.app/Contents/MacOS/UnrealGame-Mac-Debug",
+			"preLaunchTask": "ffs Mac Debug Build",
 			"args": [
 			],
-			"cwd": "C:\\Program Files (x86)\\UE_5.1",
-			"stopAtEntry": false,
-			"console": "externalTerminal",
-			"type": "cppvsdbg",
-			"visualizerFile": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
-			"sourceFileMap": {
-				"D:\\build\\++UE5\\Sync": "C:\\Program Files (x86)\\UE_5.1"
-			}
+			"cwd": "/Users/Shared/Epic Games/UE_5.2",
+			"type": "lldb"
 		},
 		{
 			"name": "Launch ffs (DebugGame)",
 			"request": "launch",
-			"program": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Binaries\\Win64\\UnrealGame-Win64-DebugGame.exe",
-			"preLaunchTask": "ffs Win64 DebugGame Build",
+			"program": "/Users/oli/Code/ffs/Binaries/Mac/UnrealGame-Mac-DebugGame.app/Contents/MacOS/UnrealGame-Mac-DebugGame",
+			"preLaunchTask": "ffs Mac DebugGame Build",
 			"args": [
 			],
-			"cwd": "C:\\Program Files (x86)\\UE_5.1",
-			"stopAtEntry": false,
-			"console": "externalTerminal",
-			"type": "cppvsdbg",
-			"visualizerFile": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
-			"sourceFileMap": {
-				"D:\\build\\++UE5\\Sync": "C:\\Program Files (x86)\\UE_5.1"
-			}
+			"cwd": "/Users/Shared/Epic Games/UE_5.2",
+			"type": "lldb"
 		},
 		{
 			"name": "Launch ffs (Development)",
 			"request": "launch",
-			"program": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Binaries\\Win64\\UnrealGame.exe",
-			"preLaunchTask": "ffs Win64 Development Build",
+			"program": "/Users/oli/Code/ffs/Binaries/Mac/UnrealGame.app/Contents/MacOS/UnrealGame",
+			"preLaunchTask": "ffs Mac Development Build",
 			"args": [
 			],
-			"cwd": "C:\\Program Files (x86)\\UE_5.1",
-			"stopAtEntry": false,
-			"console": "externalTerminal",
-			"type": "cppvsdbg",
-			"visualizerFile": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
-			"sourceFileMap": {
-				"D:\\build\\++UE5\\Sync": "C:\\Program Files (x86)\\UE_5.1"
-			}
+			"cwd": "/Users/Shared/Epic Games/UE_5.2",
+			"type": "lldb"
 		},
 		{
 			"name": "Launch ffs (Test)",
 			"request": "launch",
-			"program": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Binaries\\Win64\\UnrealGame-Win64-Test.exe",
-			"preLaunchTask": "ffs Win64 Test Build",
+			"program": "/Users/oli/Code/ffs/Binaries/Mac/UnrealGame-Mac-Test.app/Contents/MacOS/UnrealGame-Mac-Test",
+			"preLaunchTask": "ffs Mac Test Build",
 			"args": [
 			],
-			"cwd": "C:\\Program Files (x86)\\UE_5.1",
-			"stopAtEntry": false,
-			"console": "externalTerminal",
-			"type": "cppvsdbg",
-			"visualizerFile": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
-			"sourceFileMap": {
-				"D:\\build\\++UE5\\Sync": "C:\\Program Files (x86)\\UE_5.1"
-			}
+			"cwd": "/Users/Shared/Epic Games/UE_5.2",
+			"type": "lldb"
 		},
 		{
 			"name": "Launch ffs (Shipping)",
 			"request": "launch",
-			"program": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Binaries\\Win64\\UnrealGame-Win64-Shipping.exe",
-			"preLaunchTask": "ffs Win64 Shipping Build",
+			"program": "/Users/oli/Code/ffs/Binaries/Mac/UnrealGame-Mac-Shipping.app/Contents/MacOS/UnrealGame-Mac-Shipping",
+			"preLaunchTask": "ffs Mac Shipping Build",
 			"args": [
 			],
-			"cwd": "C:\\Program Files (x86)\\UE_5.1",
-			"stopAtEntry": false,
-			"console": "externalTerminal",
-			"type": "cppvsdbg",
-			"visualizerFile": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
-			"sourceFileMap": {
-				"D:\\build\\++UE5\\Sync": "C:\\Program Files (x86)\\UE_5.1"
-			}
+			"cwd": "/Users/Shared/Epic Games/UE_5.2",
+			"type": "lldb"
 		},
 		{
 			"name": "Launch ffsEditor (Debug)",
 			"request": "launch",
-			"program": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Binaries\\Win64\\UnrealEditor-Win64-Debug.exe",
-			"preLaunchTask": "ffsEditor Win64 Debug Build",
+			"program": "/Users/Shared/Epic Games/UE_5.2/Engine/Binaries/Mac/UnrealEditor-Mac-Debug.app/Contents/MacOS/UnrealEditor-Mac-Debug",
+			"preLaunchTask": "ffsEditor Mac Debug Build",
 			"args": [
-				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject"
+				"/Users/oli/Code/ffs/ffs.uproject"
 			],
-			"cwd": "C:\\Program Files (x86)\\UE_5.1",
-			"stopAtEntry": false,
-			"console": "externalTerminal",
-			"type": "cppvsdbg",
-			"visualizerFile": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
-			"sourceFileMap": {
-				"D:\\build\\++UE5\\Sync": "C:\\Program Files (x86)\\UE_5.1"
-			}
+			"cwd": "/Users/Shared/Epic Games/UE_5.2",
+			"type": "lldb"
 		},
 		{
 			"name": "Launch ffsEditor (DebugGame)",
 			"request": "launch",
-			"program": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Binaries\\Win64\\UnrealEditor-Win64-DebugGame.exe",
-			"preLaunchTask": "ffsEditor Win64 DebugGame Build",
+			"program": "/Users/Shared/Epic Games/UE_5.2/Engine/Binaries/Mac/UnrealEditor-Mac-DebugGame.app/Contents/MacOS/UnrealEditor-Mac-DebugGame",
+			"preLaunchTask": "ffsEditor Mac DebugGame Build",
 			"args": [
-				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject"
+				"/Users/oli/Code/ffs/ffs.uproject"
 			],
-			"cwd": "C:\\Program Files (x86)\\UE_5.1",
-			"stopAtEntry": false,
-			"console": "externalTerminal",
-			"type": "cppvsdbg",
-			"visualizerFile": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
-			"sourceFileMap": {
-				"D:\\build\\++UE5\\Sync": "C:\\Program Files (x86)\\UE_5.1"
-			}
+			"cwd": "/Users/Shared/Epic Games/UE_5.2",
+			"type": "lldb"
 		},
 		{
 			"name": "Launch ffsEditor (Development)",
 			"request": "launch",
-			"program": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
-			"preLaunchTask": "ffsEditor Win64 Development Build",
+			"program": "/Users/Shared/Epic Games/UE_5.2/Engine/Binaries/Mac/UnrealEditor.app/Contents/MacOS/UnrealEditor",
+			"preLaunchTask": "ffsEditor Mac Development Build",
 			"args": [
-				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject"
+				"/Users/oli/Code/ffs/ffs.uproject"
 			],
-			"cwd": "C:\\Program Files (x86)\\UE_5.1",
-			"stopAtEntry": false,
-			"console": "externalTerminal",
-			"type": "cppvsdbg",
-			"visualizerFile": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Extras\\VisualStudioDebugging\\Unreal.natvis",
-			"sourceFileMap": {
-				"D:\\build\\++UE5\\Sync": "C:\\Program Files (x86)\\UE_5.1"
-			}
+			"cwd": "/Users/Shared/Epic Games/UE_5.2",
+			"type": "lldb"
 		},
 		{
 			"name": "Generate Project Files",
 			"type": "coreclr",
 			"request": "launch",
-			"program": "C:\\Program Files (x86)\\UE_5.1\\Engine\\Build\\BatchFiles\\RunUBT.bat",
+			"program": "/Users/Shared/Epic Games/UE_5.2/Engine/Build/BatchFiles/RunUBT.bat",
 			"args": [
 				"-projectfiles",
 				"-vscode",
-				"-project=C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
+				"-project=/Users/oli/Code/ffs/ffs.uproject",
 				"-game",
 				"-engine"
 			],
-			"console": "externalTerminal",
+			"console": "internalConsole",
+			"internalConsoleOptions": "openOnSessionStart",
 			"stopAtEntry": false,
-			"cwd": "C:\\Program Files (x86)\\UE_5.1"
+			"cwd": "/Users/Shared/Epic Games/UE_5.2"
 		}
 	]
 }
