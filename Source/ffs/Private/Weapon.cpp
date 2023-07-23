@@ -46,20 +46,18 @@ void AWeapon::UpdateFirstPersonGunMeshFOV(float FOV)
     GunMesh->SetMaterial(0, Material);
 }
 
-FFireLineTraceResult AWeapon::FireLineTrace(bool Initial, bool Debug)
+FHitResult AWeapon::FireLineTrace(bool Initial, bool Debug)
 {
-    FFireLineTraceResult Result;
-    Result.HitActor = nullptr;
-    Result.HitCharacter = nullptr;
+    FHitResult HitResult;
 
     if (!GunMesh)
-        return Result;
+        return HitResult;
 
     ACharacter *GunOwner = Cast<ACharacter>(GetOwner());
     APlayerController *PC = GunOwner ? Cast<APlayerController>(GunOwner->GetController()) : nullptr;
 
     if (!PC)
-        return Result;
+        return HitResult;
 
     FVector PlayerViewpointLocation;
     FRotator PlayerViewpointRotation;
@@ -73,33 +71,15 @@ FFireLineTraceResult AWeapon::FireLineTrace(bool Initial, bool Debug)
     FVector DirectionWithSpread = FMath::VRandCone(PlayerViewpointRotation.Vector(), Spread);
     FVector EndLocation = StartLocation + (DirectionWithSpread * WeaponRange);
 
-    FHitResult HitResult;
     FCollisionQueryParams TraceParams;
     TraceParams.AddIgnoredActor(GunOwner);
 
-    // Perform the line trace
     bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, StartLocation, EndLocation, ECollisionChannel::ECC_Camera, TraceParams);
-
-    if (bHit)
-    {
-        Result.HitActor = HitResult.GetActor();
-        if (IsValid(Result.HitActor))
-        {
-            if (Debug)
-            {
-                GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Hit Actor: %s"), *Result.HitActor->GetName()));
-            }
-
-            // Cast the actor to ACharacter to check if it's a character
-            Result.HitCharacter = Cast<ACharacter>(Result.HitActor);
-        }
-    }
-
-    // If Debug is true, draw the line trace for visualization
+    
     if (Debug)
     {
         DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red, false, 1.f, 0, 1.f);
     }
 
-    return Result;
+    return HitResult;
 }

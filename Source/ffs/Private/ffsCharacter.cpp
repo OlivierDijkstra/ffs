@@ -138,9 +138,9 @@ void AffsCharacter::PlayCameraShake()
 	}
 }
 
-FFireLineTraceResult AffsCharacter::FireWeapon(bool InitialShot, bool Debug)
+FHitResult AffsCharacter::FireWeapon(bool InitialShot, bool Debug)
 {
-	FFireLineTraceResult FireLineTraceResult;
+	FHitResult FireLineTraceResult;
 
 	if (CurrentWeapon)
 	{

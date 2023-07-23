@@ -6,17 +6,17 @@
 #include "NiagaraSystem.h"
 #include "Weapon.generated.h"
 
-USTRUCT(BlueprintType)
-struct FFireLineTraceResult
-{
-    GENERATED_BODY()
+// USTRUCT(BlueprintType)
+// struct FFireLineTraceResult
+// {
+//     GENERATED_BODY()
 
-    UPROPERTY(BlueprintReadOnly)
-    ACharacter* HitCharacter;
+//     UPROPERTY(BlueprintReadOnly)
+//     ACharacter* HitCharacter;
 
-    UPROPERTY(BlueprintReadOnly)
-    AActor* HitActor;
-};
+//     UPROPERTY(BlueprintReadOnly)
+//     AActor* HitActor;
+// };
 
 
 UCLASS(BlueprintType)
@@ -48,7 +48,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Firing")
 	float WeaponSpread = 0.1f; // Default 10% spread
 	
-	FFireLineTraceResult FireLineTrace(bool Initial, bool Debug);
+	FHitResult FireLineTrace(bool Initial, bool Debug);
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Mesh")
 	USkeletalMeshComponent* GunMesh;

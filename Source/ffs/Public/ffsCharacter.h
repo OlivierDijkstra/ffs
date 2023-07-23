@@ -93,7 +93,7 @@ protected:
 	void ChangeWeapon();
 
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
-	virtual FFireLineTraceResult FireWeapon(bool InitialShot, bool Debug);
+	virtual FHitResult FireWeapon(bool InitialShot, bool Debug);
 
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
 	void PlayFireAnimation();
