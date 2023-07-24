@@ -9,7 +9,7 @@
 #include "Animations/GSCNativeAnimInstanceInterface.h"
 #include "Kismet/GameplayStatics.h"
 #include "NiagaraFunctionLibrary.h"
-#include "Weapon.h"
+#include "ffsWeapon.h"
 
 AffsCharacter::AffsCharacter(const FObjectInitializer &ObjectInitializer)
 	: Super(ObjectInitializer.SetDefaultSubobjectClass<UffsCharacterMovementComponent>(ACharacter::CharacterMovementComponentName))
@@ -111,7 +111,7 @@ void AffsCharacter::InitWeapon(int WeaponIndex)
 	SpawnParams.Instigator = this;
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
-	AWeapon *Weapon = GetWorld()->SpawnActor<AWeapon>(WeaponInventory[WeaponIndex], SpawnParams);
+	AffsWeapon *Weapon = GetWorld()->SpawnActor<AffsWeapon>(WeaponInventory[WeaponIndex], SpawnParams);
 
 	Weapon->GunMesh->AttachToComponent(Mesh1P, FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("GripPoint"));
 	Weapon->GunMesh->SetOnlyOwnerSee(true);

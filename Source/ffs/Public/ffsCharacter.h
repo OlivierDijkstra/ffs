@@ -16,7 +16,7 @@
 class USkeletalMeshComponent;
 class USceneComponent;
 class UCameraComponent;
-class AWeapon;
+class AffsWeapon;
 
 UCLASS(config = Game)
 class AffsCharacter : public AGSCModularCharacter
@@ -66,10 +66,10 @@ protected:
 
 	// Weapons
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapons", meta = (AllowPrivateAccess = "true"))
-	TArray<TSubclassOf<AWeapon>> WeaponInventory;
+	TArray<TSubclassOf<AffsWeapon>> WeaponInventory;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapons")
-	TArray<AWeapon *> InitializedWeapons;
+	TArray<AffsWeapon *> InitializedWeapons;
 
 	UPROPERTY(Replicated, BlueprintReadWrite, Category = "Weapons")
 	int CurrentGunIndex = 0;
@@ -78,10 +78,10 @@ protected:
 	TEnumAsByte<EFireMode_PRAS> FireMode;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Weapons")
-	AWeapon *CurrentWeapon = nullptr;
+	AffsWeapon *CurrentWeapon = nullptr;
 
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
-	AWeapon *GetWeapon() const { return CurrentWeapon; }
+	AffsWeapon *GetWeapon() const { return CurrentWeapon; }
 
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
 	void InitWeapon(int Index);

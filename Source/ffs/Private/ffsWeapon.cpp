@@ -1,8 +1,8 @@
-﻿#include "Weapon.h"
+﻿#include "ffsWeapon.h"
 #include "GameFramework/Character.h"
 #include "ffsCharacter.h"
 
-AWeapon::AWeapon()
+AffsWeapon::AffsWeapon()
 {
     Pivot = CreateDefaultSubobject<USceneComponent>(TEXT("Pivot"));
 
@@ -14,7 +14,7 @@ AWeapon::AWeapon()
     GunMesh3P->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 }
 
-void AWeapon::PostInitializeComponents()
+void AffsWeapon::PostInitializeComponents()
 {
     Super::PostInitializeComponents();
 
@@ -24,7 +24,7 @@ void AWeapon::PostInitializeComponents()
     }
 }
 
-void AWeapon::UpdateFirstPersonGunMeshFOV(float FOV)
+void AffsWeapon::UpdateFirstPersonGunMeshFOV(float FOV)
 {
     int32 FOVMaterialIndex = -1;
     TArray<FName> MaterialSlotNames = GunMesh->GetMaterialSlotNames();
@@ -46,7 +46,7 @@ void AWeapon::UpdateFirstPersonGunMeshFOV(float FOV)
     GunMesh->SetMaterial(0, Material);
 }
 
-FHitResult AWeapon::FireLineTrace(bool Initial, bool Debug)
+FHitResult AffsWeapon::FireLineTrace(bool Initial, bool Debug)
 {
     FHitResult HitResult;
 

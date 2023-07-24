@@ -4,7 +4,7 @@
 #include "GameFramework/Actor.h"
 #include "RecoilAnimationComponent.h"
 #include "NiagaraSystem.h"
-#include "Weapon.generated.h"
+#include "ffsWeapon.generated.h"
 
 // USTRUCT(BlueprintType)
 // struct FFireLineTraceResult
@@ -20,11 +20,11 @@
 
 
 UCLASS(BlueprintType)
-class FFS_API AWeapon : public AActor
+class FFS_API AffsWeapon : public AActor
 {
 	GENERATED_BODY()
 	
-	AWeapon();
+	AffsWeapon();
 
 	UPROPERTY()
 	USceneComponent* Pivot;
