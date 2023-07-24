@@ -27,10 +27,18 @@ public:
 	AffsCharacter(const FObjectInitializer &ObjectInitializer);
 
 protected:
-	// APawn interface
-	virtual void BeginPlay();
+	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
-	// End of APawn interface
+
+protected:
+	FDelegateHandle HealthChangedDelegateHandle;
+
+    // Callback for when Health attribute changes
+    void OnHealthChanged(const FOnAttributeChangeData& Data);
+
+    // Handle character death
+    void Die();
 
 	// Pawn mesh: 1st person view (arms; seen only by self)
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Mesh)

@@ -2,6 +2,7 @@
 #include "ffsAnimInstance.h"
 #include "AbilitySystemComponent.h"
 #include "Abilities/GSCAbilitySystemComponent.h"
+#include "Abilities/Attributes/GSCAttributeSet.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -56,11 +57,13 @@ void AffsCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
+	UAbilitySystemComponent *ASC = Cast<UAbilitySystemComponent>(AbilitySystemComponent);
+
 	if (Mesh1P)
 	{
 		if (IGSCNativeAnimInstanceInterface *AnimInstanceInterface = Cast<IGSCNativeAnimInstanceInterface>(Mesh1P->GetAnimInstance()))
 		{
-			if (UAbilitySystemComponent *ASC = Cast<UAbilitySystemComponent>(AbilitySystemComponent))
+			if (ASC)
 			{
 				AnimInstanceInterface->InitializeWithAbilitySystem(ASC);
 			}
@@ -71,7 +74,7 @@ void AffsCharacter::BeginPlay()
 	{
 		if (IGSCNativeAnimInstanceInterface *AnimInstanceInterface = Cast<IGSCNativeAnimInstanceInterface>(Mesh3P->GetAnimInstance()))
 		{
-			if (UAbilitySystemComponent *ASC = Cast<UAbilitySystemComponent>(AbilitySystemComponent))
+			if (ASC)
 			{
 				AnimInstanceInterface->InitializeWithAbilitySystem(ASC);
 			}
@@ -87,22 +90,50 @@ void AffsCharacter::BeginPlay()
 		// TODO: User configurable FOV
 		UGameplayStatics::GetPlayerCameraManager(GetWorld(), 0)->SetFOV(90.f);
 	}
+
+	if (ASC)
+    {
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Binding Health Changed Delegate"));
+        HealthChangedDelegateHandle = ASC->GetGameplayAttributeValueChangeDelegate(UGSCAttributeSet::GetHealthAttribute()).AddUObject(this, &AffsCharacter::OnHealthChanged);
+    }
+}
+
+void AffsCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	Super::EndPlay(EndPlayReason);
+
+	UAbilitySystemComponent *ASC = Cast<UAbilitySystemComponent>(AbilitySystemComponent);
+
+    if (ASC)
+    {
+        ASC->GetGameplayAttributeValueChangeDelegate(UGSCAttributeSet::GetHealthAttribute()).Remove(HealthChangedDelegateHandle);
+    }
 }
 
 #pragma endregion Initialization
 
-void AffsCharacter::UpdateAnimInstancePose(UffsAnimInstance *MeshAnimInstance, UAnimSequence *CharacterPose1P, FVector WeaponOffset, FTransform PointAim, FVector PlayerPivotOffset, FVector GunPivotOffset, FTransform EditingOffset)
+#pragma region State
+
+void AffsCharacter::OnHealthChanged(const FOnAttributeChangeData& Data)
 {
-	if (MeshAnimInstance)
-	{
-		MeshAnimInstance->CharacterPose1P = CharacterPose1P;
-		MeshAnimInstance->WeaponOffset = WeaponOffset;
-		MeshAnimInstance->PointAim = PointAim;
-		MeshAnimInstance->PlayerPivotOffset = PlayerPivotOffset;
-		MeshAnimInstance->GunPivotOffset = GunPivotOffset;
-		MeshAnimInstance->EditingOffset = EditingOffset;
-	}
+    float NewHealthValue = Data.NewValue;
+
+	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Health changed to %f"), NewHealthValue));
+
+    if (NewHealthValue <= 0.f)
+    {
+        Die();
+    }
 }
+
+void AffsCharacter::Die()
+{
+    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("You died!"));
+}
+
+#pragma endregion State
+
+#pragma region Weapons
 
 void AffsCharacter::InitWeapon(int WeaponIndex)
 {
@@ -215,6 +246,8 @@ void AffsCharacter::Multicast_PlayWeaponFireFX_Implementation(UNiagaraSystem *FX
 	FRotator SocketRotation = CurrentWeapon->GunMesh3P->GetSocketRotation(SocketName);
 	UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FX, SocketLocation, SocketRotation);
 }
+
+#pragma endregion Weapons
 
 #pragma region Equipping
 
@@ -332,6 +365,19 @@ FCollisionQueryParams AffsCharacter::GetIgnoreCharacterParams() const
 	Params.AddIgnoredActor(this);
 
 	return Params;
+}
+
+void AffsCharacter::UpdateAnimInstancePose(UffsAnimInstance *MeshAnimInstance, UAnimSequence *CharacterPose1P, FVector WeaponOffset, FTransform PointAim, FVector PlayerPivotOffset, FVector GunPivotOffset, FTransform EditingOffset)
+{
+	if (MeshAnimInstance)
+	{
+		MeshAnimInstance->CharacterPose1P = CharacterPose1P;
+		MeshAnimInstance->WeaponOffset = WeaponOffset;
+		MeshAnimInstance->PointAim = PointAim;
+		MeshAnimInstance->PlayerPivotOffset = PlayerPivotOffset;
+		MeshAnimInstance->GunPivotOffset = GunPivotOffset;
+		MeshAnimInstance->EditingOffset = EditingOffset;
+	}
 }
 
 #pragma endregion Helper Functions
