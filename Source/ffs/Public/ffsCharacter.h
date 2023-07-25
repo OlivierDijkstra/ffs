@@ -34,11 +34,19 @@ protected:
 protected:
 	FDelegateHandle HealthChangedDelegateHandle;
 
-    // Callback for when Health attribute changes
     void OnHealthChanged(const FOnAttributeChangeData& Data);
-
-    // Handle character death
     void Die();
+
+    UFUNCTION(Server, Reliable)
+    void ServerRagdoll();
+    virtual void ServerRagdoll_Implementation();
+
+    UFUNCTION(NetMulticast, Reliable)
+    void MulticastRagdoll();
+    virtual void MulticastRagdoll_Implementation();
+
+	UFUNCTION(BlueprintCallable)
+    void Ragdoll();
 
 	// Pawn mesh: 1st person view (arms; seen only by self)
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Mesh)

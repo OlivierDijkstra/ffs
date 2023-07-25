@@ -6,6 +6,7 @@
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "ffsCharacterMovementComponent.h"
 #include "Animations/GSCNativeAnimInstanceInterface.h"
 #include "Kismet/GameplayStatics.h"
@@ -129,6 +130,36 @@ void AffsCharacter::OnHealthChanged(const FOnAttributeChangeData& Data)
 void AffsCharacter::Die()
 {
     GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("You died!"));
+}
+
+void AffsCharacter::Ragdoll()
+{
+    if (HasAuthority())
+    {
+        MulticastRagdoll();
+    }
+    else
+    {
+        ServerRagdoll();
+    }
+}
+
+void AffsCharacter::ServerRagdoll_Implementation()
+{
+    MulticastRagdoll();
+}
+
+void AffsCharacter::MulticastRagdoll_Implementation()
+{
+    if(Mesh3P)
+    {
+        Mesh3P->SetCollisionProfileName(TEXT("Ragdoll"));
+
+        if(Mesh3P->GetPhysicsAsset())
+        {
+            Mesh3P->SetAllBodiesSimulatePhysics(true);
+        }
+    }
 }
 
 #pragma endregion State
