@@ -94,7 +94,6 @@ void AffsCharacter::BeginPlay()
 
 	if (ASC)
     {
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Binding Health Changed Delegate"));
         HealthChangedDelegateHandle = ASC->GetGameplayAttributeValueChangeDelegate(UGSCAttributeSet::GetHealthAttribute()).AddUObject(this, &AffsCharacter::OnHealthChanged);
     }
 }
