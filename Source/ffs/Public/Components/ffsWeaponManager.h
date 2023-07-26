@@ -5,6 +5,7 @@
 #include "ffsWeaponManager.generated.h"
 
 class AffsWeapon;
+class AffsCharacter;
 
 UENUM(BlueprintType)
 enum class EFireMode : uint8
@@ -48,4 +49,7 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Animation")
 	UAnimMontage *UnequipMontage;
+
+    UFUNCTION(BlueprintCallable, Category = "Weapons")
+	void InitWeapon(int Index, AffsCharacter* Owner);
 };

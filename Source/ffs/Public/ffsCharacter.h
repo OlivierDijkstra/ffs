@@ -48,16 +48,8 @@ protected:
 	UFUNCTION(BlueprintCallable)
     void Ragdoll();
 
-	// Pawn mesh: 1st person view (arms; seen only by self)
-	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Mesh)
-	USkeletalMeshComponent *Mesh1P;
-
 	UFUNCTION(BlueprintCallable)
 	UffsAnimInstance *GetAnimInstance1P() const { return Cast<UffsAnimInstance>(Mesh1P->GetAnimInstance()); }
-
-	// Pawn mesh 3p: 3rd person view (body; seen only by others)
-	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Mesh)
-	USkeletalMeshComponent *Mesh3P;
 
 	UFUNCTION(BlueprintCallable)
 	UffsAnimInstance *GetAnimInstance3P() const { return Cast<UffsAnimInstance>(Mesh3P->GetAnimInstance()); }
@@ -83,9 +75,6 @@ protected:
 	// Weapon Manager
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapons")
     UffsWeaponManager* WeaponManager;
-
-	UFUNCTION(BlueprintCallable, Category = "Weapons")
-	void InitWeapon(int Index);
 
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
 	void EquipWeapon();
@@ -126,8 +115,11 @@ protected:
 	void PlayCameraShake();
 
 public:
-	USkeletalMeshComponent *GetMesh1P() const { return Mesh1P; }
-	USkeletalMeshComponent *GetMesh3P() const { return Mesh3P; }
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Mesh)
+	USkeletalMeshComponent *Mesh1P;
+
+	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Mesh)
+	USkeletalMeshComponent *Mesh3P;
 
 	UCameraComponent *GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 

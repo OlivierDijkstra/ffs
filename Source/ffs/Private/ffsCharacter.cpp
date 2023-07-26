@@ -161,31 +161,6 @@ void AffsCharacter::MulticastRagdoll_Implementation()
 
 #pragma region Weapons
 
-void AffsCharacter::InitWeapon(int WeaponIndex)
-{
-	FActorSpawnParameters SpawnParams;
-	SpawnParams.Owner = this;
-	SpawnParams.Instigator = this;
-	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
-
-	AffsWeapon *Weapon = GetWorld()->SpawnActor<AffsWeapon>(WeaponManager->WeaponInventory[WeaponIndex], SpawnParams);
-
-	Weapon->GunMesh->AttachToComponent(Mesh1P, FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("GripPoint"));
-	Weapon->GunMesh->SetOnlyOwnerSee(true);
-	Weapon->GunMesh->bCastDynamicShadow = false;
-	Weapon->GunMesh->CastShadow = false;
-
-	Weapon->GunMesh3P->AttachToComponent(Mesh3P, FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("GripPoint"));
-	Weapon->GunMesh3P->SetOwnerNoSee(true);
-
-	Weapon->GunMesh->SetVisibility(false, true);
-	Weapon->GunMesh3P->SetVisibility(false, true);
-
-	WeaponManager->InitializedWeapons.Add(Weapon);
-
-	Weapon->UpdateFirstPersonGunMeshFOV(90.f);
-}
-
 void AffsCharacter::PlayCameraShake()
 {
 	if (IsLocallyControlled() && WeaponManager->CurrentWeapon && WeaponManager->CurrentWeapon->CameraRecoilShake)
