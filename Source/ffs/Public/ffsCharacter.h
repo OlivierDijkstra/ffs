@@ -30,7 +30,6 @@ public:
 protected:
 	virtual void BeginPlay() override;
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
-	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
 
 protected:
 	FDelegateHandle HealthChangedDelegateHandle;
@@ -84,9 +83,6 @@ protected:
 	// Weapon Manager
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapons")
     UffsWeaponManager* WeaponManager;
-
-	UPROPERTY(Replicated, BlueprintReadWrite, Category = "Weapons")
-	int CurrentGunIndex = 0;
 
 	UPROPERTY(BlueprintReadWrite, Category = "Weapons")
 	TEnumAsByte<EFireMode_PRAS> FireMode;

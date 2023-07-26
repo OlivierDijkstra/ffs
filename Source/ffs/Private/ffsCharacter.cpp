@@ -48,13 +48,6 @@ AffsCharacter::AffsCharacter(const FObjectInitializer &ObjectInitializer)
 
 #pragma region Initialization
 
-void AffsCharacter::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const
-{
-	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
-
-	DOREPLIFETIME_CONDITION(AffsCharacter, CurrentGunIndex, COND_SkipOwner);
-}
-
 void AffsCharacter::BeginPlay()
 {
 	Super::BeginPlay();
@@ -286,7 +279,7 @@ void AffsCharacter::EquipWeapon()
 {
 	CurrentWeapon->GunMesh->SetVisibility(false, false);
 	CurrentWeapon->GunMesh3P->SetVisibility(false, false);
-	CurrentWeapon = WeaponManager->InitializedWeapons[CurrentGunIndex];
+	CurrentWeapon = WeaponManager->InitializedWeapons[WeaponManager->CurrentGunIndex];
 	CurrentWeapon->GunMesh->SetVisibility(true, false);
 	CurrentWeapon->GunMesh3P->SetVisibility(true, false);
 
@@ -319,20 +312,21 @@ void AffsCharacter::ChangeWeapon()
 		return;
 	}
 
-	const int LastIndex = CurrentGunIndex;
-	CurrentGunIndex++;
+	const int LastIndex = WeaponManager->CurrentGunIndex;
+	int NewIndex = WeaponManager->CurrentGunIndex + 1;
 
-	if (CurrentGunIndex > WeaponManager->InitializedWeapons.Num() - 1)
+	if (NewIndex > WeaponManager->InitializedWeapons.Num() - 1)
 	{
-		CurrentGunIndex = 0;
+		NewIndex = 0;
 	}
 
-	if (!WeaponManager->InitializedWeapons[CurrentGunIndex])
+	if (!WeaponManager->InitializedWeapons[NewIndex])
 	{
-		CurrentGunIndex = LastIndex;
+		NewIndex = LastIndex;
 		return;
 	}
 
+	WeaponManager->CurrentGunIndex = NewIndex;
 	UnequipWeapon();
 }
 
@@ -348,7 +342,7 @@ void AffsCharacter::UnequipWeapon()
 
 	if (IsLocallyControlled() && !HasAuthority())
 	{
-		Server_UnequipWeapon(CurrentGunIndex);
+		Server_UnequipWeapon(WeaponManager->CurrentGunIndex);
 	}
 	else if (HasAuthority())
 	{
@@ -360,7 +354,7 @@ void AffsCharacter::Server_UnequipWeapon_Implementation(int WeaponIndex)
 {
 	if (HasAuthority())
 	{
-		CurrentGunIndex = WeaponIndex;
+		WeaponManager->CurrentGunIndex = WeaponIndex;
 		const auto Gun = WeaponManager->InitializedWeapons[WeaponIndex];
 		OnWeaponEquipped(Gun->RecoilAnimData, Gun->FireRate, Gun->Burst);
 

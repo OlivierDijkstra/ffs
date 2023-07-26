@@ -11,6 +11,9 @@ class FFS_API UffsWeaponManager : public UActorComponent
 {
     GENERATED_BODY()
 
+protected:
+    virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const override;
+
 public:    
     UffsWeaponManager();
 
@@ -19,4 +22,7 @@ public:
 
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapons")
 	TArray<AffsWeapon *> InitializedWeapons;
+
+    UPROPERTY(Replicated, BlueprintReadWrite, Category = "Weapons")
+	int CurrentGunIndex = 0;
 };

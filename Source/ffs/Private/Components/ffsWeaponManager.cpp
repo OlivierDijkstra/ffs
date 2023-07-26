@@ -4,8 +4,11 @@
 UffsWeaponManager::UffsWeaponManager()
 {
     PrimaryComponentTick.bCanEverTick = true;
-
-    // TODO: Add your initialization code here
 }
 
-// TODO: Add your function definitions here
+void UffsWeaponManager::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME_CONDITION(UffsWeaponManager, CurrentGunIndex, COND_SkipOwner);
+}
