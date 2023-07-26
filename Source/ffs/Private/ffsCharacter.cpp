@@ -161,6 +161,17 @@ void AffsCharacter::MulticastRagdoll_Implementation()
 
 #pragma region Weapons
 
+FHitResult AffsCharacter::FireWeapon(bool InitialShot, bool Debug)
+{
+	FHitResult FireLineTraceResult = WeaponManager->FireLineTrace(InitialShot, Debug);
+
+	PlayFireAnimation();
+	PlayWeaponFireFX(WeaponManager->CurrentWeapon->MuzzleFlashFX, FName("Muzzle"));
+	PlayWeaponFireFX(WeaponManager->CurrentWeapon->CaseEjectFX, FName("ShellEject"));
+
+	return FireLineTraceResult;
+}
+
 void AffsCharacter::PlayCameraShake()
 {
 	if (IsLocallyControlled() && WeaponManager->CurrentWeapon && WeaponManager->CurrentWeapon->CameraRecoilShake)
@@ -170,30 +181,10 @@ void AffsCharacter::PlayCameraShake()
 	}
 }
 
-FHitResult AffsCharacter::FireWeapon(bool InitialShot, bool Debug)
-{
-	FHitResult FireLineTraceResult;
-
-	if (WeaponManager->CurrentWeapon)
-	{
-		if (!IsLocallyControlled() && HasAuthority())
-		{
-			FireLineTraceResult = WeaponManager->CurrentWeapon->FireLineTrace(InitialShot, Debug);
-		}
-
-		PlayFireAnimation();
-		PlayWeaponFireFX(WeaponManager->CurrentWeapon->MuzzleFlashFX, FName("Muzzle"), true);
-		PlayWeaponFireFX(WeaponManager->CurrentWeapon->CaseEjectFX, FName("ShellEject"), true);
-	}
-
-	return FireLineTraceResult;
-}
-
 void AffsCharacter::PlayFireAnimation()
 {
 	RecoilAnimation->Play();
-
-	WeaponManager->CurrentWeapon->GunMesh->PlayAnimation(WeaponManager->CurrentWeapon->FireMontage, false);
+	WeaponManager->PlayFireAnimation();
 
 	if (HasAuthority())
 	{
@@ -208,26 +199,16 @@ void AffsCharacter::Server_PlayFireAnimation_Implementation()
 
 void AffsCharacter::Multicast_PlayFireAnimation_Implementation()
 {
-	UAnimMontage *FireAnimation = WeaponManager->CurrentWeapon->FireMontage;
-
-	if (FireAnimation)
-	{
-		WeaponManager->CurrentWeapon->GunMesh3P->PlayAnimation(FireAnimation, false);
-	}
+	WeaponManager->PlayFireAnimation();
 }
 
-void AffsCharacter::PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName, bool bMulticast)
+void AffsCharacter::PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName)
 {
-	if (WeaponManager->CurrentWeapon)
-	{
-		FVector SocketLocation = WeaponManager->CurrentWeapon->GunMesh->GetSocketLocation(SocketName);
-		FRotator SocketRotation = WeaponManager->CurrentWeapon->GunMesh->GetSocketRotation(SocketName);
-		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FX, SocketLocation, SocketRotation);
+	WeaponManager->PlayWeaponFireFX(FX, SocketName);
 
-		if (HasAuthority() && bMulticast)
-		{
-			Server_PlayWeaponFireFX(FX, SocketName);
-		}
+	if (HasAuthority())
+	{
+		Server_PlayWeaponFireFX(FX, SocketName);
 	}
 }
 
@@ -243,9 +224,7 @@ void AffsCharacter::Multicast_PlayWeaponFireFX_Implementation(UNiagaraSystem *FX
 		return;
 	}
 
-	FVector SocketLocation = WeaponManager->CurrentWeapon->GunMesh3P->GetSocketLocation(SocketName);
-	FRotator SocketRotation = WeaponManager->CurrentWeapon->GunMesh3P->GetSocketRotation(SocketName);
-	UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FX, SocketLocation, SocketRotation);
+	WeaponManager->PlayWeaponFireFX(FX, SocketName);
 }
 
 #pragma endregion Weapons

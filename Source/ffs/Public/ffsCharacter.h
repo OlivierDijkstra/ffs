@@ -93,7 +93,7 @@ protected:
 	void Multicast_PlayFireAnimation();
 
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
-	void PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName, bool bMulticast);
+	void PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName);
 	UFUNCTION(Server, Reliable, Category = "Net")
 	void Server_PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName);
 	UFUNCTION(NetMulticast, Reliable, Category = "Net")

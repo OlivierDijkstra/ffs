@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "NiagaraSystem.h"
 #include "Components/ActorComponent.h"
 #include "ffsWeaponManager.generated.h"
 
@@ -52,4 +53,8 @@ public:
 
     UFUNCTION(BlueprintCallable, Category = "Weapons")
 	void InitWeapon(int Index, AffsCharacter* Owner);
+
+	virtual FHitResult FireLineTrace(bool InitialShot, bool Debug);
+    void PlayFireAnimation();
+    void PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName);
 };
