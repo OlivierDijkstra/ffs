@@ -55,6 +55,6 @@ public:
 	void InitWeapon(int Index, AffsCharacter* Owner);
 
 	virtual FHitResult FireLineTrace(bool InitialShot, bool Debug);
-    void PlayFireAnimation();
+    void PlayFireAnimation(bool ThirdPerson);
     void PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName);
 };

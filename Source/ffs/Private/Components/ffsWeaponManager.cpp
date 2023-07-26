@@ -54,14 +54,15 @@ FHitResult UffsWeaponManager::FireLineTrace(bool InitialShot, bool Debug)
 	return FireLineTraceResult;
 }
 
-void UffsWeaponManager::PlayFireAnimation()
+void UffsWeaponManager::PlayFireAnimation(bool ThirdPerson)
 {
     if (CurrentWeapon && CurrentWeapon->FireMontage)
     {
-        CurrentWeapon->GunMesh3P->PlayAnimation(CurrentWeapon->FireMontage, false);
-        APawn* OwnerPawn = Cast<APawn>(GetOwner());
-
-        if (OwnerPawn && OwnerPawn->IsLocallyControlled())
+        if (ThirdPerson)
+        {
+            CurrentWeapon->GunMesh3P->PlayAnimation(CurrentWeapon->FireMontage, false);
+        }
+        else 
         {
             CurrentWeapon->GunMesh->PlayAnimation(CurrentWeapon->FireMontage, false);
         }

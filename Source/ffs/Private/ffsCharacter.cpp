@@ -184,7 +184,7 @@ void AffsCharacter::PlayCameraShake()
 void AffsCharacter::PlayFireAnimation()
 {
 	RecoilAnimation->Play();
-	WeaponManager->PlayFireAnimation();
+	WeaponManager->PlayFireAnimation(false);
 
 	if (HasAuthority())
 	{
@@ -199,7 +199,7 @@ void AffsCharacter::Server_PlayFireAnimation_Implementation()
 
 void AffsCharacter::Multicast_PlayFireAnimation_Implementation()
 {
-	WeaponManager->PlayFireAnimation();
+	WeaponManager->PlayFireAnimation(true);
 }
 
 void AffsCharacter::PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName)
