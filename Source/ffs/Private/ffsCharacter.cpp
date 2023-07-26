@@ -290,12 +290,12 @@ void AffsCharacter::EquipWeapon()
 	UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh1P->GetAnimInstance()), WeaponManager->CurrentWeapon->BasePose1P, WeaponManager->CurrentWeapon->PositionOffset, WeaponManager->CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, WeaponManager->CurrentWeapon->EditingOffset);
 	UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh3P->GetAnimInstance()), WeaponManager->CurrentWeapon->BasePose1P, WeaponManager->CurrentWeapon->PositionOffset, WeaponManager->CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, WeaponManager->CurrentWeapon->EditingOffset);
 
-	if (EquipMontage)
+	if (WeaponManager->EquipMontage)
 	{
 		UAnimInstance *AnimInstance3P = Mesh3P->GetAnimInstance();
-		AnimInstance3P->Montage_Play(EquipMontage, 1.0f);
+		AnimInstance3P->Montage_Play(WeaponManager->EquipMontage, 1.0f);
 		UAnimInstance *AnimInstance1P = Mesh1P->GetAnimInstance();
-		AnimInstance1P->Montage_Play(EquipMontage, 1.0f);
+		AnimInstance1P->Montage_Play(WeaponManager->EquipMontage, 1.0f);
 	}
 
 	if (IsLocallyControlled() || HasAuthority())
@@ -336,10 +336,10 @@ void AffsCharacter::ChangeWeapon()
 
 void AffsCharacter::UnequipWeapon()
 {
-	if (UnequipMontage)
+	if (WeaponManager->UnequipMontage)
 	{
 		UAnimInstance *AnimInstance1P = Mesh1P->GetAnimInstance();
-		AnimInstance1P->Montage_Play(UnequipMontage, 1.0f);
+		AnimInstance1P->Montage_Play(WeaponManager->UnequipMontage, 1.0f);
 	}
 
 	OnWeaponUnequipped();
@@ -368,7 +368,7 @@ void AffsCharacter::Server_UnequipWeapon_Implementation(int WeaponIndex)
 
 void AffsCharacter::Multicast_UnequipWeapon_Implementation()
 {
-	if (UnequipMontage && !IsLocallyControlled())
+	if (WeaponManager->UnequipMontage && !IsLocallyControlled())
 	{
 		// This is causing me to have to add another event in my third person anim blueprint to replicate the
 		// unequip animation. The reason for this is because the unequip animation montage fires a notify
@@ -376,7 +376,7 @@ void AffsCharacter::Multicast_UnequipWeapon_Implementation()
 		// because I am calling another montage before this its causing issues. If we call it on the third person
 		// mesh it works fine but we have to add another event in the anim blueprint to replicate the unequip animation.
 		UAnimInstance *AnimInstance3P = Mesh3P->GetAnimInstance();
-		AnimInstance3P->Montage_Play(UnequipMontage, 1.0f);
+		AnimInstance3P->Montage_Play(WeaponManager->UnequipMontage, 1.0f);
 	}
 }
 

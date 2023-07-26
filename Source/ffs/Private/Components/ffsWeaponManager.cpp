@@ -1,4 +1,5 @@
 #include "Components/ffsWeaponManager.h"
+#include "Animation/AnimInstance.h"
 #include "ffsWeapon.h"
 
 UffsWeaponManager::UffsWeaponManager()

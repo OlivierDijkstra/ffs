@@ -42,4 +42,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
 	AffsWeapon *GetWeapon() const { return CurrentWeapon; }
+
+    UPROPERTY(EditDefaultsOnly, Category = "Animation")
+	UAnimMontage *EquipMontage;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Animation")
+	UAnimMontage *UnequipMontage;
 };

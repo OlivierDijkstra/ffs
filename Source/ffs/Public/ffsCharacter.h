@@ -122,12 +122,6 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Weapons")
 	void OnWeaponUnequipped();
 
-	UPROPERTY(EditDefaultsOnly, Category = "Animation")
-	UAnimMontage *EquipMontage;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Animation")
-	UAnimMontage *UnequipMontage;
-
 	UFUNCTION()
 	void PlayCameraShake();
 
