@@ -22,6 +22,7 @@ public class ffs : ModuleRules
                 "GameFeatures",
                 "AGRPRO",
                 "RecoilAnimation",
+                "NavigationSystem",
             }
         );
 

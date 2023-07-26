@@ -51,6 +51,22 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapons")
     UffsWeaponManager* WeaponManager;
 
+	// Time before the player respawns after dying, in seconds
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Respawn")
+	float RespawnTime;
+
+	// Radius of the sphere used to find a spawn point
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Respawn")
+	float SpawnPointSearchRadius;
+
+	// Default spawn point for the player
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Respawn")
+	FVector DefaultSpawnPoint;
+
+	// Camera used when the player is dead
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
+	UCameraComponent* DeathCamera;
+
 	//
 	// State
 	//
@@ -62,6 +78,13 @@ protected:
 	UFUNCTION(BlueprintCallable)
     void Ragdoll();
 
+	UFUNCTION(BlueprintCallable)
+	void ResetMesh3P();
+	UFUNCTION(Server, Reliable)
+	void Server_ResetMesh3P();
+	UFUNCTION(NetMulticast, Reliable)
+	void Multicast_ResetMesh3P();
+
     UFUNCTION(Server, Reliable)
     void ServerRagdoll();
     virtual void ServerRagdoll_Implementation();
@@ -69,6 +92,12 @@ protected:
     UFUNCTION(NetMulticast, Reliable)
     void MulticastRagdoll();
     virtual void MulticastRagdoll_Implementation();
+
+	UFUNCTION(BlueprintCallable, Category = "Respawn")
+	void Respawn();
+
+	UFUNCTION()
+	void ResetAttributes();
 
 	//
 	// Weapons
@@ -123,4 +152,16 @@ public:
 	URecoilAnimationComponent *GetRecoilAnimation() const { return RecoilAnimation; }
 
 	FCollisionQueryParams GetIgnoreCharacterParams() const;
+
+private:
+	// Timer handle for the respawn timer
+	FTimerHandle RespawnTimerHandle;
+
+	// ...
+
+	// Call this function to switch to the death camera
+	void SwitchToDeathCamera();
+
+	// Call this function to switch back to the first-person camera
+	void SwitchToFirstPersonCamera();
 };

@@ -1,7 +1,10 @@
 #include "ffsCharacter.h"
+#include "EngineUtils.h"
 #include "AbilitySystemComponent.h"
 #include "Abilities/GSCAbilitySystemComponent.h"
 #include "Abilities/Attributes/GSCAttributeSet.h"
+#include "NavigationSystem.h"
+#include "NavigationSystem/Public/NavigationSystem.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -40,6 +43,17 @@ AffsCharacter::AffsCharacter(const FObjectInitializer &ObjectInitializer)
 	Mesh3P->SetupAttachment(GetCapsuleComponent());
 	Mesh3P->bCastDynamicShadow = true;
 	Mesh3P->CastShadow = true;
+
+	DeathCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("DeathCamera"));
+	DeathCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
+	DeathCamera->SetRelativeLocation(FVector(0.f, 0.f, 100.f)); // Position the camera above the character
+	DeathCamera->SetRelativeRotation(FRotator(-60.f, 0.f, 0.f)); // Rotate the camera to look down
+	DeathCamera->SetActive(false); // Disable the camera by default
+
+	// Initialize the respawn time and default spawn point
+	RespawnTime = 3.f;
+	DefaultSpawnPoint = FVector(0.f, 0.f, 0.f);
+	SpawnPointSearchRadius = 1000.f;
 
 	RecoilAnimation = CreateDefaultSubobject<URecoilAnimationComponent>(TEXT("RecoilAnimComp"));
 	AnimMasterComponent = CreateDefaultSubobject<UAGRAnimMasterComponent>(TEXT("AGRAnimMaster"));
@@ -114,8 +128,6 @@ void AffsCharacter::OnHealthChanged(const FOnAttributeChangeData& Data)
 {
     float NewHealthValue = Data.NewValue;
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("Health changed to %f"), NewHealthValue));
-
     if (NewHealthValue <= 0.f)
     {
         Die();
@@ -124,7 +136,108 @@ void AffsCharacter::OnHealthChanged(const FOnAttributeChangeData& Data)
 
 void AffsCharacter::Die()
 {
-    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("You died!"));
+    APlayerController* PC = Cast<APlayerController>(GetController());
+	if (PC)
+	{
+		PC->DisableInput(PC);
+	}
+
+	// Go into ragdoll state
+	Ragdoll();
+
+	// Show the third-person mesh to the player controlling the character
+	Mesh3P->SetOwnerNoSee(false);
+
+	// Switch to the death camera
+	SwitchToDeathCamera();
+
+	Mesh1P->SetVisibility(false);
+
+	// Start the respawn timer
+	GetWorld()->GetTimerManager().SetTimer(RespawnTimerHandle, this, &AffsCharacter::Respawn, RespawnTime, false);
+}
+
+void AffsCharacter::Respawn()
+{
+	// Enable player controls
+	APlayerController* PC = Cast<APlayerController>(GetController());
+	if (PC)
+	{
+		PC->EnableInput(PC);
+	}
+
+	// Switch back to the first-person camera
+	SwitchToFirstPersonCamera();
+
+	// Hide the third-person mesh from the player controlling the character
+	Mesh3P->SetOwnerNoSee(true);
+	Mesh1P->SetVisibility(true);
+
+	// Find a suitable spawn point
+	FVector SpawnPoint = DefaultSpawnPoint;
+	for (TActorIterator<AffsCharacter> It(GetWorld()); It; ++It)
+	{
+		if (*It != this)
+		{
+			UNavigationSystemV1* NavSystem = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
+			if (NavSystem)
+			{
+				FNavLocation RandomReachablePoint;
+				if (NavSystem->GetRandomReachablePointInRadius(It->GetActorLocation(), SpawnPointSearchRadius, RandomReachablePoint))
+				{
+					SpawnPoint = RandomReachablePoint.Location;
+				}
+			}
+			break;
+		}
+	}
+
+	// Move the character to the spawn point
+	SetActorLocation(SpawnPoint);
+	if (HasAuthority())
+    {
+        ResetMesh3P();
+    }
+    else
+    {
+        Server_ResetMesh3P();
+    }
+
+	ResetAttributes();
+}
+
+void AffsCharacter::ResetAttributes()
+{
+	// Get the attribute set and set health to GetMaxHealth
+
+	UAbilitySystemComponent *ASC = Cast<UAbilitySystemComponent>(AbilitySystemComponent);
+
+	if (ASC)
+	{
+		ASC->SetNumericAttributeBase(UGSCAttributeSet::GetHealthAttribute(), ASC->GetNumericAttributeBase(UGSCAttributeSet::GetMaxHealthAttribute()));
+	}
+}
+
+void AffsCharacter::SwitchToDeathCamera()
+{
+	APlayerController* PC = Cast<APlayerController>(GetController());
+	if (PC)
+	{
+		PC->SetViewTargetWithBlend(this, 0.5f, EViewTargetBlendFunction::VTBlend_Cubic);
+		DeathCamera->SetActive(true);
+		FirstPersonCameraComponent->SetActive(false);
+	}
+}
+
+void AffsCharacter::SwitchToFirstPersonCamera()
+{
+	APlayerController* PC = Cast<APlayerController>(GetController());
+	if (PC)
+	{
+		PC->SetViewTargetWithBlend(this, 0.5f, EViewTargetBlendFunction::VTBlend_Cubic);
+		FirstPersonCameraComponent->SetActive(true);
+		DeathCamera->SetActive(false);
+	}
 }
 
 void AffsCharacter::Ragdoll()
@@ -137,6 +250,29 @@ void AffsCharacter::Ragdoll()
     {
         ServerRagdoll();
     }
+}
+
+void AffsCharacter::ResetMesh3P()
+{
+	if (Mesh3P)
+	{
+		Mesh3P->SetCollisionProfileName(TEXT("No Collision"));
+		Mesh3P->SetAllBodiesSimulatePhysics(false);
+		Mesh3P->SetAllBodiesPhysicsBlendWeight(0.0f);
+		Mesh3P->AttachToComponent(GetCapsuleComponent(), FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+		Mesh3P->SetRelativeLocation(FVector(0.f, 0.f, -GetCapsuleComponent()->GetScaledCapsuleHalfHeight()));
+		Mesh3P->SetRelativeRotation(FRotator(0.f, -90.f, 0.f));
+	}
+}
+
+void AffsCharacter::Server_ResetMesh3P_Implementation()
+{
+	Multicast_ResetMesh3P();
+}
+
+void AffsCharacter::Multicast_ResetMesh3P_Implementation()
+{
+	ResetMesh3P();
 }
 
 void AffsCharacter::ServerRagdoll_Implementation()
