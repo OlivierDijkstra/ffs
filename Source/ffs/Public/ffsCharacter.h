@@ -84,13 +84,6 @@ protected:
 	// Weapon Manager
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapons")
     UffsWeaponManager* WeaponManager;
-	
-	// Weapons
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapons", meta = (AllowPrivateAccess = "true"))
-	TArray<TSubclassOf<AffsWeapon>> WeaponInventory;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapons")
-	TArray<AffsWeapon *> InitializedWeapons;
 
 	UPROPERTY(Replicated, BlueprintReadWrite, Category = "Weapons")
 	int CurrentGunIndex = 0;

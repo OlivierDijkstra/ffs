@@ -4,6 +4,8 @@
 #include "Components/ActorComponent.h"
 #include "ffsWeaponManager.generated.h"
 
+class AffsWeapon;
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class FFS_API UffsWeaponManager : public UActorComponent
 {
@@ -12,5 +14,9 @@ class FFS_API UffsWeaponManager : public UActorComponent
 public:    
     UffsWeaponManager();
 
-    // TODO: Add your function declarations here
+	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapons", meta = (AllowPrivateAccess = "true"))
+	TArray<TSubclassOf<AffsWeapon>> WeaponInventory;
+
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapons")
+	TArray<AffsWeapon *> InitializedWeapons;
 };

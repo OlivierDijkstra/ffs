@@ -173,7 +173,7 @@ void AffsCharacter::InitWeapon(int WeaponIndex)
 	SpawnParams.Instigator = this;
 	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
 
-	AffsWeapon *Weapon = GetWorld()->SpawnActor<AffsWeapon>(WeaponInventory[WeaponIndex], SpawnParams);
+	AffsWeapon *Weapon = GetWorld()->SpawnActor<AffsWeapon>(WeaponManager->WeaponInventory[WeaponIndex], SpawnParams);
 
 	Weapon->GunMesh->AttachToComponent(Mesh1P, FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("GripPoint"));
 	Weapon->GunMesh->SetOnlyOwnerSee(true);
@@ -186,7 +186,7 @@ void AffsCharacter::InitWeapon(int WeaponIndex)
 	Weapon->GunMesh->SetVisibility(false, true);
 	Weapon->GunMesh3P->SetVisibility(false, true);
 
-	InitializedWeapons.Add(Weapon);
+	WeaponManager->InitializedWeapons.Add(Weapon);
 
 	Weapon->UpdateFirstPersonGunMeshFOV(90.f);
 }
@@ -286,7 +286,7 @@ void AffsCharacter::EquipWeapon()
 {
 	CurrentWeapon->GunMesh->SetVisibility(false, false);
 	CurrentWeapon->GunMesh3P->SetVisibility(false, false);
-	CurrentWeapon = InitializedWeapons[CurrentGunIndex];
+	CurrentWeapon = WeaponManager->InitializedWeapons[CurrentGunIndex];
 	CurrentWeapon->GunMesh->SetVisibility(true, false);
 	CurrentWeapon->GunMesh3P->SetVisibility(true, false);
 
@@ -322,12 +322,12 @@ void AffsCharacter::ChangeWeapon()
 	const int LastIndex = CurrentGunIndex;
 	CurrentGunIndex++;
 
-	if (CurrentGunIndex > InitializedWeapons.Num() - 1)
+	if (CurrentGunIndex > WeaponManager->InitializedWeapons.Num() - 1)
 	{
 		CurrentGunIndex = 0;
 	}
 
-	if (!InitializedWeapons[CurrentGunIndex])
+	if (!WeaponManager->InitializedWeapons[CurrentGunIndex])
 	{
 		CurrentGunIndex = LastIndex;
 		return;
@@ -361,7 +361,7 @@ void AffsCharacter::Server_UnequipWeapon_Implementation(int WeaponIndex)
 	if (HasAuthority())
 	{
 		CurrentGunIndex = WeaponIndex;
-		const auto Gun = InitializedWeapons[WeaponIndex];
+		const auto Gun = WeaponManager->InitializedWeapons[WeaponIndex];
 		OnWeaponEquipped(Gun->RecoilAnimData, Gun->FireRate, Gun->Burst);
 
 		Multicast_UnequipWeapon();
