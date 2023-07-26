@@ -32,28 +32,6 @@ protected:
 	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 protected:
-	FDelegateHandle HealthChangedDelegateHandle;
-
-    void OnHealthChanged(const FOnAttributeChangeData& Data);
-    void Die();
-
-    UFUNCTION(Server, Reliable)
-    void ServerRagdoll();
-    virtual void ServerRagdoll_Implementation();
-
-    UFUNCTION(NetMulticast, Reliable)
-    void MulticastRagdoll();
-    virtual void MulticastRagdoll_Implementation();
-
-	UFUNCTION(BlueprintCallable)
-    void Ragdoll();
-
-	UFUNCTION(BlueprintCallable)
-	UffsAnimInstance *GetAnimInstance1P() const { return Cast<UffsAnimInstance>(Mesh1P->GetAnimInstance()); }
-
-	UFUNCTION(BlueprintCallable)
-	UffsAnimInstance *GetAnimInstance3P() const { return Cast<UffsAnimInstance>(Mesh3P->GetAnimInstance()); }
-
 	// First person camera
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	UCameraComponent *FirstPersonCameraComponent;
@@ -73,6 +51,28 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapons")
     UffsWeaponManager* WeaponManager;
 
+	//
+	// State
+	//
+	FDelegateHandle HealthChangedDelegateHandle;
+
+    void OnHealthChanged(const FOnAttributeChangeData& Data);
+    void Die();
+
+	UFUNCTION(BlueprintCallable)
+    void Ragdoll();
+
+    UFUNCTION(Server, Reliable)
+    void ServerRagdoll();
+    virtual void ServerRagdoll_Implementation();
+
+    UFUNCTION(NetMulticast, Reliable)
+    void MulticastRagdoll();
+    virtual void MulticastRagdoll_Implementation();
+
+	//
+	// Weapons
+	//
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
 	void EquipWeapon();
 
