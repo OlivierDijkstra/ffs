@@ -1,5 +1,4 @@
 #include "ffsCharacter.h"
-#include "ffsAnimInstance.h"
 #include "AbilitySystemComponent.h"
 #include "Abilities/GSCAbilitySystemComponent.h"
 #include "Abilities/Attributes/GSCAttributeSet.h"
@@ -11,6 +10,7 @@
 #include "Animations/GSCNativeAnimInstanceInterface.h"
 #include "Kismet/GameplayStatics.h"
 #include "NiagaraFunctionLibrary.h"
+#include "ffsAnimInstance.h"
 #include "ffsWeapon.h"
 
 AffsCharacter::AffsCharacter(const FObjectInitializer &ObjectInitializer)
@@ -243,8 +243,8 @@ void AffsCharacter::EquipWeapon()
 	FVector GunPivotOffset = WeaponManager->CurrentWeapon->GunPivotOffset;
 	WeaponManager->CurrentWeapon->SetActorRelativeLocation(-PlayerPivotOffset - GunPivotOffset);
 
-	UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh1P->GetAnimInstance()), WeaponManager->CurrentWeapon->BasePose1P, WeaponManager->CurrentWeapon->PositionOffset, WeaponManager->CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, WeaponManager->CurrentWeapon->EditingOffset);
-	UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh3P->GetAnimInstance()), WeaponManager->CurrentWeapon->BasePose1P, WeaponManager->CurrentWeapon->PositionOffset, WeaponManager->CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, WeaponManager->CurrentWeapon->EditingOffset);
+	WeaponManager->UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh1P->GetAnimInstance()), WeaponManager->CurrentWeapon->BasePose1P, WeaponManager->CurrentWeapon->PositionOffset, WeaponManager->CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, WeaponManager->CurrentWeapon->EditingOffset);
+	WeaponManager->UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh3P->GetAnimInstance()), WeaponManager->CurrentWeapon->BasePose1P, WeaponManager->CurrentWeapon->PositionOffset, WeaponManager->CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, WeaponManager->CurrentWeapon->EditingOffset);
 
 	if (WeaponManager->EquipMontage)
 	{
@@ -351,18 +351,4 @@ FCollisionQueryParams AffsCharacter::GetIgnoreCharacterParams() const
 
 	return Params;
 }
-
-void AffsCharacter::UpdateAnimInstancePose(UffsAnimInstance *MeshAnimInstance, UAnimSequence *CharacterPose1P, FVector WeaponOffset, FTransform PointAim, FVector PlayerPivotOffset, FVector GunPivotOffset, FTransform EditingOffset)
-{
-	if (MeshAnimInstance)
-	{
-		MeshAnimInstance->CharacterPose1P = CharacterPose1P;
-		MeshAnimInstance->WeaponOffset = WeaponOffset;
-		MeshAnimInstance->PointAim = PointAim;
-		MeshAnimInstance->PlayerPivotOffset = PlayerPivotOffset;
-		MeshAnimInstance->GunPivotOffset = GunPivotOffset;
-		MeshAnimInstance->EditingOffset = EditingOffset;
-	}
-}
-
 #pragma endregion Helper Functions

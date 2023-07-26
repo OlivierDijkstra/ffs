@@ -78,3 +78,16 @@ void UffsWeaponManager::PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName)
 		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FX, SocketLocation, SocketRotation);
 	}
 }
+
+void UffsWeaponManager::UpdateAnimInstancePose(UffsAnimInstance *MeshAnimInstance, UAnimSequence *CharacterPose1P, FVector WeaponOffset, FTransform PointAim, FVector PlayerPivotOffset, FVector GunPivotOffset, FTransform EditingOffset)
+{
+	if (MeshAnimInstance)
+	{
+		MeshAnimInstance->CharacterPose1P = CharacterPose1P;
+		MeshAnimInstance->WeaponOffset = WeaponOffset;
+		MeshAnimInstance->PointAim = PointAim;
+		MeshAnimInstance->PlayerPivotOffset = PlayerPivotOffset;
+		MeshAnimInstance->GunPivotOffset = GunPivotOffset;
+		MeshAnimInstance->EditingOffset = EditingOffset;
+	}
+}

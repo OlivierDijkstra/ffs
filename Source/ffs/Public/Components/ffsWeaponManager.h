@@ -3,6 +3,7 @@
 #include "CoreMinimal.h"
 #include "NiagaraSystem.h"
 #include "Components/ActorComponent.h"
+#include "ffsAnimInstance.h"
 #include "ffsWeaponManager.generated.h"
 
 class AffsWeapon;
@@ -57,4 +58,5 @@ public:
 	virtual FHitResult FireLineTrace(bool InitialShot, bool Debug);
     void PlayFireAnimation(bool ThirdPerson);
     void PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName);
+	void UpdateAnimInstancePose(UffsAnimInstance *MeshAnimInstance, UAnimSequence *CharacterPose1P, FVector WeaponOffset, FTransform PointAim, FVector PlayerPivotOffset, FVector GunPivotOffset, FTransform EditingOffset);
 };
