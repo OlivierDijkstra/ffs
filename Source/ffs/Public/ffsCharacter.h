@@ -9,6 +9,7 @@
 #include "Components/AGRAnimMasterComponent.h"
 #include "RecoilAnimationComponent.h"
 
+#include "Components/ffsWeaponManager.h"
 #include "ffsAnimInstance.h"
 
 #include "ffsCharacter.generated.h"
@@ -80,6 +81,10 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Animation", meta = (AllowPrivateAccess = "true"))
 	UAGRAnimMasterComponent *AnimMasterComponent;
 
+	// Weapon Manager
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapons")
+    UffsWeaponManager* WeaponManager;
+	
 	// Weapons
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Weapons", meta = (AllowPrivateAccess = "true"))
 	TArray<TSubclassOf<AffsWeapon>> WeaponInventory;

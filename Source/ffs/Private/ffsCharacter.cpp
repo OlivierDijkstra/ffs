@@ -43,6 +43,7 @@ AffsCharacter::AffsCharacter(const FObjectInitializer &ObjectInitializer)
 
 	RecoilAnimation = CreateDefaultSubobject<URecoilAnimationComponent>(TEXT("RecoilAnimComp"));
 	AnimMasterComponent = CreateDefaultSubobject<UAGRAnimMasterComponent>(TEXT("AGRAnimMaster"));
+	WeaponManager = CreateDefaultSubobject<UffsWeaponManager>(TEXT("WeaponManager"));
 }
 
 #pragma region Initialization
