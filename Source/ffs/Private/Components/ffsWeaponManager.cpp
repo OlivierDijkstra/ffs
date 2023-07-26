@@ -70,12 +70,15 @@ void UffsWeaponManager::PlayFireAnimation(bool ThirdPerson)
     }
 }
 
-void UffsWeaponManager::PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName)
+void UffsWeaponManager::PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName, bool ThirdPerson)
 {
     if (CurrentWeapon)
 	{
-		FVector SocketLocation = CurrentWeapon->GunMesh->GetSocketLocation(SocketName);
-		FRotator SocketRotation = CurrentWeapon->GunMesh->GetSocketRotation(SocketName);
+		USkeletalMeshComponent *Mesh = ThirdPerson ? CurrentWeapon->GunMesh3P : CurrentWeapon->GunMesh;
+
+		FVector SocketLocation = Mesh->GetSocketLocation(SocketName);
+		FRotator SocketRotation = Mesh->GetSocketRotation(SocketName);
+	
 		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FX, SocketLocation, SocketRotation);
 	}
 }

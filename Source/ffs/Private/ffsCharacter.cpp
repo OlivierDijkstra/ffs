@@ -204,7 +204,7 @@ void AffsCharacter::Multicast_PlayFireAnimation_Implementation()
 
 void AffsCharacter::PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName)
 {
-	WeaponManager->PlayWeaponFireFX(FX, SocketName);
+	WeaponManager->PlayWeaponFireFX(FX, SocketName, false);
 
 	if (HasAuthority())
 	{
@@ -224,7 +224,7 @@ void AffsCharacter::Multicast_PlayWeaponFireFX_Implementation(UNiagaraSystem *FX
 		return;
 	}
 
-	WeaponManager->PlayWeaponFireFX(FX, SocketName);
+	WeaponManager->PlayWeaponFireFX(FX, SocketName, true);
 }
 
 #pragma endregion Weapons

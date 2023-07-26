@@ -59,6 +59,6 @@ public:
     void EquipWeapon(USkeletalMeshComponent *Mesh1P, USkeletalMeshComponent *Mesh3P);
 	virtual FHitResult FireLineTrace(bool InitialShot, bool Debug);
     void PlayFireAnimation(bool ThirdPerson);
-    void PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName);
+    void PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName, bool ThirdPerson);
 	void UpdateAnimInstancePose(UffsAnimInstance *MeshAnimInstance, UAnimSequence *CharacterPose1P, FVector WeaponOffset, FTransform PointAim, FVector PlayerPivotOffset, FVector GunPivotOffset, FTransform EditingOffset);
 };
