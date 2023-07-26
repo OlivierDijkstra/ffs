@@ -6,6 +6,7 @@
 #include "ffsAnimInstance.h"
 #include "ffsWeaponManager.generated.h"
 
+class USkeletalMeshComponent;
 class AffsWeapon;
 class AffsCharacter;
 
@@ -55,6 +56,7 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Weapons")
 	void InitWeapon(int Index, AffsCharacter* Owner);
 
+    void EquipWeapon(USkeletalMeshComponent *Mesh1P, USkeletalMeshComponent *Mesh3P);
 	virtual FHitResult FireLineTrace(bool InitialShot, bool Debug);
     void PlayFireAnimation(bool ThirdPerson);
     void PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName);

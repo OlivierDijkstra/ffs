@@ -1,4 +1,5 @@
 #include "Components/ffsWeaponManager.h"
+#include "Components/SkeletalMeshComponent.h"
 #include "Animation/AnimInstance.h"
 #include "NiagaraFunctionLibrary.h"
 #include "ffsCharacter.h"
@@ -76,6 +77,37 @@ void UffsWeaponManager::PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName)
 		FVector SocketLocation = CurrentWeapon->GunMesh->GetSocketLocation(SocketName);
 		FRotator SocketRotation = CurrentWeapon->GunMesh->GetSocketRotation(SocketName);
 		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FX, SocketLocation, SocketRotation);
+	}
+}
+
+void UffsWeaponManager::EquipWeapon(USkeletalMeshComponent *Mesh1P, USkeletalMeshComponent *Mesh3P)
+{
+	CurrentWeapon->GunMesh->SetVisibility(false, false);
+	CurrentWeapon->GunMesh3P->SetVisibility(false, false);
+	CurrentWeapon = InitializedWeapons[CurrentGunIndex];
+	CurrentWeapon->GunMesh->SetVisibility(true, false);
+	CurrentWeapon->GunMesh3P->SetVisibility(true, false);
+
+	FVector PlayerPivotOffset = CurrentWeapon->GunMesh->GetSocketTransform(TEXT("WeaponPivot"), RTS_Component).GetLocation();
+	FVector GunPivotOffset = CurrentWeapon->GunPivotOffset;
+	CurrentWeapon->SetActorRelativeLocation(-PlayerPivotOffset - GunPivotOffset);
+
+	if (Mesh1P) 
+	{
+		UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh1P->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, CurrentWeapon->EditingOffset);
+	}
+
+	if (Mesh3P)
+	{
+		UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh3P->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, CurrentWeapon->EditingOffset);
+	}
+
+	if (EquipMontage)
+	{
+		UAnimInstance *AnimInstance3P = Mesh3P->GetAnimInstance();
+		AnimInstance3P->Montage_Play(EquipMontage, 1.0f);
+		UAnimInstance *AnimInstance1P = Mesh1P->GetAnimInstance();
+		AnimInstance1P->Montage_Play(EquipMontage, 1.0f);
 	}
 }
 

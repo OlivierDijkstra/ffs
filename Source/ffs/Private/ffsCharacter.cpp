@@ -233,26 +233,7 @@ void AffsCharacter::Multicast_PlayWeaponFireFX_Implementation(UNiagaraSystem *FX
 
 void AffsCharacter::EquipWeapon()
 {
-	WeaponManager->CurrentWeapon->GunMesh->SetVisibility(false, false);
-	WeaponManager->CurrentWeapon->GunMesh3P->SetVisibility(false, false);
-	WeaponManager->CurrentWeapon = WeaponManager->InitializedWeapons[WeaponManager->CurrentGunIndex];
-	WeaponManager->CurrentWeapon->GunMesh->SetVisibility(true, false);
-	WeaponManager->CurrentWeapon->GunMesh3P->SetVisibility(true, false);
-
-	FVector PlayerPivotOffset = WeaponManager->CurrentWeapon->GunMesh->GetSocketTransform(TEXT("WeaponPivot"), RTS_Component).GetLocation();
-	FVector GunPivotOffset = WeaponManager->CurrentWeapon->GunPivotOffset;
-	WeaponManager->CurrentWeapon->SetActorRelativeLocation(-PlayerPivotOffset - GunPivotOffset);
-
-	WeaponManager->UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh1P->GetAnimInstance()), WeaponManager->CurrentWeapon->BasePose1P, WeaponManager->CurrentWeapon->PositionOffset, WeaponManager->CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, WeaponManager->CurrentWeapon->EditingOffset);
-	WeaponManager->UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh3P->GetAnimInstance()), WeaponManager->CurrentWeapon->BasePose1P, WeaponManager->CurrentWeapon->PositionOffset, WeaponManager->CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, WeaponManager->CurrentWeapon->EditingOffset);
-
-	if (WeaponManager->EquipMontage)
-	{
-		UAnimInstance *AnimInstance3P = Mesh3P->GetAnimInstance();
-		AnimInstance3P->Montage_Play(WeaponManager->EquipMontage, 1.0f);
-		UAnimInstance *AnimInstance1P = Mesh1P->GetAnimInstance();
-		AnimInstance1P->Montage_Play(WeaponManager->EquipMontage, 1.0f);
-	}
+	WeaponManager->EquipWeapon(Mesh1P, Mesh3P);
 
 	if (IsLocallyControlled() || HasAuthority())
 	{
