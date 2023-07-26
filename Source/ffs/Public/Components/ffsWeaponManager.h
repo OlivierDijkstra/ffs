@@ -6,6 +6,14 @@
 
 class AffsWeapon;
 
+UENUM(BlueprintType)
+enum class EFireMode : uint8
+{
+    SINGLE UMETA(DisplayName = "Single"),
+    AUTO UMETA(DisplayName = "Auto"),
+    BURST UMETA(DisplayName = "Burst")
+};
+
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
 class FFS_API UffsWeaponManager : public UActorComponent
 {
@@ -25,4 +33,13 @@ public:
 
     UPROPERTY(Replicated, BlueprintReadWrite, Category = "Weapons")
 	int CurrentGunIndex = 0;
+
+    UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapon")
+    EFireMode CurrentFireMode;
+
+    UPROPERTY(BlueprintReadWrite, Category = "Weapons")
+	AffsWeapon *CurrentWeapon = nullptr;
+
+	UFUNCTION(BlueprintCallable, Category = "Weapons")
+	AffsWeapon *GetWeapon() const { return CurrentWeapon; }
 };

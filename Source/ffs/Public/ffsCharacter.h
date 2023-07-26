@@ -84,15 +84,6 @@ protected:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapons")
     UffsWeaponManager* WeaponManager;
 
-	UPROPERTY(BlueprintReadWrite, Category = "Weapons")
-	TEnumAsByte<EFireMode_PRAS> FireMode;
-
-	UPROPERTY(BlueprintReadWrite, Category = "Weapons")
-	AffsWeapon *CurrentWeapon = nullptr;
-
-	UFUNCTION(BlueprintCallable, Category = "Weapons")
-	AffsWeapon *GetWeapon() const { return CurrentWeapon; }
-
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
 	void InitWeapon(int Index);
 

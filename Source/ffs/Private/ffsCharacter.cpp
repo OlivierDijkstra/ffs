@@ -186,10 +186,10 @@ void AffsCharacter::InitWeapon(int WeaponIndex)
 
 void AffsCharacter::PlayCameraShake()
 {
-	if (IsLocallyControlled() && CurrentWeapon && CurrentWeapon->CameraRecoilShake)
+	if (IsLocallyControlled() && WeaponManager->CurrentWeapon && WeaponManager->CurrentWeapon->CameraRecoilShake)
 	{
 		UGameplayStatics::GetPlayerCameraManager(this, 0)
-			->StartCameraShake(CurrentWeapon->CameraRecoilShake);
+			->StartCameraShake(WeaponManager->CurrentWeapon->CameraRecoilShake);
 	}
 }
 
@@ -197,16 +197,16 @@ FHitResult AffsCharacter::FireWeapon(bool InitialShot, bool Debug)
 {
 	FHitResult FireLineTraceResult;
 
-	if (CurrentWeapon)
+	if (WeaponManager->CurrentWeapon)
 	{
 		if (!IsLocallyControlled() && HasAuthority())
 		{
-			FireLineTraceResult = CurrentWeapon->FireLineTrace(InitialShot, Debug);
+			FireLineTraceResult = WeaponManager->CurrentWeapon->FireLineTrace(InitialShot, Debug);
 		}
 
 		PlayFireAnimation();
-		PlayWeaponFireFX(CurrentWeapon->MuzzleFlashFX, FName("Muzzle"), true);
-		PlayWeaponFireFX(CurrentWeapon->CaseEjectFX, FName("ShellEject"), true);
+		PlayWeaponFireFX(WeaponManager->CurrentWeapon->MuzzleFlashFX, FName("Muzzle"), true);
+		PlayWeaponFireFX(WeaponManager->CurrentWeapon->CaseEjectFX, FName("ShellEject"), true);
 	}
 
 	return FireLineTraceResult;
@@ -216,7 +216,7 @@ void AffsCharacter::PlayFireAnimation()
 {
 	RecoilAnimation->Play();
 
-	CurrentWeapon->GunMesh->PlayAnimation(CurrentWeapon->FireMontage, false);
+	WeaponManager->CurrentWeapon->GunMesh->PlayAnimation(WeaponManager->CurrentWeapon->FireMontage, false);
 
 	if (HasAuthority())
 	{
@@ -231,20 +231,20 @@ void AffsCharacter::Server_PlayFireAnimation_Implementation()
 
 void AffsCharacter::Multicast_PlayFireAnimation_Implementation()
 {
-	UAnimMontage *FireAnimation = CurrentWeapon->FireMontage;
+	UAnimMontage *FireAnimation = WeaponManager->CurrentWeapon->FireMontage;
 
 	if (FireAnimation)
 	{
-		CurrentWeapon->GunMesh3P->PlayAnimation(FireAnimation, false);
+		WeaponManager->CurrentWeapon->GunMesh3P->PlayAnimation(FireAnimation, false);
 	}
 }
 
 void AffsCharacter::PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName, bool bMulticast)
 {
-	if (CurrentWeapon)
+	if (WeaponManager->CurrentWeapon)
 	{
-		FVector SocketLocation = CurrentWeapon->GunMesh->GetSocketLocation(SocketName);
-		FRotator SocketRotation = CurrentWeapon->GunMesh->GetSocketRotation(SocketName);
+		FVector SocketLocation = WeaponManager->CurrentWeapon->GunMesh->GetSocketLocation(SocketName);
+		FRotator SocketRotation = WeaponManager->CurrentWeapon->GunMesh->GetSocketRotation(SocketName);
 		UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FX, SocketLocation, SocketRotation);
 
 		if (HasAuthority() && bMulticast)
@@ -266,8 +266,8 @@ void AffsCharacter::Multicast_PlayWeaponFireFX_Implementation(UNiagaraSystem *FX
 		return;
 	}
 
-	FVector SocketLocation = CurrentWeapon->GunMesh3P->GetSocketLocation(SocketName);
-	FRotator SocketRotation = CurrentWeapon->GunMesh3P->GetSocketRotation(SocketName);
+	FVector SocketLocation = WeaponManager->CurrentWeapon->GunMesh3P->GetSocketLocation(SocketName);
+	FRotator SocketRotation = WeaponManager->CurrentWeapon->GunMesh3P->GetSocketRotation(SocketName);
 	UNiagaraFunctionLibrary::SpawnSystemAtLocation(GetWorld(), FX, SocketLocation, SocketRotation);
 }
 
@@ -277,18 +277,18 @@ void AffsCharacter::Multicast_PlayWeaponFireFX_Implementation(UNiagaraSystem *FX
 
 void AffsCharacter::EquipWeapon()
 {
-	CurrentWeapon->GunMesh->SetVisibility(false, false);
-	CurrentWeapon->GunMesh3P->SetVisibility(false, false);
-	CurrentWeapon = WeaponManager->InitializedWeapons[WeaponManager->CurrentGunIndex];
-	CurrentWeapon->GunMesh->SetVisibility(true, false);
-	CurrentWeapon->GunMesh3P->SetVisibility(true, false);
+	WeaponManager->CurrentWeapon->GunMesh->SetVisibility(false, false);
+	WeaponManager->CurrentWeapon->GunMesh3P->SetVisibility(false, false);
+	WeaponManager->CurrentWeapon = WeaponManager->InitializedWeapons[WeaponManager->CurrentGunIndex];
+	WeaponManager->CurrentWeapon->GunMesh->SetVisibility(true, false);
+	WeaponManager->CurrentWeapon->GunMesh3P->SetVisibility(true, false);
 
-	FVector PlayerPivotOffset = CurrentWeapon->GunMesh->GetSocketTransform(TEXT("WeaponPivot"), RTS_Component).GetLocation();
-	FVector GunPivotOffset = CurrentWeapon->GunPivotOffset;
-	CurrentWeapon->SetActorRelativeLocation(-PlayerPivotOffset - GunPivotOffset);
+	FVector PlayerPivotOffset = WeaponManager->CurrentWeapon->GunMesh->GetSocketTransform(TEXT("WeaponPivot"), RTS_Component).GetLocation();
+	FVector GunPivotOffset = WeaponManager->CurrentWeapon->GunPivotOffset;
+	WeaponManager->CurrentWeapon->SetActorRelativeLocation(-PlayerPivotOffset - GunPivotOffset);
 
-	UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh1P->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, CurrentWeapon->EditingOffset);
-	UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh3P->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, CurrentWeapon->EditingOffset);
+	UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh1P->GetAnimInstance()), WeaponManager->CurrentWeapon->BasePose1P, WeaponManager->CurrentWeapon->PositionOffset, WeaponManager->CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, WeaponManager->CurrentWeapon->EditingOffset);
+	UpdateAnimInstancePose(Cast<UffsAnimInstance>(Mesh3P->GetAnimInstance()), WeaponManager->CurrentWeapon->BasePose1P, WeaponManager->CurrentWeapon->PositionOffset, WeaponManager->CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, WeaponManager->CurrentWeapon->EditingOffset);
 
 	if (EquipMontage)
 	{
@@ -300,14 +300,18 @@ void AffsCharacter::EquipWeapon()
 
 	if (IsLocallyControlled() || HasAuthority())
 	{
-		OnWeaponEquipped(CurrentWeapon->RecoilAnimData, CurrentWeapon->FireRate, CurrentWeapon->Burst);
+		OnWeaponEquipped(
+			WeaponManager->CurrentWeapon->RecoilAnimData, 
+			WeaponManager->CurrentWeapon->FireRate, 
+			WeaponManager->CurrentWeapon->Burst
+		);
 		// TODO: Set burst and firemode
 	}
 }
 
 void AffsCharacter::ChangeWeapon()
 {
-	if (!CurrentWeapon)
+	if (!WeaponManager->CurrentWeapon)
 	{
 		return;
 	}
