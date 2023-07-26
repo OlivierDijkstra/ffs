@@ -6,19 +6,6 @@
 #include "NiagaraSystem.h"
 #include "ffsWeapon.generated.h"
 
-// USTRUCT(BlueprintType)
-// struct FFireLineTraceResult
-// {
-//     GENERATED_BODY()
-
-//     UPROPERTY(BlueprintReadOnly)
-//     ACharacter* HitCharacter;
-
-//     UPROPERTY(BlueprintReadOnly)
-//     AActor* HitActor;
-// };
-
-
 UCLASS(BlueprintType)
 class FFS_API AffsWeapon : public AActor
 {
