@@ -30,6 +30,12 @@ public:
 	UAnimMontage* FireMontage;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Firing")
+	float WeaponDamage = 20.f; // Default 20 damage per shot
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Firing")
+	float HeadshotMultiplier = 2.f; // Default 2x multiplier
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Firing")
 	float WeaponRange = 3000.f; // Default 1000 units range
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Firing")

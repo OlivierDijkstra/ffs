@@ -56,12 +56,7 @@ AffsCharacter::AffsCharacter(const FObjectInitializer &ObjectInitializer)
 	DeathCamera->SetupAttachment(DeathCameraBoom);
 	DeathCamera->SetRelativeLocation(FVector(0.f, 0.f, 0.f)); // Position the camera at the end of the boom
 	DeathCamera->SetRelativeRotation(FRotator(0.f, 0.f, 0.f)); // Rotate the camera to look down
-	DeathCamera->SetActive(false); // Disable the camera by default							 // Disable the camera by default
-
-	// Initialize the respawn time and default spawn point
-	RespawnTime = 3.f;
-	DefaultSpawnPoint = FVector(0.f, 0.f, 0.f);
-	SpawnPointSearchRadius = 1000.f;
+	DeathCamera->SetActive(false); // Disable the camera by default
 
 	RecoilAnimation = CreateDefaultSubobject<URecoilAnimationComponent>(TEXT("RecoilAnimComp"));
 	AnimMasterComponent = CreateDefaultSubobject<UAGRAnimMasterComponent>(TEXT("AGRAnimMaster"));

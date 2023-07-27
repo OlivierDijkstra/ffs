@@ -54,15 +54,15 @@ protected:
 
 	// Time before the player respawns after dying, in seconds
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Respawn")
-	float RespawnTime;
+	float RespawnTime = 3.f;
 
 	// Radius of the sphere used to find a spawn point
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Respawn")
-	float SpawnPointSearchRadius;
+	float SpawnPointSearchRadius = 1000.f;
 
 	// Default spawn point for the player
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Respawn")
-	FVector DefaultSpawnPoint;
+	FVector DefaultSpawnPoint = FVector(0.f, 0.f, 0.f);
 
 	// Camera used when the player is dead
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
