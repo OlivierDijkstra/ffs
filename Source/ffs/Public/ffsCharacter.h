@@ -77,6 +77,10 @@ protected:
 
 	UFUNCTION(BlueprintCallable)
     void Ragdoll();
+	UFUNCTION(Server, Reliable)
+    void Server_Ragdoll();
+    UFUNCTION(NetMulticast, Reliable)
+    void Multicast_Ragdoll();
 
 	UFUNCTION(BlueprintCallable)
 	void ResetMesh3P();
@@ -85,18 +89,9 @@ protected:
 	UFUNCTION(NetMulticast, Reliable)
 	void Multicast_ResetMesh3P();
 
-    UFUNCTION(Server, Reliable)
-    void ServerRagdoll();
-    virtual void ServerRagdoll_Implementation();
-
-    UFUNCTION(NetMulticast, Reliable)
-    void MulticastRagdoll();
-    virtual void MulticastRagdoll_Implementation();
-
 	UFUNCTION(BlueprintCallable, Category = "Respawn")
 	void Respawn();
 
-	UFUNCTION()
 	void ResetAttributes();
 
 	//

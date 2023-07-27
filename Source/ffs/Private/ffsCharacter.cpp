@@ -46,9 +46,9 @@ AffsCharacter::AffsCharacter(const FObjectInitializer &ObjectInitializer)
 
 	DeathCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("DeathCamera"));
 	DeathCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
-	DeathCamera->SetRelativeLocation(FVector(0.f, 0.f, 100.f)); // Position the camera above the character
+	DeathCamera->SetRelativeLocation(FVector(0.f, 0.f, 100.f));	 // Position the camera above the character
 	DeathCamera->SetRelativeRotation(FRotator(-60.f, 0.f, 0.f)); // Rotate the camera to look down
-	DeathCamera->SetActive(false); // Disable the camera by default
+	DeathCamera->SetActive(false);								 // Disable the camera by default
 
 	// Initialize the respawn time and default spawn point
 	RespawnTime = 3.f;
@@ -103,9 +103,9 @@ void AffsCharacter::BeginPlay()
 	}
 
 	if (ASC)
-    {
-        HealthChangedDelegateHandle = ASC->GetGameplayAttributeValueChangeDelegate(UGSCAttributeSet::GetHealthAttribute()).AddUObject(this, &AffsCharacter::OnHealthChanged);
-    }
+	{
+		HealthChangedDelegateHandle = ASC->GetGameplayAttributeValueChangeDelegate(UGSCAttributeSet::GetHealthAttribute()).AddUObject(this, &AffsCharacter::OnHealthChanged);
+	}
 }
 
 void AffsCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -114,72 +114,48 @@ void AffsCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 	UAbilitySystemComponent *ASC = Cast<UAbilitySystemComponent>(AbilitySystemComponent);
 
-    if (ASC)
-    {
-        ASC->GetGameplayAttributeValueChangeDelegate(UGSCAttributeSet::GetHealthAttribute()).Remove(HealthChangedDelegateHandle);
-    }
+	if (ASC)
+	{
+		ASC->GetGameplayAttributeValueChangeDelegate(UGSCAttributeSet::GetHealthAttribute()).Remove(HealthChangedDelegateHandle);
+	}
 }
 
 #pragma endregion Initialization
 
 #pragma region State
 
-void AffsCharacter::OnHealthChanged(const FOnAttributeChangeData& Data)
+void AffsCharacter::OnHealthChanged(const FOnAttributeChangeData &Data)
 {
-    float NewHealthValue = Data.NewValue;
+	float NewHealthValue = Data.NewValue;
 
-    if (NewHealthValue <= 0.f)
-    {
-        Die();
-    }
+	if (NewHealthValue <= 0.f)
+	{
+		Die();
+	}
 }
 
 void AffsCharacter::Die()
 {
-    APlayerController* PC = Cast<APlayerController>(GetController());
+	APlayerController *PC = Cast<APlayerController>(GetController());
 	if (PC)
 	{
 		PC->DisableInput(PC);
 	}
 
-	// Go into ragdoll state
 	Ragdoll();
-
-	// Show the third-person mesh to the player controlling the character
-	Mesh3P->SetOwnerNoSee(false);
-
-	// Switch to the death camera
 	SwitchToDeathCamera();
-
-	Mesh1P->SetVisibility(false);
-
-	// Start the respawn timer
 	GetWorld()->GetTimerManager().SetTimer(RespawnTimerHandle, this, &AffsCharacter::Respawn, RespawnTime, false);
 }
 
 void AffsCharacter::Respawn()
 {
-	// Enable player controls
-	APlayerController* PC = Cast<APlayerController>(GetController());
-	if (PC)
-	{
-		PC->EnableInput(PC);
-	}
-
-	// Switch back to the first-person camera
-	SwitchToFirstPersonCamera();
-
-	// Hide the third-person mesh from the player controlling the character
-	Mesh3P->SetOwnerNoSee(true);
-	Mesh1P->SetVisibility(true);
-
 	// Find a suitable spawn point
 	FVector SpawnPoint = DefaultSpawnPoint;
 	for (TActorIterator<AffsCharacter> It(GetWorld()); It; ++It)
 	{
 		if (*It != this)
 		{
-			UNavigationSystemV1* NavSystem = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
+			UNavigationSystemV1 *NavSystem = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
 			if (NavSystem)
 			{
 				FNavLocation RandomReachablePoint;
@@ -193,23 +169,29 @@ void AffsCharacter::Respawn()
 	}
 
 	// Move the character to the spawn point
-	SetActorLocation(SpawnPoint);
 	if (HasAuthority())
-    {
-        ResetMesh3P();
-    }
-    else
-    {
-        Server_ResetMesh3P();
-    }
+	{
+		SetActorLocation(SpawnPoint);
+	}
 
+	// Enable player controls
+	APlayerController *PC = Cast<APlayerController>(GetController());
+	if (PC)
+	{
+		PC->EnableInput(PC);
+	}
+
+	ResetMesh3P();
 	ResetAttributes();
+
+	// Wait 1 second before switching back to the first-person camera
+	SwitchToFirstPersonCamera();
+	// GetWorld()->GetTimerManager().SetTimer(RespawnTimerHandle, this, &AffsCharacter::SwitchToFirstPersonCamera, 1.f, false);
 }
 
 void AffsCharacter::ResetAttributes()
 {
 	// Get the attribute set and set health to GetMaxHealth
-
 	UAbilitySystemComponent *ASC = Cast<UAbilitySystemComponent>(AbilitySystemComponent);
 
 	if (ASC)
@@ -220,77 +202,97 @@ void AffsCharacter::ResetAttributes()
 
 void AffsCharacter::SwitchToDeathCamera()
 {
-	APlayerController* PC = Cast<APlayerController>(GetController());
+	APlayerController *PC = Cast<APlayerController>(GetController());
 	if (PC)
 	{
 		PC->SetViewTargetWithBlend(this, 0.5f, EViewTargetBlendFunction::VTBlend_Cubic);
 		DeathCamera->SetActive(true);
 		FirstPersonCameraComponent->SetActive(false);
+		Mesh3P->SetOwnerNoSee(false);
+		Mesh1P->SetVisibility(false);
+		WeaponManager->CurrentWeapon->GunMesh->SetVisibility(false);
 	}
 }
 
 void AffsCharacter::SwitchToFirstPersonCamera()
 {
-	APlayerController* PC = Cast<APlayerController>(GetController());
+	APlayerController *PC = Cast<APlayerController>(GetController());
 	if (PC)
 	{
 		PC->SetViewTargetWithBlend(this, 0.5f, EViewTargetBlendFunction::VTBlend_Cubic);
 		FirstPersonCameraComponent->SetActive(true);
 		DeathCamera->SetActive(false);
+		Mesh3P->SetOwnerNoSee(true);
+		Mesh1P->SetVisibility(true);
+
+		WeaponManager->CurrentWeapon->GunMesh->SetVisibility(true);
 	}
 }
 
 void AffsCharacter::Ragdoll()
 {
-    if (HasAuthority())
-    {
-        MulticastRagdoll();
-    }
-    else
-    {
-        ServerRagdoll();
-    }
+	if (HasAuthority())
+	{
+		Multicast_Ragdoll();
+	}
+	else
+	{
+		Server_Ragdoll();
+	}
+}
+
+void AffsCharacter::Server_Ragdoll_Implementation()
+{
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
+	Multicast_Ragdoll();
+}
+
+void AffsCharacter::Multicast_Ragdoll_Implementation()
+{
+	if (Mesh3P)
+	{
+		Mesh3P->SetCollisionProfileName(TEXT("Ragdoll"));
+
+		if (Mesh3P->GetPhysicsAsset())
+		{
+			Mesh3P->SetAllBodiesSimulatePhysics(true);
+		}
+	}
+
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
 }
 
 void AffsCharacter::ResetMesh3P()
 {
+    if (HasAuthority())
+    {
+        Multicast_ResetMesh3P();
+    }
+    else
+    {
+        Server_ResetMesh3P();
+    }
+}
+
+void AffsCharacter::Server_ResetMesh3P_Implementation()
+{
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Pawn, ECR_Block);
+	Multicast_ResetMesh3P();
+}
+
+void AffsCharacter::Multicast_ResetMesh3P_Implementation()
+{
 	if (Mesh3P)
 	{
-		Mesh3P->SetCollisionProfileName(TEXT("No Collision"));
+		Mesh3P->SetCollisionProfileName(TEXT("NoCollision"));
 		Mesh3P->SetAllBodiesSimulatePhysics(false);
 		Mesh3P->SetAllBodiesPhysicsBlendWeight(0.0f);
 		Mesh3P->AttachToComponent(GetCapsuleComponent(), FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 		Mesh3P->SetRelativeLocation(FVector(0.f, 0.f, -GetCapsuleComponent()->GetScaledCapsuleHalfHeight()));
 		Mesh3P->SetRelativeRotation(FRotator(0.f, -90.f, 0.f));
 	}
-}
 
-void AffsCharacter::Server_ResetMesh3P_Implementation()
-{
-	Multicast_ResetMesh3P();
-}
-
-void AffsCharacter::Multicast_ResetMesh3P_Implementation()
-{
-	ResetMesh3P();
-}
-
-void AffsCharacter::ServerRagdoll_Implementation()
-{
-    MulticastRagdoll();
-}
-
-void AffsCharacter::MulticastRagdoll_Implementation()
-{
-    if(Mesh3P)
-    {
-        Mesh3P->SetCollisionProfileName(TEXT("Ragdoll"));
-
-        if(Mesh3P->GetPhysicsAsset())
-        {
-            Mesh3P->SetAllBodiesSimulatePhysics(true);
-        }
-    }
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Pawn, ECR_Block);
 }
 
 #pragma endregion State
@@ -374,10 +376,9 @@ void AffsCharacter::EquipWeapon()
 	if (IsLocallyControlled() || HasAuthority())
 	{
 		OnWeaponEquipped(
-			WeaponManager->CurrentWeapon->RecoilAnimData, 
-			WeaponManager->CurrentWeapon->FireRate, 
-			WeaponManager->CurrentWeapon->Burst
-		);
+			WeaponManager->CurrentWeapon->RecoilAnimData,
+			WeaponManager->CurrentWeapon->FireRate,
+			WeaponManager->CurrentWeapon->Burst);
 		// TODO: Set burst and firemode
 	}
 }
