@@ -5,6 +5,7 @@
 #include "Abilities/Attributes/GSCAttributeSet.h"
 #include "NavigationSystem.h"
 #include "NavigationSystem/Public/NavigationSystem.h"
+#include "Math/UnrealMathUtility.h"
 #include "Animation/AnimInstance.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
@@ -43,12 +44,19 @@ AffsCharacter::AffsCharacter(const FObjectInitializer &ObjectInitializer)
 	Mesh3P->SetupAttachment(GetCapsuleComponent());
 	Mesh3P->bCastDynamicShadow = true;
 	Mesh3P->CastShadow = true;
-
+	
+	DeathCameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("DeathCameraBoom"));
+	DeathCameraBoom->SetupAttachment(GetCapsuleComponent());
+	DeathCameraBoom->TargetArmLength = 300.0f; // Set the distance of the death camera
+	DeathCameraBoom->bUsePawnControlRotation = false; // Do not rotate the arm based on controller
+	DeathCameraBoom->SetActive(false); // Disable the boom by default
+	DeathCameraBoom->SetRelativeRotation(FRotator(-70.f, 0.f, 0.f));
+	
 	DeathCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("DeathCamera"));
-	DeathCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName);
-	DeathCamera->SetRelativeLocation(FVector(0.f, 0.f, 100.f));	 // Position the camera above the character
-	DeathCamera->SetRelativeRotation(FRotator(-60.f, 0.f, 0.f)); // Rotate the camera to look down
-	DeathCamera->SetActive(false);								 // Disable the camera by default
+	DeathCamera->SetupAttachment(DeathCameraBoom);
+	DeathCamera->SetRelativeLocation(FVector(0.f, 0.f, 0.f)); // Position the camera at the end of the boom
+	DeathCamera->SetRelativeRotation(FRotator(0.f, 0.f, 0.f)); // Rotate the camera to look down
+	DeathCamera->SetActive(false); // Disable the camera by default							 // Disable the camera by default
 
 	// Initialize the respawn time and default spawn point
 	RespawnTime = 3.f;
@@ -120,6 +128,32 @@ void AffsCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)
 	}
 }
 
+void AffsCharacter::Tick(float DeltaTime)
+{
+    Super::Tick(DeltaTime);
+
+    if (bIsDead)
+    {
+        // Get the location of the Mesh3P
+        FVector MeshLocation = Mesh3P->GetComponentLocation();
+
+        // Calculate the direction from the DeathCamera to the Mesh3P
+        FVector Direction = MeshLocation - DeathCamera->GetComponentLocation();
+
+        // Calculate the target rotation that looks at the Mesh3P
+        FRotator TargetRotation = FRotationMatrix::MakeFromX(Direction).Rotator();
+
+        // Get the current rotation of the DeathCamera
+        FRotator CurrentRotation = DeathCamera->GetComponentRotation();
+
+        // Interpolate the rotation from the current to the target
+        FRotator NewRotation = FMath::RInterpTo(CurrentRotation, TargetRotation, DeltaTime, 2.0f);
+
+        // Set the rotation of the DeathCamera
+        DeathCamera->SetWorldRotation(NewRotation);
+    }
+}
+
 #pragma endregion Initialization
 
 #pragma region State
@@ -136,6 +170,8 @@ void AffsCharacter::OnHealthChanged(const FOnAttributeChangeData &Data)
 
 void AffsCharacter::Die()
 {
+	bIsDead = true;
+
 	APlayerController *PC = Cast<APlayerController>(GetController());
 	if (PC)
 	{
@@ -207,10 +243,10 @@ void AffsCharacter::Multicast_FixPlayer_Implementation()
 		Mesh3P->SetRelativeRotation(FRotator(0.f, -90.f, 0.f));
 	}
 
-	// ResetMesh3P();
 	ResetAttributes();
-
 	SwitchToFirstPersonCamera();
+
+	bIsDead = false;
 }
 
 void AffsCharacter::ResetAttributes()
@@ -226,17 +262,22 @@ void AffsCharacter::ResetAttributes()
 
 void AffsCharacter::SwitchToDeathCamera()
 {
-	APlayerController *PC = Cast<APlayerController>(GetController());
-	if (PC)
-	{
-		PC->SetViewTargetWithBlend(this, 0.5f, EViewTargetBlendFunction::VTBlend_Cubic);
-		FirstPersonCameraComponent->SetActive(false);
-		DeathCamera->SetActive(true);
-		Mesh3P->SetOwnerNoSee(false);
-		Mesh1P->SetVisibility(false);
+    APlayerController *PC = Cast<APlayerController>(GetController());
+    if (PC)
+    {
+        PC->SetViewTargetWithBlend(this, 0.5f, EViewTargetBlendFunction::VTBlend_Cubic);
+        FirstPersonCameraComponent->SetActive(false);
+		DeathCameraBoom->SetActive(true);
+        DeathCamera->SetActive(true);
+        Mesh3P->SetOwnerNoSee(false);
+        Mesh1P->SetVisibility(false);
 
-		WeaponManager->CurrentWeapon->GunMesh->SetVisibility(false);
-	}
+        WeaponManager->CurrentWeapon->GunMesh->SetVisibility(false);
+
+		FRotator DeathCameraRotation = DeathCamera->GetComponentRotation();
+		DeathCameraRotation.Roll = FMath::RandRange(0.f, 360.f);
+		DeathCamera->SetWorldRotation(DeathCameraRotation);
+    }
 }
 
 void AffsCharacter::SwitchToFirstPersonCamera()
@@ -246,6 +287,7 @@ void AffsCharacter::SwitchToFirstPersonCamera()
 	{
 		PC->SetViewTargetWithBlend(this, 0.5f, EViewTargetBlendFunction::VTBlend_Cubic);
 		FirstPersonCameraComponent->SetActive(true);
+		DeathCameraBoom->SetActive(false);
 		DeathCamera->SetActive(false);
 		Mesh3P->SetOwnerNoSee(true);
 		Mesh1P->SetVisibility(true);
