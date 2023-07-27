@@ -184,9 +184,7 @@ void AffsCharacter::Respawn()
 	ResetMesh3P();
 	ResetAttributes();
 
-	// Wait 1 second before switching back to the first-person camera
 	SwitchToFirstPersonCamera();
-	// GetWorld()->GetTimerManager().SetTimer(RespawnTimerHandle, this, &AffsCharacter::SwitchToFirstPersonCamera, 1.f, false);
 }
 
 void AffsCharacter::ResetAttributes()
