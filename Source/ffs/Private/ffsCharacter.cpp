@@ -147,7 +147,7 @@ void AffsCharacter::Tick(float DeltaTime)
         FRotator CurrentRotation = DeathCamera->GetComponentRotation();
 
         // Interpolate the rotation from the current to the target
-        FRotator NewRotation = FMath::RInterpTo_Constant(CurrentRotation, TargetRotation, DeltaTime, 10.0f); // Adjust the last parameter to control the speed of the rotation
+        FRotator NewRotation = FMath::RInterpTo(CurrentRotation, TargetRotation, DeltaTime, 2.0f);
 
         // Set the rotation of the DeathCamera
         DeathCamera->SetWorldRotation(NewRotation);
@@ -285,7 +285,7 @@ void AffsCharacter::SwitchToFirstPersonCamera()
 	APlayerController *PC = Cast<APlayerController>(GetController());
 	if (PC)
 	{
-		PC->SetViewTargetWithBlend(this, 0.5f, EViewTargetBlendFunction::VTBlend_Cubic);
+		PC->SetViewTargetWithBlend(this, 0.f, EViewTargetBlendFunction::VTBlend_Cubic); // Set blend time to 0
 		FirstPersonCameraComponent->SetActive(true);
 		DeathCameraBoom->SetActive(false);
 		DeathCamera->SetActive(false);
