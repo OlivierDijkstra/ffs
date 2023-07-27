@@ -147,7 +147,7 @@ void AffsCharacter::Tick(float DeltaTime)
         FRotator CurrentRotation = DeathCamera->GetComponentRotation();
 
         // Interpolate the rotation from the current to the target
-        FRotator NewRotation = FMath::RInterpTo(CurrentRotation, TargetRotation, DeltaTime, 2.0f);
+        FRotator NewRotation = FMath::RInterpTo_Constant(CurrentRotation, TargetRotation, DeltaTime, 10.0f); // Adjust the last parameter to control the speed of the rotation
 
         // Set the rotation of the DeathCamera
         DeathCamera->SetWorldRotation(NewRotation);
