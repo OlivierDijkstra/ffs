@@ -149,6 +149,20 @@ void AffsCharacter::Die()
 
 void AffsCharacter::Respawn()
 {
+	if (HasAuthority())
+	{
+		Multicast_FixPlayer();
+	}
+	else
+	{
+		Server_TeleportPlayer();	
+	}
+}
+
+void AffsCharacter::Server_TeleportPlayer_Implementation()
+{
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Pawn, ECR_Block);
+
 	// Find a suitable spawn point
 	FVector SpawnPoint = DefaultSpawnPoint;
 	for (TActorIterator<AffsCharacter> It(GetWorld()); It; ++It)
@@ -168,12 +182,12 @@ void AffsCharacter::Respawn()
 		}
 	}
 
-	// Move the character to the spawn point
-	if (HasAuthority())
-	{
-		SetActorLocation(SpawnPoint);
-	}
+	SetActorLocation(SpawnPoint);
+	Multicast_FixPlayer();
+}
 
+void AffsCharacter::Multicast_FixPlayer_Implementation()
+{
 	// Enable player controls
 	APlayerController *PC = Cast<APlayerController>(GetController());
 	if (PC)
@@ -181,7 +195,19 @@ void AffsCharacter::Respawn()
 		PC->EnableInput(PC);
 	}
 
-	ResetMesh3P();
+	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Pawn, ECR_Block);
+
+	if (Mesh3P)
+	{
+		Mesh3P->SetCollisionProfileName(TEXT("NoCollision"));
+		Mesh3P->SetAllBodiesSimulatePhysics(false);
+		Mesh3P->SetAllBodiesPhysicsBlendWeight(0.0f);
+		Mesh3P->AttachToComponent(GetCapsuleComponent(), FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+		Mesh3P->SetRelativeLocation(FVector(0.f, 0.f, -GetCapsuleComponent()->GetScaledCapsuleHalfHeight()));
+		Mesh3P->SetRelativeRotation(FRotator(0.f, -90.f, 0.f));
+	}
+
+	// ResetMesh3P();
 	ResetAttributes();
 
 	SwitchToFirstPersonCamera();
@@ -204,10 +230,11 @@ void AffsCharacter::SwitchToDeathCamera()
 	if (PC)
 	{
 		PC->SetViewTargetWithBlend(this, 0.5f, EViewTargetBlendFunction::VTBlend_Cubic);
-		DeathCamera->SetActive(true);
 		FirstPersonCameraComponent->SetActive(false);
+		DeathCamera->SetActive(true);
 		Mesh3P->SetOwnerNoSee(false);
 		Mesh1P->SetVisibility(false);
+
 		WeaponManager->CurrentWeapon->GunMesh->SetVisibility(false);
 	}
 }
@@ -258,39 +285,6 @@ void AffsCharacter::Multicast_Ragdoll_Implementation()
 	}
 
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
-}
-
-void AffsCharacter::ResetMesh3P()
-{
-    if (HasAuthority())
-    {
-        Multicast_ResetMesh3P();
-    }
-    else
-    {
-        Server_ResetMesh3P();
-    }
-}
-
-void AffsCharacter::Server_ResetMesh3P_Implementation()
-{
-	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Pawn, ECR_Block);
-	Multicast_ResetMesh3P();
-}
-
-void AffsCharacter::Multicast_ResetMesh3P_Implementation()
-{
-	if (Mesh3P)
-	{
-		Mesh3P->SetCollisionProfileName(TEXT("NoCollision"));
-		Mesh3P->SetAllBodiesSimulatePhysics(false);
-		Mesh3P->SetAllBodiesPhysicsBlendWeight(0.0f);
-		Mesh3P->AttachToComponent(GetCapsuleComponent(), FAttachmentTransformRules::SnapToTargetNotIncludingScale);
-		Mesh3P->SetRelativeLocation(FVector(0.f, 0.f, -GetCapsuleComponent()->GetScaledCapsuleHalfHeight()));
-		Mesh3P->SetRelativeRotation(FRotator(0.f, -90.f, 0.f));
-	}
-
-	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Pawn, ECR_Block);
 }
 
 #pragma endregion State

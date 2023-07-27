@@ -75,19 +75,17 @@ protected:
     void OnHealthChanged(const FOnAttributeChangeData& Data);
     void Die();
 
+	UFUNCTION(Server, Reliable)
+	void Server_TeleportPlayer();
+	UFUNCTION(NetMulticast, Reliable)
+	void Multicast_FixPlayer();
+
 	UFUNCTION(BlueprintCallable)
     void Ragdoll();
 	UFUNCTION(Server, Reliable)
     void Server_Ragdoll();
     UFUNCTION(NetMulticast, Reliable)
     void Multicast_Ragdoll();
-
-	UFUNCTION(BlueprintCallable)
-	void ResetMesh3P();
-	UFUNCTION(Server, Reliable)
-	void Server_ResetMesh3P();
-	UFUNCTION(NetMulticast, Reliable)
-	void Multicast_ResetMesh3P();
 
 	UFUNCTION(BlueprintCallable, Category = "Respawn")
 	void Respawn();
