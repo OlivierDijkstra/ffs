@@ -86,4 +86,7 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Camera Animation")
 	TSubclassOf<UCameraShakeBase> CameraRecoilShake;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Crosshair")
+	UTexture2D* CrosshairTexture;
 };
