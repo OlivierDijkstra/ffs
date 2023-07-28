@@ -230,9 +230,16 @@ void AffsCharacter::Multicast_FixPlayer_Implementation()
 
 	if (Mesh3P)
 	{
-		Mesh3P->SetCollisionProfileName(TEXT("NoCollision"));
+		Mesh3P->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+		Mesh3P->SetCollisionObjectType(ECC_WorldStatic);
+		Mesh3P->SetCollisionResponseToChannel(ECC_Pawn, ECR_Block);
+		Mesh3P->SetCollisionResponseToChannel(ECC_PhysicsBody, ECR_Block);
+		
+		Mesh3P->SetCollisionResponseToChannel(ECC_Camera, ECR_Block);
+
 		Mesh3P->SetAllBodiesSimulatePhysics(false);
 		Mesh3P->SetAllBodiesPhysicsBlendWeight(0.0f);
+
 		Mesh3P->AttachToComponent(GetCapsuleComponent(), FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 		Mesh3P->SetRelativeLocation(FVector(0.f, 0.f, -GetCapsuleComponent()->GetScaledCapsuleHalfHeight()));
 		Mesh3P->SetRelativeRotation(FRotator(0.f, -90.f, 0.f));
@@ -313,7 +320,12 @@ void AffsCharacter::Multicast_Ragdoll_Implementation()
 {
 	if (Mesh3P)
 	{
-		Mesh3P->SetCollisionProfileName(TEXT("Ragdoll"));
+		Mesh3P->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+		Mesh3P->SetCollisionObjectType(ECC_PhysicsBody);
+		Mesh3P->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
+		Mesh3P->SetCollisionResponseToChannel(ECC_PhysicsBody, ECR_Ignore);
+
+		Mesh3P->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
 
 		if (Mesh3P->GetPhysicsAsset())
 		{
