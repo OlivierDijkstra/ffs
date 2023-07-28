@@ -74,7 +74,7 @@ FHitResult AffsWeapon::FireLineTrace(bool Initial, bool Debug)
     FCollisionQueryParams TraceParams;
     TraceParams.AddIgnoredActor(GunOwner);
 
-    bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, StartLocation, EndLocation, ECollisionChannel::ECC_Camera, TraceParams);
+    bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, StartLocation, EndLocation, ECollisionChannel::ECC_GameTraceChannel2, TraceParams);
     
     if (Debug)
     {

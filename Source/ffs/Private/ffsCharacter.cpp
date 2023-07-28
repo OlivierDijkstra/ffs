@@ -235,7 +235,7 @@ void AffsCharacter::Multicast_FixPlayer_Implementation()
 		Mesh3P->SetCollisionResponseToChannel(ECC_Pawn, ECR_Block);
 		Mesh3P->SetCollisionResponseToChannel(ECC_PhysicsBody, ECR_Block);
 		
-		Mesh3P->SetCollisionResponseToChannel(ECC_Camera, ECR_Block);
+		Mesh3P->SetCollisionResponseToChannel(ECC_GameTraceChannel2, ECR_Block);
 
 		Mesh3P->SetAllBodiesSimulatePhysics(false);
 		Mesh3P->SetAllBodiesPhysicsBlendWeight(0.0f);
@@ -325,7 +325,7 @@ void AffsCharacter::Multicast_Ragdoll_Implementation()
 		Mesh3P->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
 		Mesh3P->SetCollisionResponseToChannel(ECC_PhysicsBody, ECR_Ignore);
 
-		Mesh3P->SetCollisionResponseToChannel(ECC_Camera, ECR_Ignore);
+		Mesh3P->SetCollisionResponseToChannel(ECC_GameTraceChannel2, ECR_Ignore);
 
 		if (Mesh3P->GetPhysicsAsset())
 		{
