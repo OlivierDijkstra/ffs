@@ -63,8 +63,8 @@ FHitResult AffsWeapon::FireLineTrace(bool Initial, bool Debug)
     FRotator PlayerViewpointRotation;
     PC->GetPlayerViewPoint(PlayerViewpointLocation, PlayerViewpointRotation);
 
-    // Get the start location of the line trace
-    FVector StartLocation = GunMesh->GetSocketLocation(FName("Muzzle"));
+    // Get the start location of the line trace, center of the camera
+    FVector StartLocation = PlayerViewpointLocation + PlayerViewpointRotation.Vector() * 20.f;
 
     // Calculate the end location of the line trace with added spread
     float Spread = Initial ? 0.f : WeaponSpread;
