@@ -2,718 +2,435 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
-			"label": "ffs Mac Debug Build",
+			"label": "ffs Win64 Debug Build",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
 			"args": [
 				"ffs",
-				"Mac",
+				"Win64",
 				"Debug",
-				"/Users/oli/Code/ffs/ffs.uproject",
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		},
 		{
-			"label": "ffs Mac Debug Rebuild",
+			"label": "ffs Win64 Debug Rebuild",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
 			"args": [
 				"ffs",
-				"Mac",
+				"Win64",
 				"Debug",
-				"/Users/oli/Code/ffs/ffs.uproject",
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"dependsOn": [
-				"ffs Mac Debug Clean"
+				"ffs Win64 Debug Clean"
 			],
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		},
 		{
-			"label": "ffs Mac Debug Clean",
+			"label": "ffs Win64 Debug Clean",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
 			"args": [
 				"ffs",
-				"Mac",
+				"Win64",
 				"Debug",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex",
-				"-clean"
-			],
-			"problemMatcher": "$msCompile",
-			"type": "shell",
-			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
-			}
-		},
-		{
-			"label": "ffs Mac DebugGame Build",
-			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
-			"args": [
-				"ffs",
-				"Mac",
-				"DebugGame",
-				"/Users/oli/Code/ffs/ffs.uproject",
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		},
 		{
-			"label": "ffs Mac DebugGame Rebuild",
+			"label": "ffs Win64 DebugGame Build",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
 			"args": [
 				"ffs",
-				"Mac",
+				"Win64",
 				"DebugGame",
-				"/Users/oli/Code/ffs/ffs.uproject",
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
+			}
+		},
+		{
+			"label": "ffs Win64 DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"ffs",
+				"Win64",
+				"DebugGame",
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"dependsOn": [
-				"ffs Mac DebugGame Clean"
+				"ffs Win64 DebugGame Clean"
 			],
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		},
 		{
-			"label": "ffs Mac DebugGame Clean",
+			"label": "ffs Win64 DebugGame Clean",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
 			"args": [
 				"ffs",
-				"Mac",
+				"Win64",
 				"DebugGame",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex",
-				"-clean"
-			],
-			"problemMatcher": "$msCompile",
-			"type": "shell",
-			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
-			}
-		},
-		{
-			"label": "ffs Mac Development Build",
-			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
-			"args": [
-				"ffs",
-				"Mac",
-				"Development",
-				"/Users/oli/Code/ffs/ffs.uproject",
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		},
 		{
-			"label": "ffs Mac Development Rebuild",
+			"label": "ffs Win64 Development Build",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
 			"args": [
 				"ffs",
-				"Mac",
+				"Win64",
 				"Development",
-				"/Users/oli/Code/ffs/ffs.uproject",
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
+			}
+		},
+		{
+			"label": "ffs Win64 Development Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"ffs",
+				"Win64",
+				"Development",
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"dependsOn": [
-				"ffs Mac Development Clean"
+				"ffs Win64 Development Clean"
 			],
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		},
 		{
-			"label": "ffs Mac Development Clean",
+			"label": "ffs Win64 Development Clean",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
 			"args": [
 				"ffs",
-				"Mac",
+				"Win64",
 				"Development",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex",
-				"-clean"
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
+				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		},
 		{
-			"label": "ffs Mac Test Build",
+			"label": "ffs Win64 Test Build",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
 			"args": [
 				"ffs",
-				"Mac",
+				"Win64",
 				"Test",
-				"/Users/oli/Code/ffs/ffs.uproject",
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		},
 		{
-			"label": "ffs Mac Test Rebuild",
+			"label": "ffs Win64 Test Rebuild",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
 			"args": [
 				"ffs",
-				"Mac",
+				"Win64",
 				"Test",
-				"/Users/oli/Code/ffs/ffs.uproject",
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"dependsOn": [
-				"ffs Mac Test Clean"
+				"ffs Win64 Test Clean"
 			],
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		},
 		{
-			"label": "ffs Mac Test Clean",
+			"label": "ffs Win64 Test Clean",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
 			"args": [
 				"ffs",
-				"Mac",
+				"Win64",
 				"Test",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex",
-				"-clean"
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
+				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		},
 		{
-			"label": "ffs Mac Shipping Build",
+			"label": "ffs Win64 Shipping Build",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
 			"args": [
 				"ffs",
-				"Mac",
+				"Win64",
 				"Shipping",
-				"/Users/oli/Code/ffs/ffs.uproject",
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		},
 		{
-			"label": "ffs Mac Shipping Rebuild",
+			"label": "ffs Win64 Shipping Rebuild",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
 			"args": [
 				"ffs",
-				"Mac",
+				"Win64",
 				"Shipping",
-				"/Users/oli/Code/ffs/ffs.uproject",
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"dependsOn": [
-				"ffs Mac Shipping Clean"
+				"ffs Win64 Shipping Clean"
 			],
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		},
 		{
-			"label": "ffs Mac Shipping Clean",
+			"label": "ffs Win64 Shipping Clean",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
 			"args": [
 				"ffs",
-				"Mac",
+				"Win64",
 				"Shipping",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex",
-				"-clean"
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
+				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		},
 		{
-			"label": "ffs IOS Debug Build",
+			"label": "ffsEditor Win64 Debug Build",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
 			"args": [
-				"ffs",
-				"IOS",
+				"ffsEditor",
+				"Win64",
 				"Debug",
-				"/Users/oli/Code/ffs/ffs.uproject",
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		},
 		{
-			"label": "ffs IOS Debug Rebuild",
+			"label": "ffsEditor Win64 Debug Rebuild",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
 			"args": [
-				"ffs",
-				"IOS",
+				"ffsEditor",
+				"Win64",
 				"Debug",
-				"/Users/oli/Code/ffs/ffs.uproject",
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"dependsOn": [
-				"ffs IOS Debug Clean"
+				"ffsEditor Win64 Debug Clean"
 			],
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		},
 		{
-			"label": "ffs IOS Debug Clean",
+			"label": "ffsEditor Win64 Debug Clean",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
 			"args": [
-				"ffs",
-				"IOS",
+				"ffsEditor",
+				"Win64",
 				"Debug",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex",
-				"-clean"
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
+				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		},
 		{
-			"label": "ffs IOS DebugGame Build",
+			"label": "ffsEditor Win64 DebugGame Build",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
 			"args": [
-				"ffs",
-				"IOS",
+				"ffsEditor",
+				"Win64",
 				"DebugGame",
-				"/Users/oli/Code/ffs/ffs.uproject",
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		},
 		{
-			"label": "ffs IOS DebugGame Rebuild",
+			"label": "ffsEditor Win64 DebugGame Rebuild",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
 			"args": [
-				"ffs",
-				"IOS",
+				"ffsEditor",
+				"Win64",
 				"DebugGame",
-				"/Users/oli/Code/ffs/ffs.uproject",
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"dependsOn": [
-				"ffs IOS DebugGame Clean"
+				"ffsEditor Win64 DebugGame Clean"
 			],
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		},
 		{
-			"label": "ffs IOS DebugGame Clean",
+			"label": "ffsEditor Win64 DebugGame Clean",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
 			"args": [
-				"ffs",
-				"IOS",
+				"ffsEditor",
+				"Win64",
 				"DebugGame",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex",
-				"-clean"
-			],
-			"problemMatcher": "$msCompile",
-			"type": "shell",
-			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
-			}
-		},
-		{
-			"label": "ffs IOS Development Build",
-			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
-			"args": [
-				"ffs",
-				"IOS",
-				"Development",
-				"/Users/oli/Code/ffs/ffs.uproject",
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		},
 		{
-			"label": "ffs IOS Development Rebuild",
+			"label": "ffsEditor Win64 Development Build",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
 			"args": [
-				"ffs",
-				"IOS",
+				"ffsEditor",
+				"Win64",
 				"Development",
-				"/Users/oli/Code/ffs/ffs.uproject",
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
+			}
+		},
+		{
+			"label": "ffsEditor Win64 Development Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"ffsEditor",
+				"Win64",
+				"Development",
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"dependsOn": [
-				"ffs IOS Development Clean"
+				"ffsEditor Win64 Development Clean"
 			],
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		},
 		{
-			"label": "ffs IOS Development Clean",
+			"label": "ffsEditor Win64 Development Clean",
 			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
 			"args": [
-				"ffs",
-				"IOS",
+				"ffsEditor",
+				"Win64",
 				"Development",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex",
-				"-clean"
-			],
-			"problemMatcher": "$msCompile",
-			"type": "shell",
-			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
-			}
-		},
-		{
-			"label": "ffs IOS Test Build",
-			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
-			"args": [
-				"ffs",
-				"IOS",
-				"Test",
-				"/Users/oli/Code/ffs/ffs.uproject",
+				"C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\ffs.uproject",
 				"-waitmutex"
 			],
 			"problemMatcher": "$msCompile",
 			"type": "shell",
 			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
-			}
-		},
-		{
-			"label": "ffs IOS Test Rebuild",
-			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
-			"args": [
-				"ffs",
-				"IOS",
-				"Test",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex"
-			],
-			"problemMatcher": "$msCompile",
-			"dependsOn": [
-				"ffs IOS Test Clean"
-			],
-			"type": "shell",
-			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
-			}
-		},
-		{
-			"label": "ffs IOS Test Clean",
-			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
-			"args": [
-				"ffs",
-				"IOS",
-				"Test",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex",
-				"-clean"
-			],
-			"problemMatcher": "$msCompile",
-			"type": "shell",
-			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
-			}
-		},
-		{
-			"label": "ffs IOS Shipping Build",
-			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
-			"args": [
-				"ffs",
-				"IOS",
-				"Shipping",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex"
-			],
-			"problemMatcher": "$msCompile",
-			"type": "shell",
-			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
-			}
-		},
-		{
-			"label": "ffs IOS Shipping Rebuild",
-			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
-			"args": [
-				"ffs",
-				"IOS",
-				"Shipping",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex"
-			],
-			"problemMatcher": "$msCompile",
-			"dependsOn": [
-				"ffs IOS Shipping Clean"
-			],
-			"type": "shell",
-			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
-			}
-		},
-		{
-			"label": "ffs IOS Shipping Clean",
-			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
-			"args": [
-				"ffs",
-				"IOS",
-				"Shipping",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex",
-				"-clean"
-			],
-			"problemMatcher": "$msCompile",
-			"type": "shell",
-			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
-			}
-		},
-		{
-			"label": "ffsEditor Mac Debug Build",
-			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
-			"args": [
-				"ffsEditor",
-				"Mac",
-				"Debug",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex"
-			],
-			"problemMatcher": "$msCompile",
-			"type": "shell",
-			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
-			}
-		},
-		{
-			"label": "ffsEditor Mac Debug Rebuild",
-			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
-			"args": [
-				"ffsEditor",
-				"Mac",
-				"Debug",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex"
-			],
-			"problemMatcher": "$msCompile",
-			"dependsOn": [
-				"ffsEditor Mac Debug Clean"
-			],
-			"type": "shell",
-			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
-			}
-		},
-		{
-			"label": "ffsEditor Mac Debug Clean",
-			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
-			"args": [
-				"ffsEditor",
-				"Mac",
-				"Debug",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex",
-				"-clean"
-			],
-			"problemMatcher": "$msCompile",
-			"type": "shell",
-			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
-			}
-		},
-		{
-			"label": "ffsEditor Mac DebugGame Build",
-			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
-			"args": [
-				"ffsEditor",
-				"Mac",
-				"DebugGame",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex"
-			],
-			"problemMatcher": "$msCompile",
-			"type": "shell",
-			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
-			}
-		},
-		{
-			"label": "ffsEditor Mac DebugGame Rebuild",
-			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
-			"args": [
-				"ffsEditor",
-				"Mac",
-				"DebugGame",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex"
-			],
-			"problemMatcher": "$msCompile",
-			"dependsOn": [
-				"ffsEditor Mac DebugGame Clean"
-			],
-			"type": "shell",
-			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
-			}
-		},
-		{
-			"label": "ffsEditor Mac DebugGame Clean",
-			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
-			"args": [
-				"ffsEditor",
-				"Mac",
-				"DebugGame",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex",
-				"-clean"
-			],
-			"problemMatcher": "$msCompile",
-			"type": "shell",
-			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
-			}
-		},
-		{
-			"label": "ffsEditor Mac Development Build",
-			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
-			"args": [
-				"ffsEditor",
-				"Mac",
-				"Development",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex"
-			],
-			"problemMatcher": "$msCompile",
-			"type": "shell",
-			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
-			}
-		},
-		{
-			"label": "ffsEditor Mac Development Rebuild",
-			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
-			"args": [
-				"ffsEditor",
-				"Mac",
-				"Development",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex"
-			],
-			"problemMatcher": "$msCompile",
-			"dependsOn": [
-				"ffsEditor Mac Development Clean"
-			],
-			"type": "shell",
-			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
-			}
-		},
-		{
-			"label": "ffsEditor Mac Development Clean",
-			"group": "build",
-			"command": "Engine/Build/BatchFiles/Mac/Build.sh",
-			"args": [
-				"ffsEditor",
-				"Mac",
-				"Development",
-				"/Users/oli/Code/ffs/ffs.uproject",
-				"-waitmutex",
-				"-clean"
-			],
-			"problemMatcher": "$msCompile",
-			"type": "shell",
-			"options": {
-				"cwd": "/Users/Shared/Epic Games/UE_5.2"
+				"cwd": "C:\\Program Files (x86)\\UE_5.2"
 			}
 		}
 	]
