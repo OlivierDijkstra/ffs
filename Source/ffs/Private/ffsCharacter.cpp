@@ -495,60 +495,47 @@ void AffsCharacter::Multicast_UnequipWeapon_Implementation()
 	}
 }
 
-void AffsCharacter::PlayThirdPersonUnequipMontage()
+void AffsCharacter::PlayThirdPersonMontage(UAnimMontage *Montage, float Rate)
 {
-	if (HasAuthority() && WeaponManager && WeaponManager->UnequipMontage)
+	if (HasAuthority() && Montage)
 	{
 		UAnimInstance *AnimInstance3P = Mesh3P->GetAnimInstance();
-		AnimInstance3P->Montage_Play(WeaponManager->UnequipMontage, 1.0f);
+		AnimInstance3P->Montage_Play(Montage, Rate);
 	}
 
 	if (HasAuthority())
 	{
-		Server_PlayThirdPersonUnequipMontage();
+		Server_PlayThirdPersonMontage(Montage, Rate);
 	}
 }
 
-void AffsCharacter::Server_PlayThirdPersonUnequipMontage_Implementation()
+void AffsCharacter::Server_PlayThirdPersonMontage_Implementation(UAnimMontage *Montage, float Rate)
 {
-	Multicast_PlayThirdPersonUnequipMontage();
+	Multicast_PlayThirdPersonMontage(Montage, Rate);
 }
 
-void AffsCharacter::Multicast_PlayThirdPersonUnequipMontage_Implementation()
+void AffsCharacter::Multicast_PlayThirdPersonMontage_Implementation(UAnimMontage *Montage, float Rate)
 {
-	if (WeaponManager && WeaponManager->UnequipMontage && !IsLocallyControlled())
+	if (Montage && !IsLocallyControlled())
 	{
 		UAnimInstance *AnimInstance3P = Mesh3P->GetAnimInstance();
-		AnimInstance3P->Montage_Play(WeaponManager->UnequipMontage, 1.0f);
+		AnimInstance3P->Montage_Play(Montage, Rate);
 	}
 }
 
-void AffsCharacter::ReverseThirdPersonUnequipMontage()
+void AffsCharacter::PlayThirdPersonUnequipMontage(float Rate)
 {
-	// Play a reversed version of the unequip montage from the position of the currently playing montage
 	if (HasAuthority() && WeaponManager && WeaponManager->UnequipMontage)
 	{
-		UAnimInstance *AnimInstance3P = Mesh3P->GetAnimInstance();
-		AnimInstance3P->Montage_Play(WeaponManager->UnequipMontage, -1.0f, EMontagePlayReturnType::MontageLength, 0.0f, true);
-	}
-
-	if (HasAuthority())
-	{
-		Server_ReverseThirdPersonUnequipMontage();
+		PlayThirdPersonMontage(WeaponManager->UnequipMontage, Rate);
 	}
 }
 
-void AffsCharacter::Server_ReverseThirdPersonUnequipMontage_Implementation()
+void AffsCharacter::PlayThirdPersonEquipMontage(float Rate)
 {
-	Multicast_ReverseThirdPersonUnequipMontage();
-}
-
-void AffsCharacter::Multicast_ReverseThirdPersonUnequipMontage_Implementation()
-{
-	if (WeaponManager && WeaponManager->UnequipMontage && !IsLocallyControlled())
+	if (HasAuthority() && WeaponManager && WeaponManager->EquipMontage)
 	{
-		UAnimInstance *AnimInstance3P = Mesh3P->GetAnimInstance();
-		AnimInstance3P->Montage_Play(WeaponManager->UnequipMontage, -1.0f, EMontagePlayReturnType::MontageLength, 0.0f, true);
+		PlayThirdPersonMontage(WeaponManager->EquipMontage, Rate);
 	}
 }
 

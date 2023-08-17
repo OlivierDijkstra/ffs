@@ -137,18 +137,16 @@ protected:
 	void Multicast_UnequipWeapon();
 
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
-	void PlayThirdPersonUnequipMontage();
+	void PlayThirdPersonMontage(UAnimMontage *Montage, float Rate = 1.0f);
 	UFUNCTION(Server, Reliable, Category = "Net")
-	void Server_PlayThirdPersonUnequipMontage();
+	void Server_PlayThirdPersonMontage(UAnimMontage *Montage, float Rate = 1.0f);
 	UFUNCTION(NetMulticast, Reliable, Category = "Net")
-	void Multicast_PlayThirdPersonUnequipMontage();
+	void Multicast_PlayThirdPersonMontage(UAnimMontage *Montage, float Rate = 1.0f);
 
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
-	void ReverseThirdPersonUnequipMontage();
-	UFUNCTION(Server, Reliable, Category = "Net")
-	void Server_ReverseThirdPersonUnequipMontage();
-	UFUNCTION(NetMulticast, Reliable, Category = "Net")
-	void Multicast_ReverseThirdPersonUnequipMontage();
+	void PlayThirdPersonUnequipMontage(float Rate = 1.0f);
+	UFUNCTION(BlueprintCallable, Category = "Weapons")
+	void PlayThirdPersonEquipMontage(float Rate = 1.0f);
 
 	UFUNCTION()
 	void PlayCameraShake();
