@@ -17,7 +17,7 @@ enum class EFireMode : uint8
     AUTO UMETA(DisplayName = "Auto"),
     BURST UMETA(DisplayName = "Burst")
 };
-
+// @
 UENUM(BlueprintType)
 enum class EEquippedWeapon : uint8
 {
@@ -37,27 +37,33 @@ protected:
 public:    
     UffsWeaponManager();
 
-    UPROPERTY(BlueprintReadWrite, Category = "Weapons")
+    UPROPERTY(Replicated, BlueprintReadWrite, Category = "Weapons")
 	AffsWeapon *CurrentWeapon = nullptr;
 
-    UPROPERTY(EditDefaultsOnly, Category = "Animation")
+    UPROPERTY(Replicated, BlueprintReadWrite, Category = "Weapons")
+    int32 CurrentWeaponIndex = 0;
+
+    UPROPERTY(Replicated, BlueprintReadOnly, Category = "Weapons")
+    TArray<AffsWeapon*> Weapons;
+
+    UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Animation")
 	UAnimMontage *EquipMontage;
 
-	UPROPERTY(EditDefaultsOnly, Category = "Animation")
+	UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Animation")
 	UAnimMontage *UnequipMontage;
 
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapons")
-    TSubclassOf<AffsWeapon> PrimaryWeaponClass;
+    TSubclassOf<AffsWeapon> SpawnPrimaryWeaponClass;
 
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapons")
-    TSubclassOf<AffsWeapon> SecondaryWeaponClass;
-
+    TSubclassOf<AffsWeapon> SpawnSecondaryWeaponClass;
+    // @
     UPROPERTY(BlueprintReadWrite, Category = "Weapons")
     AffsWeapon *PrimaryWeapon = nullptr;
-
+    // @
     UPROPERTY(BlueprintReadWrite, Category = "Weapons")
     AffsWeapon *SecondaryWeapon = nullptr;
-
+    // @
     UPROPERTY(Replicated, BlueprintReadWrite, Category = "Weapons")
     EEquippedWeapon EquippedWeaponType = EEquippedWeapon::NONE;
 
@@ -68,13 +74,16 @@ public:
     void EquipWeaponOnPlayer(AffsCharacter *Player, AffsWeapon *Weapon);
 
     UFUNCTION(BlueprintCallable, Category = "Weapons")
+    void IncrementCurrentWeaponIndex();
+    // @
+    UFUNCTION(BlueprintCallable, Category = "Weapons")
     void EquipPrimaryWeapon(AffsCharacter *Player);
-
+    // @
     UFUNCTION(BlueprintCallable, Category = "Weapons")
     void EquipSecondaryWeapon(AffsCharacter *Player);
 
 	virtual FHitResult FireLineTrace(bool InitialShot, bool Debug);
-
+    // @
     void SwitchWeaponVisibility(EEquippedWeapon WeaponType);
     void PlayFireAnimation(bool ThirdPerson);
     void PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName, bool ThirdPerson);

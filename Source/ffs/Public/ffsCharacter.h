@@ -104,6 +104,10 @@ protected:
 	//
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
 	void EquipWeapon();
+	UFUNCTION(Server, Reliable, Category = "Net")
+	void Server_EquipWeapon(int32 WeaponIndex);
+	UFUNCTION(NetMulticast, Reliable, Category = "Net")
+	void Multicast_EquipWeapon(AffsWeapon *Weapon);
 	
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
 	virtual FHitResult FireWeapon(bool InitialShot, bool Debug);
@@ -122,12 +126,29 @@ protected:
 	UFUNCTION(NetMulticast, Reliable, Category = "Net")
 	void Multicast_PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName);
 
+	// @
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
 	void UnequipWeapon();
+	// @
 	UFUNCTION(Server, Reliable, Category = "Net")
-	void Server_UnequipWeapon(EEquippedWeapon WeaponType);
+	void Server_UnequipWeapon();
+	// @
 	UFUNCTION(NetMulticast, Reliable, Category = "Net")
 	void Multicast_UnequipWeapon();
+
+	UFUNCTION(BlueprintCallable, Category = "Weapons")
+	void PlayThirdPersonUnequipMontage();
+	UFUNCTION(Server, Reliable, Category = "Net")
+	void Server_PlayThirdPersonUnequipMontage();
+	UFUNCTION(NetMulticast, Reliable, Category = "Net")
+	void Multicast_PlayThirdPersonUnequipMontage();
+
+	UFUNCTION(BlueprintCallable, Category = "Weapons")
+	void ReverseThirdPersonUnequipMontage();
+	UFUNCTION(Server, Reliable, Category = "Net")
+	void Server_ReverseThirdPersonUnequipMontage();
+	UFUNCTION(NetMulticast, Reliable, Category = "Net")
+	void Multicast_ReverseThirdPersonUnequipMontage();
 
 	UFUNCTION()
 	void PlayCameraShake();
@@ -136,6 +157,7 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Weapons")
 	void OnWeaponEquipped(const FRecoilAnimData Data, const float Rate = 0.0f, const int Bursts = 0);
 
+	// @
 	UFUNCTION(BlueprintImplementableEvent, Category = "Weapons")
 	void OnWeaponUnequipped();
 

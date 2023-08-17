@@ -46,7 +46,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Mesh")
 	USkeletalMeshComponent* GunMesh;
 
-	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = "Mesh")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Mesh")
 	USkeletalMeshComponent* GunMesh3P;
 
 	UFUNCTION(BlueprintCallable, Category = "Mesh")

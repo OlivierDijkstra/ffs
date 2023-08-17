@@ -426,73 +426,61 @@ void AffsCharacter::Multicast_PlayWeaponFireFX_Implementation(UNiagaraSystem *FX
 
 void AffsCharacter::EquipWeapon()
 {
-	if (WeaponManager) {
-		AffsWeapon *Gun = nullptr;
-
-		if (WeaponManager->EquippedWeaponType == EEquippedWeapon::PRIMARY)
-		{
-			Gun = WeaponManager->PrimaryWeapon;
-		}
-		else if (WeaponManager->EquippedWeaponType == EEquippedWeapon::SECONDARY)
-		{
-			Gun = WeaponManager->SecondaryWeapon;
-		}
-
-		WeaponManager->EquipWeaponOnPlayer(this, Gun);
-	}
-
-	if (IsLocallyControlled() || HasAuthority())
+	if (IsLocallyControlled() && !HasAuthority() && WeaponManager)
 	{
-		OnWeaponEquipped(
-			WeaponManager->CurrentWeapon->RecoilAnimData,
-			WeaponManager->CurrentWeapon->FireRate,
-			WeaponManager->CurrentWeapon->Burst);
-		// TODO: Set burst and firemode
+		WeaponManager->IncrementCurrentWeaponIndex();
+		WeaponManager->EquipWeaponOnPlayer(this, WeaponManager->Weapons[WeaponManager->CurrentWeaponIndex]);
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("LOCAL CLIENT: Weapon Index: %d, Current Weapon: %s"), WeaponManager->CurrentWeaponIndex, *WeaponManager->CurrentWeapon->GetName()));
+		Server_EquipWeapon(WeaponManager->CurrentWeaponIndex);
 	}
 }
 
+void AffsCharacter::Server_EquipWeapon_Implementation(int32 WeaponIndex)
+{
+	if (HasAuthority() && WeaponManager)
+	{
+		WeaponManager->CurrentWeaponIndex = WeaponIndex;
+		WeaponManager->EquipWeaponOnPlayer(this, WeaponManager->Weapons[WeaponManager->CurrentWeaponIndex]);
+		// Print the weapon index and the current weapon name, SERVER: prefix
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("SERVER: Weapon Index: %d, Current Weapon: %s"), WeaponManager->CurrentWeaponIndex, *WeaponManager->CurrentWeapon->GetName()));
+
+		Multicast_EquipWeapon(WeaponManager->CurrentWeapon);
+	}
+}
+
+// Update the weapon for the other players, DO NOT do anything montage related
+void AffsCharacter::Multicast_EquipWeapon_Implementation(AffsWeapon *Weapon)
+{
+    if (WeaponManager && Weapon)
+    {
+		// Print the weapon param
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("MULTICAST: Weapon: %s"), *Weapon->GetName()));
+		WeaponManager->EquipWeaponOnPlayer(this, Weapon);
+	}
+}
+// @
 void AffsCharacter::UnequipWeapon()
 {
-	if (WeaponManager && WeaponManager->UnequipMontage)
-	{
-		UAnimInstance *AnimInstance1P = Mesh1P->GetAnimInstance();
-		AnimInstance1P->Montage_Play(WeaponManager->UnequipMontage, 1.0f);
-	}
-
 	OnWeaponUnequipped();
 
 	if (IsLocallyControlled() && !HasAuthority() && WeaponManager)
 	{
-		Server_UnequipWeapon(WeaponManager->EquippedWeaponType);
+		Server_UnequipWeapon();
 	}
 	else if (HasAuthority())
 	{
 		Multicast_UnequipWeapon();
 	}
 }
-
-void AffsCharacter::Server_UnequipWeapon_Implementation(EEquippedWeapon WeaponType)
+// @
+void AffsCharacter::Server_UnequipWeapon_Implementation()
 {
 	if (HasAuthority() && WeaponManager)
 	{
-		AffsWeapon *Gun = nullptr;
-
-		if (WeaponType == EEquippedWeapon::PRIMARY)
-		{
-			Gun = WeaponManager->PrimaryWeapon;
-		}
-		else if (WeaponType == EEquippedWeapon::SECONDARY)
-		{
-			Gun = WeaponManager->SecondaryWeapon;
-		}
-
-		WeaponManager->EquippedWeaponType = WeaponType;
-		OnWeaponEquipped(Gun->RecoilAnimData, Gun->FireRate, Gun->Burst);
-
 		Multicast_UnequipWeapon();
 	}
 }
-
+// @
 void AffsCharacter::Multicast_UnequipWeapon_Implementation()
 {
 	if (WeaponManager && WeaponManager->UnequipMontage && !IsLocallyControlled())
@@ -504,6 +492,63 @@ void AffsCharacter::Multicast_UnequipWeapon_Implementation()
 		// mesh it works fine but we have to add another event in the anim blueprint to replicate the unequip animation.
 		UAnimInstance *AnimInstance3P = Mesh3P->GetAnimInstance();
 		AnimInstance3P->Montage_Play(WeaponManager->UnequipMontage, 1.0f);
+	}
+}
+
+void AffsCharacter::PlayThirdPersonUnequipMontage()
+{
+	if (HasAuthority() && WeaponManager && WeaponManager->UnequipMontage)
+	{
+		UAnimInstance *AnimInstance3P = Mesh3P->GetAnimInstance();
+		AnimInstance3P->Montage_Play(WeaponManager->UnequipMontage, 1.0f);
+	}
+
+	if (HasAuthority())
+	{
+		Server_PlayThirdPersonUnequipMontage();
+	}
+}
+
+void AffsCharacter::Server_PlayThirdPersonUnequipMontage_Implementation()
+{
+	Multicast_PlayThirdPersonUnequipMontage();
+}
+
+void AffsCharacter::Multicast_PlayThirdPersonUnequipMontage_Implementation()
+{
+	if (WeaponManager && WeaponManager->UnequipMontage && !IsLocallyControlled())
+	{
+		UAnimInstance *AnimInstance3P = Mesh3P->GetAnimInstance();
+		AnimInstance3P->Montage_Play(WeaponManager->UnequipMontage, 1.0f);
+	}
+}
+
+void AffsCharacter::ReverseThirdPersonUnequipMontage()
+{
+	// Play a reversed version of the unequip montage from the position of the currently playing montage
+	if (HasAuthority() && WeaponManager && WeaponManager->UnequipMontage)
+	{
+		UAnimInstance *AnimInstance3P = Mesh3P->GetAnimInstance();
+		AnimInstance3P->Montage_Play(WeaponManager->UnequipMontage, -1.0f, EMontagePlayReturnType::MontageLength, 0.0f, true);
+	}
+
+	if (HasAuthority())
+	{
+		Server_ReverseThirdPersonUnequipMontage();
+	}
+}
+
+void AffsCharacter::Server_ReverseThirdPersonUnequipMontage_Implementation()
+{
+	Multicast_ReverseThirdPersonUnequipMontage();
+}
+
+void AffsCharacter::Multicast_ReverseThirdPersonUnequipMontage_Implementation()
+{
+	if (WeaponManager && WeaponManager->UnequipMontage && !IsLocallyControlled())
+	{
+		UAnimInstance *AnimInstance3P = Mesh3P->GetAnimInstance();
+		AnimInstance3P->Montage_Play(WeaponManager->UnequipMontage, -1.0f, EMontagePlayReturnType::MontageLength, 0.0f, true);
 	}
 }
 

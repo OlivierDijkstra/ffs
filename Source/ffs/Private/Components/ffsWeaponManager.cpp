@@ -14,6 +14,10 @@ void UffsWeaponManager::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &Ou
 {
 	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
+	DOREPLIFETIME_CONDITION(UffsWeaponManager, Weapons, COND_SkipOwner);
+	DOREPLIFETIME_CONDITION(UffsWeaponManager, CurrentWeapon, COND_SkipOwner);
+	DOREPLIFETIME_CONDITION(UffsWeaponManager, CurrentWeaponIndex, COND_SkipOwner);
+	// @
 	DOREPLIFETIME_CONDITION(UffsWeaponManager, EquippedWeaponType, COND_SkipOwner);
 }
 
@@ -71,6 +75,18 @@ void UffsWeaponManager::UpdateAnimInstancePose(UffsAnimInstance *MeshAnimInstanc
 	}
 }
 
+void UffsWeaponManager::IncrementCurrentWeaponIndex()
+{
+	if (CurrentWeaponIndex < Weapons.Num() - 1)
+	{
+		CurrentWeaponIndex++;
+	}
+	else
+	{
+		CurrentWeaponIndex = 0;
+	}
+}
+
 AffsWeapon* UffsWeaponManager::SpawnWeaponOnPlayer(AffsCharacter *Player, TSubclassOf<AffsWeapon> WeaponClass)
 {
 	if (!Player || !WeaponClass) return nullptr;
@@ -89,12 +105,14 @@ AffsWeapon* UffsWeaponManager::SpawnWeaponOnPlayer(AffsCharacter *Player, TSubcl
 	Weapon->GunMesh->CastShadow = false;
 
 	Weapon->GunMesh3P->AttachToComponent(Player->Mesh3P, FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("GripPoint"));
-	Weapon->GunMesh3P->SetOwnerNoSee(true);
+	// Weapon->GunMesh3P->SetOwnerNoSee(true);
 
 	Weapon->GunMesh->SetVisibility(false, true);
 	Weapon->GunMesh3P->SetVisibility(false, true);
 	
 	Weapon->UpdateFirstPersonGunMeshFOV(90.f);
+
+	Weapons.Add(Weapon);
 
 	return Weapon;
 }
@@ -103,9 +121,16 @@ void UffsWeaponManager::EquipWeaponOnPlayer(AffsCharacter *Player, AffsWeapon *W
 {
 	if (!Player || !Weapon) return;
 
-	SwitchWeaponVisibility(EquippedWeaponType);
+	if (CurrentWeapon)
+	{
+		CurrentWeapon->GunMesh->SetVisibility(false, true);
+		CurrentWeapon->GunMesh3P->SetVisibility(false, true);
+	}
 	
 	CurrentWeapon = Weapon;
+
+	CurrentWeapon->GunMesh->SetVisibility(true, true);
+	CurrentWeapon->GunMesh3P->SetVisibility(true, true);
 
 	FVector PlayerPivotOffset = CurrentWeapon->GunMesh->GetSocketTransform(TEXT("WeaponPivot"), RTS_Component).GetLocation();
 	FVector GunPivotOffset = CurrentWeapon->GunPivotOffset;
@@ -120,22 +145,13 @@ void UffsWeaponManager::EquipWeaponOnPlayer(AffsCharacter *Player, AffsWeapon *W
 	{
 		UpdateAnimInstancePose(Cast<UffsAnimInstance>(Player->Mesh3P->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, CurrentWeapon->EditingOffset);
 	}
-
-	if (EquipMontage)
-	{
-		UAnimInstance *AnimInstance3P = Player->Mesh3P->GetAnimInstance();
-		AnimInstance3P->Montage_Play(EquipMontage, 1.0f);
-		UAnimInstance *AnimInstance1P = Player->Mesh1P->GetAnimInstance();
-		AnimInstance1P->Montage_Play(EquipMontage, 1.0f);
-	}
-
 	
 	Player->OnWeaponEquipped(
 		CurrentWeapon->RecoilAnimData,
 		CurrentWeapon->FireRate,
 		CurrentWeapon->Burst);
 }
-
+// @
 void UffsWeaponManager::EquipPrimaryWeapon(AffsCharacter *Player)
 {
 	if (!PrimaryWeapon) return;
@@ -145,7 +161,7 @@ void UffsWeaponManager::EquipPrimaryWeapon(AffsCharacter *Player)
 	SwitchWeaponVisibility(EEquippedWeapon::PRIMARY);
 	EquipWeaponOnPlayer(Player, PrimaryWeapon);
 }
-
+// @
 void UffsWeaponManager::EquipSecondaryWeapon(AffsCharacter *Player)
 {
 	if (!SecondaryWeapon) return;
@@ -153,7 +169,7 @@ void UffsWeaponManager::EquipSecondaryWeapon(AffsCharacter *Player)
 	SwitchWeaponVisibility(EEquippedWeapon::SECONDARY);
 	EquipWeaponOnPlayer(Player, SecondaryWeapon);
 }
-
+// @
 void UffsWeaponManager::SwitchWeaponVisibility(EEquippedWeapon WeaponType)
 {
 	switch (WeaponType)
