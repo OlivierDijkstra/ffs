@@ -135,9 +135,6 @@ protected:
 	void PlayCameraShake();
 
 public:
-	UFUNCTION(BlueprintImplementableEvent, Category = "Weapons")
-	void OnWeaponEquipped(const FRecoilAnimData Data, const float Rate = 0.0f, const int Bursts = 0);
-
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Mesh)
 	USkeletalMeshComponent *Mesh1P;
 	UCameraComponent *GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
