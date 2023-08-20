@@ -21,8 +21,6 @@ void UffsWeaponManager::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &Ou
 
 void UffsWeaponManager::OnRep_CurrentWeapon()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Red, FString::Printf(TEXT("%s OnRep_CurrentWeapon: %s"), GetOwnerRole() == ROLE_Authority ? TEXT("Server") : TEXT("Client"), *CurrentWeapon->GetName()));
-
 	OnWeaponEquipped.Broadcast();
 
 	CurrentWeapon->SetActorHiddenInGame(false);
@@ -65,8 +63,6 @@ void UffsWeaponManager::OnRep_Weapons()
 		{
 			if (Weapons[i] && !Weapons[i]->bIsAttached)
 			{
-				GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Red, FString::Printf(TEXT("Initializing weapon: %s for %s"), *Weapons[i]->GetName(), GetOwnerRole() == ROLE_Authority ? TEXT("Server") : TEXT("Client")));
-
 				Weapons[i]->AttachToActor(Player, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 
 				Weapons[i]->GunMesh->AttachToComponent(Player->Mesh1P, FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("GripPoint"));
@@ -160,12 +156,8 @@ AffsWeapon *UffsWeaponManager::SpawnWeaponOnPlayer(AffsCharacter *Player, TSubcl
 
 	Weapons.Add(Weapon);
 
-	GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Red, FString::Printf(TEXT("Spawned weapon: %s for %s"), *Weapon->GetName(), GetOwnerRole() == ROLE_Authority ? TEXT("Server") : TEXT("Client")));
-
 	if (!CurrentWeapon)
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 8.f, FColor::Red, FString::Printf(TEXT("Setting current weapon: %s for %s"), *Weapon->GetName(), GetOwnerRole() == ROLE_Authority ? TEXT("Server") : TEXT("Client")));
-
 		CurrentWeapon = Weapon;
 		CurrentWeaponIndex = 0;
 		OnRep_CurrentWeapon();
