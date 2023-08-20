@@ -21,8 +21,6 @@ void UffsWeaponManager::GetLifetimeReplicatedProps(TArray<FLifetimeProperty> &Ou
 
 void UffsWeaponManager::OnRep_CurrentWeapon()
 {
-	OnWeaponEquipped.Broadcast();
-	
 	if (Weapons.Num() > 0)
 	{
 		for (int32 i = 0; i < Weapons.Num(); i++)
@@ -38,6 +36,9 @@ void UffsWeaponManager::OnRep_CurrentWeapon()
 	{
 		return;
 	}
+
+	
+	OnWeaponEquipped.Broadcast();
 
 	CurrentWeapon->SetActorHiddenInGame(false);
 
