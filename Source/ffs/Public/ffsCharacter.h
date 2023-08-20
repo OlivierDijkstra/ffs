@@ -140,10 +140,6 @@ public:
 
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Mesh)
 	USkeletalMeshComponent *Mesh1P;
-
-	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Mesh)
-	USkeletalMeshComponent *Mesh3P;
-
 	UCameraComponent *GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
 	URecoilAnimationComponent *GetRecoilAnimation() const { return RecoilAnimation; }

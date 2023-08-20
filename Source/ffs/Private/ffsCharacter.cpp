@@ -39,11 +39,7 @@ AffsCharacter::AffsCharacter(const FObjectInitializer &ObjectInitializer)
 	Mesh1P->bCastDynamicShadow = false;
 	Mesh1P->CastShadow = false;
 
-	Mesh3P = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("CharacterMesh3P"));
-	Mesh3P->SetOwnerNoSee(true);
-	Mesh3P->SetupAttachment(GetCapsuleComponent());
-	Mesh3P->bCastDynamicShadow = true;
-	Mesh3P->CastShadow = true;
+	GetMesh()->SetOwnerNoSee(true);
 
 	DeathCameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("DeathCameraBoom"));
 	DeathCameraBoom->SetupAttachment(GetCapsuleComponent());
@@ -84,9 +80,9 @@ void AffsCharacter::BeginPlay()
 		}
 	}
 
-	if (Mesh3P)
+	if (GetMesh())
 	{
-		if (IGSCNativeAnimInstanceInterface *AnimInstanceInterface = Cast<IGSCNativeAnimInstanceInterface>(Mesh3P->GetAnimInstance()))
+		if (IGSCNativeAnimInstanceInterface *AnimInstanceInterface = Cast<IGSCNativeAnimInstanceInterface>(GetMesh()->GetAnimInstance()))
 		{
 			if (ASC)
 			{
@@ -129,13 +125,13 @@ void AffsCharacter::Tick(float DeltaTime)
 
 	if (bIsDead)
 	{
-		// Get the location of the Mesh3P
-		FVector MeshLocation = Mesh3P->GetComponentLocation();
+		// Get the location of the GetMesh()
+		FVector MeshLocation = GetMesh()->GetComponentLocation();
 
-		// Calculate the direction from the DeathCamera to the Mesh3P
+		// Calculate the direction from the DeathCamera to the GetMesh()
 		FVector Direction = MeshLocation - DeathCamera->GetComponentLocation();
 
-		// Calculate the target rotation that looks at the Mesh3P
+		// Calculate the target rotation that looks at the GetMesh()
 		FRotator TargetRotation = FRotationMatrix::MakeFromX(Direction).Rotator();
 
 		// Get the current rotation of the DeathCamera
@@ -228,21 +224,21 @@ void AffsCharacter::Multicast_FixPlayer_Implementation()
 
 	GetCapsuleComponent()->SetCollisionResponseToChannel(ECC_Pawn, ECR_Block);
 
-	if (Mesh3P)
+	if (GetMesh())
 	{
-		Mesh3P->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-		Mesh3P->SetCollisionObjectType(ECC_WorldStatic);
-		Mesh3P->SetCollisionResponseToChannel(ECC_Pawn, ECR_Block);
-		Mesh3P->SetCollisionResponseToChannel(ECC_PhysicsBody, ECR_Block);
+		GetMesh()->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+		GetMesh()->SetCollisionObjectType(ECC_WorldStatic);
+		GetMesh()->SetCollisionResponseToChannel(ECC_Pawn, ECR_Block);
+		GetMesh()->SetCollisionResponseToChannel(ECC_PhysicsBody, ECR_Block);
 
-		Mesh3P->SetCollisionResponseToChannel(ECC_GameTraceChannel2, ECR_Block);
+		GetMesh()->SetCollisionResponseToChannel(ECC_GameTraceChannel2, ECR_Block);
 
-		Mesh3P->SetAllBodiesSimulatePhysics(false);
-		Mesh3P->SetAllBodiesPhysicsBlendWeight(0.0f);
+		GetMesh()->SetAllBodiesSimulatePhysics(false);
+		GetMesh()->SetAllBodiesPhysicsBlendWeight(0.0f);
 
-		Mesh3P->AttachToComponent(GetCapsuleComponent(), FAttachmentTransformRules::SnapToTargetNotIncludingScale);
-		Mesh3P->SetRelativeLocation(FVector(0.f, 0.f, -GetCapsuleComponent()->GetScaledCapsuleHalfHeight()));
-		Mesh3P->SetRelativeRotation(FRotator(0.f, -90.f, 0.f));
+		GetMesh()->AttachToComponent(GetCapsuleComponent(), FAttachmentTransformRules::SnapToTargetNotIncludingScale);
+		GetMesh()->SetRelativeLocation(FVector(0.f, 0.f, -GetCapsuleComponent()->GetScaledCapsuleHalfHeight()));
+		GetMesh()->SetRelativeRotation(FRotator(0.f, -90.f, 0.f));
 	}
 
 	ResetAttributes();
@@ -271,7 +267,7 @@ void AffsCharacter::SwitchToDeathCamera()
 		FirstPersonCameraComponent->SetActive(false);
 		DeathCameraBoom->SetActive(true);
 		DeathCamera->SetActive(true);
-		Mesh3P->SetOwnerNoSee(false);
+		GetMesh()->SetOwnerNoSee(false);
 		Mesh1P->SetVisibility(false);
 
 		WeaponManager->CurrentWeapon->GunMesh->SetVisibility(false);
@@ -291,7 +287,7 @@ void AffsCharacter::SwitchToFirstPersonCamera()
 		FirstPersonCameraComponent->SetActive(true);
 		DeathCameraBoom->SetActive(false);
 		DeathCamera->SetActive(false);
-		Mesh3P->SetOwnerNoSee(true);
+		GetMesh()->SetOwnerNoSee(true);
 		Mesh1P->SetVisibility(true);
 
 		WeaponManager->CurrentWeapon->GunMesh->SetVisibility(true);
@@ -318,18 +314,18 @@ void AffsCharacter::Server_Ragdoll_Implementation()
 
 void AffsCharacter::Multicast_Ragdoll_Implementation()
 {
-	if (Mesh3P)
+	if (GetMesh())
 	{
-		Mesh3P->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-		Mesh3P->SetCollisionObjectType(ECC_PhysicsBody);
-		Mesh3P->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
-		Mesh3P->SetCollisionResponseToChannel(ECC_PhysicsBody, ECR_Ignore);
+		GetMesh()->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+		GetMesh()->SetCollisionObjectType(ECC_PhysicsBody);
+		GetMesh()->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
+		GetMesh()->SetCollisionResponseToChannel(ECC_PhysicsBody, ECR_Ignore);
 
-		Mesh3P->SetCollisionResponseToChannel(ECC_GameTraceChannel2, ECR_Ignore);
+		GetMesh()->SetCollisionResponseToChannel(ECC_GameTraceChannel2, ECR_Ignore);
 
-		if (Mesh3P->GetPhysicsAsset())
+		if (GetMesh()->GetPhysicsAsset())
 		{
-			Mesh3P->SetAllBodiesSimulatePhysics(true);
+			GetMesh()->SetAllBodiesSimulatePhysics(true);
 		}
 	}
 
@@ -432,7 +428,7 @@ void AffsCharacter::PlayThirdPersonMontage(UAnimMontage *Montage, float Rate)
 {
 	if (HasAuthority() && Montage)
 	{
-		UAnimInstance *AnimInstance3P = Mesh3P->GetAnimInstance();
+		UAnimInstance *AnimInstance3P = GetMesh()->GetAnimInstance();
 		AnimInstance3P->Montage_Play(Montage, Rate);
 	}
 
@@ -451,7 +447,7 @@ void AffsCharacter::Multicast_PlayThirdPersonMontage_Implementation(UAnimMontage
 {
 	if (Montage && !IsLocallyControlled())
 	{
-		UAnimInstance *AnimInstance3P = Mesh3P->GetAnimInstance();
+		UAnimInstance *AnimInstance3P = GetMesh()->GetAnimInstance();
 		AnimInstance3P->Montage_Play(Montage, Rate);
 	}
 }

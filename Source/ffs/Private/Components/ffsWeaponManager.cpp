@@ -52,9 +52,9 @@ void UffsWeaponManager::OnRep_CurrentWeapon()
 		UpdateAnimInstancePose(Cast<UffsAnimInstance>(Player->Mesh1P->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, CurrentWeapon->EditingOffset);
 	}
 
-	if (Player->Mesh3P)
+	if (Player->GetMesh())
 	{
-		UpdateAnimInstancePose(Cast<UffsAnimInstance>(Player->Mesh3P->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, CurrentWeapon->EditingOffset);
+		UpdateAnimInstancePose(Cast<UffsAnimInstance>(Player->GetMesh()->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, CurrentWeapon->EditingOffset);
 	}
 }
 
@@ -75,7 +75,7 @@ void UffsWeaponManager::OnRep_Weapons()
 				Weapons[i]->GunMesh->bCastDynamicShadow = false;
 				Weapons[i]->GunMesh->CastShadow = false;
 
-				Weapons[i]->GunMesh3P->AttachToComponent(Player->Mesh3P, FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("GripPoint"));
+				Weapons[i]->GunMesh3P->AttachToComponent(Player->GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("GripPoint"));
 				Weapons[i]->GunMesh3P->SetOwnerNoSee(true);
 
 				Weapons[i]->SetActorHiddenInGame(true);
