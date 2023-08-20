@@ -44,19 +44,19 @@ AffsCharacter::AffsCharacter(const FObjectInitializer &ObjectInitializer)
 	Mesh3P->SetupAttachment(GetCapsuleComponent());
 	Mesh3P->bCastDynamicShadow = true;
 	Mesh3P->CastShadow = true;
-	
+
 	DeathCameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("DeathCameraBoom"));
 	DeathCameraBoom->SetupAttachment(GetCapsuleComponent());
-	DeathCameraBoom->TargetArmLength = 300.0f; // Set the distance of the death camera
+	DeathCameraBoom->TargetArmLength = 300.0f;		  // Set the distance of the death camera
 	DeathCameraBoom->bUsePawnControlRotation = false; // Do not rotate the arm based on controller
-	DeathCameraBoom->SetActive(false); // Disable the boom by default
+	DeathCameraBoom->SetActive(false);				  // Disable the boom by default
 	DeathCameraBoom->SetRelativeRotation(FRotator(-70.f, 0.f, 0.f));
-	
+
 	DeathCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("DeathCamera"));
 	DeathCamera->SetupAttachment(DeathCameraBoom);
-	DeathCamera->SetRelativeLocation(FVector(0.f, 0.f, 0.f)); // Position the camera at the end of the boom
+	DeathCamera->SetRelativeLocation(FVector(0.f, 0.f, 0.f));  // Position the camera at the end of the boom
 	DeathCamera->SetRelativeRotation(FRotator(0.f, 0.f, 0.f)); // Rotate the camera to look down
-	DeathCamera->SetActive(false); // Disable the camera by default
+	DeathCamera->SetActive(false);							   // Disable the camera by default
 
 	RecoilAnimation = CreateDefaultSubobject<URecoilAnimationComponent>(TEXT("RecoilAnimComp"));
 	AnimMasterComponent = CreateDefaultSubobject<UAGRAnimMasterComponent>(TEXT("AGRAnimMaster"));
@@ -125,28 +125,28 @@ void AffsCharacter::EndPlay(const EEndPlayReason::Type EndPlayReason)
 
 void AffsCharacter::Tick(float DeltaTime)
 {
-    Super::Tick(DeltaTime);
+	Super::Tick(DeltaTime);
 
-    if (bIsDead)
-    {
-        // Get the location of the Mesh3P
-        FVector MeshLocation = Mesh3P->GetComponentLocation();
+	if (bIsDead)
+	{
+		// Get the location of the Mesh3P
+		FVector MeshLocation = Mesh3P->GetComponentLocation();
 
-        // Calculate the direction from the DeathCamera to the Mesh3P
-        FVector Direction = MeshLocation - DeathCamera->GetComponentLocation();
+		// Calculate the direction from the DeathCamera to the Mesh3P
+		FVector Direction = MeshLocation - DeathCamera->GetComponentLocation();
 
-        // Calculate the target rotation that looks at the Mesh3P
-        FRotator TargetRotation = FRotationMatrix::MakeFromX(Direction).Rotator();
+		// Calculate the target rotation that looks at the Mesh3P
+		FRotator TargetRotation = FRotationMatrix::MakeFromX(Direction).Rotator();
 
-        // Get the current rotation of the DeathCamera
-        FRotator CurrentRotation = DeathCamera->GetComponentRotation();
+		// Get the current rotation of the DeathCamera
+		FRotator CurrentRotation = DeathCamera->GetComponentRotation();
 
-        // Interpolate the rotation from the current to the target
-        FRotator NewRotation = FMath::RInterpTo(CurrentRotation, TargetRotation, DeltaTime, 2.0f);
+		// Interpolate the rotation from the current to the target
+		FRotator NewRotation = FMath::RInterpTo(CurrentRotation, TargetRotation, DeltaTime, 2.0f);
 
-        // Set the rotation of the DeathCamera
-        DeathCamera->SetWorldRotation(NewRotation);
-    }
+		// Set the rotation of the DeathCamera
+		DeathCamera->SetWorldRotation(NewRotation);
+	}
 }
 
 #pragma endregion Initialization
@@ -186,7 +186,7 @@ void AffsCharacter::Respawn()
 	}
 	else
 	{
-		Server_TeleportPlayer();	
+		Server_TeleportPlayer();
 	}
 }
 
@@ -234,7 +234,7 @@ void AffsCharacter::Multicast_FixPlayer_Implementation()
 		Mesh3P->SetCollisionObjectType(ECC_WorldStatic);
 		Mesh3P->SetCollisionResponseToChannel(ECC_Pawn, ECR_Block);
 		Mesh3P->SetCollisionResponseToChannel(ECC_PhysicsBody, ECR_Block);
-		
+
 		Mesh3P->SetCollisionResponseToChannel(ECC_GameTraceChannel2, ECR_Block);
 
 		Mesh3P->SetAllBodiesSimulatePhysics(false);
@@ -264,22 +264,22 @@ void AffsCharacter::ResetAttributes()
 
 void AffsCharacter::SwitchToDeathCamera()
 {
-    APlayerController *PC = Cast<APlayerController>(GetController());
-    if (PC && WeaponManager)
-    {
-        PC->SetViewTargetWithBlend(this, 0.5f, EViewTargetBlendFunction::VTBlend_Cubic);
-        FirstPersonCameraComponent->SetActive(false);
+	APlayerController *PC = Cast<APlayerController>(GetController());
+	if (PC && WeaponManager)
+	{
+		PC->SetViewTargetWithBlend(this, 0.5f, EViewTargetBlendFunction::VTBlend_Cubic);
+		FirstPersonCameraComponent->SetActive(false);
 		DeathCameraBoom->SetActive(true);
-        DeathCamera->SetActive(true);
-        Mesh3P->SetOwnerNoSee(false);
-        Mesh1P->SetVisibility(false);
+		DeathCamera->SetActive(true);
+		Mesh3P->SetOwnerNoSee(false);
+		Mesh1P->SetVisibility(false);
 
-        WeaponManager->CurrentWeapon->GunMesh->SetVisibility(false);
+		WeaponManager->CurrentWeapon->GunMesh->SetVisibility(false);
 
 		FRotator DeathCameraRotation = DeathCamera->GetComponentRotation();
 		DeathCameraRotation.Roll = FMath::RandRange(0.f, 360.f);
 		DeathCamera->SetWorldRotation(DeathCameraRotation);
-    }
+	}
 }
 
 void AffsCharacter::SwitchToFirstPersonCamera()
@@ -369,7 +369,8 @@ void AffsCharacter::PlayFireAnimation()
 {
 	RecoilAnimation->Play();
 
-	if (WeaponManager) {
+	if (WeaponManager)
+	{
 		WeaponManager->PlayFireAnimation(false);
 	}
 
@@ -386,14 +387,16 @@ void AffsCharacter::Server_PlayFireAnimation_Implementation()
 
 void AffsCharacter::Multicast_PlayFireAnimation_Implementation()
 {
-	if (!WeaponManager) return;
-		
+	if (!WeaponManager)
+		return;
+
 	WeaponManager->PlayFireAnimation(true);
 }
 
 void AffsCharacter::PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName)
 {
-	if (WeaponManager) {
+	if (WeaponManager)
+	{
 		WeaponManager->PlayWeaponFireFX(FX, SocketName, false);
 	}
 
@@ -415,7 +418,8 @@ void AffsCharacter::Multicast_PlayWeaponFireFX_Implementation(UNiagaraSystem *FX
 		return;
 	}
 
-	if (WeaponManager) {
+	if (WeaponManager)
+	{
 		WeaponManager->PlayWeaponFireFX(FX, SocketName, true);
 	}
 }
@@ -423,77 +427,6 @@ void AffsCharacter::Multicast_PlayWeaponFireFX_Implementation(UNiagaraSystem *FX
 #pragma endregion Weapons
 
 #pragma region Equipping
-
-void AffsCharacter::EquipWeapon()
-{
-	if (IsLocallyControlled() && !HasAuthority() && WeaponManager)
-	{
-		WeaponManager->IncrementCurrentWeaponIndex();
-		WeaponManager->EquipWeaponOnPlayer(this, WeaponManager->Weapons[WeaponManager->CurrentWeaponIndex]);
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("LOCAL CLIENT: Weapon Index: %d, Current Weapon: %s"), WeaponManager->CurrentWeaponIndex, *WeaponManager->CurrentWeapon->GetName()));
-		Server_EquipWeapon(WeaponManager->CurrentWeaponIndex);
-	}
-}
-
-void AffsCharacter::Server_EquipWeapon_Implementation(int32 WeaponIndex)
-{
-	if (HasAuthority() && WeaponManager)
-	{
-		WeaponManager->CurrentWeaponIndex = WeaponIndex;
-		WeaponManager->EquipWeaponOnPlayer(this, WeaponManager->Weapons[WeaponManager->CurrentWeaponIndex]);
-		// Print the weapon index and the current weapon name, SERVER: prefix
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("SERVER: Weapon Index: %d, Current Weapon: %s"), WeaponManager->CurrentWeaponIndex, *WeaponManager->CurrentWeapon->GetName()));
-
-		Multicast_EquipWeapon(WeaponManager->CurrentWeapon);
-	}
-}
-
-// Update the weapon for the other players, DO NOT do anything montage related
-void AffsCharacter::Multicast_EquipWeapon_Implementation(AffsWeapon *Weapon)
-{
-    if (WeaponManager && Weapon)
-    {
-		// Print the weapon param
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("MULTICAST: Weapon: %s"), *Weapon->GetName()));
-		WeaponManager->EquipWeaponOnPlayer(this, Weapon);
-	}
-}
-// @
-void AffsCharacter::UnequipWeapon()
-{
-	OnWeaponUnequipped();
-
-	if (IsLocallyControlled() && !HasAuthority() && WeaponManager)
-	{
-		Server_UnequipWeapon();
-	}
-	else if (HasAuthority())
-	{
-		Multicast_UnequipWeapon();
-	}
-}
-// @
-void AffsCharacter::Server_UnequipWeapon_Implementation()
-{
-	if (HasAuthority() && WeaponManager)
-	{
-		Multicast_UnequipWeapon();
-	}
-}
-// @
-void AffsCharacter::Multicast_UnequipWeapon_Implementation()
-{
-	if (WeaponManager && WeaponManager->UnequipMontage && !IsLocallyControlled())
-	{
-		// This is causing me to have to add another event in my third person anim blueprint to replicate the
-		// unequip animation. The reason for this is because the unequip animation montage fires a notify
-		// to call the equip weapon function. If I set this to the first person mesh it works fine but I think
-		// because I am calling another montage before this its causing issues. If we call it on the third person
-		// mesh it works fine but we have to add another event in the anim blueprint to replicate the unequip animation.
-		UAnimInstance *AnimInstance3P = Mesh3P->GetAnimInstance();
-		AnimInstance3P->Montage_Play(WeaponManager->UnequipMontage, 1.0f);
-	}
-}
 
 void AffsCharacter::PlayThirdPersonMontage(UAnimMontage *Montage, float Rate)
 {

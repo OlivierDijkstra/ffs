@@ -10,20 +10,14 @@ class USkeletalMeshComponent;
 class AffsWeapon;
 class AffsCharacter;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FComponentCustomStartSignature);
+
 UENUM(BlueprintType)
 enum class EFireMode : uint8
 {
     SINGLE UMETA(DisplayName = "Single"),
     AUTO UMETA(DisplayName = "Auto"),
     BURST UMETA(DisplayName = "Burst")
-};
-// @
-UENUM(BlueprintType)
-enum class EEquippedWeapon : uint8
-{
-    PRIMARY UMETA(DisplayName = "Primary"),
-    SECONDARY UMETA(DisplayName = "Secondary"),
-    NONE UMETA(DisplayName = "None")
 };
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -37,14 +31,23 @@ protected:
 public:    
     UffsWeaponManager();
 
-    UPROPERTY(Replicated, BlueprintReadWrite, Category = "Weapons")
+    UPROPERTY(ReplicatedUsing = OnRep_Weapons, BlueprintReadOnly, Category = "Weapons")
+    TArray<AffsWeapon*> Weapons;
+
+    UFUNCTION()
+    void OnRep_Weapons();
+
+    UPROPERTY(ReplicatedUsing = OnRep_CurrentWeapon, BlueprintReadWrite, Category = "Weapons")
 	AffsWeapon *CurrentWeapon = nullptr;
+
+    UFUNCTION()
+    void OnRep_CurrentWeapon();
+
+    UPROPERTY(BlueprintAssignable, Category = "Custom")
+    FComponentCustomStartSignature OnWeaponEquipped;
 
     UPROPERTY(Replicated, BlueprintReadWrite, Category = "Weapons")
     int32 CurrentWeaponIndex = 0;
-
-    UPROPERTY(Replicated, BlueprintReadOnly, Category = "Weapons")
-    TArray<AffsWeapon*> Weapons;
 
     UPROPERTY(BlueprintReadOnly, EditDefaultsOnly, Category = "Animation")
 	UAnimMontage *EquipMontage;
@@ -57,35 +60,19 @@ public:
 
     UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Weapons")
     TSubclassOf<AffsWeapon> SpawnSecondaryWeaponClass;
-    // @
-    UPROPERTY(BlueprintReadWrite, Category = "Weapons")
-    AffsWeapon *PrimaryWeapon = nullptr;
-    // @
-    UPROPERTY(BlueprintReadWrite, Category = "Weapons")
-    AffsWeapon *SecondaryWeapon = nullptr;
-    // @
-    UPROPERTY(Replicated, BlueprintReadWrite, Category = "Weapons")
-    EEquippedWeapon EquippedWeaponType = EEquippedWeapon::NONE;
 
     UFUNCTION(BlueprintCallable, Category = "Weapons")
     AffsWeapon* SpawnWeaponOnPlayer(AffsCharacter *Player, TSubclassOf<AffsWeapon> WeaponClass);
+    
+    UFUNCTION(BlueprintCallable, Category = "Weapons")
+    int32 IncrementCurrentWeaponIndex();
 
     UFUNCTION(BlueprintCallable, Category = "Weapons")
-    void EquipWeaponOnPlayer(AffsCharacter *Player, AffsWeapon *Weapon);
-
-    UFUNCTION(BlueprintCallable, Category = "Weapons")
-    void IncrementCurrentWeaponIndex();
-    // @
-    UFUNCTION(BlueprintCallable, Category = "Weapons")
-    void EquipPrimaryWeapon(AffsCharacter *Player);
-    // @
-    UFUNCTION(BlueprintCallable, Category = "Weapons")
-    void EquipSecondaryWeapon(AffsCharacter *Player);
+    void NextWeapon();
 
 	virtual FHitResult FireLineTrace(bool InitialShot, bool Debug);
-    // @
-    void SwitchWeaponVisibility(EEquippedWeapon WeaponType);
+
     void PlayFireAnimation(bool ThirdPerson);
     void PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName, bool ThirdPerson);
-	void UpdateAnimInstancePose(UffsAnimInstance *MeshAnimInstance, UAnimSequence *CharacterPose1P, FVector WeaponOffset, FTransform PointAim, FVector PlayerPivotOffset, FVector GunPivotOffset, FTransform EditingOffset);
+    void UpdateAnimInstancePose(UffsAnimInstance *MeshAnimInstance, UAnimSequence *CharacterPose1P, FVector WeaponOffset, FTransform PointAim, FVector PlayerPivotOffset, FVector GunPivotOffset, FTransform EditingOffset);
 };

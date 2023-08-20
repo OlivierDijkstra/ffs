@@ -4,6 +4,10 @@
 
 AffsWeapon::AffsWeapon()
 {
+    PrimaryActorTick.bCanEverTick = true;
+
+    bReplicates = true;
+    
     Pivot = CreateDefaultSubobject<USceneComponent>(TEXT("Pivot"));
 
     GunMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("GunMesh"));

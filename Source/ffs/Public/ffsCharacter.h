@@ -103,13 +103,6 @@ protected:
 	// Weapons
 	//
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
-	void EquipWeapon();
-	UFUNCTION(Server, Reliable, Category = "Net")
-	void Server_EquipWeapon(int32 WeaponIndex);
-	UFUNCTION(NetMulticast, Reliable, Category = "Net")
-	void Multicast_EquipWeapon(AffsWeapon *Weapon);
-	
-	UFUNCTION(BlueprintCallable, Category = "Weapons")
 	virtual FHitResult FireWeapon(bool InitialShot, bool Debug);
 
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
@@ -125,16 +118,6 @@ protected:
 	void Server_PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName);
 	UFUNCTION(NetMulticast, Reliable, Category = "Net")
 	void Multicast_PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName);
-
-	// @
-	UFUNCTION(BlueprintCallable, Category = "Weapons")
-	void UnequipWeapon();
-	// @
-	UFUNCTION(Server, Reliable, Category = "Net")
-	void Server_UnequipWeapon();
-	// @
-	UFUNCTION(NetMulticast, Reliable, Category = "Net")
-	void Multicast_UnequipWeapon();
 
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
 	void PlayThirdPersonMontage(UAnimMontage *Montage, float Rate = 1.0f);
@@ -155,10 +138,6 @@ public:
 	UFUNCTION(BlueprintImplementableEvent, Category = "Weapons")
 	void OnWeaponEquipped(const FRecoilAnimData Data, const float Rate = 0.0f, const int Bursts = 0);
 
-	// @
-	UFUNCTION(BlueprintImplementableEvent, Category = "Weapons")
-	void OnWeaponUnequipped();
-
 	UPROPERTY(VisibleDefaultsOnly, BlueprintReadOnly, Category = Mesh)
 	USkeletalMeshComponent *Mesh1P;
 
@@ -172,14 +151,8 @@ public:
 	FCollisionQueryParams GetIgnoreCharacterParams() const;
 
 private:
-	// Timer handle for the respawn timer
 	FTimerHandle RespawnTimerHandle;
 
-	// ...
-
-	// Call this function to switch to the death camera
 	void SwitchToDeathCamera();
-
-	// Call this function to switch back to the first-person camera
 	void SwitchToFirstPersonCamera();
 };

@@ -20,6 +20,9 @@ protected:
 	virtual void PostInitializeComponents() override;
 
 public:
+	UPROPERTY(BlueprintReadOnly, Category = "Weapon")
+	bool bIsAttached = false;
+
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Effects")
 	UNiagaraSystem* CaseEjectFX;
 

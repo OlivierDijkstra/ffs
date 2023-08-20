@@ -1360,6 +1360,14 @@
 		"directory": "C:\\Program Files (x86)\\UE_5.2\\Engine\\Source"
 	},
 	{
+		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\RecoilAnimation\\Source\\ProceduralConverter\\Private\\AnimGraphNode_RecoilAnimationNode.cpp",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ProceduralConverter.61.rsp"
+		],
+		"directory": "C:\\Program Files (x86)\\UE_5.2\\Engine\\Source"
+	},
+	{
 		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\RecoilAnimation\\Source\\ProceduralConverter\\Private\\CurveExtractor.cpp",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\Hostx64\\x64\\cl.exe",
@@ -1384,6 +1392,14 @@
 		"directory": "C:\\Program Files (x86)\\UE_5.2\\Engine\\Source"
 	},
 	{
+		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\RecoilAnimation\\Source\\ProceduralConverter\\Public\\AnimGraphNode_RecoilAnimationNode.h",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ProceduralConverter.61.rsp"
+		],
+		"directory": "C:\\Program Files (x86)\\UE_5.2\\Engine\\Source"
+	},
+	{
 		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\RecoilAnimation\\Source\\ProceduralConverter\\Public\\CurveExtractor.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\Hostx64\\x64\\cl.exe",
@@ -1396,6 +1412,14 @@
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\ProceduralConverter.61.rsp"
+		],
+		"directory": "C:\\Program Files (x86)\\UE_5.2\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\RecoilAnimation\\Source\\RecoilAnimation\\Private\\AnimNode_RecoilAnimationNode.cpp",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\RecoilAnimation.60.rsp"
 		],
 		"directory": "C:\\Program Files (x86)\\UE_5.2\\Engine\\Source"
 	},
@@ -1433,6 +1457,14 @@
 	},
 	{
 		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\RecoilAnimation\\Source\\RecoilAnimation\\Private\\StoredData.cpp",
+		"arguments": [
+			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\Hostx64\\x64\\cl.exe",
+			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\RecoilAnimation.60.rsp"
+		],
+		"directory": "C:\\Program Files (x86)\\UE_5.2\\Engine\\Source"
+	},
+	{
+		"file": "C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\Plugins\\RecoilAnimation\\Source\\RecoilAnimation\\Public\\AnimNode_RecoilAnimationNode.h",
 		"arguments": [
 			"C:\\Program Files (x86)\\Microsoft Visual Studio\\2022\\BuildTools\\VC\\Tools\\MSVC\\14.36.32532\\bin\\Hostx64\\x64\\cl.exe",
 			"@C:\\Users\\Olivi\\Documents\\Unreal Projects\\ffs\\.vscode\\compileCommands_ffs\\RecoilAnimation.60.rsp"
