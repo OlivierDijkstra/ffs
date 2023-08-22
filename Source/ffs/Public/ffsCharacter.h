@@ -141,6 +141,8 @@ public:
 
 	URecoilAnimationComponent *GetRecoilAnimation() const { return RecoilAnimation; }
 
+	UffsWeaponManager *GetWeaponManager() const { return WeaponManager; }
+
 	FCollisionQueryParams GetIgnoreCharacterParams() const;
 
 private:

@@ -153,6 +153,9 @@ class UUserWidget *AffsWeapon::GetInteractionWidget_Implementation()
 
 void AffsWeapon::Interact_Implementation(AffsCharacter *InteractingCharacter)
 {
-    // Print something nice with the character's name
-    GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("Interact_Implementation() called on %s!"), *InteractingCharacter->GetName()));
+    if (InteractingCharacter)
+    {
+        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Interact_Implementation() called!"));
+        InteractingCharacter->GetWeaponManager()->Server_EquipWeapon(this);
+    }
 }
