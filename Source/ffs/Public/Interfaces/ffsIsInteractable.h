@@ -14,12 +14,12 @@ class IffsIsInteractable
     GENERATED_BODY()
 
 public:
-    UFUNCTION(BlueprintImplementableEvent, Category = "ffs|Interaction")
+    UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "ffs|Interaction")
     void ImplementedToggleFocus(bool bIsFocused);
 
-    UFUNCTION(BlueprintImplementableEvent, Category = "ffs|Interaction")
+    UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "ffs|Interaction")
     void Interact();
 
-    UFUNCTION(BlueprintImplementableEvent, Category = "ffs|Interaction")
+    UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "ffs|Interaction")
     class UUserWidget* GetInteractionWidget();
 };

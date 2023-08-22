@@ -18,6 +18,15 @@ public:
     UPROPERTY(VisibleAnywhere, Category = "Interaction")
     UBoxComponent* InteractionBox;
 
+    UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Interaction")
+    bool bIsInteractable = true;
+
+    UFUNCTION(BlueprintCallable, Category = "Interaction")
+    void EnableInteraction();
+
+    UFUNCTION(BlueprintCallable, Category = "Interaction")
+    void DisableInteraction();
+
     UFUNCTION(BlueprintCallable, Category = "Interaction")
     void ToggleFocus(bool bFocused);
 

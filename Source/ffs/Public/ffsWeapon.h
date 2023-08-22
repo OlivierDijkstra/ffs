@@ -2,26 +2,47 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "RecoilAnimationComponent.h"
+#include "Components/WidgetComponent.h"
 #include "NiagaraSystem.h"
+#include "RecoilAnimationComponent.h"
+#include "Interfaces/ffsIsInteractable.h"
 #include "ffsWeapon.generated.h"
 
+class UChildActorComponent;
+class UUserWidget;
+class AffsInteractionArea;
+
 UCLASS(BlueprintType)
-class FFS_API AffsWeapon : public AActor
+class FFS_API AffsWeapon : public AActor, public IffsIsInteractable
 {
 	GENERATED_BODY()
 	
 	AffsWeapon();
 
-	UPROPERTY()
-	USceneComponent* Pivot;
-
 protected:
 	virtual void PostInitializeComponents() override;
 
 public:
+	UPROPERTY()
+	USceneComponent* Pivot;
+
+	void ImplementedToggleFocus_Implementation(bool bIsFocused) override;
+	void Interact_Implementation() override;
+	UUserWidget* GetInteractionWidget_Implementation() override;
+
 	UPROPERTY(BlueprintReadOnly, Category = "Weapon")
 	bool bIsAttached = false;
+
+	UFUNCTION()
+	void EnableInteraction();
+	UFUNCTION()
+	void DisableInteraction();
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+    UChildActorComponent* InteractionAreaComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "UI")
+    UWidgetComponent* InteractionWidgetComponent;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Effects")
 	UNiagaraSystem* CaseEjectFX;

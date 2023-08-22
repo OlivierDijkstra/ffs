@@ -70,6 +70,16 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Weapons")
     void NextWeapon();
 
+    UPROPERTY(EditDefaultsOnly, Category = "Weapons")
+    float DropImpulse = 1000.0f;
+
+    UFUNCTION(BlueprintCallable, Category = "Weapons")
+    void DropWeapon();
+    UFUNCTION(Server, Reliable)
+    void Server_DropWeapon(APawn *Owner);
+    UFUNCTION(NetMulticast, Reliable)
+    void Multicast_DropWeapon(AffsWeapon *Weapon);
+
 	virtual FHitResult FireLineTrace(bool InitialShot, bool Debug);
 
     void PlayFireAnimation(bool ThirdPerson);
