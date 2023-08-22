@@ -16,9 +16,13 @@ AffsWeapon::AffsWeapon()
     GunMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("GunMesh"));
     GunMesh->SetCollisionEnabled(ECollisionEnabled::NoCollision);
     GunMesh->bEditableWhenInherited = true;
+    GunMesh->SetOnlyOwnerSee(true);
+    GunMesh->SetupAttachment(Pivot);
 
     GunMesh3P = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("GunMesh3P"));
     GunMesh3P->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+
+    GunMesh3P->SetupAttachment(Pivot);
 
     InteractionAreaComponent = CreateDefaultSubobject<UChildActorComponent>(TEXT("InteractionAreaComponent"));
     InteractionAreaComponent->SetupAttachment(GunMesh3P);
