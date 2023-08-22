@@ -11,6 +11,7 @@
 class UChildActorComponent;
 class UUserWidget;
 class AffsInteractionArea;
+class AffsCharacter;
 
 UCLASS(BlueprintType)
 class FFS_API AffsWeapon : public AActor, public IffsIsInteractable
@@ -27,7 +28,7 @@ public:
 	USceneComponent* Pivot;
 
 	void ImplementedToggleFocus_Implementation(bool bIsFocused) override;
-	void Interact_Implementation() override;
+	void Interact_Implementation(AffsCharacter *InteractingCharacter) override;
 	UUserWidget* GetInteractionWidget_Implementation() override;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Weapon")

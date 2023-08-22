@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "ffsCharacter.h"
 #include "ffsIsInteractable.generated.h"
 
 UINTERFACE(MinimalAPI, Blueprintable)
@@ -18,7 +19,7 @@ public:
     void ImplementedToggleFocus(bool bIsFocused);
 
     UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "ffs|Interaction")
-    void Interact();
+    void Interact(AffsCharacter* InteractingCharacter);
 
     UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "ffs|Interaction")
     class UUserWidget* GetInteractionWidget();

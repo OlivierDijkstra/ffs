@@ -2,6 +2,7 @@
 #include "ffsInteractionArea.h"
 #include "Interfaces/ffsIsInteractable.h"
 #include "Widgets/ffsBaseInteractionWidget.h"
+#include "ffsCharacter.h"
 #include "Camera/CameraComponent.h"
 
 UffsInteractionManager::UffsInteractionManager()
@@ -100,7 +101,10 @@ void UffsInteractionManager::Server_TryToInteract_Implementation(AffsInteraction
     {
         if (ParentActor->GetClass()->ImplementsInterface(UffsIsInteractable::StaticClass()))
         { 
-            IffsIsInteractable::Execute_Interact(ParentActor);
+            // Get the owning character and call the interact function
+            AffsCharacter* InteractingCharacter = Cast<AffsCharacter>(GetOwner());
+
+            IffsIsInteractable::Execute_Interact(ParentActor, InteractingCharacter);
         }
     }
 }
