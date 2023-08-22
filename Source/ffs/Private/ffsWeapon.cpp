@@ -135,8 +135,6 @@ void AffsWeapon::ImplementedToggleFocus_Implementation(bool bIsFocused)
 {
     if (InteractionWidgetComponent)
     {
-        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("ImplementedToggleFocus_Implementation() called!"));
-
         InteractionWidgetComponent->SetVisibility(bIsFocused);
     }
 }
@@ -155,7 +153,6 @@ void AffsWeapon::Interact_Implementation(AffsCharacter *InteractingCharacter)
 {
     if (InteractingCharacter)
     {
-        GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Interact_Implementation() called!"));
         InteractingCharacter->GetWeaponManager()->Server_EquipWeapon(this);
     }
 }

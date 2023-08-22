@@ -188,15 +188,10 @@ void UffsWeaponManager::NextWeapon()
 
 void UffsWeaponManager::DropWeapon()
 {
-	// Get the owning player check for authority
 	APawn *Owner = Cast<APawn>(GetOwner());
 
 	if (Owner->IsLocallyControlled() && !Owner->HasAuthority())
 	{
-		// Rule: Always print with "server:" or "client:" prefix
-		// Print: "client: DropWeapon"
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("client: DropWeapon")));
-
 		Server_DropWeapon(Owner);
 	}
 }
@@ -205,8 +200,6 @@ void UffsWeaponManager::Server_DropWeapon_Implementation(APawn *Owner)
 {
 	if (Owner->HasAuthority())
 	{
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("server: DropWeapon")));
-
 		AffsWeapon *WeaponBackup = Weapons[CurrentWeaponIndex];
 
 		CurrentWeapon = nullptr;
@@ -223,8 +216,6 @@ void UffsWeaponManager::Server_DropWeapon_Implementation(APawn *Owner)
 
 void UffsWeaponManager::Multicast_DropWeapon_Implementation(AffsWeapon *Weapon)
 {
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("multicast: DropWeapon")));
-
 	Weapon->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
 	Weapon->SetOwner(nullptr);
 	Weapon->bIsAttached = false;
@@ -251,10 +242,6 @@ void UffsWeaponManager::EquipWeapon(AffsWeapon* Weapon)
 
 	if (Owner->IsLocallyControlled() && !Owner->HasAuthority())
 	{
-		// Print: "client: EquipWeapon"
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, FString::Printf(TEXT("client: EquipWeapon")));
-
-		// Call server method to equip the weapon
 		Server_EquipWeapon(Weapon);
 	}
 }
@@ -263,10 +250,6 @@ void UffsWeaponManager::Server_EquipWeapon_Implementation(AffsWeapon* Weapon)
 {
 	if (GetOwner()->HasAuthority() && Weapon)
 	{
-		// Print: "server: EquipWeapon"
-		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("server: EquipWeapon")));
-
-		// Attach the weapon to the player and reset values
 		AffsCharacter* Player = Cast<AffsCharacter>(GetOwner());
 
 		Weapon->AttachToActor(Player, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
@@ -283,27 +266,13 @@ void UffsWeaponManager::Server_EquipWeapon_Implementation(AffsWeapon* Weapon)
 		Weapon->UpdateFirstPersonGunMeshFOV(90.f);
 		Weapon->DisableInteraction();
 
-		// Add the weapon to the Weapons array and set as current weapon if needed
 		Weapons.Add(Weapon);
 
-		// Set the newly equipped weapon as the current weapon
 		CurrentWeapon = Weapon;
 		CurrentWeaponIndex = Weapons.Num() - 1;
 
-		// Notify the replication system and clients about the change
 		OnRep_CurrentWeapon();
-
-		// Notify all clients about the weapon equip action
-		Multicast_EquipWeapon(Weapon);
 	}
-}
-
-void UffsWeaponManager::Multicast_EquipWeapon_Implementation(AffsWeapon* Weapon)
-{
-	// Print: "multicast: EquipWeapon"
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("multicast: EquipWeapon")));
-
-	// Additional logic if needed to reflect the equip action on all clients
 }
 
 
