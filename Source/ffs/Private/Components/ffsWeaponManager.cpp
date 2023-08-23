@@ -36,9 +36,7 @@ void UffsWeaponManager::OnRep_CurrentWeapon()
 	{
 		return;
 	}
-	// Print the current weapon name
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Green, FString::Printf(TEXT("%s"), *FString("Current weapon:" + CurrentWeapon->GetName())));
-	
+
 	OnWeaponEquipped.Broadcast();
 
 	CurrentWeapon->SetActorHiddenInGame(false);
@@ -54,6 +52,7 @@ void UffsWeaponManager::OnRep_CurrentWeapon()
 		UpdateAnimInstancePose(Cast<UffsAnimInstance>(Player->Mesh1P->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, CurrentWeapon->EditingOffset);
 	}
 
+	// TODO This is not working, fix it
 	if (Player->GetMesh())
 	{
 		UpdateAnimInstancePose(Cast<UffsAnimInstance>(Player->GetMesh()->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, CurrentWeapon->EditingOffset);
@@ -62,11 +61,7 @@ void UffsWeaponManager::OnRep_CurrentWeapon()
 
 void UffsWeaponManager::OnRep_Weapons()
 {
-	// If there are no weapons, return
-	if (Weapons.Num() == 0)
-	{
-		return;
-	}
+	if (Weapons.Num() == 0) return;
 
 	AffsCharacter *Player = Cast<AffsCharacter>(GetOwner());
 
@@ -76,8 +71,8 @@ void UffsWeaponManager::OnRep_Weapons()
 		{
 			if (Weapons[i] && !Weapons[i]->bIsAttached)
 			{
-				// Print with Server: or Client: prefix depending on if this is a server or client
-				GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("%s"), *FString("Attaching weapon:" + Weapons[i]->GetName())));
+				Weapons[i]->GunMesh3P->SetSimulatePhysics(false);
+				Weapons[i]->GunMesh3P->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 
 				Weapons[i]->AttachToActor(Player, FAttachmentTransformRules::SnapToTargetNotIncludingScale);
 
@@ -88,9 +83,6 @@ void UffsWeaponManager::OnRep_Weapons()
 
 				Weapons[i]->GunMesh3P->AttachToComponent(Player->GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("GripPoint"));
 				Weapons[i]->GunMesh3P->SetOwnerNoSee(true);
-				// Weapons[i]->GunMesh3P->SetSimulatePhysics(false);
-				// Weapons[i]->GunMesh3P->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-
 				Weapons[i]->bIsAttached = true;
 
 				Weapons[i]->SetActorHiddenInGame(true);
@@ -174,8 +166,6 @@ AffsWeapon *UffsWeaponManager::SpawnWeaponOnPlayer(AffsCharacter *Player, TSubcl
 
 	AffsWeapon *Weapon = GetWorld()->SpawnActor<AffsWeapon>(WeaponClass, SpawnParams);
 
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Blue, FString::Printf(TEXT("%s"), *FString("Spawning weapon:" + Weapon->GetName())));
-
 	if (!Weapon)
 		return nullptr;
 
@@ -231,7 +221,6 @@ void UffsWeaponManager::Server_DropWeapon_Implementation(APawn *Owner)
 
 void UffsWeaponManager::Multicast_DropWeapon_Implementation(AffsWeapon *Weapon)
 {	
-	GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("%s"), *FString("Dropping weapon:" + Weapon->GetName())));
 	Weapon->DetachFromActor(FDetachmentTransformRules::KeepWorldTransform);
 
 	Weapon->GunMesh->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
@@ -239,22 +228,15 @@ void UffsWeaponManager::Multicast_DropWeapon_Implementation(AffsWeapon *Weapon)
 	Weapon->GunMesh3P->DetachFromComponent(FDetachmentTransformRules::KeepWorldTransform);
 	Weapon->GunMesh3P->SetOwnerNoSee(false);
 
-	// Weapon->GunMesh3P->SetSimulatePhysics(true);
-	// Weapon->GunMesh3P->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
-	// Weapon->GunMesh3P->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
-	// Weapon->GunMesh3P->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Block);
-	// Weapon->GunMesh3P->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Block);
-	// Weapon->GunMesh3P->SetCollisionResponseToChannel(ECC_GameTraceChannel3, ECR_Block);
+	Weapon->GunMesh3P->SetSimulatePhysics(true);
+	Weapon->GunMesh3P->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
 
 	Weapon->bIsAttached = false;
 	Weapon->EnableInteraction();
-
-	// Weapon->GunMesh3P->AddImpulse(Weapon->GetActorForwardVector() * DropImpulse, NAME_None, true);
 }
 
 void UffsWeaponManager::EquipWeapon(AffsWeapon* Weapon)
 {
-	// Get the owning player and check for authority
 	APawn* Owner = Cast<APawn>(GetOwner());
 
 	if (Owner->IsLocallyControlled() && !Owner->HasAuthority())
@@ -269,7 +251,6 @@ void UffsWeaponManager::Server_EquipWeapon_Implementation(AffsWeapon* Weapon)
 	{
 		if (Weapons.Num() >= 2)
 		{
-			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Yellow, FString::Printf(TEXT("%s"), *FString("Server: " + Weapon->GetName() + " is not attached")));
 			DropWeapon();
 		}
 
@@ -279,33 +260,7 @@ void UffsWeaponManager::Server_EquipWeapon_Implementation(AffsWeapon* Weapon)
 		Weapons.Add(Weapon);
 
 		NextWeapon();
-
-		Multicast_EquipWeapon(Weapon);
 	}
-}
-
-void UffsWeaponManager::Multicast_EquipWeapon_Implementation(AffsWeapon* Weapon)
-{
-    if (Weapon)
-    {
-        // Weapon->AttachToComponent(Cast<AffsCharacter>(GetOwner())->Mesh1P, FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("GripPoint"));
-        // Weapon->GunMesh->AttachToComponent(Cast<AffsCharacter>(GetOwner())->Mesh1P, FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("GripPoint"));
-        // Weapon->GunMesh->SetOnlyOwnerSee(true);
-        // Weapon->GunMesh->bCastDynamicShadow = false;
-        // Weapon->GunMesh->CastShadow = false;
-
-        // Weapon->GunMesh3P->AttachToComponent(Cast<AffsCharacter>(GetOwner())->GetMesh(), FAttachmentTransformRules::SnapToTargetNotIncludingScale, TEXT("GripPoint"));
-        // Weapon->GunMesh3P->SetOwnerNoSee(true);
-        // Weapon->GunMesh3P->SetSimulatePhysics(false); // Disable physics simulation
-        // Weapon->GunMesh3P->SetCollisionEnabled(ECollisionEnabled::NoCollision); // Reset collision properties if necessary
-
-        // Weapon->bIsAttached = true;
-
-        // Weapon->SetActorHiddenInGame(true);
-        // Weapon->UpdateFirstPersonGunMeshFOV(90.f);
-
-        // Weapon->DisableInteraction();
-    }
 }
 
 void UffsWeaponManager::UpdateAnimInstancePose(UffsAnimInstance *MeshAnimInstance, UAnimSequence *CharacterPose1P, FVector WeaponOffset, FTransform PointAim, FVector PlayerPivotOffset, FVector GunPivotOffset, FTransform EditingOffset)

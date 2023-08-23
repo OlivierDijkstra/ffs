@@ -336,6 +336,7 @@ void AffsCharacter::Multicast_Ragdoll_Implementation()
 
 #pragma region Weapons
 
+// TODO Move this and called functions to WeaponManager
 FHitResult AffsCharacter::FireWeapon(bool InitialShot, bool Debug)
 {
 	if (!WeaponManager->CurrentWeapon)

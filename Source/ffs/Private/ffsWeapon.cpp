@@ -21,6 +21,13 @@ AffsWeapon::AffsWeapon()
 
     GunMesh3P = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("GunMesh3P"));
     GunMesh3P->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+    GunMesh3P->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Block);
+	GunMesh3P->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Ignore);
+	GunMesh3P->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
+	GunMesh3P->SetCollisionResponseToChannel(ECC_PhysicsBody, ECR_Ignore);
+	GunMesh3P->SetCollisionResponseToChannel(ECC_Vehicle, ECR_Ignore);
+	GunMesh3P->SetCollisionResponseToChannel(ECC_Destructible, ECR_Ignore);
+    GunMesh3P->SetCollisionResponseToChannel(ECC_GameTraceChannel3, ECR_Block);
 
     GunMesh3P->SetupAttachment(Pivot);
 

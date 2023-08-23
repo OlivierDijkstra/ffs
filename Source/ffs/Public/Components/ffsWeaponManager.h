@@ -84,8 +84,6 @@ public:
     void EquipWeapon(AffsWeapon *Weapon);
     UFUNCTION(Server, Reliable)
     void Server_EquipWeapon(AffsWeapon *Weapon);
-    UFUNCTION(NetMulticast, Reliable)
-    void Multicast_EquipWeapon(AffsWeapon *Weapon);
 
 	virtual FHitResult FireLineTrace(bool InitialShot, bool Debug);
 
