@@ -43,6 +43,17 @@ void UffsWeaponManager::OnRep_CurrentWeapon()
 
 	AffsCharacter *Player = Cast<AffsCharacter>(GetOwner());
 
+	if (!Player)
+	{
+		return;
+	}
+
+	// Player->GetRecoilAnimation()->Init(
+	// 	CurrentWeapon->RecoilAnimData,
+	// 	CurrentWeapon->FireRate,
+	// 	CurrentWeapon->Burst
+	// );
+
 	FVector PlayerPivotOffset = CurrentWeapon->GunMesh->GetSocketTransform(TEXT("WeaponPivot"), RTS_Component).GetLocation();
 	FVector GunPivotOffset = CurrentWeapon->GunPivotOffset;
 	CurrentWeapon->SetActorRelativeLocation(-PlayerPivotOffset - GunPivotOffset);
@@ -174,6 +185,12 @@ AffsWeapon *UffsWeaponManager::SpawnWeaponOnPlayer(AffsCharacter *Player, TSubcl
 	if (!CurrentWeapon)
 	{
 		CurrentWeapon = Weapon;
+		
+		Player->GetRecoilAnimation()->Init(
+			CurrentWeapon->RecoilAnimData,
+			CurrentWeapon->FireRate,
+			CurrentWeapon->Burst
+		);
 	}
 
 	return Weapon;
@@ -182,10 +199,17 @@ AffsWeapon *UffsWeaponManager::SpawnWeaponOnPlayer(AffsCharacter *Player, TSubcl
 void UffsWeaponManager::NextWeapon()
 {
 	int32 NewWeaponIndex = IncrementCurrentWeaponIndex();
+	AffsCharacter *Player = Cast<AffsCharacter>(GetOwner());
 
 	if (Weapons.IsValidIndex(NewWeaponIndex))
 	{
 		CurrentWeapon = Weapons[NewWeaponIndex];
+		
+		Player->GetRecoilAnimation()->Init(
+			CurrentWeapon->RecoilAnimData,
+			CurrentWeapon->FireRate,
+			CurrentWeapon->Burst
+		);
 	}
 
 }
