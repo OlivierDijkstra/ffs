@@ -261,7 +261,7 @@ void AffsCharacter::ResetAttributes()
 void AffsCharacter::SwitchToDeathCamera()
 {
 	APlayerController *PC = Cast<APlayerController>(GetController());
-	if (PC && WeaponManager)
+	if (PC)
 	{
 		PC->SetViewTargetWithBlend(this, 0.5f, EViewTargetBlendFunction::VTBlend_Cubic);
 		FirstPersonCameraComponent->SetActive(false);
@@ -270,7 +270,9 @@ void AffsCharacter::SwitchToDeathCamera()
 		GetMesh()->SetOwnerNoSee(false);
 		Mesh1P->SetVisibility(false);
 
-		WeaponManager->CurrentWeapon->GunMesh->SetVisibility(false);
+		if (WeaponManager &&WeaponManager->CurrentWeapon) {
+			WeaponManager->CurrentWeapon->GunMesh->SetVisibility(false);
+		}
 
 		FRotator DeathCameraRotation = DeathCamera->GetComponentRotation();
 		DeathCameraRotation.Roll = FMath::RandRange(0.f, 360.f);
