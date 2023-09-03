@@ -221,6 +221,11 @@ void UffsWeaponManager::Server_DropWeapon_Implementation(APawn *Owner)
 {
 	if (Owner->HasAuthority())
 	{
+		if (Weapons.Num() <= 1)
+		{
+			return;
+		}
+
 		AffsWeapon *WeaponBackup = Weapons[CurrentWeaponIndex];
 		WeaponBackup->SetOwner(nullptr);
 
@@ -272,7 +277,7 @@ void UffsWeaponManager::Server_EquipWeapon_Implementation(AffsWeapon* Weapon)
 		}
 
 		AffsCharacter* Player = Cast<AffsCharacter>(GetOwner());
-		
+
 		Weapon->SetOwner(Player);
 		Weapons.Add(Weapon);
 
