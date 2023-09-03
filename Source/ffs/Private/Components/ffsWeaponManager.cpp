@@ -167,30 +167,23 @@ int32 UffsWeaponManager::IncrementCurrentWeaponIndex()
 
 AffsWeapon *UffsWeaponManager::SpawnWeaponOnPlayer(AffsCharacter *Player, TSubclassOf<AffsWeapon> WeaponClass)
 {
-	if (!Player || !WeaponClass)
+	if (!Player || !WeaponClass || !Player->HasAuthority())
 		return nullptr;
 
 	FActorSpawnParameters SpawnParams;
-	SpawnParams.Owner = Player;
-	SpawnParams.Instigator = Player;
-	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+	SpawnParams.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AdjustIfPossibleButAlwaysSpawn;
 
-	AffsWeapon *Weapon = GetWorld()->SpawnActor<AffsWeapon>(WeaponClass, SpawnParams);
+	FVector SpawnLocation = Player->GetActorLocation();
+	FRotator SpawnRotation = Player->GetActorRotation();
+
+	AffsWeapon *Weapon = GetWorld()->SpawnActor<AffsWeapon>(WeaponClass, SpawnLocation, SpawnRotation, SpawnParams);
 
 	if (!Weapon)
 		return nullptr;
 
-	Weapons.Add(Weapon);
-
 	if (!CurrentWeapon)
 	{
-		CurrentWeapon = Weapon;
-		
-		Player->GetRecoilAnimation()->Init(
-			CurrentWeapon->RecoilAnimData,
-			CurrentWeapon->FireRate,
-			CurrentWeapon->Burst
-		);
+		Server_EquipWeapon(Weapon);
 	}
 
 	return Weapon;
@@ -279,7 +272,7 @@ void UffsWeaponManager::Server_EquipWeapon_Implementation(AffsWeapon* Weapon)
 		}
 
 		AffsCharacter* Player = Cast<AffsCharacter>(GetOwner());
-
+		
 		Weapon->SetOwner(Player);
 		Weapons.Add(Weapon);
 
