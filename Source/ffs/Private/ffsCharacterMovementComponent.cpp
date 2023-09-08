@@ -261,10 +261,10 @@ void UffsCharacterMovementComponent::PhysSliding(float deltaTime, int32 Iteratio
     FHitResult Hit(1.f);
     FVector Adjusted = Velocity * deltaTime; // x = v * dt
     FVector VelocityPlaneDirection = FVector::VectorPlaneProject(Velocity, SurfaceHit.Normal).GetSafeNormal();
-    FQuat NewRotation = FRotationMatrix::MakeFromZX(VelocityPlaneDirection, SurfaceHit.Normal).ToQuat();
+    // FQuat NewRotation = FRotationMatrix::MakeFromZX(VelocityPlaneDirection, SurfaceHit.Normal).ToQuat();
 
     // This actually moves the character
-    SafeMoveUpdatedComponent(Adjusted, NewRotation, true, Hit);
+    SafeMoveUpdatedComponent(Adjusted, OldRotation, true, Hit);
 
     // If we hit an object with the slide movement, handle the impact
     if (Hit.Time < 1.f)
