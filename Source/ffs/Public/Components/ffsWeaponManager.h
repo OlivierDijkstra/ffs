@@ -85,8 +85,6 @@ public:
     UFUNCTION(Server, Reliable)
     void Server_EquipWeapon(AffsWeapon *Weapon);
 
-	virtual FHitResult FireLineTrace(bool InitialShot, bool Debug);
-
     void PlayFireAnimation(bool ThirdPerson);
     void PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName, bool ThirdPerson);
     void UpdateAnimInstancePose(UffsAnimInstance *MeshAnimInstance, UAnimSequence *CharacterPose1P, FVector WeaponOffset, FTransform PointAim, FVector PlayerPivotOffset, FVector GunPivotOffset, FTransform EditingOffset);

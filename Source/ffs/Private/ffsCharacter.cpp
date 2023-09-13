@@ -339,20 +339,11 @@ void AffsCharacter::Multicast_Ragdoll_Implementation()
 #pragma region Weapons
 
 // TODO Move this and called functions to WeaponManager
-FHitResult AffsCharacter::FireWeapon(bool InitialShot, bool Debug)
+void AffsCharacter::FireWeapon()
 {
-	if (!WeaponManager->CurrentWeapon)
-	{
-		return FHitResult();
-	}
-
-	FHitResult FireLineTraceResult = WeaponManager->FireLineTrace(InitialShot, Debug);
-
 	PlayFireAnimation();
 	PlayWeaponFireFX(WeaponManager->CurrentWeapon->MuzzleFlashFX, FName("Muzzle"));
 	PlayWeaponFireFX(WeaponManager->CurrentWeapon->CaseEjectFX, FName("ShellEject"));
-
-	return FireLineTraceResult;
 }
 
 void AffsCharacter::PlayCameraShake()

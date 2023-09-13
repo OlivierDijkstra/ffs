@@ -100,44 +100,6 @@ void AffsWeapon::UpdateFirstPersonGunMeshFOV(float FOV)
     GunMesh->SetMaterial(0, Material);
 }
 
-FHitResult AffsWeapon::FireLineTrace(bool Initial, bool Debug)
-{
-    FHitResult HitResult;
-
-    if (!GunMesh)
-        return HitResult;
-
-    ACharacter *GunOwner = Cast<ACharacter>(GetOwner());
-    APlayerController *PC = GunOwner ? Cast<APlayerController>(GunOwner->GetController()) : nullptr;
-
-    if (!PC)
-        return HitResult;
-
-    FVector PlayerViewpointLocation;
-    FRotator PlayerViewpointRotation;
-    PC->GetPlayerViewPoint(PlayerViewpointLocation, PlayerViewpointRotation);
-
-    // Get the start location of the line trace, center of the camera
-    FVector StartLocation = PlayerViewpointLocation + PlayerViewpointRotation.Vector() * 20.f;
-
-    // Calculate the end location of the line trace with added spread
-    float Spread = Initial ? 0.f : WeaponSpread;
-    FVector DirectionWithSpread = FMath::VRandCone(PlayerViewpointRotation.Vector(), Spread);
-    FVector EndLocation = StartLocation + (DirectionWithSpread * WeaponRange);
-
-    FCollisionQueryParams TraceParams;
-    TraceParams.AddIgnoredActor(GunOwner);
-
-    bool bHit = GetWorld()->LineTraceSingleByChannel(HitResult, StartLocation, EndLocation, ECollisionChannel::ECC_GameTraceChannel2, TraceParams);
-
-    if (Debug)
-    {
-        DrawDebugLine(GetWorld(), StartLocation, EndLocation, FColor::Red, false, 1.f, 0, 1.f);
-    }
-
-    return HitResult;
-}
-
 void AffsWeapon::ImplementedToggleFocus_Implementation(bool bIsFocused)
 {
     if (InteractionWidgetComponent)

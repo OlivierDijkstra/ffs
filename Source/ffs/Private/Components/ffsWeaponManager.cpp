@@ -110,19 +110,6 @@ void UffsWeaponManager::OnRep_Weapons()
     }
 }
 
-FHitResult UffsWeaponManager::FireLineTrace(bool InitialShot, bool Debug)
-{
-	FHitResult FireLineTraceResult;
-	APawn *OwnerPawn = Cast<APawn>(GetOwner());
-
-	if (CurrentWeapon && OwnerPawn && !OwnerPawn->IsLocallyControlled() && OwnerPawn->HasAuthority())
-	{
-		FireLineTraceResult = CurrentWeapon->FireLineTrace(InitialShot, Debug);
-	}
-
-	return FireLineTraceResult;
-}
-
 void UffsWeaponManager::PlayFireAnimation(bool ThirdPerson)
 {
 	if (CurrentWeapon && CurrentWeapon->FireMontage)

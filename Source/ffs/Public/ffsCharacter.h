@@ -103,7 +103,7 @@ protected:
 	// Weapons
 	//
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
-	virtual FHitResult FireWeapon(bool InitialShot, bool Debug);
+	void FireWeapon();
 
 	UFUNCTION(BlueprintCallable, Category = "Weapons")
 	void PlayFireAnimation();
