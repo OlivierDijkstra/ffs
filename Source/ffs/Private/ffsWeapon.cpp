@@ -64,6 +64,7 @@ void AffsWeapon::DisableInteraction()
         if (InteractionArea)
         {
             InteractionArea->DisableInteraction();
+            InteractionWidgetComponent->SetVisibility(false);
         }
     }
 }
