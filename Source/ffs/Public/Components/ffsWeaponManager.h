@@ -10,7 +10,8 @@ class USkeletalMeshComponent;
 class AffsWeapon;
 class AffsCharacter;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FComponentCustomStartSignature);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FComponentCustomStartSignature1);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FComponentCustomStartSignature2);
 
 UENUM(BlueprintType)
 enum class EFireMode : uint8
@@ -44,7 +45,10 @@ public:
     void OnRep_CurrentWeapon();
 
     UPROPERTY(BlueprintAssignable, Category = "Custom")
-    FComponentCustomStartSignature OnWeaponEquipped;
+    FComponentCustomStartSignature1 OnWeaponEquipped;
+
+    UPROPERTY(BlueprintAssignable, Category = "Custom")
+    FComponentCustomStartSignature2 OnWeaponAdded;
 
     UPROPERTY(Replicated, BlueprintReadWrite, Category = "Weapons")
     int32 CurrentWeaponIndex = 0;
@@ -74,9 +78,9 @@ public:
     float DropImpulse = 1000.0f;
 
     UFUNCTION(BlueprintCallable, Category = "Weapons")
-    void DropWeapon();
+    void DropWeapon(bool SwapToNext);
     UFUNCTION(Server, Reliable)
-    void Server_DropWeapon(APawn *Owner);
+    void Server_DropWeapon(APawn *Owner, bool SwapToNext);
     UFUNCTION(NetMulticast, Reliable)
     void Multicast_DropWeapon(AffsWeapon *Weapon);
 
@@ -84,6 +88,8 @@ public:
     void EquipWeapon(AffsWeapon *Weapon);
     UFUNCTION(Server, Reliable)
     void Server_EquipWeapon(AffsWeapon *Weapon);
+    UFUNCTION(NetMulticast, Reliable)
+    void Multicast_EquipWeapon();
 
     void PlayFireAnimation(bool ThirdPerson);
     void PlayWeaponFireFX(UNiagaraSystem *FX, FName SocketName, bool ThirdPerson);

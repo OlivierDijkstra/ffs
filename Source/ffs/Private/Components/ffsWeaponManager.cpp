@@ -48,12 +48,6 @@ void UffsWeaponManager::OnRep_CurrentWeapon()
 		return;
 	}
 
-	// Player->GetRecoilAnimation()->Init(
-	// 	CurrentWeapon->RecoilAnimData,
-	// 	CurrentWeapon->FireRate,
-	// 	CurrentWeapon->Burst
-	// );
-
 	FVector PlayerPivotOffset = CurrentWeapon->GunMesh->GetSocketTransform(TEXT("WeaponPivot"), RTS_Component).GetLocation();
 	FVector GunPivotOffset = CurrentWeapon->GunPivotOffset;
 	CurrentWeapon->SetActorRelativeLocation(-PlayerPivotOffset - GunPivotOffset);
@@ -194,17 +188,17 @@ void UffsWeaponManager::NextWeapon()
 
 }
 
-void UffsWeaponManager::DropWeapon()
+void UffsWeaponManager::DropWeapon(bool SwapToNext)
 {
 	APawn *Owner = Cast<APawn>(GetOwner());
 
 	if (Owner->IsLocallyControlled() && !Owner->HasAuthority())
 	{
-		Server_DropWeapon(Owner);
+		Server_DropWeapon(Owner, SwapToNext);
 	}
 }
 
-void UffsWeaponManager::Server_DropWeapon_Implementation(APawn *Owner)
+void UffsWeaponManager::Server_DropWeapon_Implementation(APawn *Owner, bool SwapToNext)
 {
 	if (Owner->HasAuthority())
 	{
@@ -221,7 +215,7 @@ void UffsWeaponManager::Server_DropWeapon_Implementation(APawn *Owner)
 		CurrentWeapon = nullptr;
 		Weapons.Remove(WeaponBackup);
 
-		if (Weapons.Num() > 0)
+		if (Weapons.Num() > 0 && SwapToNext)
 		{
 			NextWeapon();
 		}
@@ -239,6 +233,13 @@ void UffsWeaponManager::Multicast_DropWeapon_Implementation(AffsWeapon *Weapon)
 
 	Weapon->GunMesh3P->SetSimulatePhysics(true);
 	Weapon->GunMesh3P->SetCollisionEnabled(ECollisionEnabled::QueryAndPhysics);
+    Weapon->GunMesh3P->SetCollisionResponseToChannel(ECC_WorldStatic, ECR_Block);
+	Weapon->GunMesh3P->SetCollisionResponseToChannel(ECC_WorldDynamic, ECR_Ignore);
+	Weapon->GunMesh3P->SetCollisionResponseToChannel(ECC_Pawn, ECR_Ignore);
+	Weapon->GunMesh3P->SetCollisionResponseToChannel(ECC_PhysicsBody, ECR_Ignore);
+	Weapon->GunMesh3P->SetCollisionResponseToChannel(ECC_Vehicle, ECR_Ignore);
+	Weapon->GunMesh3P->SetCollisionResponseToChannel(ECC_Destructible, ECR_Ignore);
+    Weapon->GunMesh3P->SetCollisionResponseToChannel(ECC_GameTraceChannel3, ECR_Block);
 
 	Weapon->bIsAttached = false;
 	Weapon->EnableInteraction();
@@ -258,18 +259,25 @@ void UffsWeaponManager::Server_EquipWeapon_Implementation(AffsWeapon* Weapon)
 {
 	if (GetOwner()->HasAuthority() && Weapon)
 	{
+		AffsCharacter* Player = Cast<AffsCharacter>(GetOwner());
+
 		if (Weapons.Num() >= 2)
 		{
-			DropWeapon();
+			Server_DropWeapon(Player, false);
 		}
-
-		AffsCharacter* Player = Cast<AffsCharacter>(GetOwner());
 
 		Weapon->SetOwner(Player);
 		Weapons.Add(Weapon);
 
 		NextWeapon();
+
+		Multicast_EquipWeapon();
 	}
+}
+
+void UffsWeaponManager::Multicast_EquipWeapon_Implementation()
+{
+	OnWeaponAdded.Broadcast();
 }
 
 void UffsWeaponManager::UpdateAnimInstancePose(UffsAnimInstance *MeshAnimInstance, UAnimSequence *CharacterPose1P, FVector WeaponOffset, FTransform PointAim, FVector PlayerPivotOffset, FVector GunPivotOffset, FTransform EditingOffset)

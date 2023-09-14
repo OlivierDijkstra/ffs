@@ -34,6 +34,11 @@ AffsWeapon::AffsWeapon()
     InteractionAreaComponent = CreateDefaultSubobject<UChildActorComponent>(TEXT("InteractionAreaComponent"));
     InteractionAreaComponent->SetupAttachment(GunMesh3P);
     InteractionAreaComponent->SetChildActorClass(AffsInteractionArea::StaticClass());
+    AffsInteractionArea* InteractionArea = Cast<AffsInteractionArea>(InteractionAreaComponent->GetChildActor());
+    if (InteractionArea)
+    {
+        InteractionArea->InteractionDuration = 0.25f;
+    }
 
     InteractionWidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("WeaponWidgetComponent"));
     InteractionWidgetComponent->SetupAttachment(GunMesh3P);
