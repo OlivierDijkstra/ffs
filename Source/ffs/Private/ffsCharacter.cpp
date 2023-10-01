@@ -424,10 +424,7 @@ void AffsCharacter::PlayThirdPersonMontage(UAnimMontage *Montage, float Rate)
 	{
 		UAnimInstance *AnimInstance3P = GetMesh()->GetAnimInstance();
 		AnimInstance3P->Montage_Play(Montage, Rate);
-	}
 
-	if (HasAuthority())
-	{
 		Server_PlayThirdPersonMontage(Montage, Rate);
 	}
 }
