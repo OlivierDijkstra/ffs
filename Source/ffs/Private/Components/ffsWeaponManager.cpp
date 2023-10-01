@@ -54,13 +54,20 @@ void UffsWeaponManager::OnRep_CurrentWeapon()
 
 	if (Player->Mesh1P)
 	{
-		UpdateAnimInstancePose(Cast<UffsAnimInstance>(Player->Mesh1P->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, CurrentWeapon->EditingOffset);
+		GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, TEXT("Player->Mesh1P"));
+		// Print the name of CurrentWeapon->BasePose
+		// GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, CurrentWeapon->BasePose->GetName());
+		if (CurrentWeapon && CurrentWeapon->BasePose) {
+			GEngine->AddOnScreenDebugMessage(-1, 5.f, FColor::Red, CurrentWeapon->BasePose->GetName());
+		}
+		
+		UpdateAnimInstancePose(Cast<UffsAnimInstance>(Player->Mesh1P->GetAnimInstance()), CurrentWeapon->BasePose, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset);
 	}
 
-	// TODO This is not working, fix it
+	// TODO This is not working, fix it, <- update: not sure why this comment is here, still gotta investigate.
 	if (Player->GetMesh())
 	{
-		UpdateAnimInstancePose(Cast<UffsAnimInstance>(Player->GetMesh()->GetAnimInstance()), CurrentWeapon->BasePose1P, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset, CurrentWeapon->EditingOffset);
+		UpdateAnimInstancePose(Cast<UffsAnimInstance>(Player->GetMesh()->GetAnimInstance()), CurrentWeapon->BasePose, CurrentWeapon->PositionOffset, CurrentWeapon->PointAim, PlayerPivotOffset, GunPivotOffset);
 	}
 }
 
@@ -280,15 +287,14 @@ void UffsWeaponManager::Multicast_EquipWeapon_Implementation()
 	OnWeaponAdded.Broadcast();
 }
 
-void UffsWeaponManager::UpdateAnimInstancePose(UffsAnimInstance *MeshAnimInstance, UAnimSequence *CharacterPose1P, FVector WeaponOffset, FTransform PointAim, FVector PlayerPivotOffset, FVector GunPivotOffset, FTransform EditingOffset)
+void UffsWeaponManager::UpdateAnimInstancePose(UffsAnimInstance *MeshAnimInstance, UAnimSequence *CharacterPose, FVector WeaponOffset, FTransform PointAim, FVector PlayerPivotOffset, FVector GunPivotOffset)
 {
 	if (MeshAnimInstance)
 	{
-		MeshAnimInstance->CharacterPose1P = CharacterPose1P;
+		MeshAnimInstance->CharacterPose = CharacterPose;
 		MeshAnimInstance->WeaponOffset = WeaponOffset;
 		MeshAnimInstance->PointAim = PointAim;
 		MeshAnimInstance->PlayerPivotOffset = PlayerPivotOffset;
 		MeshAnimInstance->GunPivotOffset = GunPivotOffset;
-		MeshAnimInstance->EditingOffset = EditingOffset;
 	}
 }

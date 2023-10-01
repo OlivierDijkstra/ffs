@@ -35,10 +35,7 @@ public:
 	URecoilAnimationComponent* RecoilAnimation;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Pose")
-	UAnimSequence* CharacterPose1P;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Pose")
-	UAnimSequence* CharacterPose3P;
+	UAnimSequence* CharacterPose;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Pose")
 	FVector WeaponOffset;
@@ -51,7 +48,4 @@ public:
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Pose")
 	FVector GunPivotOffset;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Pose")
-	FTransform EditingOffset;
 };
